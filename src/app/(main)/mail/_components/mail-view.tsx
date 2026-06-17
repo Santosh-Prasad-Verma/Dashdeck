@@ -3,6 +3,7 @@
 import { format } from "date-fns/format";
 import {
   Archive,
+  Check,
   ChevronDown,
   ChevronLeft,
   ChevronRight,
@@ -15,6 +16,7 @@ import {
   ReplyAll,
   Send,
   Smile,
+  Star as StarIcon,
   Tag,
   Trash2,
   X,
@@ -236,7 +238,9 @@ export function MailView({ mail, onClose }: MailDisplayProps) {
               </>
             ) : null}
 
-            <div className="scrollbar-none min-h-0 flex-1 overflow-y-auto whitespace-pre-wrap text-sm">{mail.body}</div>
+            <div className="scrollbar-none min-h-0 flex-1 overflow-y-auto text-sm">
+              <EmailBodyRenderer body={mail.body} />
+            </div>
 
             <div className="mt-auto flex flex-col gap-3">
               <Separator />
@@ -263,6 +267,254 @@ export function MailView({ mail, onClose }: MailDisplayProps) {
           <div className="grid h-full place-items-center text-muted-foreground text-sm">No email selected</div>
         )}
       </div>
+    </div>
+  );
+}
+
+function EmailBodyRenderer({ body }: { body: string }) {
+  const blocks = body.split(/\n\n+/);
+
+  return (
+    <div className="flex flex-col gap-4">
+      {blocks.map((block, index) => {
+        const trimmed = block.trim();
+
+        // 1. Separators
+        if (/^[━\s\=\-_]{3,}$/.test(trimmed)) {
+          return <Separator key={index} className="my-4 bg-border/80" />;
+        }
+
+        // 2. Section Labeled Divider
+        if (/^[━\s\=\-_]{3,}(.+?)[━\s\=\-_]{3,}$/.test(trimmed)) {
+          const match = trimmed.match(/^[━\s\=\-_]{3,}(.+?)[━\s\=\-_]{3,}$/);
+          const title = match ? match[1].trim() : "";
+          return (
+            <div key={index} className="my-4 flex items-center gap-3">
+              <span className="text-[10px] font-bold tracking-widest text-muted-foreground uppercase whitespace-nowrap">
+                {title}
+              </span>
+              <div className="h-[1px] flex-1 bg-border/50" />
+            </div>
+          );
+        }
+
+        // 3. Checklist / Survey
+        if (trimmed.split("\n").some(line => /^\[([ xX]?)\]/.test(line.trim()))) {
+          const lines = trimmed.split("\n");
+          return (
+            <div key={index} className="flex flex-col gap-2 my-2 bg-muted/10 p-3 rounded-lg border border-border/40">
+              {lines.map((line, lIdx) => {
+                const match = line.match(/^\[([ xX]?)\]\s*(.+)$/);
+                if (match) {
+                  const checked = match[1].toLowerCase() === "x";
+                  const text = match[2].trim();
+                  return (
+                    <div key={lIdx} className="flex items-center gap-3">
+                      <div className={cn(
+                        "flex size-4 shrink-0 items-center justify-center rounded border border-border bg-background transition-colors",
+                        checked && "bg-foreground text-background"
+                      )}>
+                        {checked && <Check className="size-3 stroke-[3]" />}
+                      </div>
+                      <span className="text-sm font-normal text-muted-foreground">{text}</span>
+                    </div>
+                  );
+                }
+                return <p key={lIdx} className="text-sm text-muted-foreground leading-normal">{line}</p>;
+              })}
+            </div>
+          );
+        }
+
+        // 4. Bullet lists, Ticks, Podium/Leaders
+        if (
+          trimmed.split("\n").some(line => {
+            const t = line.trim();
+            return t.startsWith("•") || t.startsWith("✓") || /^\d+\./.test(t) || t.startsWith("🥇") || t.startsWith("🥈") || t.startsWith("🥉");
+          })
+        ) {
+          const lines = trimmed.split("\n");
+          return (
+            <div key={index} className="flex flex-col gap-2 my-2 pl-1">
+              {lines.map((line, lIdx) => {
+                const trimmedLine = line.trim();
+                if (trimmedLine.startsWith("•")) {
+                  const text = trimmedLine.replace(/^•\s*/, "");
+                  return (
+                    <div key={lIdx} className="flex items-start gap-2.5 text-sm text-muted-foreground leading-relaxed">
+                      <div className="size-1.5 rounded-full bg-foreground/60 mt-2 shrink-0" />
+                      <span>{text}</span>
+                    </div>
+                  );
+                }
+                if (trimmedLine.startsWith("✓")) {
+                  const text = trimmedLine.replace(/^✓\s*/, "");
+                  return (
+                    <div key={lIdx} className="flex items-start gap-2.5 text-sm text-muted-foreground leading-relaxed">
+                      <Check className="size-4 text-foreground/80 shrink-0 mt-0.5" />
+                      <span>{text}</span>
+                    </div>
+                  );
+                }
+                const numMatch = trimmedLine.match(/^(\d+)\.\s*(.+)$/);
+                if (numMatch) {
+                  const num = numMatch[1];
+                  const text = numMatch[2];
+                  return (
+                    <div key={lIdx} className="flex items-start gap-3 text-sm text-muted-foreground leading-relaxed">
+                      <span className="font-mono font-semibold text-foreground/70 shrink-0">{num}.</span>
+                      <span>{text}</span>
+                    </div>
+                  );
+                }
+                if (trimmedLine.startsWith("🥇") || trimmedLine.startsWith("🥈") || trimmedLine.startsWith("🥉")) {
+                  return (
+                    <div key={lIdx} className="flex items-center gap-2 text-sm font-medium text-foreground py-0.5">
+                      <span>{trimmedLine}</span>
+                    </div>
+                  );
+                }
+                return <p key={lIdx} className="text-sm text-muted-foreground leading-relaxed">{line}</p>;
+              })}
+            </div>
+          );
+        }
+
+        // 5. Actions / Buttons
+        const buttonsMatches = [...trimmed.matchAll(/\[(.*?)\]/g)].map(m => m[1]);
+        if (buttonsMatches.length > 0) {
+          // Check for security-alert inline confirmations
+          const lines = trimmed.split("\n");
+          const hasSecurityConfirmations = lines.some(l => l.includes("[Confirm]") || l.includes("[Lock Account]"));
+          if (hasSecurityConfirmations) {
+            return (
+              <div key={index} className="flex flex-col gap-3 my-4 p-4 rounded-xl border border-border bg-muted/40 max-w-sm">
+                {lines.map((line, lIdx) => {
+                  if (line.includes("[Confirm]")) {
+                    const text = line.replace(/—\s*\[Confirm\]/, "").trim();
+                    return (
+                      <div key={lIdx} className="flex items-center justify-between gap-4">
+                        <span className="text-sm font-medium text-foreground">{text}</span>
+                        <Button size="xs" className="bg-zinc-950 hover:bg-zinc-900 text-zinc-50 dark:bg-zinc-50 dark:hover:bg-zinc-200 dark:text-zinc-950 font-medium">Confirm</Button>
+                      </div>
+                    );
+                  }
+                  if (line.includes("[Lock Account]")) {
+                    const text = line.replace(/—\s*\[Lock Account\]/, "").trim();
+                    return (
+                      <div key={lIdx} className="flex items-center justify-between gap-4">
+                        <span className="text-sm font-medium text-destructive">{text}</span>
+                        <Button size="xs" variant="outline" className="text-destructive hover:bg-destructive/10 border-destructive/20 hover:text-destructive">Lock Account</Button>
+                      </div>
+                    );
+                  }
+                  return <p key={lIdx} className="text-sm text-muted-foreground">{line}</p>;
+                })}
+              </div>
+            );
+          }
+
+          // Check if it's a list of links (e.g. [Upgrade Now] | [Watch Demo] | [Read Docs])
+          if (trimmed.includes("|")) {
+            return (
+              <div key={index} className="flex flex-wrap items-center gap-3 my-4">
+                {buttonsMatches.map((btnText, bIdx) => {
+                  const isPrimary = bIdx === 0;
+                  return (
+                    <Button
+                      key={bIdx}
+                      variant={isPrimary ? "default" : "outline"}
+                      className={cn(
+                        isPrimary ? "bg-zinc-950 hover:bg-zinc-900 text-zinc-50 dark:bg-zinc-50 dark:hover:bg-zinc-200 dark:text-zinc-950 font-medium" : "font-medium"
+                      )}
+                      size="xs"
+                    >
+                      {btnText}
+                    </Button>
+                  );
+                })}
+              </div>
+            );
+          }
+
+          // Single button (e.g. [Reset Password] — expires in 30 minutes)
+          const singleMatch = trimmed.match(/^\[(.*?)\](?:\s*—\s*(.+))?$/);
+          if (singleMatch) {
+            const btnText = singleMatch[1];
+            const subtext = singleMatch[2];
+            return (
+              <div key={index} className="flex flex-col items-start gap-2 my-4">
+                <Button className="bg-zinc-950 hover:bg-zinc-900 text-zinc-50 dark:bg-zinc-50 dark:hover:bg-zinc-200 dark:text-zinc-950 font-medium" size="sm">
+                  {btnText}
+                </Button>
+                {subtext && <span className="text-xs text-muted-foreground">{subtext}</span>}
+              </div>
+            );
+          }
+        }
+
+        // 6. Key-Value invoice / summary list
+        const kvLines = trimmed.split("\n").filter(l => l.trim() !== "");
+        const parsedRows = kvLines.map(line => {
+          const gapMatch = line.match(/^(.+?)\s{3,}(.+)$/);
+          if (gapMatch) {
+            return { key: gapMatch[1].trim(), value: gapMatch[2].trim() };
+          }
+          const colonMatch = line.match(/^([^:]+):\s*(.+)$/);
+          if (colonMatch) {
+            return { key: colonMatch[1].trim(), value: colonMatch[2].trim() };
+          }
+          return null;
+        });
+        const validRowsCount = parsedRows.filter(r => r !== null).length;
+        if (validRowsCount > 0 && validRowsCount >= kvLines.length * 0.6) {
+          return (
+            <div key={index} className="my-4 rounded-xl border border-border bg-muted/10 p-4 font-normal">
+              <div className="flex flex-col gap-2">
+                {parsedRows.map((row, rIdx) => {
+                  if (!row) {
+                    return <div key={rIdx} className="text-sm text-muted-foreground leading-normal">{kvLines[rIdx]}</div>;
+                  }
+                  const isTotal = row.key.toLowerCase().includes("total") || row.key.toLowerCase() === "amount";
+                  return (
+                    <div key={rIdx} className={cn(
+                      "flex justify-between items-center text-sm py-1 border-b border-border/40 last:border-0 last:pb-0 pb-1",
+                      isTotal && "font-semibold text-foreground border-t border-border/80 pt-2 mt-1"
+                    )}>
+                      <span className={cn(isTotal ? "text-foreground" : "text-muted-foreground")}>{row.key}</span>
+                      <span className={cn("font-mono", isTotal ? "text-base text-foreground font-bold" : "text-foreground")}>{row.value}</span>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          );
+        }
+
+        // 7. Star ratings (e.g. ⭐⭐⭐⭐⭐)
+        if (/^[⭐\s]+$/.test(trimmed)) {
+          const starCount = (trimmed.match(/⭐/g) || []).length;
+          return (
+            <div key={index} className="flex items-center gap-1 my-2">
+              {[...Array(starCount)].map((_, i) => (
+                <StarIcon key={i} className="size-4 fill-foreground text-foreground" />
+              ))}
+            </div>
+          );
+        }
+
+        // 8. Default block
+        const pLines = trimmed.split("\n");
+        return (
+          <div key={index} className="my-2 flex flex-col gap-2">
+            {pLines.map((line, lIdx) => (
+              <p key={lIdx} className="text-muted-foreground leading-relaxed text-sm font-normal">
+                {line}
+              </p>
+            ))}
+          </div>
+        );
+      })}
     </div>
   );
 }

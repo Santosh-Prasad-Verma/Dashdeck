@@ -1,7 +1,11 @@
+"use client";
+
 import { CheckCircle, AlertTriangle, XCircle, Clock, Server, Database, Globe, Cloud } from "lucide-react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
+import { Area, AreaChart, CartesianGrid, XAxis, YAxis } from "recharts";
+import { type ChartConfig, ChartContainer, ChartTooltip, ChartTooltipContent } from "@/components/ui/chart";
 
 const services = [
   { name: "Web Dashboard", uptime: "99.99%", status: "operational", latency: "45ms", icon: Globe },
@@ -11,15 +15,31 @@ const services = [
   { name: "Authentication", uptime: "100%", status: "operational", latency: "15ms", icon: CheckCircle },
 ];
 
-const uptimeDays = [
-  { date: "Jun 16", uptime: 100 },
-  { date: "Jun 15", uptime: 99.99 },
-  { date: "Jun 14", uptime: 100 },
-  { date: "Jun 13", uptime: 100 },
-  { date: "Jun 12", uptime: 99.98 },
+const uptimeData = [
+  { date: "Jun 01", uptime: 100 },
+  { date: "Jun 02", uptime: 99.98 },
+  { date: "Jun 03", uptime: 99.99 },
+  { date: "Jun 04", uptime: 100 },
+  { date: "Jun 05", uptime: 100 },
+  { date: "Jun 06", uptime: 99.97 },
+  { date: "Jun 07", uptime: 99.99 },
+  { date: "Jun 08", uptime: 100 },
+  { date: "Jun 09", uptime: 100 },
+  { date: "Jun 10", uptime: 99.99 },
   { date: "Jun 11", uptime: 99.95 },
-  { date: "Jun 10", uptime: 100 },
+  { date: "Jun 12", uptime: 99.98 },
+  { date: "Jun 13", uptime: 100 },
+  { date: "Jun 14", uptime: 100 },
+  { date: "Jun 15", uptime: 99.99 },
+  { date: "Jun 16", uptime: 100 },
 ];
+
+const chartConfig = {
+  uptime: {
+    label: "Uptime",
+    color: "var(--foreground)",
+  },
+} satisfies ChartConfig;
 
 const incidents = [
   { date: "Jun 11", title: "Minor API latency spike", status: "resolved", duration: "12 min" },
@@ -72,17 +92,49 @@ export default function Page() {
         <Card className="xl:col-span-7">
           <CardHeader>
             <CardTitle>90-Day Uptime</CardTitle>
-            <CardDescription>Daily uptime percentage</CardDescription>
+            <CardDescription>Daily uptime percentage history</CardDescription>
           </CardHeader>
           <CardContent>
-            <div className="flex items-end gap-2 h-32">
-              {uptimeDays.map((day) => (
-                <div key={day.date} className="flex flex-1 flex-col items-center gap-1">
-                  <div className="w-full rounded-sm bg-foreground/70" style={{ height: `${day.uptime}%` }} />
-                  <span className="text-muted-foreground text-[10px]">{day.date}</span>
-                </div>
-              ))}
-            </div>
+            <ChartContainer config={chartConfig} className="aspect-auto h-32 w-full">
+              <AreaChart data={uptimeData} margin={{ left: 0, right: 0, top: 0, bottom: 0 }}>
+                <defs>
+                  <linearGradient id="fillUptime" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="5%" stopColor="var(--foreground)" stopOpacity={0.15} />
+                    <stop offset="95%" stopColor="var(--foreground)" stopOpacity={0.01} />
+                  </linearGradient>
+                </defs>
+                <CartesianGrid vertical={false} strokeOpacity={0.1} />
+                <XAxis
+                  dataKey="date"
+                  tickLine={false}
+                  axisLine={false}
+                  tickMargin={8}
+                  minTickGap={24}
+                />
+                <YAxis
+                  domain={[99.5, 100.01]}
+                  hide
+                />
+                <ChartTooltip
+                  cursor={false}
+                  content={
+                    <ChartTooltipContent
+                      hideIndicator
+                      labelFormatter={(value) => `Date: ${value}`}
+                      formatter={(value) => [`${value}%`, "Uptime"]}
+                    />
+                  }
+                />
+                <Area
+                  dataKey="uptime"
+                  type="monotone"
+                  fill="url(#fillUptime)"
+                  stroke="var(--foreground)"
+                  strokeWidth={1.5}
+                  dot={false}
+                />
+              </AreaChart>
+            </ChartContainer>
           </CardContent>
         </Card>
 

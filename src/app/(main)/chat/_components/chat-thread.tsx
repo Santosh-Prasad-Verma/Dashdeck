@@ -151,11 +151,11 @@ export function ChatThread({ contact, messages, conversationId, onOpenContact, o
 
             return (
               <div key={message.id} className={cn("flex items-end gap-2", isOutbound && "flex-row-reverse")}>
-                <Avatar className="shrink-0">
+                 <Avatar className="shrink-0">
                   <AvatarFallback
                     className={cn(
                       "bg-muted text-foreground text-xs",
-                      isOutbound && "bg-primary text-primary-foreground",
+                      isOutbound && "bg-foreground text-background font-semibold",
                     )}
                   >
                     {getInitials(senderName)}
@@ -165,14 +165,14 @@ export function ChatThread({ contact, messages, conversationId, onOpenContact, o
                 <div
                   className={cn(
                     "flex max-w-md flex-col gap-2 rounded-xl px-4 py-3 text-sm",
-                    isOutbound ? "bg-primary text-primary-foreground" : "bg-muted",
+                    isOutbound ? "bg-foreground text-background" : "bg-muted",
                   )}
                 >
                   <p className="leading-relaxed">{message.text}</p>
                   <div
                     className={cn(
                       "text-muted-foreground/75 text-xs",
-                      isOutbound && "text-right text-primary-foreground/75",
+                      isOutbound && "text-right text-background/75",
                     )}
                   >
                     {message.time}
@@ -263,7 +263,7 @@ function MessageComposer({ placeholder, conversationId }: { placeholder: string;
           </Button>
         </div>
 
-        <Button size="icon-sm" onClick={handleSubmit} disabled={!message.trim()}>
+        <Button size="icon-sm" onClick={handleSubmit} disabled={!message.trim()} className="bg-zinc-950 hover:bg-zinc-900 text-zinc-50 dark:bg-zinc-50 dark:hover:bg-zinc-200 dark:text-zinc-950 border border-zinc-800 dark:border-zinc-200">
           <Send />
         </Button>
       </div>

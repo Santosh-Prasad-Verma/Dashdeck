@@ -5,6 +5,7 @@ import { AnalyticsKpiStrip } from "./_components/analytics-kpi-strip";
 import { AnalyticsToolbar } from "./_components/analytics-toolbar";
 import { AudienceView } from "./_components/audience-view";
 import { ConversionsView } from "./_components/conversions-view";
+import { EngagementView } from "./_components/engagement-view";
 import { RealtimeVisitors } from "./_components/realtime-visitors";
 import { TopPages } from "./_components/top-pages";
 import { TopTrafficSources } from "./_components/top-traffic-sources";
@@ -67,9 +68,7 @@ export default function Page() {
         </TabsContent>
 
         <TabsContent value="engagement">
-          <div className="flex h-64 items-center justify-center rounded-xl border border-border border-dashed text-muted-foreground">
-            Engagement view coming soon.
-          </div>
+          <EngagementView />
         </TabsContent>
 
         <TabsContent value="conversions">
