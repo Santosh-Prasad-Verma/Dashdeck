@@ -6,11 +6,11 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { type ChartConfig, ChartContainer, ChartTooltip, ChartTooltipContent } from "@/components/ui/chart";
 
 const chartData = [
-  { department: "Cardiology", patients: 1240, fill: "hsl(var(--foreground))" },
-  { department: "Neurology", patients: 980, fill: "hsl(var(--muted-foreground))" },
-  { department: "Orthopedics", patients: 850, fill: "hsl(var(--muted-foreground) / 0.7)" },
-  { department: "Pediatrics", patients: 720, fill: "hsl(var(--muted-foreground) / 0.4)" },
-  { department: "Oncology", patients: 580, fill: "hsl(var(--muted-foreground) / 0.2)" },
+  { department: "Cardiology", patients: 1240, fill: "var(--chart-1)" },
+  { department: "Neurology", patients: 980, fill: "var(--chart-2)" },
+  { department: "Orthopedics", patients: 850, fill: "var(--chart-3)" },
+  { department: "Pediatrics", patients: 720, fill: "var(--chart-4)" },
+  { department: "Oncology", patients: 580, fill: "var(--chart-5)" },
 ];
 
 const chartConfig = {} satisfies ChartConfig;
@@ -27,7 +27,7 @@ export function DepartmentBreakdown() {
         <ChartContainer config={chartConfig} className="mx-auto aspect-square h-44 w-full max-w-[160px]">
           <PieChart>
             <ChartTooltip cursor={false} content={<ChartTooltipContent hideLabel />} />
-            <Pie data={chartData} dataKey="patients" nameKey="department" innerRadius={45} strokeWidth={2} stroke="hsl(var(--background))">
+            <Pie data={chartData} dataKey="patients" nameKey="department" innerRadius={45} strokeWidth={2} stroke="var(--background)">
               {chartData.map((entry, index) => (
                 <Cell key={`cell-${index}`} fill={entry.fill} />
               ))}

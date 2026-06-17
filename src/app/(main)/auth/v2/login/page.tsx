@@ -27,7 +27,7 @@ export default function LoginV2() {
       <div className="absolute top-5 flex w-full justify-end px-10">
         <div className="text-muted-foreground text-sm">
           Don&apos;t have an account?{" "}
-          <Link prefetch={false} className="text-foreground" href="register">
+          <Link prefetch={false} className="text-zinc-950 dark:text-zinc-50 hover:underline font-semibold" href="register">
             Register
           </Link>
         </div>
@@ -38,9 +38,9 @@ export default function LoginV2() {
         <div className="flex items-center gap-1.5 text-sm">
           <div className="relative flex h-5 w-5 items-center justify-center overflow-hidden rounded bg-white/5 border border-white/10 p-0.5 shadow">
             <img
-              src="/Dashdeck-logo.png"
+              src="/Dashdeck-logo.svg"
               alt="Dashdeck Logo"
-              className="h-full w-full object-contain"
+              className="h-full w-full object-contain brightness-0 dark:invert"
             />
           </div>
           <span className="font-semibold text-foreground">Dashdeck</span>
