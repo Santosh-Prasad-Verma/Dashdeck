@@ -1,6 +1,6 @@
 <p align="center">
   <a href="https://github.com/Tarun/dashdeck">
-    <img src="media/dashboard.png" alt="Dashdeck Logo" width="90%" />
+    <img src="media/dashboard.png" alt="Dashdeck Logo" width="100%" />
   </a>
 </p>
 
