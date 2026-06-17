@@ -9,6 +9,7 @@ import { fontVars } from "@/lib/fonts/registry";
 import { PREFERENCE_DEFAULTS } from "@/lib/preferences/preferences-config";
 import { ThemeBootScript } from "@/scripts/theme-boot";
 import { PreferencesStoreProvider } from "@/stores/preferences/preferences-provider";
+import { Analytics } from "@vercel/analytics/next";
 
 import "./globals.css";
 
@@ -58,6 +59,7 @@ export default function RootLayout({ children }: Readonly<{ children: ReactNode 
           >
             {children}
             <Toaster />
+            <Analytics />
           </PreferencesStoreProvider>
         </TooltipProvider>
       </body>
