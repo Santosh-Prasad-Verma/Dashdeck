@@ -43,33 +43,8 @@ const topPages = [
 
 export function EngagementView() {
   return (
-    <div className="relative w-full rounded-xl border border-border bg-background/50 overflow-hidden p-1">
-      {/* Premium Frosted Glass Overlay */}
-      <div className="absolute inset-0 z-10 flex flex-col items-center justify-center bg-background/50 backdrop-blur-[3.5px] p-6 text-center">
-        <div className="mx-auto max-w-sm rounded-xl border border-border bg-background/90 p-8 shadow-xl">
-          <div className="mx-auto flex size-12 items-center justify-center rounded-full bg-muted text-foreground border border-border mb-4">
-            <Clock className="size-6 animate-pulse" />
-          </div>
-          <h3 className="font-semibold text-lg text-foreground tracking-tight">Engagement Analytics Coming Soon</h3>
-          <p className="text-muted-foreground text-sm mt-2 mb-6 leading-normal">
-            We are building advanced user engagement tracking, session analysis, and interactive heatmaps. Register to get notified when this releases.
-          </p>
-          <div className="flex flex-col gap-2">
-            <input
-              type="email"
-              placeholder="Enter your email"
-              className="flex h-9 w-full rounded-md border border-input bg-background px-3 py-1 text-sm shadow-xs transition-colors placeholder:text-muted-foreground focus-visible:outline-hidden focus-visible:ring-1 focus-visible:ring-ring"
-              disabled
-            />
-            <Button className="w-full bg-zinc-950 hover:bg-zinc-900 text-zinc-50 dark:bg-zinc-50 dark:hover:bg-zinc-200 dark:text-zinc-950 font-medium">
-              Notify Me
-            </Button>
-          </div>
-        </div>
-      </div>
-
-      {/* Blurred Mockup Dashboard Content */}
-      <div className="flex flex-col gap-4 p-4 opacity-30 select-none pointer-events-none">
+    <div className="w-full">
+      <div className="flex flex-col gap-4">
         {/* KPI Strip */}
         <div className="grid grid-cols-2 gap-4 lg:grid-cols-4">
           <Card>

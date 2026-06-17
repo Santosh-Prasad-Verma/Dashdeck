@@ -245,24 +245,155 @@ export function ShipmentDetails({ shipment }: ShipmentDetailsProps) {
             <TabsContent className="min-h-0 overflow-auto p-4" value="overview">
               <ShipmentOverview shipment={shipment} />
             </TabsContent>
-            <TabsContent className="p-4" value="route">
-              <div className="grid h-full place-items-center rounded-md border border-dashed text-muted-foreground text-sm">
-                Route view coming soon.
+            <TabsContent className="min-h-0 overflow-auto p-4" value="route">
+              <div className="flex flex-col gap-4">
+                <h3 className="font-semibold text-sm">Shipment Stops</h3>
+                <div className="relative border-l border-border pl-6 ml-2 space-y-6">
+                  {/* Origin stop */}
+                  <div className="relative">
+                    <span className="absolute -left-[30px] top-1 flex size-4 items-center justify-center rounded-full bg-emerald-500 ring-4 ring-background">
+                      <span className="size-1.5 rounded-full bg-background" />
+                    </span>
+                    <div className="flex flex-col gap-0.5">
+                      <span className="text-sm font-semibold text-foreground">Origin: {shipment.origin.display}</span>
+                      <span className="text-xs text-muted-foreground">{shipment.origin.country}</span>
+                    </div>
+                  </div>
+                  {/* Transit midpoint */}
+                  <div className="relative">
+                    <span className={cn(
+                      "absolute -left-[30px] top-1 flex size-4 items-center justify-center rounded-full ring-4 ring-background",
+                      shipment.progress >= 50 ? "bg-primary" : "bg-muted"
+                    )}>
+                      <span className="size-1.5 rounded-full bg-background" />
+                    </span>
+                    <div className="flex flex-col gap-0.5">
+                      <span className="text-sm font-semibold text-foreground">Customs Gate</span>
+                      <span className="text-xs text-muted-foreground">
+                        {shipment.status === "Customs Hold" ? "Held in Customs" : "Customs Clearance Passed"}
+                      </span>
+                    </div>
+                  </div>
+                  {/* Destination stop */}
+                  <div className="relative">
+                    <span className={cn(
+                      "absolute -left-[30px] top-1 flex size-4 items-center justify-center rounded-full ring-4 ring-background",
+                      shipment.status === "Delivered" ? "bg-emerald-500" : "bg-muted"
+                    )}>
+                      <span className="size-1.5 rounded-full bg-background" />
+                    </span>
+                    <div className="flex flex-col gap-0.5">
+                      <span className="text-sm font-semibold text-foreground">Destination: {shipment.destination.display}</span>
+                      <span className="text-xs text-muted-foreground">{shipment.destination.country}</span>
+                    </div>
+                  </div>
+                </div>
               </div>
             </TabsContent>
-            <TabsContent className="p-4" value="cargo">
-              <div className="grid h-full place-items-center rounded-md border border-dashed text-muted-foreground text-sm">
-                Cargo view coming soon.
+            <TabsContent className="min-h-0 overflow-auto p-4" value="cargo">
+              <div className="flex flex-col gap-4">
+                <h3 className="font-semibold text-sm">Cargo Inventory</h3>
+                <div className="grid grid-cols-2 gap-4 rounded-lg border p-4 bg-muted/20">
+                  <div className="flex flex-col gap-1">
+                    <span className="text-xs text-muted-foreground">Type</span>
+                    <span className="text-sm font-medium">{shipment.cargo}</span>
+                  </div>
+                  <div className="flex flex-col gap-1">
+                    <span className="text-xs text-muted-foreground">Weight</span>
+                    <span className="text-sm font-medium">{shipment.weight}</span>
+                  </div>
+                  <div className="flex flex-col gap-1">
+                    <span className="text-xs text-muted-foreground">Carrier / Mode</span>
+                    <span className="text-sm font-medium capitalize">{shipment.mode} - {shipment.routeType}</span>
+                  </div>
+                  <div className="flex flex-col gap-1">
+                    <span className="text-xs text-muted-foreground">Ref Number</span>
+                    <span className="text-sm font-medium font-mono">{shipment.transportNumber}</span>
+                  </div>
+                </div>
+                <div className="rounded-lg border p-4">
+                  <h4 className="text-xs font-semibold text-muted-foreground mb-2">Handling Instruction Note</h4>
+                  <p className="text-sm text-foreground leading-normal">{shipment.handling.note}</p>
+                </div>
               </div>
             </TabsContent>
-            <TabsContent className="p-4" value="documents">
-              <div className="grid h-full place-items-center rounded-md border border-dashed text-muted-foreground text-sm">
-                Documents view coming soon.
+            <TabsContent className="min-h-0 overflow-auto p-4" value="documents">
+              <div className="flex flex-col gap-3">
+                <div className="flex items-center justify-between">
+                  <h3 className="font-semibold text-sm">Shipment Documents</h3>
+                  <Badge variant="outline" className="text-xs">4 Files</Badge>
+                </div>
+                <div className="divide-y rounded-lg border bg-card">
+                  {[
+                    { name: "Bill of Lading", code: "BOL-" + shipment.id, size: "142 KB", status: "Signed" },
+                    { name: "Commercial Invoice", code: "INV-" + shipment.id, size: "88 KB", status: "Verified" },
+                    { name: "Packing List", code: "PKL-" + shipment.id, size: "210 KB", status: "Completed" },
+                    { name: "Customs Declaration Form", code: "CST-" + shipment.id, size: "305 KB", status: shipment.status === "Customs Hold" ? "Pending" : "Approved" }
+                  ].map((doc) => (
+                    <div key={doc.name} className="flex items-center justify-between p-3">
+                      <div className="flex flex-col gap-0.5">
+                        <span className="text-sm font-medium text-foreground">{doc.name}</span>
+                        <span className="text-xs text-muted-foreground font-mono">{doc.code} · {doc.size}</span>
+                      </div>
+                      <Badge variant={doc.status === "Pending" ? "outline" : "secondary"} className={cn(
+                        doc.status === "Approved" || doc.status === "Completed" || doc.status === "Signed" || doc.status === "Verified"
+                          ? "bg-emerald-500/10 text-emerald-500 border-none" 
+                          : ""
+                      )}>
+                        {doc.status}
+                      </Badge>
+                    </div>
+                  ))}
+                </div>
               </div>
             </TabsContent>
-            <TabsContent className="p-4" value="activity">
-              <div className="grid h-full place-items-center rounded-md border border-dashed text-muted-foreground text-sm">
-                Activity view coming soon.
+            <TabsContent className="min-h-0 overflow-auto p-4" value="activity">
+              <div className="flex flex-col gap-4">
+                <h3 className="font-semibold text-sm">Activity Audit Trail</h3>
+                <div className="relative border-l border-border pl-6 ml-2 space-y-6">
+                  {/* Out for delivery / Delivered */}
+                  {shipment.progress >= 80 && (
+                    <div className="relative">
+                      <span className="absolute -left-[30px] top-1 flex size-4 items-center justify-center rounded-full bg-emerald-500 ring-4 ring-background">
+                        <span className="size-1.5 rounded-full bg-background" />
+                      </span>
+                      <div className="flex flex-col gap-0.5">
+                        <span className="text-sm font-semibold text-foreground">
+                          {shipment.status === "Delivered" ? "Delivered successfully" : "Out for delivery"}
+                        </span>
+                        <span className="text-xs text-muted-foreground">30 mins ago</span>
+                      </div>
+                    </div>
+                  )}
+                  {/* Customs Clearance */}
+                  <div className="relative">
+                    <span className={cn(
+                      "absolute -left-[30px] top-1 flex size-4 items-center justify-center rounded-full ring-4 ring-background",
+                      shipment.status === "Customs Hold" ? "bg-amber-500 animate-pulse" : "bg-primary"
+                    )}>
+                      <span className="size-1.5 rounded-full bg-background" />
+                    </span>
+                    <div className="flex flex-col gap-0.5">
+                      <span className="text-sm font-semibold text-foreground">Customs Gate Processing</span>
+                      <span className="text-xs text-muted-foreground">
+                        {shipment.status === "Customs Hold" 
+                          ? "Held for import tariff classification review" 
+                          : "Customs cleared at border point"
+                        }
+                      </span>
+                    </div>
+                  </div>
+                  {/* Departed / Transit */}
+                  <div className="relative">
+                    <span className="absolute -left-[30px] top-1 flex size-4 items-center justify-center rounded-full bg-primary ring-4 ring-background">
+                      <span className="size-1.5 rounded-full bg-background" />
+                    </span>
+                    <div className="flex flex-col gap-0.5">
+                      <span className="text-sm font-semibold text-foreground">Departed Origin Hub</span>
+                      <span className="text-xs text-muted-foreground">{shipment.origin.display}</span>
+                    </div>
+                  </div>
+                </div>
               </div>
             </TabsContent>
           </Tabs>
