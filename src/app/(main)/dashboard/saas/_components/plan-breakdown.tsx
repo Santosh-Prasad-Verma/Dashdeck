@@ -1,9 +1,9 @@
 "use client";
 
-import { Cell, Pie, PieChart } from "recharts";
+import { PolarAngleAxis, RadialBar, RadialBarChart } from "recharts";
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { type ChartConfig, ChartContainer, ChartTooltip, ChartTooltipContent } from "@/components/ui/chart";
+import { type ChartConfig, ChartContainer } from "@/components/ui/chart";
 
 const chartData = [
   { plan: "Enterprise", customers: 340, mrr: 52000, fill: "var(--chart-1)" },
@@ -15,6 +15,30 @@ const chartData = [
 const chartConfig = {} satisfies ChartConfig;
 
 export function PlanBreakdown() {
+  const totalMrr = chartData.reduce((acc, curr) => acc + curr.mrr, 0);
+  const radialData = [
+    {
+      name: "Free",
+      value: Math.round((chartData[3].mrr / totalMrr) * 100),
+      fill: "var(--chart-4)",
+    },
+    {
+      name: "Starter",
+      value: Math.round((chartData[2].mrr / totalMrr) * 100),
+      fill: "var(--chart-3)",
+    },
+    {
+      name: "Pro",
+      value: Math.round((chartData[1].mrr / totalMrr) * 100),
+      fill: "var(--chart-2)",
+    },
+    {
+      name: "Enterprise",
+      value: Math.round((chartData[0].mrr / totalMrr) * 100),
+      fill: "var(--chart-1)",
+    },
+  ];
+
   return (
     <Card>
       <CardHeader>
@@ -22,15 +46,33 @@ export function PlanBreakdown() {
         <CardDescription>Customers and MRR by plan</CardDescription>
       </CardHeader>
       <CardContent className="flex items-center justify-center gap-6">
-        <ChartContainer config={chartConfig} className="mx-auto aspect-square h-44 w-full max-w-[160px]">
-          <PieChart>
-            <ChartTooltip cursor={false} content={<ChartTooltipContent hideLabel />} />
-            <Pie data={chartData} dataKey="mrr" nameKey="plan" innerRadius={45} strokeWidth={2} stroke="hsl(var(--background))">
-              {chartData.map((entry, index) => (
-                <Cell key={`cell-${index}`} fill={entry.fill} />
-              ))}
-            </Pie>
-          </PieChart>
+        <ChartContainer config={chartConfig} className="mx-auto aspect-square h-44 w-full max-w-[160px] relative">
+          <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none">
+            <span className="text-xl font-bold tracking-tight">$128.5k</span>
+            <span className="text-[9px] text-muted-foreground uppercase font-semibold">Total MRR</span>
+          </div>
+          <RadialBarChart
+            cx="50%"
+            cy="50%"
+            innerRadius="30%"
+            outerRadius="100%"
+            barSize={6}
+            data={radialData}
+            startAngle={90}
+            endAngle={-270}
+          >
+            <PolarAngleAxis
+              type="number"
+              domain={[0, 100]}
+              angleAxisId={0}
+              tick={false}
+            />
+            <RadialBar
+              background={{ fill: "var(--muted)", opacity: 0.1 }}
+              dataKey="value"
+              cornerRadius={4}
+            />
+          </RadialBarChart>
         </ChartContainer>
         <div className="flex flex-col gap-2">
           {chartData.map((item) => (
@@ -46,3 +88,4 @@ export function PlanBreakdown() {
     </Card>
   );
 }
+
