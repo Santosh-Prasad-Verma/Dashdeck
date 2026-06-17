@@ -1,32 +1,33 @@
 "use client";
 
-import { Area, AreaChart, Bar, BarChart, CartesianGrid, ComposedChart, Line, XAxis } from "recharts";
+import { Bar, BarChart, CartesianGrid, ComposedChart, Line, ReferenceLine, XAxis, YAxis } from "recharts";
 
 import { Card, CardAction, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { type ChartConfig, ChartContainer, ChartTooltip, ChartTooltipContent, ChartLegend, ChartLegendContent } from "@/components/ui/chart";
 import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from "@/components/ui/select";
 
 const chartData = [
-  { month: "Jan", mrr: 85000, arr: 1020000, new: 12400, churn: 4200 },
-  { month: "Feb", mrr: 92000, arr: 1104000, new: 15200, churn: 3800 },
-  { month: "Mar", mrr: 98000, arr: 1176000, new: 14800, churn: 3500 },
-  { month: "Apr", mrr: 105000, arr: 1260000, new: 16500, churn: 4100 },
-  { month: "May", mrr: 118000, arr: 1416000, new: 19200, churn: 3900 },
-  { month: "Jun", mrr: 128500, arr: 1542000, new: 14200, churn: 3700 },
+  { month: "Jan", new: 8400, expansion: 4000, churn: -3200, net: 9200 },
+  { month: "Feb", new: 9800, expansion: 5400, churn: -3800, net: 11400 },
+  { month: "Mar", new: 10200, expansion: 4600, churn: -3500, net: 11300 },
+  { month: "Apr", new: 11500, expansion: 5000, churn: -4100, net: 12400 },
+  { month: "May", new: 13200, expansion: 6000, churn: -3900, net: 15300 },
+  { month: "Jun", new: 12500, expansion: 5700, churn: -3700, net: 14500 },
 ];
 
 const chartConfig = {
-  mrr: { label: "MRR", color: "var(--chart-1)" },
-  new: { label: "New Revenue", color: "var(--chart-2)" },
-  churn: { label: "Churned", color: "var(--chart-3)" },
+  new: { label: "New MRR", color: "var(--chart-2)" },
+  expansion: { label: "Expansion MRR", color: "var(--chart-1)" },
+  churn: { label: "Churned MRR", color: "var(--chart-3)" },
+  net: { label: "Net Growth", color: "var(--chart-4)" },
 } satisfies ChartConfig;
 
 export function MRRTrend() {
   return (
     <Card className="@container/card">
       <CardHeader>
-        <CardTitle>MRR Growth</CardTitle>
-        <CardDescription>Monthly recurring revenue trends</CardDescription>
+        <CardTitle>MRR Movements</CardTitle>
+        <CardDescription>Stacked breakdown of monthly recurring revenue changes</CardDescription>
         <CardAction>
           <Select defaultValue="6months">
             <SelectTrigger size="sm" className="w-32"><SelectValue /></SelectTrigger>
@@ -42,20 +43,31 @@ export function MRRTrend() {
       </CardHeader>
       <CardContent>
         <ChartContainer config={chartConfig} className="aspect-auto h-72 w-full">
-          <ComposedChart data={chartData} margin={{ top: 0 }}>
-            <defs>
-              <linearGradient id="fillMrr" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="5%" stopColor="var(--color-mrr)" stopOpacity={0.36} />
-                <stop offset="95%" stopColor="var(--color-mrr)" stopOpacity={0.04} />
-              </linearGradient>
-            </defs>
+          <ComposedChart data={chartData} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>
             <CartesianGrid vertical={false} strokeOpacity={0.5} />
             <XAxis dataKey="month" tickLine={false} axisLine={false} tickMargin={8} />
-            <ChartTooltip cursor={false} content={<ChartTooltipContent className="w-40" indicator="line" />} />
+            <YAxis tickLine={false} axisLine={false} tickMargin={8} tickFormatter={(val) => `${val > 0 ? "+" : ""}$${val}`} />
+            <ReferenceLine y={0} stroke="var(--border)" strokeWidth={1} />
+            <ChartTooltip 
+              cursor={false} 
+              content={<ChartTooltipContent className="w-44" indicator="dot" />} 
+            />
             <ChartLegend verticalAlign="top" content={<ChartLegendContent className="mb-5 justify-end" />} />
-            <Area dataKey="mrr" type="natural" fill="url(#fillMrr)" stroke="var(--color-mrr)" strokeWidth={1.25} dot={false} />
-            <Bar dataKey="new" fill="var(--color-new)" radius={[4, 4, 0, 0]} />
-            <Bar dataKey="churn" fill="var(--color-churn)" radius={[4, 4, 0, 0]} />
+            
+            {/* Stacked MRR bars */}
+            <Bar dataKey="new" stackId="mrr" fill="var(--color-new)" radius={[4, 4, 0, 0]} maxBarSize={40} />
+            <Bar dataKey="expansion" stackId="mrr" fill="var(--color-expansion)" radius={[0, 0, 0, 0]} maxBarSize={40} />
+            <Bar dataKey="churn" stackId="mrr" fill="var(--color-churn)" radius={[0, 0, 4, 4]} maxBarSize={40} />
+            
+            {/* Net growth path line */}
+            <Line 
+              type="monotone" 
+              dataKey="net" 
+              stroke="var(--color-net)" 
+              strokeWidth={2} 
+              dot={{ r: 4, strokeWidth: 1, fill: "var(--background)" }} 
+              activeDot={{ r: 6 }} 
+            />
           </ComposedChart>
         </ChartContainer>
       </CardContent>

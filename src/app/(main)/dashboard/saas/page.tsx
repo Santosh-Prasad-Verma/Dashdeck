@@ -5,7 +5,8 @@ import { CohortTable } from "./_components/cohort-table";
 import { RevenueWaterfall } from "./_components/revenue-waterfall";
 import { HealthScore } from "./_components/health-score";
 import { TrialFunnel } from "./_components/trial-funnel";
-import { ArrowDown, ArrowUp, DollarSign, TrendingUp, Users } from "lucide-react";
+import { UnitEconomics } from "./_components/unit-economics";
+import { ArrowUp } from "lucide-react";
 
 export default function Page() {
   return (
@@ -40,25 +41,7 @@ export default function Page() {
           </div>
         </div>
 
-        <div className="rounded-2xl border bg-card p-6">
-          <p className="text-muted-foreground text-sm">Quick Stats</p>
-          <div className="mt-4 flex flex-col gap-4">
-            {[
-              { label: "Total Customers", value: "2,847", icon: Users, color: "text-blue-500" },
-              { label: "Churn Rate", value: "2.4%", icon: ArrowDown, color: "text-emerald-500" },
-              { label: "ARPU", value: "$45.10", icon: DollarSign, color: "text-purple-500" },
-              { label: "LTV:CAC", value: "8.9x", icon: TrendingUp, color: "text-amber-500" },
-            ].map((stat) => (
-              <div key={stat.label} className="flex items-center justify-between">
-                <div className="flex items-center gap-2">
-                  <stat.icon className={`size-4 ${stat.color}`} />
-                  <span className="text-muted-foreground text-sm">{stat.label}</span>
-                </div>
-                <span className="font-semibold tabular-nums">{stat.value}</span>
-              </div>
-            ))}
-          </div>
-        </div>
+        <UnitEconomics />
       </div>
 
       <div className="grid grid-cols-1 gap-6 xl:grid-cols-12">

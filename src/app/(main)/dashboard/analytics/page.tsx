@@ -10,6 +10,7 @@ import { RealtimeVisitors } from "./_components/realtime-visitors";
 import { TopPages } from "./_components/top-pages";
 import { TopTrafficSources } from "./_components/top-traffic-sources";
 import { TrafficQuality } from "./_components/traffic-quality";
+import { GeographicTraffic } from "./_components/geographic-traffic";
 
 // Import this stylesheet in any page or component that renders country flag classes.
 import "@/styles/flag-icons/flags.css";
@@ -50,11 +51,12 @@ export default function Page() {
           </div>
 
           <div className="grid grid-cols-1 items-stretch gap-4 xl:grid-cols-12">
-            <div className="xl:col-span-7">
+            <div className="xl:col-span-7 flex flex-col gap-4">
               <TopPages />
-            </div>
-            <div className="xl:col-span-5 xl:col-start-8">
               <TopTrafficSources />
+            </div>
+            <div className="xl:col-span-5">
+              <GeographicTraffic />
             </div>
           </div>
         </TabsContent>

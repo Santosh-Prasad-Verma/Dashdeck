@@ -5,6 +5,8 @@ import { LogViewer } from "./_components/log-viewer";
 import { AlertTimeline } from "./_components/alert-timeline";
 import { ResponseTimeDistribution } from "./_components/response-time-distribution";
 import { CostBreakdown } from "./_components/cost-breakdown";
+import { NetworkBandwidth } from "./_components/network-bandwidth";
+import { cn } from "@/lib/utils";
 
 export default function Page() {
   return (
@@ -28,32 +30,52 @@ export default function Page() {
             }`}
           >
             <div className="flex items-center justify-between">
-              <span className="font-mono text-xs font-medium">{server.label}</span>
+              <span className="font-mono text-xs font-semibold">{server.label}</span>
               <div className={`size-2 rounded-full animate-pulse ${server.status === "up" ? "bg-emerald-500" : "bg-amber-500"}`} />
             </div>
-            <div className="mt-3 space-y-2">
-              <div>
-                <div className="flex items-center justify-between text-muted-foreground text-xs">
-                  <span>CPU</span>
-                  <span className="font-mono">{server.cpu}%</span>
-                </div>
-                <div className="mt-1 h-1 rounded-full bg-muted">
-                  <div
-                    className={`h-1 rounded-full transition-all ${server.cpu > 70 ? "bg-red-500" : server.cpu > 50 ? "bg-amber-500" : "bg-emerald-500"}`}
-                    style={{ width: `${server.cpu}%` }}
-                  />
+            
+            <div className="mt-3 flex items-center justify-between gap-1">
+              {/* CPU Gauge */}
+              <div className="flex flex-col items-center gap-1.5 flex-1">
+                <span className="text-[10px] text-muted-foreground font-medium">CPU</span>
+                <div className="relative size-11 flex items-center justify-center">
+                  <svg className="absolute inset-0 size-full -rotate-90" viewBox="0 0 36 36">
+                    <circle cx="18" cy="18" r="16" fill="none" stroke="var(--border)" strokeWidth="3" />
+                    <circle 
+                      cx="18" 
+                      cy="18" 
+                      r="16" 
+                      fill="none" 
+                      stroke={server.cpu > 70 ? "var(--chart-3)" : server.cpu > 50 ? "var(--chart-1)" : "var(--chart-2)"}
+                      strokeWidth="3" 
+                      strokeDasharray="100.5" 
+                      strokeDashoffset={100.5 - (100.5 * server.cpu) / 100}
+                      strokeLinecap="round"
+                    />
+                  </svg>
+                  <span className="font-mono text-[9px] font-semibold tabular-nums">{server.cpu}%</span>
                 </div>
               </div>
-              <div>
-                <div className="flex items-center justify-between text-muted-foreground text-xs">
-                  <span>MEM</span>
-                  <span className="font-mono">{server.mem}%</span>
-                </div>
-                <div className="mt-1 h-1 rounded-full bg-muted">
-                  <div
-                    className={`h-1 rounded-full transition-all ${server.mem > 80 ? "bg-red-500" : server.mem > 60 ? "bg-amber-500" : "bg-emerald-500"}`}
-                    style={{ width: `${server.mem}%` }}
-                  />
+
+              {/* Memory Gauge */}
+              <div className="flex flex-col items-center gap-1.5 flex-1">
+                <span className="text-[10px] text-muted-foreground font-medium">MEM</span>
+                <div className="relative size-11 flex items-center justify-center">
+                  <svg className="absolute inset-0 size-full -rotate-90" viewBox="0 0 36 36">
+                    <circle cx="18" cy="18" r="16" fill="none" stroke="var(--border)" strokeWidth="3" />
+                    <circle 
+                      cx="18" 
+                      cy="18" 
+                      r="16" 
+                      fill="none" 
+                      stroke={server.mem > 80 ? "var(--chart-3)" : server.mem > 60 ? "var(--chart-1)" : "var(--chart-2)"}
+                      strokeWidth="3" 
+                      strokeDasharray="100.5" 
+                      strokeDashoffset={100.5 - (100.5 * server.mem) / 100}
+                      strokeLinecap="round"
+                    />
+                  </svg>
+                  <span className="font-mono text-[9px] font-semibold tabular-nums">{server.mem}%</span>
                 </div>
               </div>
             </div>
@@ -63,12 +85,17 @@ export default function Page() {
 
       {/* Charts Row */}
       <div className="grid grid-cols-1 gap-6 xl:grid-cols-12">
-        <div className="xl:col-span-7">
+        <div className="xl:col-span-8">
           <ServerMetrics />
         </div>
-        <div className="xl:col-span-5">
+        <div className="xl:col-span-4">
           <CostBreakdown />
         </div>
+      </div>
+
+      {/* Network Bandwidth */}
+      <div className="grid grid-cols-1 gap-6">
+        <NetworkBandwidth />
       </div>
 
       {/* Logs + Response Time */}

@@ -1,6 +1,6 @@
 "use client";
 
-import { Line, LineChart, CartesianGrid, XAxis } from "recharts";
+import { Line, LineChart, CartesianGrid, XAxis, FunnelChart, Funnel, LabelList } from "recharts";
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { type ChartConfig, ChartContainer, ChartTooltip, ChartTooltipContent } from "@/components/ui/chart";
@@ -16,12 +16,12 @@ const conversionData = [
   { date: "Jun", signups: 2400, purchases: 640, revenue: 25600 },
 ];
 
-const funnelData = [
-  { stage: "Visitors", count: 24000, percentage: 100 },
-  { stage: "Signups", count: 4800, percentage: 20 },
-  { stage: "Activated", count: 2400, percentage: 10 },
-  { stage: "Subscribed", count: 960, percentage: 4 },
-  { stage: "Paid", count: 480, percentage: 2 },
+const chartFunnelData = [
+  { value: 24000, name: "Visitors", fill: "var(--chart-1)" },
+  { value: 4800, name: "Signups", fill: "var(--chart-2)" },
+  { value: 2400, name: "Activated", fill: "var(--chart-3)" },
+  { value: 960, name: "Subscribed", fill: "var(--chart-4)" },
+  { value: 480, name: "Paid", fill: "var(--chart-5)" },
 ];
 
 const goalData = [
@@ -41,6 +41,10 @@ const chartConfig = {
     label: "Purchases",
     color: "var(--chart-2)",
   },
+} satisfies ChartConfig;
+
+const funnelConfig = {
+  value: { label: "Users" }
 } satisfies ChartConfig;
 
 function getStatusBadge(status: string) {
@@ -150,25 +154,26 @@ export function ConversionsView() {
             <CardDescription>User journey from visit to payment</CardDescription>
           </CardHeader>
           <CardContent>
-            <div className="flex flex-col gap-3">
-              {funnelData.map((stage, index) => (
-                <div key={stage.stage} className="flex items-center gap-4">
-                  <div className="w-24 text-sm text-muted-foreground">{stage.stage}</div>
-                  <div className="flex-1">
-                    <div className="h-8 rounded-lg bg-muted/50 overflow-hidden">
-                      <div
-                        className="h-full rounded-lg bg-primary transition-all"
-                        style={{ width: `${stage.percentage}%` }}
-                      />
-                    </div>
-                  </div>
-                  <div className="w-20 text-right">
-                    <div className="font-medium text-sm tabular-nums">{stage.count.toLocaleString()}</div>
-                    <div className="text-muted-foreground text-xs">{stage.percentage}%</div>
-                  </div>
-                </div>
-              ))}
-            </div>
+            <ChartContainer config={funnelConfig} className="h-64 w-full">
+              <FunnelChart margin={{ top: 10, right: 30, left: 10, bottom: 10 }}>
+                <ChartTooltip
+                  cursor={false}
+                  content={<ChartTooltipContent className="w-40" />}
+                />
+                <Funnel
+                  dataKey="value"
+                  data={chartFunnelData}
+                  isAnimationActive
+                >
+                  <LabelList 
+                    position="right" 
+                    dataKey="name" 
+                    fill="currentColor" 
+                    className="text-xs font-semibold fill-muted-foreground" 
+                  />
+                </Funnel>
+              </FunnelChart>
+            </ChartContainer>
           </CardContent>
         </Card>
       </div>
