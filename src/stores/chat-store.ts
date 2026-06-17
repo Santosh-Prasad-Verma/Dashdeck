@@ -1,0 +1,34 @@
+import { create } from "zustand";
+import { persist } from "zustand/middleware";
+
+import { conversations as initialConversations, type Conversation, type Message } from "@/app/(main)/chat/_components/data";
+
+interface ChatState {
+  conversations: Conversation[];
+  selectedId: number | null;
+  setSelectedId: (id: number) => void;
+  addMessage: (conversationId: number, message: Message) => void;
+  resetConversations: () => void;
+}
+
+export const useChatStore = create<ChatState>()(
+  persist(
+    (set) => ({
+      conversations: initialConversations,
+      selectedId: initialConversations[0]?.id ?? null,
+      setSelectedId: (id) => set({ selectedId: id }),
+      addMessage: (conversationId, message) =>
+        set((state) => ({
+          conversations: state.conversations.map((conv) =>
+            conv.id === conversationId
+              ? { ...conv, messages: [...conv.messages, message] }
+              : conv
+          ),
+        })),
+      resetConversations: () => set({ conversations: initialConversations }),
+    }),
+    {
+      name: "dashdeck-chat-storage",
+    }
+  )
+);
