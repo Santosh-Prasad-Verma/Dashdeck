@@ -1,6 +1,6 @@
 <p align="center">
-  <a href="https://github.com/Tarun/dashdeck">
-    <img src="media/dashboard.png" alt="Dashdeck Logo" width="100%" />
+  <a href="https://github.com/Santosh-Prasad-Verma/Dashdeck">
+    <img src="media/logo-with-text.png" alt="Dashdeck Logo" width="540" />
   </a>
 </p>
 
@@ -9,11 +9,11 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/Tarun/dashdeck/blob/main/LICENSE">
-    <img src="https://img.shields.io/github/license/Tarun/dashdeck?style=flat-square&color=A78BFA" alt="License" />
+  <a href="https://github.com/Santosh-Prasad-Verma/Dashdeck/blob/main/LICENSE">
+    <img src="https://img.shields.io/github/license/Santosh-Prasad-Verma/Dashdeck?style=flat-square&color=A78BFA" alt="License" />
   </a>
-  <a href="https://github.com/Tarun/dashdeck/stars">
-    <img src="https://img.shields.io/github/stars/Tarun/dashdeck?style=flat-square&color=818CF8" alt="Stars" />
+  <a href="https://github.com/Santosh-Prasad-Verma/Dashdeck/stars">
+    <img src="https://img.shields.io/github/stars/Santosh-Prasad-Verma/Dashdeck?style=flat-square&color=818CF8" alt="Stars" />
   </a>
 </p>
 
@@ -90,7 +90,7 @@ Make sure you have [Node.js](https://nodejs.org/) installed (v18+ recommended).
 
 ```bash
 # 1. Clone the repository
-git clone https://github.com/Tarun/dashdeck.git
+git clone https://github.com/Santosh-Prasad-Verma/Dashdeck.git
 
 # 2. Navigate to the project directory
 cd dashdeck
@@ -112,5 +112,6 @@ Contributions are welcome! Please check out [CONTRIBUTING.md](CONTRIBUTING.md) t
 
 This project is licensed under the MIT License — see the [LICENSE](LICENSE) file for details.
 
-
-<img src="media/Dashdeck-logo.png" alt="Dashdeck Logo" width="90" />
+<p align="center">
+  <img src="media/Dashdeck-logo.svg" alt="Dashdeck Logo" width="90" />
+</p>

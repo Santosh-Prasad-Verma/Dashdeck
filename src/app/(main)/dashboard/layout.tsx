@@ -76,7 +76,7 @@ export default async function Layout({ children }: Readonly<{ children: ReactNod
               <Button asChild size="icon">
                 <Link
                   prefetch={false}
-                  href="https://github.com/Tarun/dashdeck"
+                  href="https://github.com/Santosh-Prasad-Verma/Dashdeck"
                   target="_blank"
                   rel="noreferrer"
                   aria-label="Open GitHub repository"

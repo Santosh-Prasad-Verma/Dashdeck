@@ -5,7 +5,7 @@ Thank you for your interest in contributing! This guide will help you get starte
 ## Getting Started
 
 1. Fork the repository
-2. Clone your fork: `git clone https://github.com/Tarun/dashdeck.git`
+2. Clone your fork: `git clone https://github.com/Santosh-Prasad-Verma/Dashdeck.git`
 3. Install dependencies: `npm install`
 4. Start the dev server: `npm run dev`
 5. Make your changes

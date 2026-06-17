@@ -5,10 +5,10 @@
   "private": true,
   "author": "Tarun",
   "license": "MIT",
-  "homepage": "https://github.com/Tarun/dashdeck",
+  "homepage": "https://github.com/Santosh-Prasad-Verma/Dashdeck",
   "repository": {
     "type": "git",
-    "url": "https://github.com/Tarun/dashdeck"
+    "url": "https://github.com/Santosh-Prasad-Verma/Dashdeck"
   },
   "scripts": {
     "dev": "next dev",

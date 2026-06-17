@@ -72,7 +72,7 @@ export default function Page() {
         <LifeBuoy className="size-4 text-muted-foreground" />
         <span className="text-muted-foreground">Still need help?</span>
         <Button variant="link" className="h-auto p-0 text-sm" asChild>
-          <Link href="https://github.com/Tarun/dashdeck/issues" target="_blank">
+          <Link href="https://github.com/Santosh-Prasad-Verma/Dashdeck/issues" target="_blank">
             Open an issue on GitHub
           </Link>
         </Button>
