@@ -109,9 +109,12 @@ export function MailSidebar() {
           <div className="truncate text-muted-foreground text-sm leading-none">{selectedAccount.email}</div>
         </div>
 
-        <Button size={isCollapsed ? "icon-sm" : "sm"} variant="outline" className="group-data-[state=expanded]:w-full">
-          <PenLine data-icon="inline-start" />
-          <span className="group-data-[state=collapsed]:hidden">New email</span>
+        <Button 
+          size={isCollapsed ? "icon-sm" : "sm"} 
+          className="group-data-[state=expanded]:w-full bg-zinc-950 text-zinc-50 dark:bg-zinc-50 dark:text-zinc-950 hover:bg-zinc-905 hover:bg-zinc-900 dark:hover:bg-zinc-200 border border-zinc-800 dark:border-zinc-250 shadow-sm transition-all"
+        >
+          <PenLine className="size-4" data-icon="inline-start" />
+          <span className="group-data-[state=collapsed]:hidden font-semibold text-xs uppercase tracking-wider">New email</span>
         </Button>
       </SidebarHeader>
       <SidebarContent>

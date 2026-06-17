@@ -43,13 +43,13 @@ export function UsersTable({ table }: { table: TableType<UserRow> }) {
 
   return (
     <div className="flex flex-1 flex-col gap-4">
-      <div>
-        <Table className="**:data-[slot='table-cell']:px-4 **:data-[slot='table-head']:px-4">
-          <TableHeader className="[&_tr]:border-t">
+      <div className="rounded-2xl border border-border/40 bg-card/45 backdrop-blur-md overflow-hidden shadow-xs">
+        <Table className="**:data-[slot='table-cell']:px-5 **:data-[slot='table-head']:px-5">
+          <TableHeader className="bg-muted/40 border-b border-border/40 [&_tr]:border-b-0">
             {table.getHeaderGroups().map((headerGroup) => (
-              <TableRow key={headerGroup.id}>
+              <TableRow key={headerGroup.id} className="hover:bg-transparent border-b-0">
                 {headerGroup.headers.map((header) => (
-                  <TableHead key={header.id} className="py-4 font-normal">
+                  <TableHead key={header.id} className="py-3.5 font-bold uppercase tracking-wider text-[10px] text-muted-foreground">
                     {header.isPlaceholder ? null : flexRender(header.column.columnDef.header, header.getContext())}
                   </TableHead>
                 ))}
@@ -62,11 +62,11 @@ export function UsersTable({ table }: { table: TableType<UserRow> }) {
               table.getRowModel().rows.map((row) => (
                 <TableRow
                   key={row.id}
-                  className="border-border/60 hover:bg-white/2.5"
+                  className="border-border/30 hover:bg-zinc-50/50 dark:hover:bg-zinc-900/30 transition-colors"
                   data-state={row.getIsSelected() && "selected"}
                 >
                   {row.getVisibleCells().map((cell) => (
-                    <TableCell key={cell.id} className="px-3 py-4 align-middle">
+                    <TableCell key={cell.id} className="py-3.5 align-middle">
                       {flexRender(cell.column.columnDef.cell, cell.getContext())}
                     </TableCell>
                   ))}
@@ -74,7 +74,7 @@ export function UsersTable({ table }: { table: TableType<UserRow> }) {
               ))
             ) : (
               <TableRow>
-                <TableCell colSpan={table.getVisibleLeafColumns().length} className="h-24 text-center">
+                <TableCell colSpan={table.getVisibleLeafColumns().length} className="h-24 text-center text-muted-foreground text-sm">
                   No results.
                 </TableCell>
               </TableRow>

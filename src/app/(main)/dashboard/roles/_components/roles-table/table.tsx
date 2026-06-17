@@ -59,14 +59,14 @@ export function RolesTable({ table }: { table: TableType<Role> }) {
   return (
     <>
       <Table className="w-full table-fixed border-collapse" style={{ minWidth: table.getTotalSize() }}>
-        <TableHeader>
+        <TableHeader className="bg-muted/40 border-b border-border/40">
           {table.getHeaderGroups().map((headerGroup) => (
-            <TableRow key={headerGroup.id} className="border-y hover:bg-transparent [&>:not(:last-child)]:border-r">
+            <TableRow key={headerGroup.id} className="hover:bg-transparent border-b-0">
               {headerGroup.headers.map((header) => (
                 <TableHead
                   key={header.id}
                   style={{ width: header.getSize() }}
-                  className="h-10 px-4 text-center font-medium text-foreground text-sm first:text-left"
+                  className="h-10 px-4 text-center font-bold uppercase tracking-wider text-[10px] text-muted-foreground first:text-left"
                 >
                   {header.isPlaceholder ? null : flexRender(header.column.columnDef.header, header.getContext())}
                 </TableHead>
@@ -178,24 +178,23 @@ function TableBodyGroup({
 }) {
   return (
     <>
-      <TableRow className="h-10 bg-muted">
-        <TableCell className="px-4 text-foreground/60 text-sm" colSpan={colCount}>
+      <TableRow className="h-9 bg-muted/40 hover:bg-muted/40 border-y border-border/30">
+        <TableCell className="px-4 text-zinc-650 dark:text-zinc-400 font-bold uppercase tracking-wider text-[10px]" colSpan={colCount}>
           {group.label}{" "}
-          <Badge variant="outline" className="ml-2 rounded-sm bg-transparent text-muted-foreground text-xs">
+          <span className="ml-2 px-1.5 py-0.5 rounded-md bg-zinc-200/50 dark:bg-zinc-800/50 text-zinc-500 dark:text-zinc-400 text-[9px] font-bold">
             {group.rows.length} of {totalCount}
-          </Badge>
+          </span>
         </TableCell>
       </TableRow>
       {group.rows.map((row) => (
-        <TableRow key={row.id} className="h-12 hover:bg-muted/20">
+        <TableRow key={row.id} className="h-12 hover:bg-zinc-50/50 dark:hover:bg-zinc-900/30 transition-colors border-b border-border/30 last:border-b-0">
           {row.getVisibleCells().map((cell, index) => (
             <TableCell
               key={cell.id}
               style={{ width: cell.column.getSize() }}
               className={cn(
-                "border-r px-4 align-middle",
-                index === row.getVisibleCells().length - 1 && "border-r-0",
-                index === 0 ? "text-left" : "text-center",
+                "px-4 align-middle",
+                index === 0 ? "text-left" : "text-center"
               )}
             >
               {flexRender(cell.column.columnDef.cell, cell.getContext())}

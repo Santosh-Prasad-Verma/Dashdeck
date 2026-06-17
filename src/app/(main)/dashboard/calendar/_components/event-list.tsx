@@ -13,11 +13,44 @@ interface EventListProps {
 }
 
 function getEventColor(color: CalendarEvent["color"]) {
-  return {
-    bg: "bg-muted/10",
-    text: "text-foreground",
-    border: "border-l-foreground/80",
-  };
+  switch (color) {
+    case "blue":
+      return {
+        bg: "bg-indigo-500/5 hover:bg-indigo-500/10",
+        text: "text-indigo-400",
+        border: "border-l-indigo-500 border-border/50",
+      };
+    case "green":
+      return {
+        bg: "bg-emerald-500/5 hover:bg-emerald-500/10",
+        text: "text-emerald-400",
+        border: "border-l-emerald-500 border-border/50",
+      };
+    case "purple":
+      return {
+        bg: "bg-violet-500/5 hover:bg-violet-500/10",
+        text: "text-violet-400",
+        border: "border-l-violet-500 border-border/50",
+      };
+    case "red":
+      return {
+        bg: "bg-rose-500/5 hover:bg-rose-500/10",
+        text: "text-rose-400",
+        border: "border-l-rose-500 border-border/50",
+      };
+    case "amber":
+      return {
+        bg: "bg-amber-500/5 hover:bg-amber-500/10",
+        text: "text-amber-400",
+        border: "border-l-amber-500 border-border/50",
+      };
+    default:
+      return {
+        bg: "bg-zinc-500/5 hover:bg-zinc-500/10",
+        text: "text-zinc-400",
+        border: "border-l-zinc-500 border-border/50",
+      };
+  }
 }
 
 function getTypeBadge(type: CalendarEvent["type"]) {
@@ -62,6 +95,7 @@ export function EventList({ events }: EventListProps) {
             key={event.id}
             className={cn(
               "group relative flex items-start gap-3 rounded-lg border border-l-4 p-3 transition-all hover:shadow-sm",
+              colors.bg,
               colors.border,
             )}
           >

@@ -26,7 +26,7 @@ import { statusMeta, type UserRow } from "./data";
 function RoleCell({ role, team }: { role: string; team: string }) {
   return (
     <div className="grid gap-0.5">
-      <span className="whitespace-nowrap">{role}</span>
+      <span className="whitespace-nowrap font-medium text-sm text-zinc-900 dark:text-zinc-100">{role}</span>
       <span className="text-muted-foreground text-xs">{team}</span>
     </div>
   );
@@ -36,7 +36,7 @@ function StatusBadge({ status }: { status: UserRow["status"] }) {
   const meta = statusMeta[status];
 
   return (
-    <Badge className={cn("gap-1.5 border px-2 py-1 font-medium", meta.badgeClass)} variant="outline">
+    <Badge className={cn("gap-1.5 border border-border/40 px-2 py-0.5 font-bold text-[9px] uppercase tracking-wider rounded-md", meta.badgeClass)} variant="outline">
       <span className={cn("size-1.5 rounded-full", meta.dotClass)} />
       {status}
     </Badge>

@@ -6,11 +6,13 @@ import {
   CalendarDays,
   FileText,
   Flame,
+  AlertCircle,
   type LucideIcon,
   MessageSquare,
   Minus,
   Paperclip,
 } from "lucide-react";
+import { isPast, isToday } from "date-fns";
 
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
@@ -48,6 +50,15 @@ const priorityBadgeConfig: Record<
   },
 };
 
+const isOverdue = (dateString: string) => {
+  try {
+    const d = new Date(`${dateString}, 2026`);
+    return isPast(d) && !isToday(d);
+  } catch (e) {
+    return false;
+  }
+};
+
 export function TaskCard({
   task,
   columnId,
@@ -61,21 +72,22 @@ export function TaskCard({
   const showBuildingDetails = columnId === "building" && typeof task.progress === "number";
   const owner = task.owner;
   const PriorityIcon = priorityBadgeConfig[task.priority].icon;
+  const overdue = !isDone && isOverdue(task.dueDate);
 
   return (
     <article
       className={cn(
-        "flex flex-col gap-3 rounded-xl border bg-card p-4 text-card-foreground shadow-xs",
+        "flex flex-col gap-3 rounded-xl border border-border/50 bg-card/75 dark:bg-zinc-900/60 backdrop-blur-md p-4 text-card-foreground shadow-sm transition-all duration-300 hover:shadow-md hover:shadow-black/5 dark:hover:shadow-black/25 hover:-translate-y-[2px] hover:border-border/90 cursor-grab active:cursor-grabbing",
         isOverlay && "w-68 rotate-1 shadow-lg",
       )}
     >
       <div className="min-w-0 space-y-1.5">
         <div className="flex items-center justify-between gap-3">
-          <h3 className="min-w-0 truncate font-medium text-sm leading-none">{task.title}</h3>
+          <h3 className="min-w-0 truncate font-semibold text-sm leading-none tracking-tight">{task.title}</h3>
           <Badge
             variant={priorityBadgeConfig[task.priority].variant}
             className={cn(
-              "shrink-0 rounded-md border-transparent px-2 font-medium",
+              "shrink-0 rounded-md border-transparent px-2 font-semibold text-[10px] uppercase tracking-wider py-0.5",
               priorityBadgeConfig[task.priority].className,
             )}
           >
@@ -83,7 +95,7 @@ export function TaskCard({
             {task.priority}
           </Badge>
         </div>
-        <p className="line-clamp-2 text-muted-foreground text-sm leading-5">{task.description}</p>
+        <p className="line-clamp-2 text-muted-foreground text-xs leading-relaxed">{task.description}</p>
       </div>
 
       {!showBuildingDetails ? (
@@ -93,12 +105,17 @@ export function TaskCard({
               <AvatarFallback className="rounded-sm text-[10px]">{getInitials(owner.name)}</AvatarFallback>
             </Avatar>
 
-            <span className="text-muted-foreground text-sm">{owner.name}</span>
+            <span className="text-muted-foreground text-xs font-medium">{owner.name}</span>
           </div>
 
-          <div className="flex min-w-0 items-center gap-1.5 text-muted-foreground">
-            <span className="truncate text-sm">{task.dueDate}</span>
-            <CalendarDays className="size-3" />
+          <div className={cn(
+            "flex min-w-0 items-center gap-1.5 px-2 py-0.5 rounded-md text-xs font-medium border transition-colors",
+            overdue 
+              ? "bg-rose-500/10 text-rose-600 dark:text-rose-400 border-rose-500/20" 
+              : "bg-muted/40 text-muted-foreground border-border/30"
+          )}>
+            {overdue ? <AlertCircle className="size-3 text-rose-500" /> : <CalendarDays className="size-3" />}
+            <span className="truncate text-[10px] font-semibold tracking-tight">{task.dueDate}</span>
           </div>
         </div>
       ) : null}
@@ -114,7 +131,7 @@ export function TaskCard({
           </div>
           <div className="flex flex-col gap-1.5">
             <div className="flex items-center justify-between gap-3">
-              <span className="text-muted-foreground text-sm">Owner</span>
+              <span className="text-muted-foreground text-sm font-medium">Owner</span>
               <div className="flex items-center gap-1.5">
                 <span className="truncate text-muted-foreground text-sm">{owner.name}</span>
                 <Avatar className={cn("size-5 after:rounded-sm", owner.tone)}>
@@ -124,15 +141,21 @@ export function TaskCard({
             </div>
 
             <div className="flex items-center justify-between gap-3">
-              <span className="text-muted-foreground text-sm">Due date</span>
-              <span className="flex items-center gap-1.5 text-muted-foreground">
-                <span className="truncate text-sm">{task.dueDate}</span>
-                <CalendarDays className="size-3" />
+              <span className="text-muted-foreground text-sm font-medium">Due date</span>
+              <span className={cn(
+                "flex items-center gap-1.5 px-2 py-0.5 rounded-md text-xs font-medium border transition-colors",
+                overdue 
+                  ? "bg-rose-500/10 text-rose-600 dark:text-rose-400 border-rose-500/20" 
+                  : "bg-muted/40 text-muted-foreground border-border/30"
+              )}>
+                {overdue && <AlertCircle className="size-3 text-rose-500" />}
+                <span className="truncate text-[10px] font-semibold tracking-tight">{task.dueDate}</span>
+                {!overdue && <CalendarDays className="size-3" />}
               </span>
             </div>
 
             <div className="flex items-center justify-between gap-3">
-              <span className="text-muted-foreground text-sm">Team</span>
+              <span className="text-muted-foreground text-sm font-medium">Team</span>
               <Badge
                 variant="secondary"
                 className={cn("rounded-md border-transparent px-2 font-medium", tagTones[task.team])}

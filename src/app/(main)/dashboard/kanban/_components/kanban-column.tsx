@@ -1,7 +1,7 @@
 "use client";
 
 import { SortableContext, useSortable, verticalListSortingStrategy } from "@dnd-kit/sortable";
-import { GripVertical, MoreVertical, Plus } from "lucide-react";
+import { GripVertical, MoreVertical, Plus, Lightbulb, Calendar, Hammer, ClipboardCheck, CheckCircle2 } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
@@ -14,11 +14,21 @@ interface KanbanColumnProps {
   tasks: Task[];
 }
 
+const columnIcons: Record<string, React.ComponentType<{ className?: string }>> = {
+  ideas: Lightbulb,
+  planned: Calendar,
+  building: Hammer,
+  qa: ClipboardCheck,
+  shipped: CheckCircle2,
+};
+
 export function KanbanColumn({ column, tasks }: KanbanColumnProps) {
   const { attributes, listeners, setNodeRef, transform, transition, isDragging, isOver } = useSortable({
     id: column.id,
     data: { type: "column", columnId: column.id },
   });
+
+  const ColumnIcon = columnIcons[column.id] || Lightbulb;
 
   return (
     <section
@@ -28,29 +38,30 @@ export function KanbanColumn({ column, tasks }: KanbanColumnProps) {
         transition,
       }}
       className={cn(
-        "flex min-h-0 flex-col rounded-t-xl border bg-muted/50 transition-colors",
-        isOver && "bg-muted/70",
-        isDragging && "opacity-60",
+        "flex min-h-0 flex-col rounded-2xl border border-border/30 bg-zinc-50/40 dark:bg-zinc-900/30 transition-all duration-200",
+        isOver && "bg-zinc-100/60 dark:bg-zinc-800/30 border-border/50",
+        isDragging && "opacity-60 shadow-lg scale-[0.99]",
       )}
     >
-      <div className="flex items-start justify-between gap-3 px-4 pt-4 pb-3">
-        <div className="min-w-0 space-y-1">
-          <div className="flex items-center gap-0.5">
+      <div className="flex items-center justify-between gap-3 px-4 pt-4 pb-3">
+        <div className="min-w-0">
+          <div className="flex items-center gap-1.5">
             <Button
               variant="ghost"
               size="icon-xs"
-              className="-ml-2 cursor-grab text-foreground/70 active:cursor-grabbing"
+              className="-ml-2 cursor-grab text-foreground/70 active:cursor-grabbing hover:bg-transparent"
               aria-label={`Drag ${column.title} column`}
               {...attributes}
               {...listeners}
             >
-              <GripVertical />
+              <GripVertical className="size-3.5 opacity-50" />
             </Button>
-            <h2 className="truncate font-medium text-base leading-none">{column.title}</h2>
+            <ColumnIcon className="size-4 text-muted-foreground/80 shrink-0" />
+            <h2 className="truncate font-semibold text-sm leading-none text-zinc-800 dark:text-zinc-100">{column.title}</h2>
+            <span className="ml-1.5 flex h-4.5 min-w-4.5 items-center justify-center rounded-full bg-zinc-200/60 dark:bg-zinc-800/60 px-1 text-[10px] font-bold text-zinc-600 dark:text-zinc-400 tabular-nums">
+              {tasks.length}
+            </span>
           </div>
-          <p className="text-muted-foreground text-sm tabular-nums leading-none">
-            {tasks.length} {tasks.length === 1 ? "task" : "tasks"}
-          </p>
         </div>
         <div className="-mr-2 flex items-center gap-0.5 text-muted-foreground">
           <Button variant="ghost" size="icon-sm" aria-label={`Add task to ${column.title}`}>

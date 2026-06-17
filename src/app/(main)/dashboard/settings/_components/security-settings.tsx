@@ -2,14 +2,13 @@
 
 import { useState } from "react";
 
-import { Key, Save, Shield } from "lucide-react";
+import { Key, Save, Shield, Copy, RefreshCw } from "lucide-react";
 import { toast } from "sonner";
 
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Separator } from "@/components/ui/separator";
 import { Switch } from "@/components/ui/switch";
 
 export function SecuritySettings() {
@@ -17,6 +16,8 @@ export function SecuritySettings() {
   const [newPassword, setNewPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [twoFactorEnabled, setTwoFactorEnabled] = useState(false);
+  const [apiKey, setApiKey] = useState("pk_live_51Px9X4GkZ7Q9q3r0wV1l7pM4");
+  const [copied, setCopied] = useState(false);
 
   const handlePasswordChange = () => {
     if (newPassword !== confirmPassword) {
@@ -33,12 +34,68 @@ export function SecuritySettings() {
     setConfirmPassword("");
   };
 
+  const handleCopy = () => {
+    navigator.clipboard.writeText(apiKey);
+    setCopied(true);
+    toast.success("API key copied to clipboard");
+    setTimeout(() => setCopied(false), 2000);
+  };
+
+  const handleGenerateKey = () => {
+    const randomHex = Array.from({ length: 24 }, () =>
+      Math.floor(Math.random() * 16).toString(16)
+    ).join("");
+    setApiKey(`pk_live_${randomHex}`);
+    toast.success("New API key generated");
+  };
+
   const handleSave = () => {
     toast.success("Security settings saved");
   };
 
   return (
     <div className="flex flex-col gap-6">
+      {/* API Key Credentials */}
+      <Card>
+        <CardHeader>
+          <CardTitle>API Credentials</CardTitle>
+          <CardDescription>
+            Use this key to authenticate requests to the Dashdeck API. Keep this key secret and secure.
+          </CardDescription>
+        </CardHeader>
+        <CardContent className="space-y-4">
+          <div className="grid gap-2">
+            <Label htmlFor="api-key">Production API Key</Label>
+            <div className="flex gap-2">
+              <div className="relative flex-1">
+                <Input
+                  id="api-key"
+                  value={apiKey}
+                  readOnly
+                  className="font-mono text-xs pr-16 h-10 select-all"
+                />
+                <button
+                  type="button"
+                  onClick={handleCopy}
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground transition-colors cursor-pointer"
+                >
+                  {copied ? (
+                    <span className="text-emerald-500 font-bold text-xs">Copied!</span>
+                  ) : (
+                    <Copy className="size-4" />
+                  )}
+                </button>
+              </div>
+              <Button variant="outline" onClick={handleGenerateKey} className="h-10 shrink-0">
+                <RefreshCw className="size-4 mr-2" />
+                Regenerate
+              </Button>
+            </div>
+          </div>
+        </CardContent>
+      </Card>
+
+      {/* Password Changes */}
       <Card>
         <CardHeader>
           <CardTitle>Change Password</CardTitle>
@@ -83,6 +140,7 @@ export function SecuritySettings() {
         </CardContent>
       </Card>
 
+      {/* Two Factor */}
       <Card>
         <CardHeader>
           <CardTitle>Two-Factor Authentication</CardTitle>
@@ -114,6 +172,7 @@ export function SecuritySettings() {
         </CardContent>
       </Card>
 
+      {/* Active Sessions */}
       <Card>
         <CardHeader>
           <CardTitle>Active Sessions</CardTitle>
@@ -130,7 +189,7 @@ export function SecuritySettings() {
                   Chrome on Linux · Last active now
                 </span>
               </div>
-              <span className="text-emerald-600 text-xs">Active</span>
+              <span className="text-emerald-600 text-xs font-semibold">Active</span>
             </div>
             <div className="flex items-center justify-between rounded-lg border p-3">
               <div className="flex flex-col gap-1">
@@ -139,7 +198,7 @@ export function SecuritySettings() {
                   iPhone · Last active 2 hours ago
                 </span>
               </div>
-              <Button variant="ghost" size="sm" className="text-destructive">
+              <Button variant="ghost" size="sm" className="text-destructive hover:bg-destructive/10">
                 Revoke
               </Button>
             </div>

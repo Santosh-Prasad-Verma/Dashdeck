@@ -138,11 +138,11 @@ export function ChatThread({ contact, messages, conversationId, onOpenContact, o
         type="hover"
         className="min-h-0 flex-1 [&_[data-orientation=vertical][data-slot=scroll-area-scrollbar]]:w-1.5"
       >
-        <div className="flex flex-col gap-6 px-2 py-8">
+        <div className="flex flex-col gap-6 px-4 py-8">
           <div className="flex items-center gap-2">
-            <div className="h-px flex-1 bg-border" />
-            <span className="rounded-full bg-muted px-3 py-1 text-muted-foreground text-xs">May 6, 2026</span>
-            <div className="h-px flex-1 bg-border" />
+            <div className="h-px flex-1 bg-border/40" />
+            <span className="rounded-full bg-muted/60 px-3 py-1 text-muted-foreground text-xs font-semibold uppercase tracking-wider text-[9px]">May 6, 2026</span>
+            <div className="h-px flex-1 bg-border/40" />
           </div>
 
           {messages.map((message) => {
@@ -150,12 +150,14 @@ export function ChatThread({ contact, messages, conversationId, onOpenContact, o
             const senderName = isOutbound ? currentUser.name : contact.name;
 
             return (
-              <div key={message.id} className={cn("flex items-end gap-2", isOutbound && "flex-row-reverse")}>
-                 <Avatar className="shrink-0">
+              <div key={message.id} className={cn("flex items-end gap-3", isOutbound && "flex-row-reverse")}>
+                <Avatar className="size-8 shrink-0">
                   <AvatarFallback
                     className={cn(
-                      "bg-muted text-foreground text-xs",
-                      isOutbound && "bg-foreground text-background font-semibold",
+                      "text-[10px] font-semibold",
+                      isOutbound 
+                        ? "bg-indigo-100 text-indigo-700 dark:bg-indigo-500/10 dark:text-indigo-400 border border-indigo-200 dark:border-indigo-500/20" 
+                        : "bg-zinc-100 text-zinc-700 dark:bg-zinc-800 dark:text-zinc-300 border border-border/30"
                     )}
                   >
                     {getInitials(senderName)}
@@ -164,15 +166,17 @@ export function ChatThread({ contact, messages, conversationId, onOpenContact, o
 
                 <div
                   className={cn(
-                    "flex max-w-md flex-col gap-2 rounded-xl px-4 py-3 text-sm",
-                    isOutbound ? "bg-foreground text-background" : "bg-muted",
+                    "flex max-w-md flex-col gap-1 rounded-2xl px-4 py-2.5 text-sm shadow-2xs border transition-all duration-300",
+                    isOutbound 
+                      ? "bg-indigo-600 text-white border-indigo-700 dark:bg-indigo-500 dark:border-indigo-600 rounded-br-sm" 
+                      : "bg-zinc-105 bg-zinc-100 dark:bg-zinc-900 text-zinc-800 dark:text-zinc-250 border-zinc-200/50 dark:border-zinc-800/50 rounded-bl-sm"
                   )}
                 >
-                  <p className="leading-relaxed">{message.text}</p>
+                  <p className="leading-relaxed text-sm">{message.text}</p>
                   <div
                     className={cn(
-                      "text-muted-foreground/75 text-xs",
-                      isOutbound && "text-right text-background/75",
+                      "text-[9px] font-semibold tracking-wider uppercase mt-1",
+                      isOutbound ? "text-right text-indigo-200" : "text-zinc-400 dark:text-zinc-500"
                     )}
                   >
                     {message.time}
@@ -184,16 +188,16 @@ export function ChatThread({ contact, messages, conversationId, onOpenContact, o
         </div>
       </ScrollArea>
 
-      <div className="px-2">
-        <Tabs defaultValue="reply" className="rounded-md border">
+      <div className="px-4 pb-2 pt-4 border-t border-border/30 bg-background/50 backdrop-blur-md">
+        <Tabs defaultValue="reply" className="rounded-2xl border border-border/40 bg-zinc-50/30 dark:bg-zinc-900/30 overflow-hidden focus-within:border-primary/50 focus-within:ring-2 focus-within:ring-primary/10 transition-all duration-300">
           <TabsList
             variant="line"
-            className="w-full justify-start gap-2 border-b px-3 **:data-[slot=tabs-trigger]:border-x-0 **:data-[slot=tabs-trigger]:px-6 group-data-horizontal/tabs:h-10"
+            className="w-full justify-start gap-2 border-b border-border/30 px-3 bg-muted/40 *:text-xs *:font-semibold"
           >
-            <TabsTrigger value="reply" className="flex-none px-1">
+            <TabsTrigger value="reply" className="flex-none px-3 py-2">
               Reply
             </TabsTrigger>
-            <TabsTrigger value="note" className="flex-none px-1">
+            <TabsTrigger value="note" className="flex-none px-3 py-2">
               Internal note
             </TabsTrigger>
           </TabsList>
@@ -235,36 +239,41 @@ function MessageComposer({ placeholder, conversationId }: { placeholder: string;
   };
 
   return (
-    <div className="flex flex-col gap-4 px-3 pb-2">
+    <div className="flex flex-col gap-3 px-4 py-3 bg-transparent">
       <Textarea
         placeholder={placeholder}
-        className="border-0 px-0 py-0.5 text-sm shadow-none focus-visible:ring-0"
+        className="border-0 px-0 py-0.5 text-sm shadow-none focus-visible:ring-0 resize-none min-h-[50px] bg-transparent placeholder:text-muted-foreground/50 w-full"
         value={message}
         onChange={(e) => setMessage(e.target.value)}
         onKeyDown={handleKeyDown}
       />
 
-      <div className="flex items-center justify-between">
-        <div className="flex items-center gap-1">
-          <Button variant="ghost" size="icon-sm" aria-label="Format">
-            <Type />
+      <div className="flex items-center justify-between pt-1">
+        <div className="flex items-center gap-1.5">
+          <Button variant="ghost" size="icon" className="size-8 rounded-lg text-muted-foreground hover:text-foreground">
+            <Type className="size-4" />
           </Button>
-          <Button variant="ghost" size="icon-sm" aria-label="Emoji">
-            <Smile />
+          <Button variant="ghost" size="icon" className="size-8 rounded-lg text-muted-foreground hover:text-foreground">
+            <Smile className="size-4" />
           </Button>
-          <Button variant="ghost" size="icon-sm" aria-label="Attach file">
-            <Paperclip />
+          <Button variant="ghost" size="icon" className="size-8 rounded-lg text-muted-foreground hover:text-foreground">
+            <Paperclip className="size-4" />
           </Button>
-          <Button variant="ghost" size="icon-sm" aria-label="Insert link">
-            <Link />
+          <Button variant="ghost" size="icon" className="size-8 rounded-lg text-muted-foreground hover:text-foreground">
+            <Link className="size-4" />
           </Button>
-          <Button variant="outline" size="icon-sm" aria-label="AI assist">
-            <Sparkles />
+          <Button variant="outline" size="icon" className="size-8 rounded-lg border-border/30 text-indigo-600 dark:text-indigo-400 bg-indigo-500/5 hover:bg-indigo-500/10">
+            <Sparkles className="size-4" />
           </Button>
         </div>
 
-        <Button size="icon-sm" onClick={handleSubmit} disabled={!message.trim()} className="bg-zinc-950 hover:bg-zinc-900 text-zinc-50 dark:bg-zinc-50 dark:hover:bg-zinc-200 dark:text-zinc-950 border border-zinc-800 dark:border-zinc-200">
-          <Send />
+        <Button 
+          size="icon" 
+          onClick={handleSubmit} 
+          disabled={!message.trim()} 
+          className="size-8 rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white dark:bg-indigo-500 dark:hover:bg-indigo-400 shadow-sm shrink-0"
+        >
+          <Send className="size-3.5" />
         </Button>
       </div>
     </div>

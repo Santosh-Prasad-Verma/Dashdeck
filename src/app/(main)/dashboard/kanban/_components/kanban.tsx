@@ -49,6 +49,7 @@ import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { columnIds, columns } from "./data";
 import { KanbanColumn } from "./kanban-column";
 import { TaskCard } from "./task-card";
+import { AddTaskDialog } from "./add-task-dialog";
 import type { BoardState, ColumnId, Task } from "./types";
 import { findColumnId, findTask } from "./utils";
 
@@ -206,10 +207,7 @@ export function Kanban({ initialBoard }: KanbanProps) {
             Sort
           </Button>
           <ButtonGroup className="w-full sm:w-fit">
-            <Button className="flex-1 sm:flex-none">
-              <Plus data-icon="inline-start" />
-              Add task
-            </Button>
+            <AddTaskDialog />
             <ButtonGroupSeparator />
             <DropdownMenu>
               <DropdownMenuTrigger asChild>

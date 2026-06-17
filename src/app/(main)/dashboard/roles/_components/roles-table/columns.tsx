@@ -3,6 +3,7 @@
 
 import type { ColumnDef } from "@tanstack/react-table";
 import { MoreVertical } from "lucide-react";
+import { cn } from "@/lib/utils";
 
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -44,7 +45,7 @@ export const rolesColumns: ColumnDef<Role>[] = [
     header: "Access level",
     size: 120,
     cell: ({ row }) => (
-      <Badge className="rounded-sm" variant="outline">
+      <Badge className="font-bold text-[9px] uppercase tracking-wider px-2 py-0.5 rounded-md bg-zinc-100 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 border border-border/40" variant="outline">
         {row.original.accessLevel}
       </Badge>
     ),
@@ -54,7 +55,7 @@ export const rolesColumns: ColumnDef<Role>[] = [
     accessorKey: "users",
     header: "Users",
     size: 70,
-    cell: ({ row }) => <span className="text-sm">{row.original.users}</span>,
+    cell: ({ row }) => <span className="text-sm font-medium text-zinc-950 dark:text-zinc-50">{row.original.users}</span>,
   },
   {
     id: "permissionSets",
@@ -62,14 +63,14 @@ export const rolesColumns: ColumnDef<Role>[] = [
     header: "Permission sets",
     size: 310,
     cell: ({ row }) => (
-      <div className="flex flex-wrap items-center justify-start gap-2">
+      <div className="flex flex-wrap items-center justify-start gap-1.5">
         {row.original.permissionSets.slice(0, 3).map((set) => (
-          <Badge className="rounded-sm" variant="outline" key={set}>
+          <Badge className="font-medium text-[10px] px-1.5 py-0.5 rounded-md bg-zinc-50 dark:bg-zinc-800/50 text-zinc-600 dark:text-zinc-400 border border-border/30" variant="outline" key={set}>
             {set}
           </Badge>
         ))}
         {row.original.permissionSets.length > 3 ? (
-          <span className="text-sm tabular-nums">+{row.original.permissionSets.length - 3}</span>
+          <span className="text-[10px] font-bold text-muted-foreground bg-muted border border-border/40 px-1.5 py-0.5 rounded-md">+{row.original.permissionSets.length - 3}</span>
         ) : null}
       </div>
     ),
@@ -79,7 +80,7 @@ export const rolesColumns: ColumnDef<Role>[] = [
     accessorKey: "lastReview",
     header: "Last review",
     size: 120,
-    cell: ({ row }) => <span className="text-sm">{row.original.lastReview}</span>,
+    cell: ({ row }) => <span className="text-sm text-muted-foreground">{row.original.lastReview}</span>,
   },
   {
     id: "owner",
@@ -87,7 +88,7 @@ export const rolesColumns: ColumnDef<Role>[] = [
     header: "Owner",
     size: 110,
     filterFn: "equalsString",
-    cell: ({ row }) => <span className="text-sm">{row.original.owner}</span>,
+    cell: ({ row }) => <span className="text-sm font-medium text-zinc-700 dark:text-zinc-300">{row.original.owner}</span>,
   },
   {
     id: "status",
@@ -95,11 +96,23 @@ export const rolesColumns: ColumnDef<Role>[] = [
     header: "Status",
     size: 130,
     filterFn: "equalsString",
-    cell: ({ row }) => (
-      <Badge className="rounded-sm" variant="outline">
-        {row.original.status}
-      </Badge>
-    ),
+    cell: ({ row }) => {
+      const active = row.original.status === "Active";
+      return (
+        <Badge
+          className={cn(
+            "font-bold text-[9px] uppercase tracking-wider px-2 py-0.5 rounded-md gap-1.5",
+            active
+              ? "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/20"
+              : "bg-amber-500/10 text-amber-600 dark:text-amber-400 border-amber-500/20"
+          )}
+          variant="outline"
+        >
+          <span className={cn("size-1 rounded-full", active ? "bg-emerald-500" : "bg-amber-500")} />
+          {row.original.status}
+        </Badge>
+      );
+    },
   },
   {
     id: "actions",

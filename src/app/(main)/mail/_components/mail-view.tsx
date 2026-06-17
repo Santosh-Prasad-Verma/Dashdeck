@@ -242,25 +242,27 @@ export function MailView({ mail, onClose }: MailDisplayProps) {
               <EmailBodyRenderer body={mail.body} />
             </div>
 
-            <div className="mt-auto flex flex-col gap-3">
-              <Separator />
-              <InputGroup>
-                <InputGroupAddon align="inline-start">
-                  <Reply />
-                </InputGroupAddon>
-                <InputGroupInput className="text-xs" placeholder={`Reply ${mail.from.name}...`} />
-                <InputGroupAddon className="gap-1" align="inline-end">
-                  <InputGroupButton variant="ghost">
-                    <Smile />
-                  </InputGroupButton>
-                  <InputGroupButton variant="ghost">
-                    <Paperclip />
-                  </InputGroupButton>
-                  <InputGroupButton variant="ghost">
-                    <Send />
-                  </InputGroupButton>
-                </InputGroupAddon>
-              </InputGroup>
+            <div className="mt-auto pt-4 border-t border-border/30">
+              <div className="flex gap-2 items-end bg-zinc-50 dark:bg-zinc-900/50 border border-border/40 rounded-2xl p-2.5 focus-within:border-primary/50 focus-within:ring-2 focus-within:ring-primary/10 transition-all">
+                <Button variant="ghost" size="icon" className="size-8 rounded-lg text-muted-foreground hover:text-foreground shrink-0">
+                  <Reply className="size-4" />
+                </Button>
+                <textarea 
+                  className="flex-1 bg-transparent border-0 outline-none text-sm placeholder:text-muted-foreground/60 resize-none min-h-[40px] max-h-[160px] py-1 px-1 h-10 align-middle leading-relaxed w-full focus:ring-0" 
+                  placeholder={`Reply to ${mail.from.name}...`}
+                />
+                <div className="flex items-center gap-1 shrink-0">
+                  <Button variant="ghost" size="icon" className="size-8 rounded-lg text-muted-foreground hover:text-foreground">
+                    <Smile className="size-4" />
+                  </Button>
+                  <Button variant="ghost" size="icon" className="size-8 rounded-lg text-muted-foreground hover:text-foreground">
+                    <Paperclip className="size-4" />
+                  </Button>
+                  <Button size="icon" className="size-8 rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white dark:bg-indigo-500 dark:hover:bg-indigo-400 shadow-sm shrink-0">
+                    <Send className="size-3.5" />
+                  </Button>
+                </div>
+              </div>
             </div>
           </div>
         ) : (
