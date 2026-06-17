@@ -17,10 +17,10 @@ export function BedHeatmap() {
 
   function getBedColor(total: number, occupied: number) {
     const ratio = occupied / total;
-    if (ratio > 0.85) return "bg-red-500";
-    if (ratio > 0.7) return "bg-amber-500";
-    if (ratio > 0.5) return "bg-emerald-500";
-    return "bg-blue-500";
+    if (ratio > 0.85) return "bg-foreground";
+    if (ratio > 0.7) return "bg-muted-foreground/80";
+    if (ratio > 0.5) return "bg-muted-foreground/50";
+    return "bg-muted-foreground/30";
   }
 
   return (
@@ -37,7 +37,7 @@ export function BedHeatmap() {
                 <div className="flex items-center gap-2">
                   <span className="text-sm font-medium">{wing.name}</span>
                   {wing.critical > 0 && (
-                    <span className="rounded-full bg-red-500/10 px-2 py-0.5 text-red-600 text-[10px] font-medium">
+                    <span className="rounded-full bg-foreground/10 px-2 py-0.5 text-foreground border border-foreground/20 text-[10px] font-medium">
                       {wing.critical} critical
                     </span>
                   )}

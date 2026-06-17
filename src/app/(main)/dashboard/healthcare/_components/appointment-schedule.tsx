@@ -16,11 +16,11 @@ const appointments = [
 function getStatusBadge(status: string) {
   switch (status) {
     case "completed":
-      return <Badge className="bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-0">Completed</Badge>;
+      return <Badge className="bg-foreground/10 text-foreground border border-foreground/25">Completed</Badge>;
     case "in-progress":
-      return <Badge className="bg-blue-500/10 text-blue-600 dark:text-blue-400 border-0">In Progress</Badge>;
+      return <Badge className="bg-muted-foreground/10 text-muted-foreground border border-muted-foreground/25">In Progress</Badge>;
     case "upcoming":
-      return <Badge className="bg-muted text-muted-foreground border-0">Upcoming</Badge>;
+      return <Badge className="bg-muted text-muted-foreground/60 border-0">Upcoming</Badge>;
     default:
       return <Badge variant="secondary">{status}</Badge>;
   }

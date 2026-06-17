@@ -13,54 +13,21 @@ interface EventListProps {
 }
 
 function getEventColor(color: CalendarEvent["color"]) {
-  switch (color) {
-    case "blue":
-      return {
-        bg: "bg-blue-500/10",
-        text: "text-blue-600 dark:text-blue-400",
-        border: "border-l-blue-500",
-      };
-    case "green":
-      return {
-        bg: "bg-emerald-500/10",
-        text: "text-emerald-600 dark:text-emerald-400",
-        border: "border-l-emerald-500",
-      };
-    case "purple":
-      return {
-        bg: "bg-purple-500/10",
-        text: "text-purple-600 dark:text-purple-400",
-        border: "border-l-purple-500",
-      };
-    case "red":
-      return {
-        bg: "bg-red-500/10",
-        text: "text-red-600 dark:text-red-400",
-        border: "border-l-red-500",
-      };
-    case "amber":
-      return {
-        bg: "bg-amber-500/10",
-        text: "text-amber-600 dark:text-amber-400",
-        border: "border-l-amber-500",
-      };
-    default:
-      return {
-        bg: "bg-muted",
-        text: "text-muted-foreground",
-        border: "border-l-muted-foreground",
-      };
-  }
+  return {
+    bg: "bg-muted/10",
+    text: "text-foreground",
+    border: "border-l-foreground/80",
+  };
 }
 
 function getTypeBadge(type: CalendarEvent["type"]) {
   switch (type) {
     case "meeting":
-      return <Badge className="bg-blue-500/10 text-blue-600 dark:text-blue-400 border-0">Meeting</Badge>;
+      return <Badge className="bg-foreground/10 text-foreground border border-foreground/20">Meeting</Badge>;
     case "task":
-      return <Badge className="bg-amber-500/10 text-amber-600 dark:text-amber-400 border-0">Task</Badge>;
+      return <Badge className="bg-muted-foreground/10 text-muted-foreground border border-muted-foreground/20">Task</Badge>;
     case "reminder":
-      return <Badge className="bg-purple-500/10 text-purple-600 dark:text-purple-400 border-0">Reminder</Badge>;
+      return <Badge className="bg-foreground/5 text-muted-foreground/80 border border-muted-foreground/10">Reminder</Badge>;
     default:
       return <Badge variant="secondary">Event</Badge>;
   }

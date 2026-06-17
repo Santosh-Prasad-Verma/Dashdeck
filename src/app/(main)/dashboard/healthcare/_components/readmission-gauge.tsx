@@ -13,18 +13,18 @@ export function ReadmissionGauge() {
           <svg className="size-full -rotate-90" viewBox="0 0 100 100">
             {/* Background circle */}
             <circle cx="50" cy="50" r="38" fill="none" stroke="hsl(var(--muted))" strokeWidth="10" />
-            {/* Red zone (bad) */}
-            <circle cx="50" cy="50" r="38" fill="none" stroke="hsl(0, 84%, 60%)" strokeWidth="10" strokeDasharray="60 179" strokeDashoffset="0" opacity="0.3" />
-            {/* Value arc */}
-            <circle cx="50" cy="50" r="38" fill="none" stroke="hsl(142, 76%, 36%)" strokeWidth="10" strokeDasharray={`${(3.2 / 15) * 239} 239`} strokeDashoffset="0" strokeLinecap="round" />
+            {/* Red zone (bad) -> now styled in very light monochrome */}
+            <circle cx="50" cy="50" r="38" fill="none" stroke="hsl(var(--muted-foreground) / 0.15)" strokeWidth="10" strokeDasharray="60 179" strokeDashoffset="0" />
+            {/* Value arc -> now styled in foreground */}
+            <circle cx="50" cy="50" r="38" fill="none" stroke="hsl(var(--foreground))" strokeWidth="10" strokeDasharray={`${(3.2 / 15) * 239} 239`} strokeDashoffset="0" strokeLinecap="round" />
           </svg>
           <div className="absolute flex flex-col items-center">
-            <span className="text-4xl font-bold text-emerald-600">3.2%</span>
+            <span className="text-4xl font-bold text-foreground">3.2%</span>
             <span className="text-muted-foreground text-xs">Readmission</span>
           </div>
         </div>
         <div className="flex items-center gap-4 text-sm">
-          <div className="flex items-center gap-1 text-emerald-600">
+          <div className="flex items-center gap-1 text-foreground">
             <ArrowDown className="size-3" />
             0.8%
             <span className="text-muted-foreground text-xs">vs target</span>

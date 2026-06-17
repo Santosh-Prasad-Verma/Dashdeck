@@ -29,11 +29,11 @@ const eventTypes = [
 ] as const;
 
 const eventColors = [
-  { value: "blue", label: "Blue", color: "bg-blue-500" },
-  { value: "green", label: "Green", color: "bg-emerald-500" },
-  { value: "purple", label: "Purple", color: "bg-purple-500" },
-  { value: "red", label: "Red", color: "bg-red-500" },
-  { value: "amber", label: "Amber", color: "bg-amber-500" },
+  { value: "blue", label: "Charcoal", color: "bg-neutral-800 border border-neutral-700" },
+  { value: "green", label: "Slate", color: "bg-slate-600 border border-slate-500" },
+  { value: "purple", label: "Silver", color: "bg-zinc-400 border border-zinc-300" },
+  { value: "red", label: "Asphalt", color: "bg-neutral-500 border border-neutral-400" },
+  { value: "amber", label: "Graphite", color: "bg-zinc-700 border border-zinc-600" },
 ] as const;
 
 export function AddEventDialog() {

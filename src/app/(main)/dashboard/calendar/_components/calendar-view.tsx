@@ -82,62 +82,27 @@ export function CalendarView() {
 
       {/* Stats Cards */}
       <div className="grid grid-cols-2 gap-4 md:grid-cols-4">
-        <Card className="relative overflow-hidden">
-          <div className="absolute top-0 right-0 h-16 w-16 bg-gradient-to-bl from-blue-500/10 to-transparent" />
-          <CardContent className="p-4">
-            <div className="flex items-center gap-3">
-              <div className="flex size-10 items-center justify-center rounded-xl bg-blue-500/10 text-blue-600">
-                <CalendarIcon className="size-5" />
+        {[
+          { label: "Today", value: todayEvents.length, icon: CalendarIcon },
+          { label: "This Month", value: totalEventsThisMonth, icon: Zap },
+          { label: "Upcoming", value: upcomingEvents.length, icon: Users },
+          { label: "Completed", value: pastEvents.length, icon: Clock },
+        ].map((stat, i) => (
+          <Card key={i} className="relative overflow-hidden">
+            <div className="absolute top-0 right-0 h-16 w-16 bg-gradient-to-bl from-foreground/5 to-transparent" />
+            <CardContent className="p-4">
+              <div className="flex items-center gap-3">
+                <div className="flex size-10 items-center justify-center rounded-xl bg-muted text-foreground border border-border">
+                  <stat.icon className="size-5" />
+                </div>
+                <div>
+                  <p className="text-muted-foreground text-xs">{stat.label}</p>
+                  <p className="font-bold text-2xl">{stat.value}</p>
+                </div>
               </div>
-              <div>
-                <p className="text-muted-foreground text-xs">Today</p>
-                <p className="font-bold text-2xl">{todayEvents.length}</p>
-              </div>
-            </div>
-          </CardContent>
-        </Card>
-        <Card className="relative overflow-hidden">
-          <div className="absolute top-0 right-0 h-16 w-16 bg-gradient-to-bl from-emerald-500/10 to-transparent" />
-          <CardContent className="p-4">
-            <div className="flex items-center gap-3">
-              <div className="flex size-10 items-center justify-center rounded-xl bg-emerald-500/10 text-emerald-600">
-                <Zap className="size-5" />
-              </div>
-              <div>
-                <p className="text-muted-foreground text-xs">This Month</p>
-                <p className="font-bold text-2xl">{totalEventsThisMonth}</p>
-              </div>
-            </div>
-          </CardContent>
-        </Card>
-        <Card className="relative overflow-hidden">
-          <div className="absolute top-0 right-0 h-16 w-16 bg-gradient-to-bl from-purple-500/10 to-transparent" />
-          <CardContent className="p-4">
-            <div className="flex items-center gap-3">
-              <div className="flex size-10 items-center justify-center rounded-xl bg-purple-500/10 text-purple-600">
-                <Users className="size-5" />
-              </div>
-              <div>
-                <p className="text-muted-foreground text-xs">Upcoming</p>
-                <p className="font-bold text-2xl">{upcomingEvents.length}</p>
-              </div>
-            </div>
-          </CardContent>
-        </Card>
-        <Card className="relative overflow-hidden">
-          <div className="absolute top-0 right-0 h-16 w-16 bg-gradient-to-bl from-amber-500/10 to-transparent" />
-          <CardContent className="p-4">
-            <div className="flex items-center gap-3">
-              <div className="flex size-10 items-center justify-center rounded-xl bg-amber-500/10 text-amber-600">
-                <Clock className="size-5" />
-              </div>
-              <div>
-                <p className="text-muted-foreground text-xs">Completed</p>
-                <p className="font-bold text-2xl">{pastEvents.length}</p>
-              </div>
-            </div>
-          </CardContent>
-        </Card>
+            </CardContent>
+          </Card>
+        ))}
       </div>
 
       {/* Main Content */}
@@ -230,14 +195,7 @@ export function CalendarView() {
                             {dayEvents.slice(0, 3).map((event) => (
                               <div
                                 key={event.id}
-                                className={cn(
-                                  "size-1.5 rounded-full",
-                                  event.color === "blue" && "bg-blue-500",
-                                  event.color === "green" && "bg-emerald-500",
-                                  event.color === "purple" && "bg-purple-500",
-                                  event.color === "red" && "bg-red-500",
-                                  event.color === "amber" && "bg-amber-500",
-                                )}
+                                className="size-1.5 rounded-full bg-foreground/50"
                               />
                             ))}
                           </div>
@@ -247,14 +205,7 @@ export function CalendarView() {
                         {dayEvents.slice(0, 2).map((event) => (
                           <div
                             key={event.id}
-                            className={cn(
-                              "flex items-center gap-1 rounded-md px-1.5 py-0.5 text-[10px] font-medium",
-                              event.color === "blue" && "bg-blue-500/10 text-blue-600 dark:text-blue-400",
-                              event.color === "green" && "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400",
-                              event.color === "purple" && "bg-purple-500/10 text-purple-600 dark:text-purple-400",
-                              event.color === "red" && "bg-red-500/10 text-red-600 dark:text-red-400",
-                              event.color === "amber" && "bg-amber-500/10 text-amber-600 dark:text-amber-400",
-                            )}
+                            className="flex items-center gap-1 rounded-md px-1.5 py-0.5 text-[10px] font-medium bg-foreground/10 text-foreground border border-foreground/15"
                           >
                             <span className="truncate">{event.title}</span>
                           </div>
@@ -319,16 +270,7 @@ export function CalendarView() {
                       key={event.id}
                       className="flex items-start gap-3 rounded-lg border p-3 transition-colors hover:bg-muted/50"
                     >
-                      <div
-                        className={cn(
-                          "mt-0.5 size-2 shrink-0 rounded-full",
-                          event.color === "blue" && "bg-blue-500",
-                          event.color === "green" && "bg-emerald-500",
-                          event.color === "purple" && "bg-purple-500",
-                          event.color === "red" && "bg-red-500",
-                          event.color === "amber" && "bg-amber-500",
-                        )}
-                      />
+                      <div className="mt-0.5 size-2 shrink-0 rounded-full bg-foreground/60" />
                       <div className="flex-1 min-w-0">
                         <p className="truncate font-medium text-sm">{event.title}</p>
                         <div className="mt-1 flex items-center gap-2 text-muted-foreground text-xs">

@@ -27,9 +27,9 @@ export function MedicationSchedule() {
             {schedule.map((item, i) => (
               <div key={i} className="relative flex gap-4">
                 <div className={`relative z-10 mt-1 flex size-10 items-center justify-center rounded-full ${
-                  item.status === "administered" ? "bg-emerald-500/10 text-emerald-600" :
-                  item.status === "pending" ? "bg-amber-500/10 text-amber-600" :
-                  "bg-muted text-muted-foreground"
+                  item.status === "administered" ? "bg-foreground/10 text-foreground border border-foreground/25" :
+                  item.status === "pending" ? "bg-muted-foreground/10 text-muted-foreground" :
+                  "bg-muted text-muted-foreground/60"
                 }`}>
                   <Pill className="size-5" />
                 </div>
@@ -45,9 +45,9 @@ export function MedicationSchedule() {
                     <div className="shrink-0 text-right">
                       <div className="text-sm font-medium">{item.time}</div>
                       <div className={`text-[10px] ${
-                        item.status === "administered" ? "text-emerald-600" :
-                        item.status === "pending" ? "text-amber-600" :
-                        "text-muted-foreground"
+                        item.status === "administered" ? "text-foreground font-semibold" :
+                        item.status === "pending" ? "text-muted-foreground" :
+                        "text-muted-foreground/60"
                       }`}>
                         {item.status}
                       </div>

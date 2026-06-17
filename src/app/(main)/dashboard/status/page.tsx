@@ -35,11 +35,11 @@ export default function Page() {
         <p className="text-muted-foreground text-sm">Real-time health of all Dashdeck services.</p>
       </div>
 
-      <Card className="border-emerald-500/30 bg-emerald-500/5">
+      <Card className="border-border bg-muted/40">
         <CardContent className="flex items-center gap-4 p-5">
-          <div className="flex size-4 rounded-full bg-emerald-500 animate-pulse" />
+          <div className="flex size-4 rounded-full bg-foreground border border-foreground/30 animate-pulse" />
           <div>
-            <p className="font-semibold text-emerald-600 dark:text-emerald-400">All Systems Operational</p>
+            <p className="font-semibold text-foreground">All Systems Operational</p>
             <p className="text-muted-foreground text-sm">No incidents reported. Last updated: Just now</p>
           </div>
         </CardContent>
@@ -55,7 +55,7 @@ export default function Page() {
               <div>
                 <div className="flex items-center gap-2">
                   <span className="font-semibold text-sm">{svc.name}</span>
-                  <div className="size-1.5 rounded-full bg-emerald-500" />
+                  <div className="size-1.5 rounded-full bg-foreground" />
                 </div>
                 <div className="mt-1 text-muted-foreground text-xs">
                   <span>{svc.uptime} uptime</span>
@@ -78,7 +78,7 @@ export default function Page() {
             <div className="flex items-end gap-2 h-32">
               {uptimeDays.map((day) => (
                 <div key={day.date} className="flex flex-1 flex-col items-center gap-1">
-                  <div className="w-full rounded-sm bg-emerald-500" style={{ height: `${day.uptime}%` }} />
+                  <div className="w-full rounded-sm bg-foreground/70" style={{ height: `${day.uptime}%` }} />
                   <span className="text-muted-foreground text-[10px]">{day.date}</span>
                 </div>
               ))}
@@ -95,7 +95,7 @@ export default function Page() {
             <div className="flex flex-col gap-3">
               {incidents.map((inc) => (
                 <div key={inc.title} className="flex items-start gap-3 rounded-lg border p-3">
-                  <CheckCircle className="size-4 text-emerald-500 mt-0.5" />
+                  <CheckCircle className="size-4 text-foreground mt-0.5" />
                   <div>
                     <p className="text-sm font-medium">{inc.title}</p>
                     <p className="text-muted-foreground text-xs">{inc.date} · {inc.duration}</p>

@@ -33,7 +33,7 @@ export function StaffOverview() {
               </div>
               <div className="flex items-center gap-3">
                 <span className="text-sm tabular-nums">{member.patients} patients</span>
-                <Badge className={member.status === "on-duty" ? "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-0" : "bg-muted text-muted-foreground border-0"}>
+                <Badge className={member.status === "on-duty" ? "bg-foreground/10 text-foreground border border-foreground/25" : "bg-muted text-muted-foreground border-0"}>
                   {member.status === "on-duty" ? "On Duty" : "Off Duty"}
                 </Badge>
               </div>

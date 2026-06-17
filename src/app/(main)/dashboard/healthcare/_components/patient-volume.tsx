@@ -15,9 +15,9 @@ const chartData = [
 ];
 
 const chartConfig = {
-  inpatients: { label: "Inpatients", color: "var(--chart-1)" },
-  outpatients: { label: "Outpatients", color: "var(--chart-2)" },
-  emergency: { label: "Emergency", color: "var(--chart-3)" },
+  inpatients: { label: "Inpatients", color: "hsl(var(--foreground))" },
+  outpatients: { label: "Outpatients", color: "hsl(var(--muted-foreground))" },
+  emergency: { label: "Emergency", color: "hsl(var(--muted-foreground) / 0.4)" },
 } satisfies ChartConfig;
 
 export function PatientVolume() {

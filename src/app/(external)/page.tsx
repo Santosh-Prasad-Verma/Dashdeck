@@ -136,6 +136,17 @@ export default function Home() {
               <Globe className="h-3.5 w-3.5" />
               GitHub
             </a>
+            <a
+              href="https://x.com/TarunVerma_121"
+              target="_blank"
+              rel="noreferrer"
+              className="flex items-center gap-1.5 text-xs font-medium text-gray-400 hover:text-white transition-colors duration-200"
+            >
+              <svg className="h-3.5 w-3.5 fill-current" viewBox="0 0 24 24">
+                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+              </svg>
+              X (Twitter)
+            </a>
           </div>
 
           {/* Actions - Desktop */}
@@ -194,6 +205,17 @@ export default function Home() {
               >
                 <Globe className="h-5 w-5" />
                 GitHub
+              </a>
+              <a
+                href="https://x.com/TarunVerma_121"
+                target="_blank"
+                rel="noreferrer"
+                className="flex items-center gap-2 text-base font-medium text-gray-300 hover:text-white"
+              >
+                <svg className="h-5 w-5 fill-current" viewBox="0 0 24 24">
+                  <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+                </svg>
+                X (Twitter)
               </a>
               <div className="h-px bg-white/10 my-1" />
               <div className="flex flex-col gap-3">
@@ -673,6 +695,14 @@ export default function Home() {
               className="hover:text-white transition-colors duration-200"
             >
               GitHub
+            </a>
+            <a
+              href="https://x.com/TarunVerma_121"
+              target="_blank"
+              rel="noreferrer"
+              className="hover:text-white transition-colors duration-200"
+            >
+              X (Twitter)
             </a>
           </div>
 
