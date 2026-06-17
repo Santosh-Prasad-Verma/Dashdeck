@@ -1,51 +1,71 @@
 "use client";
 
-import { Cell, Pie, PieChart } from "recharts";
+import { Radar, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis } from "recharts";
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { type ChartConfig, ChartContainer, ChartTooltip, ChartTooltipContent } from "@/components/ui/chart";
+import { type ChartConfig, ChartContainer, ChartTooltip, ChartTooltipContent, ChartLegend, ChartLegendContent } from "@/components/ui/chart";
 
 const chartData = [
-  { source: "Instagram", value: 35, fill: "var(--chart-1)" },
-  { source: "TikTok", value: 28, fill: "var(--chart-2)" },
-  { source: "X/Twitter", value: 18, fill: "var(--chart-3)" },
-  { source: "LinkedIn", value: 12, fill: "var(--chart-4)" },
-  { source: "YouTube", value: 7, fill: "var(--chart-5)" },
+  { platform: "Instagram", reach: 85, engagement: 60 },
+  { platform: "TikTok", reach: 90, engagement: 78 },
+  { platform: "X/Twitter", reach: 65, engagement: 45 },
+  { platform: "LinkedIn", reach: 50, engagement: 82 },
+  { platform: "YouTube", reach: 75, engagement: 55 },
 ];
 
 const chartConfig = {
-  value: { label: "Engagement %" },
+  reach: {
+    label: "Follower Reach",
+    color: "var(--chart-1)",
+  },
+  engagement: {
+    label: "Engagement Rate",
+    color: "var(--chart-2)",
+  },
 } satisfies ChartConfig;
-
-const total = chartData.reduce((acc, curr) => acc + curr.value, 0);
 
 export function AudienceDemographics() {
   return (
-    <Card>
+    <Card className="h-full">
       <CardHeader>
-        <CardTitle>Audience Demographics</CardTitle>
-        <CardDescription>Engagement by platform</CardDescription>
+        <CardTitle>Platform Metrics</CardTitle>
+        <CardDescription>Follower reach vs interactive engagement index</CardDescription>
       </CardHeader>
-      <CardContent className="flex items-center justify-center gap-8">
-        <ChartContainer config={chartConfig} className="mx-auto aspect-square h-48 w-full max-w-[180px]">
-          <PieChart>
-            <ChartTooltip cursor={false} content={<ChartTooltipContent hideLabel />} />
-            <Pie data={chartData} dataKey="value" nameKey="source" innerRadius={50} strokeWidth={2} stroke="hsl(var(--background))">
-              {chartData.map((entry, index) => (
-                <Cell key={`cell-${index}`} fill={entry.fill} />
-              ))}
-            </Pie>
-          </PieChart>
+      <CardContent className="pb-0 flex flex-col justify-between">
+        <ChartContainer config={chartConfig} className="mx-auto aspect-square h-64 w-full">
+          <RadarChart cx="50%" cy="50%" outerRadius="70%" data={chartData}>
+            <PolarGrid stroke="var(--border)" strokeWidth={1} strokeOpacity={0.5} />
+            <PolarAngleAxis 
+              dataKey="platform" 
+              tick={{ fill: "var(--muted-foreground)", fontSize: 10, fontWeight: 500 }} 
+            />
+            <PolarRadiusAxis 
+              angle={30} 
+              domain={[0, 100]} 
+              tick={{ fill: "var(--muted-foreground)", fontSize: 8 }} 
+              axisLine={false}
+            />
+            <ChartTooltip cursor={false} content={<ChartTooltipContent />} />
+            <ChartLegend verticalAlign="bottom" content={<ChartLegendContent className="mt-2 justify-center" />} />
+            
+            <Radar 
+              name="Follower Reach" 
+              dataKey="reach" 
+              stroke="var(--color-reach)" 
+              fill="var(--color-reach)" 
+              fillOpacity={0.25} 
+              strokeWidth={1.5}
+            />
+            <Radar 
+              name="Engagement Rate" 
+              dataKey="engagement" 
+              stroke="var(--color-engagement)" 
+              fill="var(--color-engagement)" 
+              fillOpacity={0.25} 
+              strokeWidth={1.5}
+            />
+          </RadarChart>
         </ChartContainer>
-        <div className="flex flex-col gap-2">
-          {chartData.map((item) => (
-            <div key={item.source} className="flex items-center gap-2 text-sm">
-              <div className="size-2.5 rounded-full" style={{ backgroundColor: item.fill }} />
-              <span className="w-24">{item.source}</span>
-              <span className="font-medium tabular-nums">{item.value}%</span>
-            </div>
-          ))}
-        </div>
       </CardContent>
     </Card>
   );

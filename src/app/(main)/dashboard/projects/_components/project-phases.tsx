@@ -1,46 +1,71 @@
 "use client";
 
-import { Cell, Pie, PieChart } from "recharts";
+import { Radar, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis } from "recharts";
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { type ChartConfig, ChartContainer, ChartTooltip, ChartTooltipContent } from "@/components/ui/chart";
+import { type ChartConfig, ChartContainer, ChartTooltip, ChartTooltipContent, ChartLegend, ChartLegendContent } from "@/components/ui/chart";
 
 const chartData = [
-  { phase: "Planning", projects: 8, fill: "var(--chart-1)" },
-  { phase: "In Progress", projects: 10, fill: "var(--chart-2)" },
-  { phase: "Review", projects: 4, fill: "var(--chart-3)" },
-  { phase: "Completed", projects: 2, fill: "var(--chart-4)" },
+  { phase: "Planning", load: 60, status: 80 },
+  { phase: "In Progress", load: 95, status: 70 },
+  { phase: "Review", load: 40, status: 90 },
+  { phase: "Completed", load: 20, status: 100 },
+  { phase: "On Hold", load: 15, status: 30 },
 ];
 
-const chartConfig = {} satisfies ChartConfig;
+const chartConfig = {
+  load: {
+    label: "Workload Capacity",
+    color: "var(--chart-1)",
+  },
+  status: {
+    label: "Phase Milestone Progress",
+    color: "var(--chart-2)",
+  },
+} satisfies ChartConfig;
 
 export function ProjectPhases() {
   return (
-    <Card>
+    <Card className="h-full">
       <CardHeader>
-        <CardTitle>Project Phases</CardTitle>
-        <CardDescription>Distribution by current phase</CardDescription>
+        <CardTitle>Sprint Phase Health</CardTitle>
+        <CardDescription>Workload capacity versus milestone progress by phase</CardDescription>
       </CardHeader>
-      <CardContent className="flex items-center justify-center gap-6">
-        <ChartContainer config={chartConfig} className="mx-auto aspect-square h-44 w-full max-w-[160px]">
-          <PieChart>
-            <ChartTooltip cursor={false} content={<ChartTooltipContent hideLabel />} />
-            <Pie data={chartData} dataKey="projects" nameKey="phase" innerRadius={45} strokeWidth={2} stroke="hsl(var(--background))">
-              {chartData.map((entry, index) => (
-                <Cell key={`cell-${index}`} fill={entry.fill} />
-              ))}
-            </Pie>
-          </PieChart>
+      <CardContent className="pb-0 flex flex-col justify-between">
+        <ChartContainer config={chartConfig} className="mx-auto aspect-square h-64 w-full">
+          <RadarChart cx="50%" cy="50%" outerRadius="70%" data={chartData}>
+            <PolarGrid stroke="var(--border)" strokeWidth={1} strokeOpacity={0.5} />
+            <PolarAngleAxis 
+              dataKey="phase" 
+              tick={{ fill: "var(--muted-foreground)", fontSize: 10, fontWeight: 500 }} 
+            />
+            <PolarRadiusAxis 
+              angle={30} 
+              domain={[0, 100]} 
+              tick={{ fill: "var(--muted-foreground)", fontSize: 8 }} 
+              axisLine={false}
+            />
+            <ChartTooltip cursor={false} content={<ChartTooltipContent />} />
+            <ChartLegend verticalAlign="bottom" content={<ChartLegendContent className="mt-2 justify-center" />} />
+            
+            <Radar 
+              name="Workload Capacity" 
+              dataKey="load" 
+              stroke="var(--color-load)" 
+              fill="var(--color-load)" 
+              fillOpacity={0.25} 
+              strokeWidth={1.5}
+            />
+            <Radar 
+              name="Phase Milestone Progress" 
+              dataKey="status" 
+              stroke="var(--color-status)" 
+              fill="var(--color-status)" 
+              fillOpacity={0.25} 
+              strokeWidth={1.5}
+            />
+          </RadarChart>
         </ChartContainer>
-        <div className="flex flex-col gap-2">
-          {chartData.map((item) => (
-            <div key={item.phase} className="flex items-center gap-2 text-sm">
-              <div className="size-2.5 rounded-full" style={{ backgroundColor: item.fill }} />
-              <span className="w-24">{item.phase}</span>
-              <span className="font-medium tabular-nums">{item.projects} projects</span>
-            </div>
-          ))}
-        </div>
       </CardContent>
     </Card>
   );

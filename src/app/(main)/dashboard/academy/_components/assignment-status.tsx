@@ -84,24 +84,27 @@ export function AssignmentStatus() {
             <ChartLegend content={<ChartLegendContent className="justify-start" />} verticalAlign="top" />
             <Bar
               dataKey="submitted"
+              stackId="a"
               fill="url(#assignment-submitted-pattern)"
-              radius={4}
+              radius={[0, 0, 4, 4]}
               stroke="var(--color-submitted)"
               strokeOpacity={0.45}
               strokeWidth={0.5}
             />
             <Bar
               dataKey="pending"
+              stackId="a"
               fill="url(#assignment-pending-pattern)"
-              radius={4}
+              radius={[0, 0, 0, 0]}
               stroke="var(--color-pending)"
               strokeOpacity={0.5}
               strokeWidth={0.5}
             />
             <Bar
               dataKey="overdue"
+              stackId="a"
               fill="url(#assignment-overdue-pattern)"
-              radius={4}
+              radius={[4, 4, 0, 0]}
               stroke="var(--color-overdue)"
               strokeOpacity={0.5}
               strokeWidth={0.5}

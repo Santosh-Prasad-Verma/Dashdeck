@@ -1,100 +1,71 @@
 "use client";
 
-import { Cell, Pie, PieChart } from "recharts";
+import { Radar, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis } from "recharts";
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { type ChartConfig, ChartContainer, ChartTooltip, ChartTooltipContent } from "@/components/ui/chart";
+import { type ChartConfig, ChartContainer, ChartTooltip, ChartTooltipContent, ChartLegend, ChartLegendContent } from "@/components/ui/chart";
 
 const chartData = [
-  { model: "Claude 3.5", cost: 892, fill: "var(--chart-1)" },
-  { model: "GPT-4o", cost: 756, fill: "var(--chart-2)" },
-  { model: "Gemini Pro", cost: 423, fill: "var(--chart-3)" },
-  { model: "Llama 3.1", cost: 187, fill: "var(--chart-4)" },
-  { model: "Embeddings", cost: 83, fill: "var(--chart-5)" },
+  { model: "Claude 3.5", cost: 89, tokens: 95 },
+  { model: "GPT-4o", cost: 75, tokens: 80 },
+  { model: "Gemini Pro", cost: 42, tokens: 85 },
+  { model: "Llama 3.1", cost: 18, tokens: 60 },
+  { model: "Embeddings", cost: 8, tokens: 75 },
 ];
 
 const chartConfig = {
   cost: {
-    label: "Cost ($)",
-  },
-  "Claude 3.5": {
-    label: "Claude 3.5",
+    label: "Relative Cost ($)",
     color: "var(--chart-1)",
   },
-  "GPT-4o": {
-    label: "GPT-4o",
+  tokens: {
+    label: "Token Volume (M)",
     color: "var(--chart-2)",
-  },
-  "Gemini Pro": {
-    label: "Gemini Pro",
-    color: "var(--chart-3)",
-  },
-  "Llama 3.1": {
-    label: "Llama 3.1",
-    color: "var(--chart-4)",
-  },
-  Embeddings: {
-    label: "Embeddings",
-    color: "var(--chart-5)",
   },
 } satisfies ChartConfig;
 
-const totalCost = chartData.reduce((acc, curr) => acc + curr.cost, 0);
-
 export function TokenCostBreakdown() {
   return (
-    <Card>
+    <Card className="h-full">
       <CardHeader>
-        <CardTitle>Cost by Model</CardTitle>
-        <CardDescription>API spending breakdown this month</CardDescription>
+        <CardTitle>Token Economy</CardTitle>
+        <CardDescription>Model API cost efficiency vs relative token volume</CardDescription>
       </CardHeader>
-      <CardContent className="flex flex-col gap-4">
-        <ChartContainer config={chartConfig} className="mx-auto aspect-square h-48 w-full max-w-[200px]">
-          <PieChart>
-            <ChartTooltip
-              cursor={false}
-              content={<ChartTooltipContent hideLabel />}
+      <CardContent className="pb-0 flex flex-col justify-between">
+        <ChartContainer config={chartConfig} className="mx-auto aspect-square h-64 w-full">
+          <RadarChart cx="50%" cy="50%" outerRadius="70%" data={chartData}>
+            <PolarGrid stroke="var(--border)" strokeWidth={1} strokeOpacity={0.5} />
+            <PolarAngleAxis 
+              dataKey="model" 
+              tick={{ fill: "var(--muted-foreground)", fontSize: 10, fontWeight: 500 }} 
             />
-            <Pie
-              data={chartData}
-              dataKey="cost"
-              nameKey="model"
-              innerRadius={50}
-              strokeWidth={2}
-              stroke="hsl(var(--background))"
-            >
-              {chartData.map((entry, index) => (
-                <Cell key={`cell-${index}`} fill={entry.fill} />
-              ))}
-            </Pie>
-          </PieChart>
+            <PolarRadiusAxis 
+              angle={30} 
+              domain={[0, 100]} 
+              tick={{ fill: "var(--muted-foreground)", fontSize: 8 }} 
+              axisLine={false}
+            />
+            <ChartTooltip cursor={false} content={<ChartTooltipContent />} />
+            <ChartLegend verticalAlign="bottom" content={<ChartLegendContent className="mt-2 justify-center" />} />
+            
+            <Radar 
+              name="Relative Cost ($)" 
+              dataKey="cost" 
+              stroke="var(--color-cost)" 
+              fill="var(--color-cost)" 
+              fillOpacity={0.25} 
+              strokeWidth={1.5}
+            />
+            <Radar 
+              name="Token Volume (M)" 
+              dataKey="tokens" 
+              stroke="var(--color-tokens)" 
+              fill="var(--color-tokens)" 
+              fillOpacity={0.25} 
+              strokeWidth={1.5}
+            />
+          </RadarChart>
         </ChartContainer>
-
-        <div className="flex flex-col gap-2">
-          {chartData.map((item) => (
-            <div key={item.model} className="flex items-center justify-between text-sm">
-              <div className="flex items-center gap-2">
-                <div
-                  className="size-2.5 rounded-full"
-                  style={{ backgroundColor: item.fill }}
-                />
-                <span>{item.model}</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <span className="font-medium tabular-nums">${item.cost}</span>
-                <span className="text-muted-foreground">
-                  {((item.cost / totalCost) * 100).toFixed(1)}%
-                </span>
-              </div>
-            </div>
-          ))}
-          <div className="border-t pt-2">
-            <div className="flex items-center justify-between text-sm font-medium">
-              <span>Total</span>
-              <span className="tabular-nums">${totalCost.toLocaleString()}</span>
-            </div>
-          </div>
-        </div>
       </CardContent>
     </Card>
   );

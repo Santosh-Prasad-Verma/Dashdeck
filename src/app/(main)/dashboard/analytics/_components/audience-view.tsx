@@ -1,6 +1,6 @@
 "use client";
 
-import { Bar, BarChart, CartesianGrid, XAxis, Pie, PieChart, Cell } from "recharts";
+import { Bar, BarChart, CartesianGrid, XAxis, PolarAngleAxis, RadialBar, RadialBarChart } from "recharts";
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { type ChartConfig, ChartContainer, ChartTooltip, ChartTooltipContent } from "@/components/ui/chart";
@@ -46,6 +46,24 @@ const deviceConfig = {
 
 export function AudienceView() {
   const totalUsers = demographicData.reduce((acc, curr) => acc + curr.users, 0);
+  const totalDeviceUsers = deviceData.reduce((acc, curr) => acc + curr.users, 0);
+  const deviceRadialData = [
+    {
+      name: "Tablet",
+      value: Math.round((deviceData[2].users / totalDeviceUsers) * 100),
+      fill: "var(--chart-3)",
+    },
+    {
+      name: "Mobile",
+      value: Math.round((deviceData[1].users / totalDeviceUsers) * 100),
+      fill: "var(--chart-2)",
+    },
+    {
+      name: "Desktop",
+      value: Math.round((deviceData[0].users / totalDeviceUsers) * 100),
+      fill: "var(--chart-1)",
+    },
+  ];
 
   return (
     <div className="flex flex-col gap-4">
@@ -76,25 +94,33 @@ export function AudienceView() {
             <CardDescription>Users by device type</CardDescription>
           </CardHeader>
           <CardContent className="flex items-center justify-center gap-8">
-            <ChartContainer config={deviceConfig} className="mx-auto aspect-square h-48 w-full max-w-[180px]">
-              <PieChart>
-                <ChartTooltip
-                  cursor={false}
-                  content={<ChartTooltipContent hideLabel />}
+            <ChartContainer config={deviceConfig} className="mx-auto aspect-square h-48 w-full max-w-[180px] relative">
+              <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none">
+                <span className="text-2xl font-bold tracking-tight">24.4k</span>
+                <span className="text-[10px] text-muted-foreground uppercase font-semibold">Total</span>
+              </div>
+              <RadialBarChart
+                cx="50%"
+                cy="50%"
+                innerRadius="35%"
+                outerRadius="100%"
+                barSize={6}
+                data={deviceRadialData}
+                startAngle={90}
+                endAngle={-270}
+              >
+                <PolarAngleAxis
+                  type="number"
+                  domain={[0, 100]}
+                  angleAxisId={0}
+                  tick={false}
                 />
-                <Pie
-                  data={deviceData}
-                  dataKey="users"
-                  nameKey="device"
-                  innerRadius={50}
-                  strokeWidth={2}
-                  stroke="hsl(var(--background))"
-                >
-                  {deviceData.map((entry, index) => (
-                    <Cell key={`cell-${index}`} fill={entry.fill} />
-                  ))}
-                </Pie>
-              </PieChart>
+                <RadialBar
+                  background={{ fill: "var(--muted)", opacity: 0.1 }}
+                  dataKey="value"
+                  cornerRadius={4}
+                />
+              </RadialBarChart>
             </ChartContainer>
             <div className="flex flex-col gap-3">
               {deviceData.map((device) => (
@@ -103,7 +129,7 @@ export function AudienceView() {
                   <span className="w-16">{device.device}</span>
                   <span className="font-medium tabular-nums">{device.users.toLocaleString()}</span>
                   <span className="text-muted-foreground">
-                    ({((device.users / totalUsers) * 100).toFixed(0)}%)
+                    ({((device.users / totalDeviceUsers) * 100).toFixed(0)}%)
                   </span>
                 </div>
               ))}

@@ -1,47 +1,72 @@
 "use client";
 
-import { Cell, Pie, PieChart } from "recharts";
+import { Radar, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis } from "recharts";
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { type ChartConfig, ChartContainer, ChartTooltip, ChartTooltipContent } from "@/components/ui/chart";
+import { type ChartConfig, ChartContainer, ChartTooltip, ChartTooltipContent, ChartLegend, ChartLegendContent } from "@/components/ui/chart";
 
 const chartData = [
-  { city: "New York", properties: 82, fill: "var(--chart-1)" },
-  { city: "Austin", properties: 64, fill: "var(--chart-2)" },
-  { city: "Seattle", properties: 48, fill: "var(--chart-3)" },
-  { city: "Chicago", properties: 52, fill: "var(--chart-4)" },
-  { city: "Other Cities", properties: 96, fill: "var(--chart-5)" },
+  { city: "New York", listed: 82, inquiries: 95 },
+  { city: "Austin", listed: 64, inquiries: 72 },
+  { city: "Seattle", listed: 48, inquiries: 50 },
+  { city: "Chicago", listed: 52, inquiries: 58 },
+  { city: "Miami", listed: 40, inquiries: 62 },
+  { city: "Boston", listed: 36, inquiries: 45 },
 ];
 
-const chartConfig = {} satisfies ChartConfig;
+const chartConfig = {
+  listed: {
+    label: "Active Listings",
+    color: "var(--chart-1)",
+  },
+  inquiries: {
+    label: "Tenant Inquiries",
+    color: "var(--chart-2)",
+  },
+} satisfies ChartConfig;
 
 export function LocationBreakdown() {
   return (
-    <Card>
+    <Card className="h-full">
       <CardHeader>
-        <CardTitle>Properties by City</CardTitle>
-        <CardDescription>Geographic distribution</CardDescription>
+        <CardTitle>Market Activity</CardTitle>
+        <CardDescription>Listed property density vs tenant demand by city</CardDescription>
       </CardHeader>
-      <CardContent className="flex items-center justify-center gap-6">
-        <ChartContainer config={chartConfig} className="mx-auto aspect-square h-44 w-full max-w-[160px]">
-          <PieChart>
-            <ChartTooltip cursor={false} content={<ChartTooltipContent hideLabel />} />
-            <Pie data={chartData} dataKey="properties" nameKey="city" innerRadius={45} strokeWidth={2} stroke="hsl(var(--background))">
-              {chartData.map((entry, index) => (
-                <Cell key={`cell-${index}`} fill={entry.fill} />
-              ))}
-            </Pie>
-          </PieChart>
+      <CardContent className="pb-0 flex flex-col justify-between">
+        <ChartContainer config={chartConfig} className="mx-auto aspect-square h-64 w-full">
+          <RadarChart cx="50%" cy="50%" outerRadius="70%" data={chartData}>
+            <PolarGrid stroke="var(--border)" strokeWidth={1} strokeOpacity={0.5} />
+            <PolarAngleAxis 
+              dataKey="city" 
+              tick={{ fill: "var(--muted-foreground)", fontSize: 10, fontWeight: 500 }} 
+            />
+            <PolarRadiusAxis 
+              angle={30} 
+              domain={[0, 100]} 
+              tick={{ fill: "var(--muted-foreground)", fontSize: 8 }} 
+              axisLine={false}
+            />
+            <ChartTooltip cursor={false} content={<ChartTooltipContent />} />
+            <ChartLegend verticalAlign="bottom" content={<ChartLegendContent className="mt-2 justify-center" />} />
+            
+            <Radar 
+              name="Active Listings" 
+              dataKey="listed" 
+              stroke="var(--color-listed)" 
+              fill="var(--color-listed)" 
+              fillOpacity={0.25} 
+              strokeWidth={1.5}
+            />
+            <Radar 
+              name="Tenant Inquiries" 
+              dataKey="inquiries" 
+              stroke="var(--color-inquiries)" 
+              fill="var(--color-inquiries)" 
+              fillOpacity={0.25} 
+              strokeWidth={1.5}
+            />
+          </RadarChart>
         </ChartContainer>
-        <div className="flex flex-col gap-2">
-          {chartData.map((item) => (
-            <div key={item.city} className="flex items-center gap-2 text-sm">
-              <div className="size-2.5 rounded-full" style={{ backgroundColor: item.fill }} />
-              <span className="w-28">{item.city}</span>
-              <span className="font-medium tabular-nums">{item.properties}</span>
-            </div>
-          ))}
-        </div>
       </CardContent>
     </Card>
   );
