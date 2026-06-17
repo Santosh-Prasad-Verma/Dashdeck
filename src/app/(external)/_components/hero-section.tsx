@@ -1,59 +1,9 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import Link from "next/link";
-import { motion, AnimatePresence } from "framer-motion";
-import { PlayCircle, Star, Sparkles } from "lucide-react";
+import { motion } from "framer-motion";
+import { Sparkles, BarChart2, Activity, HardDrive } from "lucide-react";
 import { GradientText } from "./shared/gradient-text";
-
-const notifications = [
-  { text: "✓ Subscription renewed", delay: 1000 },
-  { text: "✓ AI insight generated", delay: 4000 },
-  { text: "✓ Password secured", delay: 7000 },
-];
-
-function FloatingNotifications() {
-  const [visible, setVisible] = useState<number | null>(null);
-
-  useEffect(() => {
-    let cycle = 0;
-    const show = () => {
-      const idx = cycle % notifications.length;
-      setVisible(idx);
-      setTimeout(() => setVisible(null), 2500);
-      cycle++;
-    };
-    const timer = setInterval(show, 3500);
-    const initial = setTimeout(show, 2000);
-    return () => {
-      clearInterval(timer);
-      clearTimeout(initial);
-    };
-  }, []);
-
-  const positions = [
-    "top-4 -right-4",
-    "top-1/3 -left-6",
-    "bottom-8 -right-2",
-  ];
-
-  return (
-    <AnimatePresence>
-      {visible !== null && (
-        <motion.div
-          key={visible}
-          initial={{ opacity: 0, x: 20, scale: 0.9 }}
-          animate={{ opacity: 1, x: 0, scale: 1 }}
-          exit={{ opacity: 0, x: 20, scale: 0.9 }}
-          transition={{ duration: 0.4 }}
-          className={`absolute ${positions[visible]} z-20 bg-[#0A0A1A]/90 border border-white/[0.08] rounded-full px-4 py-2 text-xs text-gray-300 whitespace-nowrap shadow-lg shadow-black/20`}
-        >
-          {notifications[visible].text}
-        </motion.div>
-      )}
-    </AnimatePresence>
-  );
-}
 
 const stagger = {
   hidden: {},
@@ -74,8 +24,8 @@ export function HeroSection() {
           {/* Badge */}
           <motion.div variants={fadeUp}>
             <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-sm font-medium bg-[#8B5CF6]/10 text-[#8B5CF6] border border-[#8B5CF6]/20">
-              <Sparkles className="size-3.5" />
-              New AI Dashboard Experience
+              <Sparkles className="size-3.5 animate-pulse" />
+              Premium Next.js Dashboard Presets
             </span>
           </motion.div>
 
@@ -84,14 +34,14 @@ export function HeroSection() {
             variants={fadeUp}
             className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.08] text-white mt-8"
           >
-            Build your digital life
+            High-fidelity dashboard
             <br />
-            from one <GradientText>beautiful dashboard</GradientText>
+            presets for <GradientText>React & Next.js</GradientText>
           </motion.h1>
 
           {/* Subheadline */}
           <motion.p variants={fadeUp} className="text-lg md:text-xl text-gray-400 leading-relaxed max-w-lg mt-6">
-            Manage finances, subscriptions, passwords, documents, tickets, tasks, and analytics — from a single intelligent workspace.
+            A professionally designed collection of 15+ interactive dashboards including CRM, DevOps, Finance, Healthcare, Analytics, and Academy. Use them as reference architectures, copy layout presets, or jumpstart your next admin panel.
           </motion.p>
 
           {/* CTAs */}
@@ -100,35 +50,8 @@ export function HeroSection() {
               href="/dashboard/default"
               className="bg-[#8B5CF6] hover:bg-[#7C3AED] text-white font-semibold px-8 py-3.5 rounded-xl text-base transition-all duration-300 hover:shadow-xl hover:shadow-[#8B5CF6]/25 hover:scale-[1.02] active:scale-[0.98]"
             >
-              Get Started Free
+              Explore Dashboard Presets
             </Link>
-            <button className="flex items-center gap-2 border border-white/10 text-gray-300 hover:text-white hover:border-white/20 font-medium px-8 py-3.5 rounded-xl text-base transition-all duration-300 hover:bg-white/[0.03]">
-              <PlayCircle className="size-5" />
-              Watch Demo
-            </button>
-          </motion.div>
-
-          {/* Trust */}
-          <motion.div variants={fadeUp} className="flex items-center gap-4 mt-10">
-            <div className="flex -space-x-2.5">
-              {["#8B5CF6", "#6366F1", "#06B6D4", "#8B5CF6", "#6366F1"].map((color, i) => (
-                <div
-                  key={i}
-                  className="w-8 h-8 rounded-full border-2 border-[#050505] flex items-center justify-center text-[10px] font-semibold text-white"
-                  style={{ background: `linear-gradient(135deg, ${color}, ${color}dd)` }}
-                >
-                  {["T", "A", "S", "R", "M"][i]}
-                </div>
-              ))}
-            </div>
-            <div className="text-sm text-gray-500">
-              Used by <span className="text-gray-300 font-medium">25,000+</span> professionals
-            </div>
-            <div className="flex gap-0.5">
-              {[...Array(5)].map((_, i) => (
-                <Star key={i} className="size-3.5 fill-[#8B5CF6] text-[#8B5CF6]" />
-              ))}
-            </div>
           </motion.div>
         </motion.div>
 
@@ -144,80 +67,104 @@ export function HeroSection() {
 
           {/* Dashboard Container */}
           <motion.div
-            animate={{ y: [0, -8, 0] }}
-            transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
             className="relative"
             style={{ transform: "perspective(1200px) rotateY(-6deg) rotateX(3deg)" }}
           >
-            <FloatingNotifications />
-
             <div className="flex flex-col gap-4">
-              {/* Analytics Card */}
+              
+              {/* Upgraded Card 1: Traffic Spikes (Area/Line Chart) */}
               <div className="bg-[#0A0A1A]/80 border border-white/[0.06] rounded-2xl p-5 backdrop-blur-sm">
                 <div className="flex items-center justify-between mb-4">
-                  <span className="text-sm font-medium text-gray-300">Weekly Overview</span>
+                  <div className="flex items-center gap-2">
+                    <Activity className="size-4 text-[#8B5CF6]" />
+                    <span className="text-sm font-medium text-gray-300">Live Traffic (Ingress vs. Egress)</span>
+                  </div>
                   <span className="text-[10px] font-medium text-[#8B5CF6] bg-[#8B5CF6]/10 px-2 py-0.5 rounded-full">Live</span>
                 </div>
-                <svg viewBox="0 0 280 60" className="w-full h-16">
+                
+                <svg viewBox="0 0 280 80" className="w-full h-20">
                   <defs>
-                    <linearGradient id="heroChartFill" x1="0" y1="0" x2="0" y2="1">
-                      <stop offset="0%" stopColor="#8B5CF6" stopOpacity="0.2" />
+                    <linearGradient id="waveFill1" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="0%" stopColor="#8B5CF6" stopOpacity="0.25" />
                       <stop offset="100%" stopColor="#8B5CF6" stopOpacity="0" />
                     </linearGradient>
+                    <linearGradient id="waveFill2" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="0%" stopColor="#06B6D4" stopOpacity="0.1" />
+                      <stop offset="100%" stopColor="#06B6D4" stopOpacity="0" />
+                    </linearGradient>
                   </defs>
-                  <path d="M0,45 Q35,40 70,30 T140,35 T210,18 T280,22 V60 H0 Z" fill="url(#heroChartFill)" />
-                  <polyline
-                    points="0,45 35,38 70,30 105,35 140,28 175,20 210,18 245,24 280,22"
-                    fill="none"
-                    stroke="#8B5CF6"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
+                  
+                  {/* Ingress Wave Fill */}
+                  <path d="M0,60 Q35,45 70,55 T140,40 T210,50 T280,35 V80 H0 Z" fill="url(#waveFill2)" />
+                  <polyline points="0,60 35,51 70,55 105,48 140,40 175,44 210,50 245,41 280,35" fill="none" stroke="#06B6D4" strokeWidth="1.5" strokeDasharray="3 3" />
+                  
+                  {/* Egress Wave Fill */}
+                  <path d="M0,50 Q35,30 70,40 T140,20 T210,35 T280,15 V80 H0 Z" fill="url(#waveFill1)" />
+                  <polyline points="0,50 35,38 70,40 105,28 140,20 175,25 210,35 245,18 280,15" fill="none" stroke="#8B5CF6" strokeWidth="2" strokeLinecap="round" />
                 </svg>
-                <div className="flex items-center justify-between mt-3">
-                  <span className="text-xl font-bold text-white">$12,450</span>
-                  <span className="text-xs font-medium text-emerald-400">+12.5%</span>
+
+                <div className="flex items-center justify-between mt-3 text-xs text-gray-500">
+                  <span>Avg: 229.6 Mb/s</span>
+                  <span className="text-[#8B5CF6] font-medium">+14.2%</span>
                 </div>
               </div>
 
               <div className="grid grid-cols-2 gap-4">
-                {/* Tasks Card */}
+                
+                {/* Upgraded Card 2: Region Load (Donut Ring Chart) */}
                 <div className="bg-[#0A0A1A]/80 border border-white/[0.06] rounded-2xl p-5 backdrop-blur-sm">
-                  <span className="text-sm font-medium text-gray-300">Active Tasks</span>
-                  <div className="mt-3 flex flex-col gap-2">
-                    {["Design review", "API integration", "Bug fixes"].map((task, i) => (
-                      <div key={task} className="flex items-center gap-2 text-xs">
-                        <div className={`w-3 h-3 rounded border ${i === 0 ? "bg-[#8B5CF6] border-[#8B5CF6]" : "border-white/20"} flex items-center justify-center`}>
-                          {i === 0 && <span className="text-white text-[8px]">✓</span>}
-                        </div>
-                        <span className={i === 0 ? "text-gray-500 line-through" : "text-gray-300"}>{task}</span>
-                      </div>
-                    ))}
+                  <div className="flex items-center gap-1.5 mb-2">
+                    <HardDrive className="size-4 text-[#06B6D4]" />
+                    <span className="text-sm font-medium text-gray-300">Region Load</span>
                   </div>
-                  <div className="mt-3">
-                    <div className="w-full h-1.5 bg-white/[0.06] rounded-full overflow-hidden">
-                      <div className="w-[68%] h-full bg-gradient-to-r from-[#8B5CF6] to-[#6366F1] rounded-full" />
+                  
+                  <div className="flex items-center gap-4 mt-3">
+                    <div className="relative size-14 flex items-center justify-center shrink-0">
+                      <svg className="absolute inset-0 size-full -rotate-90" viewBox="0 0 36 36">
+                        <circle cx="18" cy="18" r="16" fill="none" stroke="rgba(255,255,255,0.06)" strokeWidth="3.5" />
+                        <circle cx="18" cy="18" r="16" fill="none" stroke="#8B5CF6" strokeWidth="3.5" strokeDasharray="60 100" strokeLinecap="round" />
+                        <circle cx="18" cy="18" r="16" fill="none" stroke="#06B6D4" strokeWidth="3.5" strokeDasharray="25 100" strokeDashoffset="-62" strokeLinecap="round" />
+                      </svg>
+                      <span className="text-[10px] font-bold text-white">85%</span>
                     </div>
-                    <span className="text-[10px] text-gray-500 mt-1 block">68% completed</span>
+                    
+                    <div className="flex flex-col gap-1 text-[9px] text-gray-400">
+                      <div className="flex items-center gap-1">
+                        <span className="size-1.5 rounded-full bg-[#8B5CF6]" />
+                        <span>US-EAST (60%)</span>
+                      </div>
+                      <div className="flex items-center gap-1">
+                        <span className="size-1.5 rounded-full bg-[#06B6D4]" />
+                        <span>EU-CENT (25%)</span>
+                      </div>
+                    </div>
                   </div>
                 </div>
 
-                {/* AI Insights Card */}
+                {/* Upgraded Card 3: Real-Time Performance Bars (Histogram) */}
                 <div className="bg-[#0A0A1A]/80 border border-white/[0.06] rounded-2xl p-5 backdrop-blur-sm">
-                  <div className="flex items-center gap-1.5 mb-3">
-                    <Sparkles className="size-3.5 text-[#06B6D4]" />
-                    <span className="text-sm font-medium text-gray-300">AI Insights</span>
+                  <div className="flex items-center gap-1.5 mb-2">
+                    <BarChart2 className="size-4 text-[#8B5CF6]" />
+                    <span className="text-sm font-medium text-gray-300">Throughput</span>
                   </div>
-                  <div className="flex flex-col gap-2.5">
-                    <p className="text-[11px] text-gray-400 leading-relaxed">Revenue trending 12% above forecast</p>
-                    <p className="text-[11px] text-gray-400 leading-relaxed">3 subscriptions expiring this week</p>
-                  </div>
-                  <div className="flex items-center gap-1.5 mt-3 pt-3 border-t border-white/[0.04]">
-                    <div className="w-4 h-4 rounded-full bg-gradient-to-br from-[#06B6D4] to-[#6366F1]" />
-                    <span className="text-[10px] text-gray-500">Generated 2m ago</span>
+                  
+                  <div className="flex items-end justify-between h-14 mt-4 gap-1">
+                    {[30, 45, 25, 60, 75, 40, 50, 85, 65, 45, 30, 55, 70].map((height, i) => (
+                      <div 
+                        key={i} 
+                        className="w-full rounded-t-xs transition-all duration-300"
+                        style={{ 
+                          height: `${height}%`,
+                          background: i === 7 
+                            ? 'linear-gradient(to top, rgba(6,182,212,0.2), #06B6D4)' 
+                            : 'linear-gradient(to top, rgba(139,92,246,0.1), #8B5CF6)',
+                          opacity: i === 7 ? 1 : 0.6
+                        }}
+                      />
+                    ))}
                   </div>
                 </div>
+
               </div>
             </div>
           </motion.div>

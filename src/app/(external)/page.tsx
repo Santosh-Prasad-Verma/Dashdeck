@@ -2,15 +2,6 @@
 
 import { LandingNavbar } from "./_components/landing-navbar";
 import { HeroSection } from "./_components/hero-section";
-import { ProblemSolution } from "./_components/problem-solution";
-import { FeaturesSection } from "./_components/features-section";
-import { StickyShowcase } from "./_components/sticky-showcase";
-import { StatisticsSection } from "./_components/statistics-section";
-import { BuiltForSection } from "./_components/built-for-section";
-import { IntegrationsSection } from "./_components/integrations-section";
-import { FaqSection } from "./_components/faq-section";
-import { WaitlistCta } from "./_components/waitlist-cta";
-import { LandingFooter } from "./_components/landing-footer";
 import { MouseSpotlight } from "./_components/shared/mouse-spotlight";
 
 export default function Page() {
@@ -41,16 +32,7 @@ export default function Page() {
         <LandingNavbar />
         <main>
           <HeroSection />
-          <ProblemSolution />
-          <FeaturesSection />
-          <StickyShowcase />
-          <StatisticsSection />
-          <BuiltForSection />
-          <IntegrationsSection />
-          <FaqSection />
-          <WaitlistCta />
         </main>
-        <LandingFooter />
       </div>
     </div>
   );
