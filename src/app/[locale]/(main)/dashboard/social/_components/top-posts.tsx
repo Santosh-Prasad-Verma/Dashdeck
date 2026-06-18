@@ -78,13 +78,13 @@ const posts = [
 function getPlatformBadge(platform: string) {
   switch (platform) {
     case "Instagram":
-      return <Badge className="bg-pink-500/10 text-pink-600 dark:text-pink-400 border-0">Instagram</Badge>;
+      return <Badge className="border-0 bg-pink-500/10 text-pink-600 dark:text-pink-400">Instagram</Badge>;
     case "TikTok":
-      return <Badge className="bg-black/10 text-foreground dark:bg-white/10 border-0">TikTok</Badge>;
+      return <Badge className="border-0 bg-black/10 text-foreground dark:bg-white/10">TikTok</Badge>;
     case "LinkedIn":
-      return <Badge className="bg-blue-500/10 text-blue-600 dark:text-blue-400 border-0">LinkedIn</Badge>;
+      return <Badge className="border-0 bg-blue-500/10 text-blue-600 dark:text-blue-400">LinkedIn</Badge>;
     case "X/Twitter":
-      return <Badge className="bg-sky-500/10 text-sky-600 dark:text-sky-400 border-0">Twitter</Badge>;
+      return <Badge className="border-0 bg-sky-500/10 text-sky-600 dark:text-sky-400">Twitter</Badge>;
     default:
       return <Badge variant="secondary">{platform}</Badge>;
   }
@@ -108,13 +108,13 @@ export function TopPosts() {
                 <div className="flex size-8 shrink-0 items-center justify-center rounded-lg bg-muted font-bold text-muted-foreground text-sm">
                   {index + 1}
                 </div>
-                <div className="flex-1 min-w-0">
-                  <div className="flex items-center gap-2 mb-1">
+                <div className="min-w-0 flex-1">
+                  <div className="mb-1 flex items-center gap-2">
                     {getPlatformBadge(post.platform)}
                     <span className="text-muted-foreground text-xs">{post.date}</span>
                   </div>
-                  <p className="text-sm line-clamp-2">{post.content}</p>
-                  <div className="flex items-center gap-4 mt-2 text-muted-foreground text-xs">
+                  <p className="line-clamp-2 text-sm">{post.content}</p>
+                  <div className="mt-2 flex items-center gap-4 text-muted-foreground text-xs">
                     <span>❤️ {post.likes.toLocaleString()}</span>
                     <span>💬 {post.comments.toLocaleString()}</span>
                     <span>🔄 {post.shares.toLocaleString()}</span>

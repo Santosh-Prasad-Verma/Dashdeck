@@ -6,7 +6,6 @@ import { AnimatePresence, motion } from "framer-motion";
 import {
   Activity,
   AlertTriangle,
-  Check,
   CheckCircle,
   Cloud,
   Cpu,
@@ -214,23 +213,23 @@ export default function Page() {
     : defaultUptimeData;
 
   return (
-    <div className="flex flex-col gap-6 max-w-7xl pb-10">
+    <div className="flex max-w-7xl flex-col gap-6 pb-10">
       {/* Header with action controllers */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+      <div className="flex flex-col justify-between gap-4 sm:flex-row sm:items-center">
         <div>
-          <h1 className="text-3xl font-bold tracking-tight">System Status</h1>
+          <h1 className="font-bold text-3xl tracking-tight">System Status</h1>
           <p className="text-muted-foreground text-sm">Real-time health of all Dashdeck services.</p>
         </div>
 
-        <div className="flex flex-wrap items-center gap-4 bg-card/40 border border-border/30 px-4 py-2.5 rounded-2xl backdrop-blur-md">
+        <div className="flex flex-wrap items-center gap-4 rounded-2xl border border-border/30 bg-card/40 px-4 py-2.5 backdrop-blur-md">
           {/* Outage simulator switch */}
           <div className="flex items-center space-x-2">
             <Switch id="outage-simulator" checked={simulateOutage} onCheckedChange={handleOutageToggle} />
             <Label
               htmlFor="outage-simulator"
-              className="text-xs font-semibold text-zinc-650 dark:text-zinc-350 cursor-pointer flex items-center gap-1"
+              className="flex cursor-pointer items-center gap-1 font-semibold text-xs text-zinc-650 dark:text-zinc-350"
             >
-              {simulateOutage && <Flame className="size-3.5 text-amber-500 animate-pulse" />}
+              {simulateOutage && <Flame className="size-3.5 animate-pulse text-amber-500" />}
               Outage Simulator
             </Label>
           </div>
@@ -242,7 +241,7 @@ export default function Page() {
             onClick={handleRunDiagnostics}
             disabled={isChecking}
             size="sm"
-            className="h-8 font-semibold text-xs gap-1.5"
+            className="h-8 gap-1.5 font-semibold text-xs"
           >
             <RefreshCw className={cn("size-3.5", isChecking && "animate-spin")} />
             {isChecking ? "Pinging..." : "Check Latency"}
@@ -253,7 +252,7 @@ export default function Page() {
       {/* Main Operational Banner */}
       <Card
         className={cn(
-          "transition-all duration-500 shadow-xs rounded-2xl overflow-hidden relative border",
+          "relative overflow-hidden rounded-2xl border shadow-xs transition-all duration-500",
           simulateOutage
             ? "border-amber-500/30 bg-amber-500/5 dark:bg-amber-500/10"
             : "border-emerald-500/20 bg-emerald-500/5 dark:bg-emerald-500/10",
@@ -261,22 +260,22 @@ export default function Page() {
       >
         <div
           className={cn(
-            "absolute -right-20 -bottom-20 w-60 h-60 blur-[80px] rounded-full pointer-events-none transition-all duration-500",
+            "pointer-events-none absolute -right-20 -bottom-20 h-60 w-60 rounded-full blur-[80px] transition-all duration-500",
             simulateOutage ? "bg-amber-500/15" : "bg-emerald-500/15",
           )}
         />
 
-        <CardContent className="flex items-center gap-4 p-5 z-10 relative">
+        <CardContent className="relative z-10 flex items-center gap-4 p-5">
           <div className="relative flex size-4.5 shrink-0 items-center justify-center">
             <span
               className={cn(
-                "animate-ping absolute inline-flex h-3 w-3 rounded-full opacity-75",
+                "absolute inline-flex h-3 w-3 animate-ping rounded-full opacity-75",
                 simulateOutage ? "bg-amber-500" : "bg-emerald-500",
               )}
             />
             <span
               className={cn(
-                "relative inline-flex rounded-full h-3.5 w-3.5 border border-white/20",
+                "relative inline-flex h-3.5 w-3.5 rounded-full border border-white/20",
                 simulateOutage ? "bg-amber-500" : "bg-emerald-500",
               )}
             />
@@ -293,7 +292,7 @@ export default function Page() {
             </h3>
             <p
               className={cn(
-                "text-xs font-medium mt-0.5 transition-colors duration-500",
+                "mt-0.5 font-medium text-xs transition-colors duration-500",
                 simulateOutage
                   ? "text-amber-700/70 dark:text-amber-400/60"
                   : "text-emerald-700/70 dark:text-emerald-400/60",
@@ -312,44 +311,44 @@ export default function Page() {
         {services.map((svc) => (
           <Card
             key={svc.name}
-            className="border-border/40 bg-card/65 backdrop-blur-md hover:bg-card hover:border-border/80 hover:shadow-md hover:shadow-black/5 dark:hover:shadow-black/20 hover:-translate-y-[1px] transition-all duration-300 rounded-2xl overflow-hidden"
+            className="overflow-hidden rounded-2xl border-border/40 bg-card/65 backdrop-blur-md transition-all duration-300 hover:-translate-y-[1px] hover:border-border/80 hover:bg-card hover:shadow-black/5 hover:shadow-md dark:hover:shadow-black/20"
           >
             <CardContent className="flex items-start gap-4 p-4">
               <div
                 className={cn(
-                  "flex size-11 items-center justify-center rounded-xl border shrink-0 transition-colors duration-300",
+                  "flex size-11 shrink-0 items-center justify-center rounded-xl border transition-colors duration-300",
                   svc.status === "outage"
-                    ? "bg-rose-500/10 border-rose-500/20 text-rose-500"
+                    ? "border-rose-500/20 bg-rose-500/10 text-rose-500"
                     : svc.status === "degraded"
-                      ? "bg-amber-500/10 border-amber-500/20 text-amber-500"
-                      : "bg-zinc-100 dark:bg-zinc-800 text-zinc-650 dark:text-zinc-350 border-border/40",
+                      ? "border-amber-500/20 bg-amber-500/10 text-amber-500"
+                      : "border-border/40 bg-zinc-100 text-zinc-650 dark:bg-zinc-800 dark:text-zinc-350",
                 )}
               >
                 <svc.icon className="size-5" />
               </div>
-              <div className="flex-1 min-w-0">
+              <div className="min-w-0 flex-1">
                 <div className="flex items-center justify-between gap-3">
-                  <span className="font-semibold text-sm text-zinc-900 dark:text-zinc-50 truncate">{svc.name}</span>
+                  <span className="truncate font-semibold text-sm text-zinc-900 dark:text-zinc-50">{svc.name}</span>
 
                   {svc.status === "outage" ? (
                     <Badge
-                      className="bg-rose-500/10 text-rose-600 dark:text-rose-400 border border-rose-500/20 font-bold text-[9px] uppercase tracking-wider px-2 py-0.5 rounded-md gap-1 shrink-0"
+                      className="shrink-0 gap-1 rounded-md border border-rose-500/20 bg-rose-500/10 px-2 py-0.5 font-bold text-[9px] text-rose-600 uppercase tracking-wider dark:text-rose-400"
                       variant="outline"
                     >
-                      <span className="size-1 rounded-full bg-rose-500 animate-pulse" />
+                      <span className="size-1 animate-pulse rounded-full bg-rose-500" />
                       Outage
                     </Badge>
                   ) : svc.status === "degraded" ? (
                     <Badge
-                      className="bg-amber-500/10 text-amber-600 dark:text-amber-400 border border-amber-500/20 font-bold text-[9px] uppercase tracking-wider px-2 py-0.5 rounded-md gap-1 shrink-0"
+                      className="shrink-0 gap-1 rounded-md border border-amber-500/20 bg-amber-500/10 px-2 py-0.5 font-bold text-[9px] text-amber-600 uppercase tracking-wider dark:text-amber-400"
                       variant="outline"
                     >
-                      <span className="size-1 rounded-full bg-amber-500 animate-pulse" />
+                      <span className="size-1 animate-pulse rounded-full bg-amber-500" />
                       Degraded
                     </Badge>
                   ) : (
                     <Badge
-                      className="bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20 font-bold text-[9px] uppercase tracking-wider px-2 py-0.5 rounded-md gap-1 shrink-0"
+                      className="shrink-0 gap-1 rounded-md border border-emerald-500/20 bg-emerald-500/10 px-2 py-0.5 font-bold text-[9px] text-emerald-600 uppercase tracking-wider dark:text-emerald-400"
                       variant="outline"
                     >
                       <span className="size-1 rounded-full bg-emerald-500" />
@@ -357,19 +356,19 @@ export default function Page() {
                     </Badge>
                   )}
                 </div>
-                <div className="mt-2 flex items-center justify-between text-muted-foreground text-xs font-semibold">
+                <div className="mt-2 flex items-center justify-between font-semibold text-muted-foreground text-xs">
                   <div className="flex items-center gap-1">
                     <Activity className="size-3 text-muted-foreground/50" />
                     <span>{svc.uptime} uptime</span>
                   </div>
                   <span
                     className={cn(
-                      "font-mono text-[10px] px-1.5 py-0.5 rounded-md border transition-all duration-300",
+                      "rounded-md border px-1.5 py-0.5 font-mono text-[10px] transition-all duration-300",
                       svc.status === "outage"
-                        ? "bg-rose-500/5 text-rose-500 border-rose-500/15"
+                        ? "border-rose-500/15 bg-rose-500/5 text-rose-500"
                         : svc.status === "degraded"
-                          ? "bg-amber-500/5 text-amber-500 border-amber-500/15"
-                          : "bg-muted/65 text-zinc-500 dark:text-zinc-400 border-border/20",
+                          ? "border-amber-500/15 bg-amber-500/5 text-amber-500"
+                          : "border-border/20 bg-muted/65 text-zinc-500 dark:text-zinc-400",
                     )}
                   >
                     {svc.latency}
@@ -383,9 +382,9 @@ export default function Page() {
 
       {/* Grid: 90-Day Uptime & Recent Incidents */}
       <div className="grid grid-cols-1 gap-6 xl:grid-cols-12">
-        <Card className="xl:col-span-7 border-border/40 bg-card/45 backdrop-blur-md rounded-2xl shadow-xs">
-          <CardHeader className="border-b border-border/30 bg-muted/20 px-6 py-4">
-            <CardTitle className="text-lg font-bold text-zinc-900 dark:text-zinc-50">90-Day Uptime</CardTitle>
+        <Card className="rounded-2xl border-border/40 bg-card/45 shadow-xs backdrop-blur-md xl:col-span-7">
+          <CardHeader className="border-border/30 border-b bg-muted/20 px-6 py-4">
+            <CardTitle className="font-bold text-lg text-zinc-900 dark:text-zinc-50">90-Day Uptime</CardTitle>
             <CardDescription>Daily uptime percentage history</CardDescription>
           </CardHeader>
           <CardContent className="p-6">
@@ -412,7 +411,7 @@ export default function Page() {
                   axisLine={false}
                   tickMargin={8}
                   minTickGap={24}
-                  className="text-[10px] font-medium"
+                  className="font-medium text-[10px]"
                 />
                 <YAxis domain={[98.0, 100.05]} hide />
                 <ChartTooltip
@@ -438,9 +437,9 @@ export default function Page() {
           </CardContent>
         </Card>
 
-        <Card className="xl:col-span-5 border-border/40 bg-card/45 backdrop-blur-md rounded-2xl shadow-xs">
-          <CardHeader className="border-b border-border/30 bg-muted/20 px-6 py-4">
-            <CardTitle className="text-lg font-bold text-zinc-900 dark:text-zinc-50">Recent Incidents</CardTitle>
+        <Card className="rounded-2xl border-border/40 bg-card/45 shadow-xs backdrop-blur-md xl:col-span-5">
+          <CardHeader className="border-border/30 border-b bg-muted/20 px-6 py-4">
+            <CardTitle className="font-bold text-lg text-zinc-900 dark:text-zinc-50">Recent Incidents</CardTitle>
             <CardDescription>System incidents over the last 30 days</CardDescription>
           </CardHeader>
           <CardContent className="p-6">
@@ -457,34 +456,34 @@ export default function Page() {
                       "flex items-start gap-3 rounded-xl border p-3 transition-colors duration-300",
                       inc.status === "investigating"
                         ? "border-rose-500/20 bg-rose-500/5 hover:border-rose-500/40"
-                        : "border-border/30 bg-zinc-50/50 dark:bg-zinc-900/30 hover:border-border/60",
+                        : "border-border/30 bg-zinc-50/50 hover:border-border/60 dark:bg-zinc-900/30",
                     )}
                   >
                     {inc.status === "investigating" ? (
-                      <AlertTriangle className="size-4 text-rose-500 mt-0.5 shrink-0 animate-pulse" />
+                      <AlertTriangle className="mt-0.5 size-4 shrink-0 animate-pulse text-rose-500" />
                     ) : (
-                      <CheckCircle className="size-4 text-emerald-500 mt-0.5 shrink-0" />
+                      <CheckCircle className="mt-0.5 size-4 shrink-0 text-emerald-500" />
                     )}
-                    <div className="flex-1 min-w-0">
-                      <p className="text-sm font-semibold text-zinc-900 dark:text-zinc-150 truncate leading-snug">
+                    <div className="min-w-0 flex-1">
+                      <p className="truncate font-semibold text-sm text-zinc-900 leading-snug dark:text-zinc-150">
                         {inc.title}
                       </p>
-                      <div className="mt-1 flex items-center gap-2 text-muted-foreground text-xs font-semibold">
+                      <div className="mt-1 flex items-center gap-2 font-semibold text-muted-foreground text-xs">
                         <span>{inc.date}</span>
                         <span>·</span>
                         <span
                           className={cn(
-                            "font-mono text-[10px] px-1.5 py-0.5 rounded-md border",
+                            "rounded-md border px-1.5 py-0.5 font-mono text-[10px]",
                             inc.status === "investigating"
-                              ? "bg-rose-500/10 text-rose-600 dark:text-rose-450 border-rose-500/20"
-                              : "bg-muted/60 text-zinc-500 dark:text-zinc-400 border-border/20",
+                              ? "border-rose-500/20 bg-rose-500/10 text-rose-600 dark:text-rose-450"
+                              : "border-border/20 bg-muted/60 text-zinc-500 dark:text-zinc-400",
                           )}
                         >
                           {inc.duration}
                         </span>
 
                         {inc.status === "investigating" && (
-                          <Badge className="bg-rose-500 text-white font-bold text-[8px] uppercase tracking-wider px-1 py-0 rounded-sm shrink-0">
+                          <Badge className="shrink-0 rounded-sm bg-rose-500 px-1 py-0 font-bold text-[8px] text-white uppercase tracking-wider">
                             Investigating
                           </Badge>
                         )}

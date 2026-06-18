@@ -67,21 +67,21 @@ export function SecuritySettings() {
             <Label htmlFor="api-key">{t("productionApiKey")}</Label>
             <div className="flex gap-2">
               <div className="relative flex-1">
-                <Input id="api-key" value={apiKey} readOnly className="font-mono text-xs pr-16 h-10 select-all" />
+                <Input id="api-key" value={apiKey} readOnly className="h-10 select-all pr-16 font-mono text-xs" />
                 <button
                   type="button"
                   onClick={handleCopy}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground transition-colors cursor-pointer"
+                  className="absolute top-1/2 right-3 -translate-y-1/2 cursor-pointer text-muted-foreground transition-colors hover:text-foreground"
                 >
                   {copied ? (
-                    <span className="text-emerald-500 font-bold text-xs">{t("copied")}</span>
+                    <span className="font-bold text-emerald-500 text-xs">{t("copied")}</span>
                   ) : (
                     <Copy className="size-4" />
                   )}
                 </button>
               </div>
               <Button variant="outline" onClick={handleGenerateKey} className="h-10 shrink-0">
-                <RefreshCw className="size-4 mr-2" />
+                <RefreshCw className="mr-2 size-4" />
                 {t("regenerate")}
               </Button>
             </div>
@@ -170,7 +170,7 @@ export function SecuritySettings() {
                 <span className="font-medium text-sm">{t("currentSession")}</span>
                 <span className="text-muted-foreground text-xs">{t("currentSessionDetail")}</span>
               </div>
-              <span className="text-emerald-600 text-xs font-semibold">{t("active")}</span>
+              <span className="font-semibold text-emerald-600 text-xs">{t("active")}</span>
             </div>
             <div className="flex items-center justify-between rounded-lg border p-3">
               <div className="flex flex-col gap-1">

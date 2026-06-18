@@ -93,21 +93,21 @@ function getBadge(label: string) {
   switch (label) {
     case "feature":
       return (
-        <Badge className="bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20 font-bold text-[9px] uppercase tracking-wider px-2 py-0.5 rounded-md flex items-center gap-1 shrink-0">
+        <Badge className="flex shrink-0 items-center gap-1 rounded-md border border-emerald-500/20 bg-emerald-500/10 px-2 py-0.5 font-bold text-[9px] text-emerald-600 uppercase tracking-wider dark:text-emerald-400">
           <Sparkles className="size-2.5 shrink-0" />
           New
         </Badge>
       );
     case "improvement":
       return (
-        <Badge className="bg-blue-500/10 text-blue-600 dark:text-blue-400 border border-blue-500/20 font-bold text-[9px] uppercase tracking-wider px-2 py-0.5 rounded-md flex items-center gap-1 shrink-0">
+        <Badge className="flex shrink-0 items-center gap-1 rounded-md border border-blue-500/20 bg-blue-500/10 px-2 py-0.5 font-bold text-[9px] text-blue-600 uppercase tracking-wider dark:text-blue-400">
           <Zap className="size-2.5 shrink-0" />
           Improved
         </Badge>
       );
     case "fix":
       return (
-        <Badge className="bg-amber-500/10 text-amber-600 dark:text-amber-400 border border-amber-500/20 font-bold text-[9px] uppercase tracking-wider px-2 py-0.5 rounded-md flex items-center gap-1 shrink-0">
+        <Badge className="flex shrink-0 items-center gap-1 rounded-md border border-amber-500/20 bg-amber-500/10 px-2 py-0.5 font-bold text-[9px] text-amber-600 uppercase tracking-wider dark:text-amber-400">
           <Bug className="size-2.5 shrink-0" />
           Fixed
         </Badge>
@@ -116,7 +116,7 @@ function getBadge(label: string) {
       return (
         <Badge
           variant="secondary"
-          className="font-bold text-[9px] uppercase tracking-wider px-2 py-0.5 rounded-md shrink-0"
+          className="shrink-0 rounded-md px-2 py-0.5 font-bold text-[9px] uppercase tracking-wider"
         >
           {label}
         </Badge>
@@ -179,7 +179,7 @@ export default function Page() {
           part.toLowerCase() === query.toLowerCase() ? (
             <mark
               key={i}
-              className="bg-primary/20 text-primary-foreground dark:bg-primary/30 rounded px-0.5 font-medium"
+              className="rounded bg-primary/20 px-0.5 font-medium text-primary-foreground dark:bg-primary/30"
             >
               {part}
             </mark>
@@ -192,48 +192,48 @@ export default function Page() {
   };
 
   return (
-    <div className="flex flex-col gap-8 pb-12 max-w-4xl">
+    <div className="flex max-w-4xl flex-col gap-8 pb-12">
       {/* Header */}
       <div>
-        <h1 className="text-3xl font-bold tracking-tight">Changelog</h1>
+        <h1 className="font-bold text-3xl tracking-tight">Changelog</h1>
         <p className="text-muted-foreground text-sm">Track updates, new features, and improvements.</p>
       </div>
 
       {/* Filter and Search Bar */}
-      <div className="flex flex-col md:flex-row gap-4 justify-between items-start md:items-center">
+      <div className="flex flex-col items-start justify-between gap-4 md:flex-row md:items-center">
         <div className="flex flex-wrap gap-1">
           {(["all", "feature", "improvement", "fix"] as const).map((filter) => (
             <button
               key={filter}
               onClick={() => setActiveFilter(filter)}
               className={cn(
-                "px-3.5 py-1.5 rounded-lg text-xs font-semibold border transition-all uppercase tracking-wider text-[10px]",
+                "rounded-lg border px-3.5 py-1.5 font-semibold text-[10px] text-xs uppercase tracking-wider transition-all",
                 activeFilter === filter
-                  ? "bg-primary border-primary text-primary-foreground shadow-xs"
-                  : "bg-muted/40 hover:bg-muted/70 text-muted-foreground border-border/20",
+                  ? "border-primary bg-primary text-primary-foreground shadow-xs"
+                  : "border-border/20 bg-muted/40 text-muted-foreground hover:bg-muted/70",
               )}
             >
-              {filter === "all" ? "All Updates" : filter + "s"}
+              {filter === "all" ? "All Updates" : `${filter}s`}
             </button>
           ))}
         </div>
 
         <div className="relative w-full md:w-80">
-          <Search className="absolute left-3 top-1/2 size-4 -translate-y-1/2 text-muted-foreground/60" />
+          <Search className="absolute top-1/2 left-3 size-4 -translate-y-1/2 text-muted-foreground/60" />
           <Input
             type="text"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             placeholder="Search changes..."
-            className="h-9 pl-9 pr-4 text-xs rounded-lg border border-border/50 bg-card/50 shadow-xs focus-visible:ring-primary/20 focus-visible:border-primary/50 backdrop-blur-md transition-all placeholder:text-muted-foreground/60 dark:bg-zinc-900/50"
+            className="h-9 rounded-lg border border-border/50 bg-card/50 pr-4 pl-9 text-xs shadow-xs backdrop-blur-md transition-all placeholder:text-muted-foreground/60 focus-visible:border-primary/50 focus-visible:ring-primary/20 dark:bg-zinc-900/50"
           />
         </div>
       </div>
 
       {/* Timeline Wrapper */}
-      <div className="relative pl-6 lg:pl-10 space-y-12">
+      <div className="relative space-y-12 pl-6 lg:pl-10">
         {/* Timeline vertical bar */}
-        <div className="absolute left-2 lg:left-4 top-1 bottom-1 w-0.5 bg-gradient-to-b from-primary/50 via-zinc-200 to-zinc-200 dark:via-zinc-800 dark:to-zinc-900 pointer-events-none" />
+        <div className="pointer-events-none absolute top-1 bottom-1 left-2 w-0.5 bg-gradient-to-b from-primary/50 via-zinc-200 to-zinc-200 lg:left-4 dark:via-zinc-800 dark:to-zinc-900" />
 
         <AnimatePresence mode="popLayout">
           {filteredReleases.map((release) => {
@@ -247,39 +247,39 @@ export default function Page() {
                 animate={{ opacity: 1, x: 0 }}
                 exit={{ opacity: 0, scale: 0.95 }}
                 transition={{ duration: 0.2 }}
-                className="relative group"
+                className="group relative"
               >
                 {/* Timeline marker */}
-                <div className="absolute -left-[30px] lg:-left-[28px] top-1.5 flex size-8 items-center justify-center rounded-full bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800 text-zinc-950 dark:text-zinc-50 shadow-sm transition-all group-hover:border-primary/50 group-hover:text-primary group-hover:scale-110 duration-300 z-10">
+                <div className="absolute top-1.5 -left-[30px] z-10 flex size-8 items-center justify-center rounded-full border border-zinc-200 bg-white text-zinc-950 shadow-sm transition-all duration-300 group-hover:scale-110 group-hover:border-primary/50 group-hover:text-primary lg:-left-[28px] dark:border-zinc-800 dark:bg-zinc-950 dark:text-zinc-50">
                   <ReleaseIcon className="size-3.5" />
                 </div>
 
                 {/* Release Header Details */}
-                <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-1.5 mb-3">
+                <div className="mb-3 flex flex-col justify-between gap-1.5 sm:flex-row sm:items-baseline">
                   <div className="flex items-center gap-2.5">
                     <span className="font-bold text-xl text-zinc-950 dark:text-zinc-50">{release.version}</span>
                     <Badge
                       variant="outline"
                       className={cn(
-                        "font-bold text-[9px] uppercase tracking-wider px-1.5 py-0.5 rounded-md border-border/40",
+                        "rounded-md border-border/40 px-1.5 py-0.5 font-bold text-[9px] uppercase tracking-wider",
                         release.type === "release"
-                          ? "bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 border-indigo-500/20"
+                          ? "border-indigo-500/20 bg-indigo-500/10 text-indigo-600 dark:text-indigo-400"
                           : "bg-zinc-155 text-zinc-600 dark:bg-zinc-800 dark:text-zinc-400",
                       )}
                     >
                       {release.type}
                     </Badge>
                   </div>
-                  <p className="text-muted-foreground text-xs font-semibold">{release.date}</p>
+                  <p className="font-semibold text-muted-foreground text-xs">{release.date}</p>
                 </div>
 
                 {/* Content Card */}
-                <Card className="border border-border/30 bg-card/60 backdrop-blur-md shadow-xs group-hover:shadow-md group-hover:border-border/60 transition-all duration-300 rounded-2xl">
+                <Card className="rounded-2xl border border-border/30 bg-card/60 shadow-xs backdrop-blur-md transition-all duration-300 group-hover:border-border/60 group-hover:shadow-md">
                   <CardContent className="p-5">
                     <div className="flex flex-col gap-4">
                       {release.changes.map((change, i) => (
                         <div key={i} className="flex items-start gap-3 text-sm leading-relaxed">
-                          <div className="pt-0.5 shrink-0">{getBadge(change.label)}</div>
+                          <div className="shrink-0 pt-0.5">{getBadge(change.label)}</div>
                           <span className="text-zinc-700 dark:text-zinc-300">
                             {highlightText(change.text, searchQuery)}
                           </span>
@@ -301,45 +301,45 @@ export default function Page() {
       </div>
 
       {/* Subscribe to updates Card */}
-      <Card className="relative overflow-hidden border border-primary/20 bg-primary/[0.02] dark:bg-primary/[0.04] p-6 sm:p-8 rounded-2xl shadow-xs mt-4">
-        <div className="absolute -right-20 -bottom-20 w-60 h-60 bg-primary/10 blur-[80px] rounded-full pointer-events-none" />
-        <div className="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-6">
-          <div className="space-y-1.5 max-w-md">
+      <Card className="relative mt-4 overflow-hidden rounded-2xl border border-primary/20 bg-primary/[0.02] p-6 shadow-xs sm:p-8 dark:bg-primary/[0.04]">
+        <div className="pointer-events-none absolute -right-20 -bottom-20 h-60 w-60 rounded-full bg-primary/10 blur-[80px]" />
+        <div className="relative z-10 flex flex-col justify-between gap-6 md:flex-row md:items-center">
+          <div className="max-w-md space-y-1.5">
             <div className="flex items-center gap-2 text-primary">
               <Mail className="size-4.5" />
-              <h3 className="font-bold text-sm tracking-wide uppercase">Product Updates</h3>
+              <h3 className="font-bold text-sm uppercase tracking-wide">Product Updates</h3>
             </div>
-            <h4 className="text-lg font-bold text-zinc-900 dark:text-zinc-50">Subscribe to our newsletter</h4>
+            <h4 className="font-bold text-lg text-zinc-900 dark:text-zinc-50">Subscribe to our newsletter</h4>
             <p className="text-muted-foreground text-xs leading-relaxed">
               Get notified immediately whenever we release new templates, custom dashboards, theme presets, or code
               updates.
             </p>
           </div>
 
-          <form onSubmit={handleSubscribe} className="flex w-full md:w-auto items-center gap-2 max-w-md">
+          <form onSubmit={handleSubscribe} className="flex w-full max-w-md items-center gap-2 md:w-auto">
             {isSubscribed ? (
               <Button
                 type="button"
                 disabled
-                className="bg-emerald-600 text-white dark:bg-emerald-500 font-semibold gap-1.5 w-full sm:w-auto"
+                className="w-full gap-1.5 bg-emerald-600 font-semibold text-white sm:w-auto dark:bg-emerald-500"
               >
                 <Check className="size-4" />
                 Subscribed
               </Button>
             ) : (
-              <div className="flex flex-col sm:flex-row gap-2 w-full">
+              <div className="flex w-full flex-col gap-2 sm:flex-row">
                 <Input
                   type="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="name@domain.com"
                   disabled={isSubmitting}
-                  className="h-10 text-xs px-3 rounded-lg border border-border/40 bg-card/60 backdrop-blur-md focus-visible:ring-primary/20 focus-visible:border-primary/50 min-w-[200px]"
+                  className="h-10 min-w-[200px] rounded-lg border border-border/40 bg-card/60 px-3 text-xs backdrop-blur-md focus-visible:border-primary/50 focus-visible:ring-primary/20"
                 />
                 <Button
                   type="submit"
                   disabled={isSubmitting}
-                  className="bg-primary hover:bg-primary/90 text-primary-foreground font-semibold gap-1.5 shrink-0"
+                  className="shrink-0 gap-1.5 bg-primary font-semibold text-primary-foreground hover:bg-primary/90"
                 >
                   {isSubmitting ? (
                     <Loader2 className="size-4 animate-spin" />

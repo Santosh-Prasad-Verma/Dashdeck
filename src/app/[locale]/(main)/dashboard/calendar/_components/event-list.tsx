@@ -55,14 +55,14 @@ function getEventColor(color: CalendarEvent["color"]) {
 function getTypeBadge(type: CalendarEvent["type"]) {
   switch (type) {
     case "meeting":
-      return <Badge className="bg-foreground/10 text-foreground border border-foreground/20">Meeting</Badge>;
+      return <Badge className="border border-foreground/20 bg-foreground/10 text-foreground">Meeting</Badge>;
     case "task":
       return (
-        <Badge className="bg-muted-foreground/10 text-muted-foreground border border-muted-foreground/20">Task</Badge>
+        <Badge className="border border-muted-foreground/20 bg-muted-foreground/10 text-muted-foreground">Task</Badge>
       );
     case "reminder":
       return (
-        <Badge className="bg-foreground/5 text-muted-foreground/80 border border-muted-foreground/10">Reminder</Badge>
+        <Badge className="border border-muted-foreground/10 bg-foreground/5 text-muted-foreground/80">Reminder</Badge>
       );
     default:
       return <Badge variant="secondary">Event</Badge>;
@@ -102,7 +102,7 @@ export function EventList({ events }: EventListProps) {
               colors.border,
             )}
           >
-            <div className="flex-1 min-w-0">
+            <div className="min-w-0 flex-1">
               <div className="flex items-start justify-between gap-2">
                 <div className="flex items-center gap-2">
                   <span className="font-medium text-sm">{event.title}</span>
@@ -111,14 +111,14 @@ export function EventList({ events }: EventListProps) {
                 <Button
                   variant="ghost"
                   size="icon"
-                  className="size-6 opacity-0 group-hover:opacity-100 transition-opacity"
+                  className="size-6 opacity-0 transition-opacity group-hover:opacity-100"
                   onClick={() => handleDelete(event.id, event.title)}
                 >
                   <Trash2 className="size-3 text-destructive" />
                 </Button>
               </div>
               {event.description && (
-                <p className="mt-1 text-muted-foreground text-xs line-clamp-2">{event.description}</p>
+                <p className="mt-1 line-clamp-2 text-muted-foreground text-xs">{event.description}</p>
               )}
               <div className="mt-2 flex flex-wrap items-center gap-3 text-muted-foreground text-xs">
                 <div className="flex items-center gap-1">

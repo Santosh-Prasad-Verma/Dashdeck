@@ -37,7 +37,7 @@ function StatusBadge({ status }: { status: UserRow["status"] }) {
   return (
     <Badge
       className={cn(
-        "gap-1.5 border border-border/40 px-2 py-0.5 font-bold text-[9px] uppercase tracking-wider rounded-md",
+        "gap-1.5 rounded-md border border-border/40 px-2 py-0.5 font-bold text-[9px] uppercase tracking-wider",
         meta.badgeClass,
       )}
       variant="outline"

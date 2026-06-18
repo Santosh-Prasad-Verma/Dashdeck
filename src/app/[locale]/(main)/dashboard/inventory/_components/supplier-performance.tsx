@@ -43,9 +43,9 @@ export function SupplierPerformance() {
         <div className="flex flex-col gap-3">
           {suppliers.map((supplier) => (
             <div key={supplier.name} className="rounded-lg border p-3">
-              <div className="flex items-center justify-between mb-3">
+              <div className="mb-3 flex items-center justify-between">
                 <span className="font-medium text-sm">{supplier.name}</span>
-                <span className={cn("rounded-full px-2 py-0.5 text-[10px] font-medium", getStatusBg(supplier.status))}>
+                <span className={cn("rounded-full px-2 py-0.5 font-medium text-[10px]", getStatusBg(supplier.status))}>
                   {supplier.status}
                 </span>
               </div>
@@ -54,7 +54,7 @@ export function SupplierPerformance() {
                   <span className="w-16 text-muted-foreground">On-time</span>
                   <Progress
                     value={supplier.onTime}
-                    className={cn("flex-1 h-1.5", `[&>div]:${getScoreColor(supplier.onTime)}`)}
+                    className={cn("h-1.5 flex-1", `[&>div]:${getScoreColor(supplier.onTime)}`)}
                   />
                   <span className="w-8 text-right font-medium tabular-nums">{supplier.onTime}%</span>
                 </div>
@@ -62,7 +62,7 @@ export function SupplierPerformance() {
                   <span className="w-16 text-muted-foreground">Quality</span>
                   <Progress
                     value={supplier.quality}
-                    className={cn("flex-1 h-1.5", `[&>div]:${getScoreColor(supplier.quality)}`)}
+                    className={cn("h-1.5 flex-1", `[&>div]:${getScoreColor(supplier.quality)}`)}
                   />
                   <span className="w-8 text-right font-medium tabular-nums">{supplier.quality}%</span>
                 </div>
@@ -70,7 +70,7 @@ export function SupplierPerformance() {
                   <span className="w-16 text-muted-foreground">Response</span>
                   <Progress
                     value={supplier.response}
-                    className={cn("flex-1 h-1.5", `[&>div]:${getScoreColor(supplier.response)}`)}
+                    className={cn("h-1.5 flex-1", `[&>div]:${getScoreColor(supplier.response)}`)}
                   />
                   <span className="w-8 text-right font-medium tabular-nums">{supplier.response}%</span>
                 </div>

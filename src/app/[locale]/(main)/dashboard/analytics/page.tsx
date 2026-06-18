@@ -53,7 +53,7 @@ export default function Page() {
           </div>
 
           <div className="grid grid-cols-1 items-stretch gap-4 xl:grid-cols-12">
-            <div className="xl:col-span-7 flex flex-col gap-4">
+            <div className="flex flex-col gap-4 xl:col-span-7">
               <TopPages />
               <TopTrafficSources />
             </div>

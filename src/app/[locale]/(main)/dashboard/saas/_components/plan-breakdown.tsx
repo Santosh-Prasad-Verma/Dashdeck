@@ -46,10 +46,10 @@ export function PlanBreakdown() {
         <CardDescription>Customers and MRR by plan</CardDescription>
       </CardHeader>
       <CardContent className="flex items-center justify-center gap-6">
-        <ChartContainer config={chartConfig} className="mx-auto aspect-square h-44 w-full max-w-[160px] relative">
-          <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none">
-            <span className="text-xl font-bold tracking-tight">$128.5k</span>
-            <span className="text-[9px] text-muted-foreground uppercase font-semibold">Total MRR</span>
+        <ChartContainer config={chartConfig} className="relative mx-auto aspect-square h-44 w-full max-w-[160px]">
+          <div className="pointer-events-none absolute inset-0 flex flex-col items-center justify-center">
+            <span className="font-bold text-xl tracking-tight">$128.5k</span>
+            <span className="font-semibold text-[9px] text-muted-foreground uppercase">Total MRR</span>
           </div>
           <RadialBarChart
             cx="50%"

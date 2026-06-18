@@ -28,7 +28,6 @@ import {
   Kanban as KanbanIcon,
   LayoutTemplate,
   List,
-  Plus,
   Search,
   SlidersHorizontal,
   Table2,

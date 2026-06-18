@@ -2,9 +2,8 @@
 
 import { useEffect, useState } from "react";
 
-import { useTranslations } from "next-intl";
-
 import { Menu, X } from "lucide-react";
+import { useTranslations } from "next-intl";
 
 import { Link } from "@/i18n/navigation";
 
@@ -60,45 +59,45 @@ export function LandingNavbar() {
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+      className={`fixed top-0 right-0 left-0 z-50 transition-all duration-500 ${
         scrolled
-          ? "bg-[#050505]/80 backdrop-blur-xl border-b border-white/[0.06]"
-          : "bg-transparent border-b border-transparent"
+          ? "border-white/[0.06] border-b bg-[#050505]/80 backdrop-blur-xl"
+          : "border-transparent border-b bg-transparent"
       }`}
     >
-      <div className="max-w-7xl mx-auto px-6 lg:px-8 h-16 flex items-center justify-between">
+      <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-6 lg:px-8">
         {/* Logo */}
         <Link href="/" className="flex items-center gap-2.5">
           <img src="/Dashdeck-logo.svg" alt="Dashdeck" className="h-7 w-7 invert" />
-          <span className="text-white font-semibold text-lg tracking-tight">Dashdeck</span>
+          <span className="font-semibold text-lg text-white tracking-tight">Dashdeck</span>
         </Link>
 
         {/* Desktop Right */}
-        <div className="hidden md:flex items-center gap-1">
+        <div className="hidden items-center gap-1 md:flex">
           {socialLinks.map((link) => (
             <a
               key={link.label}
               href={link.href}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-gray-500 hover:text-white transition-colors p-2 rounded-lg hover:bg-white/[0.04]"
+              className="rounded-lg p-2 text-gray-500 transition-colors hover:bg-white/[0.04] hover:text-white"
               aria-label={link.label}
             >
               <link.icon />
             </a>
           ))}
 
-          <div className="w-px h-5 bg-white/[0.08] mx-3" />
+          <div className="mx-3 h-5 w-px bg-white/[0.08]" />
 
           <Link
             href="/auth/v1/login"
-            className="text-gray-400 hover:text-white text-sm font-medium transition-colors px-3 py-2"
+            className="px-3 py-2 font-medium text-gray-400 text-sm transition-colors hover:text-white"
           >
             {t("signIn")}
           </Link>
           <Link
             href="/dashboard/default"
-            className="bg-[#8B5CF6] hover:bg-[#7C3AED] text-white text-sm font-medium px-4 py-2 rounded-lg transition-all duration-300 hover:shadow-lg hover:shadow-[#8B5CF6]/20"
+            className="rounded-lg bg-[#8B5CF6] px-4 py-2 font-medium text-sm text-white transition-all duration-300 hover:bg-[#7C3AED] hover:shadow-[#8B5CF6]/20 hover:shadow-lg"
           >
             {t("getStarted")}
           </Link>
@@ -107,7 +106,7 @@ export function LandingNavbar() {
         {/* Mobile Toggle */}
         <button
           type="button"
-          className="md:hidden text-gray-400 hover:text-white p-2"
+          className="p-2 text-gray-400 hover:text-white md:hidden"
           onClick={() => setMobileOpen(!mobileOpen)}
           aria-label={t("toggleMenu")}
         >
@@ -117,7 +116,7 @@ export function LandingNavbar() {
 
       {/* Mobile Menu */}
       {mobileOpen && (
-        <div className="md:hidden bg-[#050505]/95 backdrop-blur-xl border-t border-white/[0.06] px-6 py-6 flex flex-col gap-6">
+        <div className="flex flex-col gap-6 border-white/[0.06] border-t bg-[#050505]/95 px-6 py-6 backdrop-blur-xl md:hidden">
           <div className="flex items-center gap-3">
             {socialLinks.map((link) => (
               <a
@@ -125,7 +124,7 @@ export function LandingNavbar() {
                 href={link.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-gray-500 hover:text-white transition-colors p-2"
+                className="p-2 text-gray-500 transition-colors hover:text-white"
                 aria-label={link.label}
               >
                 <link.icon />
@@ -135,14 +134,14 @@ export function LandingNavbar() {
           <div className="flex flex-col gap-3">
             <Link
               href="/auth/v1/login"
-              className="text-gray-400 hover:text-white text-sm font-medium py-2"
+              className="py-2 font-medium text-gray-400 text-sm hover:text-white"
               onClick={() => setMobileOpen(false)}
             >
               {t("signIn")}
             </Link>
             <Link
               href="/dashboard/default"
-              className="bg-[#8B5CF6] hover:bg-[#7C3AED] text-white text-sm font-semibold px-4 py-3 rounded-lg text-center transition-all"
+              className="rounded-lg bg-[#8B5CF6] px-4 py-3 text-center font-semibold text-sm text-white transition-all hover:bg-[#7C3AED]"
               onClick={() => setMobileOpen(false)}
             >
               {t("getStarted")}

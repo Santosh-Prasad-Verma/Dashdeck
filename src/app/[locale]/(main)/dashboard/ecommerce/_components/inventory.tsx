@@ -77,10 +77,10 @@ export function Inventory() {
         </CardAction>
       </CardHeader>
       <CardContent className="flex flex-col gap-4">
-        <ChartContainer config={chartConfig} className="mx-auto h-40 w-full relative">
+        <ChartContainer config={chartConfig} className="relative mx-auto h-40 w-full">
           <div className="absolute inset-0 flex flex-col items-center justify-center">
-            <span className="text-2xl font-bold tracking-tight tabular-nums">{availablePercent}%</span>
-            <span className="text-[10px] text-muted-foreground uppercase font-semibold tracking-wider mt-0.5">
+            <span className="font-bold text-2xl tabular-nums tracking-tight">{availablePercent}%</span>
+            <span className="mt-0.5 font-semibold text-[10px] text-muted-foreground uppercase tracking-wider">
               Available
             </span>
           </div>

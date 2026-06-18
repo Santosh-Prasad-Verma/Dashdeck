@@ -1,6 +1,6 @@
 "use client";
 
-import { ArrowUpRight, Globe, TrendingUp } from "lucide-react";
+import { ArrowUpRight, Globe } from "lucide-react";
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 
@@ -25,11 +25,11 @@ export function GeographicTraffic() {
       </CardHeader>
       <CardContent className="space-y-6 pt-0">
         {/* World Map Layout (SVG Grid representation of active nodes) */}
-        <div className="relative h-48 rounded-xl border bg-muted/10 overflow-hidden flex items-center justify-center">
+        <div className="relative flex h-48 items-center justify-center overflow-hidden rounded-xl border bg-muted/10">
           <div className="absolute inset-0 bg-grid-white/[0.02] [mask-image:radial-gradient(ellipse_at_center,white,transparent_75%)]" />
 
           {/* Custom SVG World Map Outline / Scatter Points */}
-          <svg className="w-full h-full text-muted-foreground/15" viewBox="0 0 400 200" fill="currentColor">
+          <svg className="h-full w-full text-muted-foreground/15" viewBox="0 0 400 200" fill="currentColor">
             {/* North America */}
             <circle cx="80" cy="60" r="15" opacity="0.4" />
             <circle cx="95" cy="75" r="10" opacity="0.4" />
@@ -65,8 +65,8 @@ export function GeographicTraffic() {
             </g>
           </svg>
 
-          <div className="absolute bottom-3 left-3 flex items-center gap-1.5 rounded-full bg-black/60 border border-white/10 px-2 py-0.5 text-[9px] text-gray-400 backdrop-blur-sm">
-            <span className="size-1.5 rounded-full bg-emerald-500 animate-ping" />
+          <div className="absolute bottom-3 left-3 flex items-center gap-1.5 rounded-full border border-white/10 bg-black/60 px-2 py-0.5 text-[9px] text-gray-400 backdrop-blur-sm">
+            <span className="size-1.5 animate-ping rounded-full bg-emerald-500" />
             <span>4 active traffic centers</span>
           </div>
         </div>
@@ -79,26 +79,26 @@ export function GeographicTraffic() {
                 <div className="flex items-center gap-2">
                   <span
                     aria-hidden="true"
-                    className={`flag:${country.code} shrink-0 rounded-xs ring-1 ring-foreground/10 text-sm`}
+                    className={`flag:${country.code} shrink-0 rounded-xs text-sm ring-1 ring-foreground/10`}
                   />
                   <span className="font-semibold text-gray-300">{country.country}</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <span className="font-mono font-semibold text-gray-200">{country.users.toLocaleString()}</span>
-                  <span className="text-[10px] text-emerald-400 font-medium flex items-center gap-0.5">
+                  <span className="flex items-center gap-0.5 font-medium text-[10px] text-emerald-400">
                     <ArrowUpRight className="size-3" />
                     {country.trend}
                   </span>
                 </div>
               </div>
               <div className="flex items-center gap-3">
-                <div className="h-1.5 flex-1 bg-muted/40 rounded-full overflow-hidden">
+                <div className="h-1.5 flex-1 overflow-hidden rounded-full bg-muted/40">
                   <div
-                    className="h-full bg-gradient-to-r from-[#8B5CF6] to-[#06B6D4] rounded-full"
+                    className="h-full rounded-full bg-gradient-to-r from-[#8B5CF6] to-[#06B6D4]"
                     style={{ width: `${country.percentage}%` }}
                   />
                 </div>
-                <span className="text-[10px] text-muted-foreground w-8 text-right font-medium">
+                <span className="w-8 text-right font-medium text-[10px] text-muted-foreground">
                   {country.percentage}%
                 </span>
               </div>

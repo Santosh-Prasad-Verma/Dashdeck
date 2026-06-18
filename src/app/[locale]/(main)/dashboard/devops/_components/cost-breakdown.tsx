@@ -50,7 +50,7 @@ export function CostBreakdown() {
             </div>
           ))}
           <div className="border-t pt-1">
-            <div className="flex items-center gap-2 text-sm font-medium">
+            <div className="flex items-center gap-2 font-medium text-sm">
               <span className="w-28">Total</span>
               <span>${total.toLocaleString()}</span>
             </div>

@@ -1,8 +1,5 @@
 "use client";
 
-import { ChevronLeft, ChevronRight } from "lucide-react";
-
-import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
 
@@ -44,7 +41,7 @@ export function PostingHeatmap() {
         <div className="flex items-start gap-1">
           <div className="flex flex-col gap-[2px] pr-2">
             {DAYS.map((day) => (
-              <span key={day} className="text-muted-foreground text-[10px] leading-tight pt-0.5">
+              <span key={day} className="pt-0.5 text-[10px] text-muted-foreground leading-tight">
                 {day}
               </span>
             ))}
@@ -65,7 +62,7 @@ export function PostingHeatmap() {
             </div>
           </div>
         </div>
-        <div className="mt-3 flex items-center justify-end gap-2 text-muted-foreground text-[10px]">
+        <div className="mt-3 flex items-center justify-end gap-2 text-[10px] text-muted-foreground">
           <span>Less</span>
           {[0, 20, 40, 60, 80].map((v) => (
             <div key={v} className={cn("size-[11px] rounded-[2px]", getHeatColor(v))} />

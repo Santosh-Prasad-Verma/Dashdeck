@@ -1,18 +1,6 @@
 "use client";
 
-import {
-  ArrowDownLeft,
-  ArrowUpRight,
-  ChevronRight,
-  FileText,
-  Globe,
-  Lock,
-  Plus,
-  Sparkles,
-  TrendingDown,
-  TrendingUp,
-  Wallet as WalletIcon,
-} from "lucide-react";
+import { ChevronRight, FileText, Globe, Plus, TrendingUp, Wallet as WalletIcon } from "lucide-react";
 
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -174,56 +162,56 @@ export function AccountsView() {
       {/* Top Summary KPI Cards */}
       <div className="grid grid-cols-2 gap-4 lg:grid-cols-4">
         <Card className="bg-card/50 backdrop-blur-xs">
-          <CardContent className="p-5 flex flex-col gap-1">
-            <p className="text-muted-foreground text-xs font-medium tracking-wide">Total balance</p>
-            <p className="text-3xl font-bold tracking-tight">$166,027</p>
-            <p className="text-muted-foreground text-[11px]">Across 9 linked accounts</p>
+          <CardContent className="flex flex-col gap-1 p-5">
+            <p className="font-medium text-muted-foreground text-xs tracking-wide">Total balance</p>
+            <p className="font-bold text-3xl tracking-tight">$166,027</p>
+            <p className="text-[11px] text-muted-foreground">Across 9 linked accounts</p>
           </CardContent>
         </Card>
 
         <Card className="bg-card/50 backdrop-blur-xs">
-          <CardContent className="p-5 flex flex-col gap-1">
-            <p className="text-muted-foreground text-xs font-medium tracking-wide">Accounts</p>
-            <p className="text-3xl font-bold tracking-tight">9</p>
-            <p className="text-muted-foreground text-[11px] truncate">
+          <CardContent className="flex flex-col gap-1 p-5">
+            <p className="font-medium text-muted-foreground text-xs tracking-wide">Accounts</p>
+            <p className="font-bold text-3xl tracking-tight">9</p>
+            <p className="truncate text-[11px] text-muted-foreground">
               3 bank · 2 savings · 1 investment · 2 crypto · 1 reserve
             </p>
           </CardContent>
         </Card>
 
         <Card className="bg-card/50 backdrop-blur-xs">
-          <CardContent className="p-5 flex flex-col gap-1">
-            <p className="text-muted-foreground text-xs font-medium tracking-wide">Largest account</p>
-            <p className="text-3xl font-bold tracking-tight">$36,780</p>
-            <p className="text-muted-foreground text-[11px]">Brokerage Account · 22% of total</p>
+          <CardContent className="flex flex-col gap-1 p-5">
+            <p className="font-medium text-muted-foreground text-xs tracking-wide">Largest account</p>
+            <p className="font-bold text-3xl tracking-tight">$36,780</p>
+            <p className="text-[11px] text-muted-foreground">Brokerage Account · 22% of total</p>
           </CardContent>
         </Card>
 
-        <Card className="bg-card/50 backdrop-blur-xs relative overflow-hidden">
-          <CardContent className="p-5 flex flex-col gap-1">
-            <p className="text-muted-foreground text-xs font-medium tracking-wide">30-day net flow</p>
+        <Card className="relative overflow-hidden bg-card/50 backdrop-blur-xs">
+          <CardContent className="flex flex-col gap-1 p-5">
+            <p className="font-medium text-muted-foreground text-xs tracking-wide">30-day net flow</p>
             <div className="flex items-baseline gap-2">
-              <span className="text-3xl font-bold tracking-tight text-emerald-500">+$5,275</span>
+              <span className="font-bold text-3xl text-emerald-500 tracking-tight">+$5,275</span>
             </div>
-            <p className="text-muted-foreground text-[11px] truncate">Inflows minus outflows across all accounts</p>
+            <p className="truncate text-[11px] text-muted-foreground">Inflows minus outflows across all accounts</p>
           </CardContent>
         </Card>
       </div>
 
       {/* Main Accounts Breakdown Panel */}
       <Card className="bg-card/30 backdrop-blur-xs">
-        <CardHeader className="pb-3 border-b">
-          <CardTitle className="text-lg font-semibold">All accounts</CardTitle>
+        <CardHeader className="border-b pb-3">
+          <CardTitle className="font-semibold text-lg">All accounts</CardTitle>
           <CardDescription className="text-xs">Tap a row to see its transactions.</CardDescription>
         </CardHeader>
         <CardContent className="p-0">
           <div className="flex flex-col">
-            {accountGroups.map((group, groupIdx) => (
+            {accountGroups.map((group, _groupIdx) => (
               <div key={group.categoryName} className="flex flex-col">
                 {/* Category Header Row */}
-                <div className="flex justify-between items-center bg-muted/20 px-6 py-2.5 text-[11px] font-semibold tracking-wider text-muted-foreground border-b">
+                <div className="flex items-center justify-between border-b bg-muted/20 px-6 py-2.5 font-semibold text-[11px] text-muted-foreground tracking-wider">
                   <span>{group.categoryName}</span>
-                  <span className="tabular-nums font-bold text-foreground/80">
+                  <span className="font-bold text-foreground/80 tabular-nums">
                     ${group.categoryTotal.toLocaleString()}
                   </span>
                 </div>
@@ -233,32 +221,32 @@ export function AccountsView() {
                   {group.items.map((item) => (
                     <div
                       key={item.id}
-                      className="flex items-center justify-between px-6 py-4 transition-all hover:bg-muted/30 cursor-pointer"
+                      className="flex cursor-pointer items-center justify-between px-6 py-4 transition-all hover:bg-muted/30"
                     >
                       {/* Left Block: Logo + Name & Change text */}
-                      <div className="flex items-center gap-4 flex-1 min-w-0 max-w-[280px]">
-                        <div className="flex size-9 shrink-0 items-center justify-center rounded-lg bg-neutral-800 border border-neutral-700 text-white font-bold text-sm">
+                      <div className="flex min-w-0 max-w-[280px] flex-1 items-center gap-4">
+                        <div className="flex size-9 shrink-0 items-center justify-center rounded-lg border border-neutral-700 bg-neutral-800 font-bold text-sm text-white">
                           {item.logoText}
                         </div>
-                        <div className="flex flex-col min-w-0">
+                        <div className="flex min-w-0 flex-col">
                           <div className="flex items-center gap-2">
-                            <span className="font-semibold text-sm truncate">{item.name}</span>
+                            <span className="truncate font-semibold text-sm">{item.name}</span>
                             <Badge
                               variant="outline"
-                              className="text-[9px] font-bold py-0 px-1 border-muted-foreground/30 text-muted-foreground bg-muted/40"
+                              className="border-muted-foreground/30 bg-muted/40 px-1 py-0 font-bold text-[9px] text-muted-foreground"
                             >
                               {item.type}
                             </Badge>
                           </div>
-                          <div className="flex items-center gap-2 mt-0.5 text-xs text-muted-foreground">
+                          <div className="mt-0.5 flex items-center gap-2 text-muted-foreground text-xs">
                             <span>{item.subtype}</span>
                             <span>·</span>
                             <span
                               className={
                                 item.changeType === "up"
-                                  ? "text-emerald-500 font-medium"
+                                  ? "font-medium text-emerald-500"
                                   : item.changeType === "down"
-                                    ? "text-red-500 font-medium"
+                                    ? "font-medium text-red-500"
                                     : "text-muted-foreground"
                               }
                             >
@@ -269,13 +257,13 @@ export function AccountsView() {
                       </div>
 
                       {/* Middle Block: Custom Sparkline */}
-                      <div className="hidden md:block w-36 h-8 shrink-0">
-                        <svg className="w-full h-full" viewBox="0 0 140 40" preserveAspectRatio="none">
+                      <div className="hidden h-8 w-36 shrink-0 md:block">
+                        <svg className="h-full w-full" viewBox="0 0 140 40" preserveAspectRatio="none">
                           <path
                             d={item.sparklinePoints.reduce((path, pt, i) => {
                               const x = (i / (item.sparklinePoints.length - 1)) * 140;
                               const y = 35 - pt; // scale 0-40
-                              return path + `${i === 0 ? "M" : "L"} ${x},${y}`;
+                              return `${path}${i === 0 ? "M" : "L"} ${x},${y}`;
                             }, "")}
                             fill="none"
                             stroke={
@@ -297,7 +285,7 @@ export function AccountsView() {
                         <div className="text-right">
                           <span className="font-bold text-sm tabular-nums">${item.balance.toLocaleString()}</span>
                         </div>
-                        <ChevronRight className="size-4 text-muted-foreground/40 shrink-0" />
+                        <ChevronRight className="size-4 shrink-0 text-muted-foreground/40" />
                       </div>
                     </div>
                   ))}
@@ -311,17 +299,17 @@ export function AccountsView() {
       {/* Grid of bottom widgets */}
       <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
         {/* Widget 1: Allocation by type */}
-        <Card className="bg-card/30 backdrop-blur-xs flex flex-col justify-between">
-          <CardHeader className="pb-3 border-b">
-            <CardTitle className="text-base font-semibold">Allocation by type</CardTitle>
-            <div className="flex flex-col mt-2">
-              <span className="text-2xl font-bold tracking-tight">$166,027</span>
-              <span className="text-muted-foreground text-[10px] uppercase font-semibold mt-0.5">Total</span>
+        <Card className="flex flex-col justify-between bg-card/30 backdrop-blur-xs">
+          <CardHeader className="border-b pb-3">
+            <CardTitle className="font-semibold text-base">Allocation by type</CardTitle>
+            <div className="mt-2 flex flex-col">
+              <span className="font-bold text-2xl tracking-tight">$166,027</span>
+              <span className="mt-0.5 font-semibold text-[10px] text-muted-foreground uppercase">Total</span>
             </div>
           </CardHeader>
-          <CardContent className="p-6 flex flex-col gap-6">
+          <CardContent className="flex flex-col gap-6 p-6">
             {/* Segmented bar graph */}
-            <div className="flex h-3 w-full rounded-full overflow-hidden bg-muted/50 border border-muted">
+            <div className="flex h-3 w-full overflow-hidden rounded-full border border-muted bg-muted/50">
               <div className="bg-neutral-100 dark:bg-white" style={{ width: "10%" }} title="Bank (10%)" />
               <div className="bg-neutral-400" style={{ width: "29%" }} title="Savings (29%)" />
               <div className="bg-neutral-600" style={{ width: "22%" }} title="Investment (22%)" />
@@ -345,21 +333,21 @@ export function AccountsView() {
                   </div>
                   <div className="flex items-center gap-4">
                     <span className="font-semibold tabular-nums">${item.amount.toLocaleString()}</span>
-                    <span className="text-muted-foreground text-[10px] w-8 text-right font-medium">{item.percent}</span>
+                    <span className="w-8 text-right font-medium text-[10px] text-muted-foreground">{item.percent}</span>
                   </div>
                 </div>
               ))}
             </div>
           </CardContent>
-          <div className="px-6 py-3 border-t bg-muted/10 text-muted-foreground text-[10px] font-medium">
+          <div className="border-t bg-muted/10 px-6 py-3 font-medium text-[10px] text-muted-foreground">
             Liquid 39% · Locked 61%
           </div>
         </Card>
 
         {/* Widget 2: Recent activity */}
-        <Card className="bg-card/30 backdrop-blur-xs flex flex-col justify-between">
-          <CardHeader className="pb-3 border-b">
-            <CardTitle className="text-base font-semibold">Recent activity</CardTitle>
+        <Card className="flex flex-col justify-between bg-card/30 backdrop-blur-xs">
+          <CardHeader className="border-b pb-3">
+            <CardTitle className="font-semibold text-base">Recent activity</CardTitle>
             <CardDescription className="text-xs">Latest transactions across all accounts</CardDescription>
           </CardHeader>
           <CardContent className="p-6">
@@ -398,19 +386,19 @@ export function AccountsView() {
                 <div key={i} className="flex items-center justify-between text-xs">
                   <div className="flex items-center gap-3">
                     <div
-                      className={`flex size-8 shrink-0 items-center justify-center rounded-lg bg-neutral-800 text-white font-bold text-xs`}
+                      className={`flex size-8 shrink-0 items-center justify-center rounded-lg bg-neutral-800 font-bold text-white text-xs`}
                     >
                       {item.name[0]}
                     </div>
                     <div>
                       <p className="font-semibold text-sm">{item.name}</p>
-                      <p className="text-muted-foreground text-[10px] mt-0.5">
+                      <p className="mt-0.5 text-[10px] text-muted-foreground">
                         {item.account} · {item.time}
                       </p>
                     </div>
                   </div>
                   <span
-                    className={`font-semibold tabular-nums text-sm ${item.amount < 0 ? "text-foreground" : "text-emerald-500"}`}
+                    className={`font-semibold text-sm tabular-nums ${item.amount < 0 ? "text-foreground" : "text-emerald-500"}`}
                   >
                     {item.amount < 0 ? "-" : "+"}$
                     {Math.abs(item.amount).toLocaleString(undefined, { minimumFractionDigits: 2 })}
@@ -422,18 +410,18 @@ export function AccountsView() {
         </Card>
 
         {/* Widget 3: Upcoming inflows */}
-        <Card className="bg-card/30 backdrop-blur-xs flex flex-col justify-between">
-          <CardHeader className="pb-3 border-b">
-            <CardTitle className="text-base font-semibold">Upcoming inflows</CardTitle>
-            <div className="flex flex-col mt-2">
-              <span className="text-2xl font-bold tracking-tight">$6,058</span>
-              <span className="text-muted-foreground text-[10px] uppercase font-semibold mt-0.5">
+        <Card className="flex flex-col justify-between bg-card/30 backdrop-blur-xs">
+          <CardHeader className="border-b pb-3">
+            <CardTitle className="font-semibold text-base">Upcoming inflows</CardTitle>
+            <div className="mt-2 flex flex-col">
+              <span className="font-bold text-2xl tracking-tight">$6,058</span>
+              <span className="mt-0.5 font-semibold text-[10px] text-muted-foreground uppercase">
                 3 deposits expected this cycle
               </span>
             </div>
           </CardHeader>
-          <CardContent className="p-6 flex flex-col gap-4">
-            <div className="flex items-center gap-2 rounded-lg bg-emerald-500/10 border border-emerald-500/20 px-3 py-2 text-emerald-500 text-xs">
+          <CardContent className="flex flex-col gap-4 p-6">
+            <div className="flex items-center gap-2 rounded-lg border border-emerald-500/20 bg-emerald-500/10 px-3 py-2 text-emerald-500 text-xs">
               <TrendingUp className="size-4 shrink-0" />
               <span>Net positive cash flow forecast</span>
             </div>
@@ -458,15 +446,15 @@ export function AccountsView() {
               ].map((item, i) => (
                 <div
                   key={i}
-                  className="flex items-center justify-between rounded-lg border p-3 hover:bg-muted/20 transition-colors"
+                  className="flex items-center justify-between rounded-lg border p-3 transition-colors hover:bg-muted/20"
                 >
                   <div className="flex items-center gap-3">
-                    <div className="flex size-7 shrink-0 items-center justify-center rounded bg-neutral-800 text-white font-bold text-xs">
+                    <div className="flex size-7 shrink-0 items-center justify-center rounded bg-neutral-800 font-bold text-white text-xs">
                       {item.logo}
                     </div>
                     <div>
                       <p className="font-semibold text-xs">{item.name}</p>
-                      <p className="text-muted-foreground text-[10px] mt-0.5">
+                      <p className="mt-0.5 text-[10px] text-muted-foreground">
                         {item.date} · {item.account}
                       </p>
                     </div>
@@ -481,40 +469,40 @@ export function AccountsView() {
         </Card>
 
         {/* Widget 4: Add an account */}
-        <Card className="bg-card/30 backdrop-blur-xs flex flex-col justify-between">
-          <CardHeader className="pb-3 border-b">
-            <CardTitle className="text-base font-semibold">Add an account</CardTitle>
+        <Card className="flex flex-col justify-between bg-card/30 backdrop-blur-xs">
+          <CardHeader className="border-b pb-3">
+            <CardTitle className="font-semibold text-base">Add an account</CardTitle>
             <CardDescription className="text-xs">
               Link a new bank, custodial wallet, or manual ledger to see it across your dashboard.
             </CardDescription>
           </CardHeader>
-          <CardContent className="p-6 flex flex-col gap-4">
+          <CardContent className="flex flex-col gap-4 p-6">
             <div className="grid grid-cols-3 gap-3">
               <button
                 type="button"
-                className="flex flex-col items-center justify-center border rounded-lg p-3 hover:bg-muted/30 transition-all text-center gap-2 cursor-pointer group"
+                className="group flex cursor-pointer flex-col items-center justify-center gap-2 rounded-lg border p-3 text-center transition-all hover:bg-muted/30"
               >
-                <Globe className="size-5 text-muted-foreground group-hover:text-foreground transition-colors" />
-                <span className="text-[10px] font-semibold">Connect bank</span>
+                <Globe className="size-5 text-muted-foreground transition-colors group-hover:text-foreground" />
+                <span className="font-semibold text-[10px]">Connect bank</span>
               </button>
               <button
                 type="button"
-                className="flex flex-col items-center justify-center border rounded-lg p-3 hover:bg-muted/30 transition-all text-center gap-2 cursor-pointer group"
+                className="group flex cursor-pointer flex-col items-center justify-center gap-2 rounded-lg border p-3 text-center transition-all hover:bg-muted/30"
               >
-                <WalletIcon className="size-5 text-muted-foreground group-hover:text-foreground transition-colors" />
-                <span className="text-[10px] font-semibold">Crypto wallet</span>
+                <WalletIcon className="size-5 text-muted-foreground transition-colors group-hover:text-foreground" />
+                <span className="font-semibold text-[10px]">Crypto wallet</span>
               </button>
               <button
                 type="button"
-                className="flex flex-col items-center justify-center border rounded-lg p-3 hover:bg-muted/30 transition-all text-center gap-2 cursor-pointer group"
+                className="group flex cursor-pointer flex-col items-center justify-center gap-2 rounded-lg border p-3 text-center transition-all hover:bg-muted/30"
               >
-                <FileText className="size-5 text-muted-foreground group-hover:text-foreground transition-colors" />
-                <span className="text-[10px] font-semibold">Manual account</span>
+                <FileText className="size-5 text-muted-foreground transition-colors group-hover:text-foreground" />
+                <span className="font-semibold text-[10px]">Manual account</span>
               </button>
             </div>
 
             <Button
-              className="w-full gap-2 border h-10 bg-transparent hover:bg-muted text-foreground hover:text-foreground shadow-none mt-2"
+              className="mt-2 h-10 w-full gap-2 border bg-transparent text-foreground shadow-none hover:bg-muted hover:text-foreground"
               variant="outline"
             >
               <Plus className="size-4" />

@@ -81,7 +81,7 @@ export function AlertTimeline() {
                 <div
                   className={`relative z-10 mt-1 size-3 rounded-full ring-4 ring-background ${getSeverityDot(item.severity)}`}
                 />
-                <div className="flex-1 min-w-0 rounded-lg border p-3">
+                <div className="min-w-0 flex-1 rounded-lg border p-3">
                   <div className="flex items-start justify-between gap-2">
                     <div>
                       <div className="flex items-center gap-2">
@@ -91,7 +91,7 @@ export function AlertTimeline() {
                       <p className="mt-1 text-muted-foreground text-xs">{item.time}</p>
                     </div>
                     <div
-                      className={`shrink-0 rounded-full px-2 py-0.5 text-[10px] font-medium ${
+                      className={`shrink-0 rounded-full px-2 py-0.5 font-medium text-[10px] ${
                         item.status === "resolved" || item.status === "auto-resolved" || item.status === "completed"
                           ? "bg-emerald-500/10 text-emerald-600"
                           : "bg-amber-500/10 text-amber-600"

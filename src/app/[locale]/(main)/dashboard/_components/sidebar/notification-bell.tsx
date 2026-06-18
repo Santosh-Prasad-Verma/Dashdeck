@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 
-import { BadgeCheck, Bell, Check, CreditCard, LogOut, MessageSquare, User, Zap } from "lucide-react";
+import { Bell, MessageSquare, User, Zap } from "lucide-react";
 
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
@@ -137,7 +137,7 @@ export function NotificationBell() {
           {notifications.map((notification) => (
             <DropdownMenuItem
               key={notification.id}
-              className={cn("flex items-start gap-3 px-4 py-3 cursor-pointer", !notification.read && "bg-muted/50")}
+              className={cn("flex cursor-pointer items-start gap-3 px-4 py-3", !notification.read && "bg-muted/50")}
               onClick={() => markAsRead(notification.id)}
             >
               <Avatar className="size-8 shrink-0">
@@ -145,12 +145,12 @@ export function NotificationBell() {
                   {getNotificationIcon(notification.type)}
                 </AvatarFallback>
               </Avatar>
-              <div className="flex-1 min-w-0">
+              <div className="min-w-0 flex-1">
                 <div className="flex items-center gap-2">
-                  <span className="text-sm font-medium">{notification.title}</span>
+                  <span className="font-medium text-sm">{notification.title}</span>
                   {!notification.read && <div className="size-1.5 rounded-full bg-blue-500" />}
                 </div>
-                <p className="text-muted-foreground text-xs truncate">{notification.description}</p>
+                <p className="truncate text-muted-foreground text-xs">{notification.description}</p>
                 <span className="text-muted-foreground text-xs">{notification.time}</span>
               </div>
             </DropdownMenuItem>

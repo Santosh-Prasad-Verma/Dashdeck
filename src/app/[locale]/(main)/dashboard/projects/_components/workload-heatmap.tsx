@@ -1,5 +1,4 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Progress } from "@/components/ui/progress";
 
 const people = ["Sarah", "Mike", "Alex", "Emma", "John", "Nora"];
 const projectLabels = ["Pulse v2", "API Gateway", "Mobile App", "Analytics", "Design System"];
@@ -51,7 +50,7 @@ export function WorkloadHeatmap() {
                     {workload[pi].map((v, i) => (
                       <td key={i} className="px-1 py-2">
                         <div
-                          className={`mx-auto h-6 w-12 rounded flex items-center justify-center text-xs font-medium ${getColor(v)} text-white`}
+                          className={`mx-auto flex h-6 w-12 items-center justify-center rounded font-medium text-xs ${getColor(v)} text-white`}
                         >
                           {v}%
                         </div>

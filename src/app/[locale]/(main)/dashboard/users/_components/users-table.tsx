@@ -43,15 +43,15 @@ export function UsersTable({ table }: { table: TableType<UserRow> }) {
 
   return (
     <div className="flex flex-1 flex-col gap-4">
-      <div className="rounded-2xl border border-border/40 bg-card/45 backdrop-blur-md overflow-hidden shadow-xs">
+      <div className="overflow-hidden rounded-2xl border border-border/40 bg-card/45 shadow-xs backdrop-blur-md">
         <Table className="**:data-[slot='table-cell']:px-5 **:data-[slot='table-head']:px-5">
-          <TableHeader className="bg-muted/40 border-b border-border/40 [&_tr]:border-b-0">
+          <TableHeader className="border-border/40 border-b bg-muted/40 [&_tr]:border-b-0">
             {table.getHeaderGroups().map((headerGroup) => (
-              <TableRow key={headerGroup.id} className="hover:bg-transparent border-b-0">
+              <TableRow key={headerGroup.id} className="border-b-0 hover:bg-transparent">
                 {headerGroup.headers.map((header) => (
                   <TableHead
                     key={header.id}
-                    className="py-3.5 font-bold uppercase tracking-wider text-[10px] text-muted-foreground"
+                    className="py-3.5 font-bold text-[10px] text-muted-foreground uppercase tracking-wider"
                   >
                     {header.isPlaceholder ? null : flexRender(header.column.columnDef.header, header.getContext())}
                   </TableHead>
@@ -65,7 +65,7 @@ export function UsersTable({ table }: { table: TableType<UserRow> }) {
               table.getRowModel().rows.map((row) => (
                 <TableRow
                   key={row.id}
-                  className="border-border/30 hover:bg-zinc-50/50 dark:hover:bg-zinc-900/30 transition-colors"
+                  className="border-border/30 transition-colors hover:bg-zinc-50/50 dark:hover:bg-zinc-900/30"
                   data-state={row.getIsSelected() && "selected"}
                 >
                   {row.getVisibleCells().map((cell) => (

@@ -29,7 +29,7 @@ export function MetricCards() {
           <p className="text-muted-foreground text-xs">Visitors for the last 6 months</p>
           {/* Sparkline */}
           <div className="mt-3 h-8 w-full text-emerald-500">
-            <svg className="w-full h-full" viewBox="0 0 100 30" preserveAspectRatio="none">
+            <svg className="h-full w-full" viewBox="0 0 100 30" preserveAspectRatio="none">
               <path
                 d="M 0,25 C 10,24 20,28 30,15 C 40,5 50,22 60,12 C 70,5 80,18 100,6"
                 fill="none"
@@ -62,7 +62,7 @@ export function MetricCards() {
           <p className="text-muted-foreground text-xs">Acquisition needs attention</p>
           {/* Sparkline */}
           <div className="mt-3 h-8 w-full text-rose-500">
-            <svg className="w-full h-full" viewBox="0 0 100 30" preserveAspectRatio="none">
+            <svg className="h-full w-full" viewBox="0 0 100 30" preserveAspectRatio="none">
               <path
                 d="M 0,5 C 15,8 25,4 35,18 C 45,28 55,10 65,22 C 75,28 85,20 100,28"
                 fill="none"
@@ -95,7 +95,7 @@ export function MetricCards() {
           <p className="text-muted-foreground text-xs">Engagement exceeds targets</p>
           {/* Sparkline */}
           <div className="mt-3 h-8 w-full text-emerald-500">
-            <svg className="w-full h-full" viewBox="0 0 100 30" preserveAspectRatio="none">
+            <svg className="h-full w-full" viewBox="0 0 100 30" preserveAspectRatio="none">
               <path
                 d="M 0,22 C 15,18 25,24 35,12 C 45,2 55,14 65,8 C 75,2 85,10 100,2"
                 fill="none"
@@ -128,7 +128,7 @@ export function MetricCards() {
           <p className="text-muted-foreground text-xs">Meets growth projections</p>
           {/* Sparkline */}
           <div className="mt-3 h-8 w-full text-emerald-500">
-            <svg className="w-full h-full" viewBox="0 0 100 30" preserveAspectRatio="none">
+            <svg className="h-full w-full" viewBox="0 0 100 30" preserveAspectRatio="none">
               <path
                 d="M 0,20 C 15,18 25,22 35,15 C 45,8 55,18 65,10 C 75,5 85,12 100,4"
                 fill="none"

@@ -65,7 +65,7 @@ export function ServiceStatus() {
                     </div>
                   </div>
                 </div>
-                <div className="text-sm text-muted-foreground">{svc.requests} req</div>
+                <div className="text-muted-foreground text-sm">{svc.requests} req</div>
               </div>
             ))}
           </div>
@@ -81,7 +81,7 @@ export function ServiceStatus() {
           <div className="flex flex-col gap-2">
             {alerts.map((alert) => (
               <div key={alert.id} className={`rounded-lg border p-3 ${getAlertColor(alert.severity)}`}>
-                <div className="flex items-center justify-between mb-1">
+                <div className="mb-1 flex items-center justify-between">
                   <span className="font-medium text-xs uppercase">{alert.severity}</span>
                   <span className="text-xs opacity-70">{alert.time}</span>
                 </div>

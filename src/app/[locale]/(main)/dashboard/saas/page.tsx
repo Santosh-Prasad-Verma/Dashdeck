@@ -18,7 +18,7 @@ export default function Page() {
           <div className="absolute top-0 right-0 h-32 w-32 bg-white/10 blur-[60px]" />
           <div className="relative">
             <p className="text-emerald-200 text-sm">Monthly Recurring Revenue</p>
-            <p className="mt-2 text-5xl font-bold tracking-tight">$128.5K</p>
+            <p className="mt-2 font-bold text-5xl tracking-tight">$128.5K</p>
             <div className="mt-3 flex items-center gap-2">
               <div className="flex items-center gap-1 rounded-full bg-emerald-500/30 px-2.5 py-1 text-emerald-100 text-sm">
                 <ArrowUp className="size-3" />
@@ -30,10 +30,10 @@ export default function Page() {
         </div>
 
         <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-blue-600 to-indigo-700 p-6 text-white">
-          <div className="absolute bottom-0 right-0 h-32 w-32 bg-white/10 blur-[60px]" />
+          <div className="absolute right-0 bottom-0 h-32 w-32 bg-white/10 blur-[60px]" />
           <div className="relative">
             <p className="text-blue-200 text-sm">Annual Run Rate</p>
-            <p className="mt-2 text-5xl font-bold tracking-tight">$1.54M</p>
+            <p className="mt-2 font-bold text-5xl tracking-tight">$1.54M</p>
             <div className="mt-3 flex items-center gap-2">
               <div className="flex items-center gap-1 rounded-full bg-blue-500/30 px-2.5 py-1 text-blue-100 text-sm">
                 <ArrowUp className="size-3" />

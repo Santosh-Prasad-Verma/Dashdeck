@@ -38,7 +38,7 @@ export function ProjectPhases() {
         <CardTitle>Sprint Phase Health</CardTitle>
         <CardDescription>Workload capacity versus milestone progress by phase</CardDescription>
       </CardHeader>
-      <CardContent className="pb-0 flex flex-col justify-between">
+      <CardContent className="flex flex-col justify-between pb-0">
         <ChartContainer config={chartConfig} className="mx-auto aspect-square h-64 w-full">
           <RadarChart cx="50%" cy="50%" outerRadius="70%" data={chartData}>
             <PolarGrid stroke="var(--border)" strokeWidth={1} strokeOpacity={0.5} />

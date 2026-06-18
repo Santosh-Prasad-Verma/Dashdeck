@@ -47,24 +47,24 @@ const socialLinks = [
 
 export function LandingFooter() {
   return (
-    <footer className="border-t border-white/[0.04]">
-      <div className="max-w-7xl mx-auto px-6 lg:px-8 py-16">
-        <div className="grid grid-cols-2 md:grid-cols-5 gap-8">
+    <footer className="border-white/[0.04] border-t">
+      <div className="mx-auto max-w-7xl px-6 py-16 lg:px-8">
+        <div className="grid grid-cols-2 gap-8 md:grid-cols-5">
           {/* Brand Column */}
           <div className="col-span-2">
             <Link href="/" className="flex items-center gap-2.5">
               <img src="/Dashdeck-logo.svg" alt="Dashdeck" className="h-8 w-8 invert" />
-              <span className="text-white font-semibold text-lg">Dashdeck</span>
+              <span className="font-semibold text-lg text-white">Dashdeck</span>
             </Link>
-            <p className="text-gray-500 text-sm mt-3">Your personal command center.</p>
-            <div className="flex gap-3 mt-5">
+            <p className="mt-3 text-gray-500 text-sm">Your personal command center.</p>
+            <div className="mt-5 flex gap-3">
               {socialLinks.map((link) => (
                 <a
                   key={link.label}
                   href={link.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-gray-500 hover:text-white transition-colors"
+                  className="text-gray-500 transition-colors hover:text-white"
                   aria-label={link.label}
                 >
                   <link.icon />
@@ -76,11 +76,11 @@ export function LandingFooter() {
           {/* Link Columns */}
           {Object.entries(footerLinks).map(([heading, links]) => (
             <div key={heading}>
-              <h4 className="text-white text-sm font-semibold mb-4">{heading}</h4>
+              <h4 className="mb-4 font-semibold text-sm text-white">{heading}</h4>
               <ul className="flex flex-col gap-2.5">
                 {links.map((link) => (
                   <li key={link}>
-                    <Link href="#" className="text-gray-500 hover:text-gray-300 text-sm transition-colors">
+                    <Link href="#" className="text-gray-500 text-sm transition-colors hover:text-gray-300">
                       {link}
                     </Link>
                   </li>
@@ -91,13 +91,13 @@ export function LandingFooter() {
         </div>
 
         {/* Bottom */}
-        <div className="border-t border-white/[0.06] mt-12 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+        <div className="mt-12 flex flex-col items-center justify-between gap-4 border-white/[0.06] border-t pt-8 md:flex-row">
           <p className="text-gray-600 text-sm">© 2025 Dashdeck. All rights reserved.</p>
           <div className="flex items-center gap-4">
             {["Privacy Policy", "Terms of Service", "Cookies"].map((item, i) => (
               <span key={item} className="flex items-center gap-4">
                 {i > 0 && <span className="text-gray-700">·</span>}
-                <Link href="#" className="text-gray-600 hover:text-gray-400 text-sm transition-colors">
+                <Link href="#" className="text-gray-600 text-sm transition-colors hover:text-gray-400">
                   {item}
                 </Link>
               </span>

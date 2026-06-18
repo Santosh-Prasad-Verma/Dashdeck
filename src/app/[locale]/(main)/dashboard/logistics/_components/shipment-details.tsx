@@ -248,30 +248,30 @@ export function ShipmentDetails({ shipment }: ShipmentDetailsProps) {
             <TabsContent className="min-h-0 overflow-auto p-4" value="route">
               <div className="flex flex-col gap-4">
                 <h3 className="font-semibold text-sm">Shipment Stops</h3>
-                <div className="relative border-l border-border pl-6 ml-2 space-y-6">
+                <div className="relative ml-2 space-y-6 border-border border-l pl-6">
                   {/* Origin stop */}
                   <div className="relative">
-                    <span className="absolute -left-[30px] top-1 flex size-4 items-center justify-center rounded-full bg-emerald-500 ring-4 ring-background">
+                    <span className="absolute top-1 -left-[30px] flex size-4 items-center justify-center rounded-full bg-emerald-500 ring-4 ring-background">
                       <span className="size-1.5 rounded-full bg-background" />
                     </span>
                     <div className="flex flex-col gap-0.5">
-                      <span className="text-sm font-semibold text-foreground">Origin: {shipment.origin.display}</span>
-                      <span className="text-xs text-muted-foreground">{shipment.origin.country}</span>
+                      <span className="font-semibold text-foreground text-sm">Origin: {shipment.origin.display}</span>
+                      <span className="text-muted-foreground text-xs">{shipment.origin.country}</span>
                     </div>
                   </div>
                   {/* Transit midpoint */}
                   <div className="relative">
                     <span
                       className={cn(
-                        "absolute -left-[30px] top-1 flex size-4 items-center justify-center rounded-full ring-4 ring-background",
+                        "absolute top-1 -left-[30px] flex size-4 items-center justify-center rounded-full ring-4 ring-background",
                         shipment.progress >= 50 ? "bg-primary" : "bg-muted",
                       )}
                     >
                       <span className="size-1.5 rounded-full bg-background" />
                     </span>
                     <div className="flex flex-col gap-0.5">
-                      <span className="text-sm font-semibold text-foreground">Customs Gate</span>
-                      <span className="text-xs text-muted-foreground">
+                      <span className="font-semibold text-foreground text-sm">Customs Gate</span>
+                      <span className="text-muted-foreground text-xs">
                         {shipment.status === "Customs Hold" ? "Held in Customs" : "Customs Clearance Passed"}
                       </span>
                     </div>
@@ -280,17 +280,17 @@ export function ShipmentDetails({ shipment }: ShipmentDetailsProps) {
                   <div className="relative">
                     <span
                       className={cn(
-                        "absolute -left-[30px] top-1 flex size-4 items-center justify-center rounded-full ring-4 ring-background",
+                        "absolute top-1 -left-[30px] flex size-4 items-center justify-center rounded-full ring-4 ring-background",
                         shipment.status === "Delivered" ? "bg-emerald-500" : "bg-muted",
                       )}
                     >
                       <span className="size-1.5 rounded-full bg-background" />
                     </span>
                     <div className="flex flex-col gap-0.5">
-                      <span className="text-sm font-semibold text-foreground">
+                      <span className="font-semibold text-foreground text-sm">
                         Destination: {shipment.destination.display}
                       </span>
-                      <span className="text-xs text-muted-foreground">{shipment.destination.country}</span>
+                      <span className="text-muted-foreground text-xs">{shipment.destination.country}</span>
                     </div>
                   </div>
                 </div>
@@ -299,29 +299,29 @@ export function ShipmentDetails({ shipment }: ShipmentDetailsProps) {
             <TabsContent className="min-h-0 overflow-auto p-4" value="cargo">
               <div className="flex flex-col gap-4">
                 <h3 className="font-semibold text-sm">Cargo Inventory</h3>
-                <div className="grid grid-cols-2 gap-4 rounded-lg border p-4 bg-muted/20">
+                <div className="grid grid-cols-2 gap-4 rounded-lg border bg-muted/20 p-4">
                   <div className="flex flex-col gap-1">
-                    <span className="text-xs text-muted-foreground">Type</span>
-                    <span className="text-sm font-medium">{shipment.cargo}</span>
+                    <span className="text-muted-foreground text-xs">Type</span>
+                    <span className="font-medium text-sm">{shipment.cargo}</span>
                   </div>
                   <div className="flex flex-col gap-1">
-                    <span className="text-xs text-muted-foreground">Weight</span>
-                    <span className="text-sm font-medium">{shipment.weight}</span>
+                    <span className="text-muted-foreground text-xs">Weight</span>
+                    <span className="font-medium text-sm">{shipment.weight}</span>
                   </div>
                   <div className="flex flex-col gap-1">
-                    <span className="text-xs text-muted-foreground">Carrier / Mode</span>
-                    <span className="text-sm font-medium capitalize">
+                    <span className="text-muted-foreground text-xs">Carrier / Mode</span>
+                    <span className="font-medium text-sm capitalize">
                       {shipment.mode} - {shipment.routeType}
                     </span>
                   </div>
                   <div className="flex flex-col gap-1">
-                    <span className="text-xs text-muted-foreground">Ref Number</span>
-                    <span className="text-sm font-medium font-mono">{shipment.transportNumber}</span>
+                    <span className="text-muted-foreground text-xs">Ref Number</span>
+                    <span className="font-medium font-mono text-sm">{shipment.transportNumber}</span>
                   </div>
                 </div>
                 <div className="rounded-lg border p-4">
-                  <h4 className="text-xs font-semibold text-muted-foreground mb-2">Handling Instruction Note</h4>
-                  <p className="text-sm text-foreground leading-normal">{shipment.handling.note}</p>
+                  <h4 className="mb-2 font-semibold text-muted-foreground text-xs">Handling Instruction Note</h4>
+                  <p className="text-foreground text-sm leading-normal">{shipment.handling.note}</p>
                 </div>
               </div>
             </TabsContent>
@@ -335,20 +335,20 @@ export function ShipmentDetails({ shipment }: ShipmentDetailsProps) {
                 </div>
                 <div className="divide-y rounded-lg border bg-card">
                   {[
-                    { name: "Bill of Lading", code: "BOL-" + shipment.id, size: "142 KB", status: "Signed" },
-                    { name: "Commercial Invoice", code: "INV-" + shipment.id, size: "88 KB", status: "Verified" },
-                    { name: "Packing List", code: "PKL-" + shipment.id, size: "210 KB", status: "Completed" },
+                    { name: "Bill of Lading", code: `BOL-${shipment.id}`, size: "142 KB", status: "Signed" },
+                    { name: "Commercial Invoice", code: `INV-${shipment.id}`, size: "88 KB", status: "Verified" },
+                    { name: "Packing List", code: `PKL-${shipment.id}`, size: "210 KB", status: "Completed" },
                     {
                       name: "Customs Declaration Form",
-                      code: "CST-" + shipment.id,
+                      code: `CST-${shipment.id}`,
                       size: "305 KB",
                       status: shipment.status === "Customs Hold" ? "Pending" : "Approved",
                     },
                   ].map((doc) => (
                     <div key={doc.name} className="flex items-center justify-between p-3">
                       <div className="flex flex-col gap-0.5">
-                        <span className="text-sm font-medium text-foreground">{doc.name}</span>
-                        <span className="text-xs text-muted-foreground font-mono">
+                        <span className="font-medium text-foreground text-sm">{doc.name}</span>
+                        <span className="font-mono text-muted-foreground text-xs">
                           {doc.code} · {doc.size}
                         </span>
                       </div>
@@ -359,7 +359,7 @@ export function ShipmentDetails({ shipment }: ShipmentDetailsProps) {
                             doc.status === "Completed" ||
                             doc.status === "Signed" ||
                             doc.status === "Verified"
-                            ? "bg-emerald-500/10 text-emerald-500 border-none"
+                            ? "border-none bg-emerald-500/10 text-emerald-500"
                             : "",
                         )}
                       >
@@ -373,18 +373,18 @@ export function ShipmentDetails({ shipment }: ShipmentDetailsProps) {
             <TabsContent className="min-h-0 overflow-auto p-4" value="activity">
               <div className="flex flex-col gap-4">
                 <h3 className="font-semibold text-sm">Activity Audit Trail</h3>
-                <div className="relative border-l border-border pl-6 ml-2 space-y-6">
+                <div className="relative ml-2 space-y-6 border-border border-l pl-6">
                   {/* Out for delivery / Delivered */}
                   {shipment.progress >= 80 && (
                     <div className="relative">
-                      <span className="absolute -left-[30px] top-1 flex size-4 items-center justify-center rounded-full bg-emerald-500 ring-4 ring-background">
+                      <span className="absolute top-1 -left-[30px] flex size-4 items-center justify-center rounded-full bg-emerald-500 ring-4 ring-background">
                         <span className="size-1.5 rounded-full bg-background" />
                       </span>
                       <div className="flex flex-col gap-0.5">
-                        <span className="text-sm font-semibold text-foreground">
+                        <span className="font-semibold text-foreground text-sm">
                           {shipment.status === "Delivered" ? "Delivered successfully" : "Out for delivery"}
                         </span>
-                        <span className="text-xs text-muted-foreground">30 mins ago</span>
+                        <span className="text-muted-foreground text-xs">30 mins ago</span>
                       </div>
                     </div>
                   )}
@@ -392,15 +392,15 @@ export function ShipmentDetails({ shipment }: ShipmentDetailsProps) {
                   <div className="relative">
                     <span
                       className={cn(
-                        "absolute -left-[30px] top-1 flex size-4 items-center justify-center rounded-full ring-4 ring-background",
-                        shipment.status === "Customs Hold" ? "bg-amber-500 animate-pulse" : "bg-primary",
+                        "absolute top-1 -left-[30px] flex size-4 items-center justify-center rounded-full ring-4 ring-background",
+                        shipment.status === "Customs Hold" ? "animate-pulse bg-amber-500" : "bg-primary",
                       )}
                     >
                       <span className="size-1.5 rounded-full bg-background" />
                     </span>
                     <div className="flex flex-col gap-0.5">
-                      <span className="text-sm font-semibold text-foreground">Customs Gate Processing</span>
-                      <span className="text-xs text-muted-foreground">
+                      <span className="font-semibold text-foreground text-sm">Customs Gate Processing</span>
+                      <span className="text-muted-foreground text-xs">
                         {shipment.status === "Customs Hold"
                           ? "Held for import tariff classification review"
                           : "Customs cleared at border point"}
@@ -409,12 +409,12 @@ export function ShipmentDetails({ shipment }: ShipmentDetailsProps) {
                   </div>
                   {/* Departed / Transit */}
                   <div className="relative">
-                    <span className="absolute -left-[30px] top-1 flex size-4 items-center justify-center rounded-full bg-primary ring-4 ring-background">
+                    <span className="absolute top-1 -left-[30px] flex size-4 items-center justify-center rounded-full bg-primary ring-4 ring-background">
                       <span className="size-1.5 rounded-full bg-background" />
                     </span>
                     <div className="flex flex-col gap-0.5">
-                      <span className="text-sm font-semibold text-foreground">Departed Origin Hub</span>
-                      <span className="text-xs text-muted-foreground">{shipment.origin.display}</span>
+                      <span className="font-semibold text-foreground text-sm">Departed Origin Hub</span>
+                      <span className="text-muted-foreground text-xs">{shipment.origin.display}</span>
                     </div>
                   </div>
                 </div>

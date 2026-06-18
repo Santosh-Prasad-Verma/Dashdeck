@@ -49,7 +49,7 @@ export function CohortTable() {
                       {cohort.retention[i] !== undefined ? (
                         <span
                           className={cn(
-                            "inline-flex size-8 items-center justify-center rounded text-white text-xs font-medium",
+                            "inline-flex size-8 items-center justify-center rounded font-medium text-white text-xs",
                             getRetentionColor(cohort.retention[i]),
                           )}
                         >

@@ -1,6 +1,6 @@
 "use client";
 
-import { ArrowDown, DollarSign, TrendingUp, Users } from "lucide-react";
+import { ArrowDown, DollarSign, Users } from "lucide-react";
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 
@@ -15,7 +15,7 @@ export function UnitEconomics() {
   const mrrPercent = (currentMrr / targetMrr) * 100;
 
   return (
-    <Card className="flex flex-col h-full justify-between">
+    <Card className="flex h-full flex-col justify-between">
       <CardHeader>
         <CardTitle>Unit Economics & Targets</CardTitle>
         <CardDescription>Performance tracking and growth efficiency</CardDescription>
@@ -25,9 +25,9 @@ export function UnitEconomics() {
         {/* Dials Row */}
         <div className="grid grid-cols-2 gap-4">
           {/* LTV:CAC Gauge */}
-          <div className="flex flex-col items-center justify-center p-3 rounded-xl border bg-muted/20">
-            <span className="text-muted-foreground text-xs font-medium mb-2">LTV : CAC Ratio</span>
-            <div className="relative size-24 flex items-center justify-center">
+          <div className="flex flex-col items-center justify-center rounded-xl border bg-muted/20 p-3">
+            <span className="mb-2 font-medium text-muted-foreground text-xs">LTV : CAC Ratio</span>
+            <div className="relative flex size-24 items-center justify-center">
               {/* Background Circle */}
               <svg className="absolute inset-0 size-full -rotate-90" viewBox="0 0 100 100">
                 <circle cx="50" cy="50" r="40" fill="none" stroke="var(--border)" strokeWidth="8" />
@@ -44,17 +44,17 @@ export function UnitEconomics() {
                 />
               </svg>
               <div className="text-center">
-                <span className="text-xl font-bold tracking-tight">{ltvCac}x</span>
-                <span className="text-[9px] block text-emerald-400 font-medium mt-0.5">Optimal</span>
+                <span className="font-bold text-xl tracking-tight">{ltvCac}x</span>
+                <span className="mt-0.5 block font-medium text-[9px] text-emerald-400">Optimal</span>
               </div>
             </div>
-            <span className="text-[10px] text-muted-foreground mt-3">Target: &gt;{targetLtvCac}.0x</span>
+            <span className="mt-3 text-[10px] text-muted-foreground">Target: &gt;{targetLtvCac}.0x</span>
           </div>
 
           {/* MRR Progress Gauge */}
-          <div className="flex flex-col items-center justify-center p-3 rounded-xl border bg-muted/20">
-            <span className="text-muted-foreground text-xs font-medium mb-2">MRR Goal Progress</span>
-            <div className="relative size-24 flex items-center justify-center">
+          <div className="flex flex-col items-center justify-center rounded-xl border bg-muted/20 p-3">
+            <span className="mb-2 font-medium text-muted-foreground text-xs">MRR Goal Progress</span>
+            <div className="relative flex size-24 items-center justify-center">
               <svg className="absolute inset-0 size-full -rotate-90" viewBox="0 0 100 100">
                 <circle cx="50" cy="50" r="40" fill="none" stroke="var(--border)" strokeWidth="8" />
                 <circle
@@ -70,11 +70,11 @@ export function UnitEconomics() {
                 />
               </svg>
               <div className="text-center">
-                <span className="text-xl font-bold tracking-tight">{mrrPercent.toFixed(1)}%</span>
-                <span className="text-[9px] block text-muted-foreground mt-0.5">of $150K</span>
+                <span className="font-bold text-xl tracking-tight">{mrrPercent.toFixed(1)}%</span>
+                <span className="mt-0.5 block text-[9px] text-muted-foreground">of $150K</span>
               </div>
             </div>
-            <span className="text-[10px] text-muted-foreground mt-3">$128.5K / $150K</span>
+            <span className="mt-3 text-[10px] text-muted-foreground">$128.5K / $150K</span>
           </div>
         </div>
 
@@ -90,7 +90,7 @@ export function UnitEconomics() {
                 <stat.icon className={`size-4 ${stat.color}`} />
                 <span className="text-muted-foreground text-sm">{stat.label}</span>
               </div>
-              <span className="font-semibold tabular-nums text-sm">{stat.value}</span>
+              <span className="font-semibold text-sm tabular-nums">{stat.value}</span>
             </div>
           ))}
         </div>

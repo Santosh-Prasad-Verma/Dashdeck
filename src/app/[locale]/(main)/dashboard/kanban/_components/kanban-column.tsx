@@ -47,9 +47,9 @@ export function KanbanColumn({ column, tasks }: KanbanColumnProps) {
         transition,
       }}
       className={cn(
-        "flex min-h-0 flex-col rounded-2xl border border-border/30 bg-zinc-50/40 dark:bg-zinc-900/30 transition-all duration-200",
-        isOver && "bg-zinc-100/60 dark:bg-zinc-800/30 border-border/50",
-        isDragging && "opacity-60 shadow-lg scale-[0.99]",
+        "flex min-h-0 flex-col rounded-2xl border border-border/30 bg-zinc-50/40 transition-all duration-200 dark:bg-zinc-900/30",
+        isOver && "border-border/50 bg-zinc-100/60 dark:bg-zinc-800/30",
+        isDragging && "scale-[0.99] opacity-60 shadow-lg",
       )}
     >
       <div className="flex items-center justify-between gap-3 px-4 pt-4 pb-3">
@@ -58,18 +58,18 @@ export function KanbanColumn({ column, tasks }: KanbanColumnProps) {
             <Button
               variant="ghost"
               size="icon-xs"
-              className="-ml-2 cursor-grab text-foreground/70 active:cursor-grabbing hover:bg-transparent"
+              className="-ml-2 cursor-grab text-foreground/70 hover:bg-transparent active:cursor-grabbing"
               aria-label={`Drag ${column.title} column`}
               {...attributes}
               {...listeners}
             >
               <GripVertical className="size-3.5 opacity-50" />
             </Button>
-            <ColumnIcon className="size-4 text-muted-foreground/80 shrink-0" />
-            <h2 className="truncate font-semibold text-sm leading-none text-zinc-800 dark:text-zinc-100">
+            <ColumnIcon className="size-4 shrink-0 text-muted-foreground/80" />
+            <h2 className="truncate font-semibold text-sm text-zinc-800 leading-none dark:text-zinc-100">
               {column.title}
             </h2>
-            <span className="ml-1.5 flex h-4.5 min-w-4.5 items-center justify-center rounded-full bg-zinc-200/60 dark:bg-zinc-800/60 px-1 text-[10px] font-bold text-zinc-600 dark:text-zinc-400 tabular-nums">
+            <span className="ml-1.5 flex h-4.5 min-w-4.5 items-center justify-center rounded-full bg-zinc-200/60 px-1 font-bold text-[10px] text-zinc-600 tabular-nums dark:bg-zinc-800/60 dark:text-zinc-400">
               {tasks.length}
             </span>
           </div>

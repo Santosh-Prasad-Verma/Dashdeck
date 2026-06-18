@@ -132,12 +132,12 @@ export function LogViewer() {
               <div
                 key={i}
                 className={cn(
-                  "flex items-start gap-2 border-b border-zinc-800 px-4 py-2 hover:bg-zinc-900",
+                  "flex items-start gap-2 border-zinc-800 border-b px-4 py-2 hover:bg-zinc-900",
                   i === 0 && "bg-red-500/10 dark:bg-red-950/50",
                 )}
               >
                 <span className="shrink-0 text-zinc-500">{log.timestamp}</span>
-                <span className={cn("shrink-0 w-12 font-medium", getLogColor(log.level))}>{log.level}</span>
+                <span className={cn("w-12 shrink-0 font-medium", getLogColor(log.level))}>{log.level}</span>
                 <span className="shrink-0 text-cyan-400">{log.service}</span>
                 <span className="text-zinc-300">{log.message}</span>
               </div>

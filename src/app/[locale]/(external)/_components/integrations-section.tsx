@@ -9,7 +9,7 @@ function MarqueeRow({ items, reverse = false }: { items: string[]; reverse?: boo
   const doubled = [...items, ...items];
   return (
     <div
-      className="flex gap-4 group"
+      className="group flex gap-4"
       style={{
         width: "max-content",
         animation: `marquee ${reverse ? "35s" : "30s"} linear infinite ${reverse ? "reverse" : "normal"}`,
@@ -24,7 +24,7 @@ function MarqueeRow({ items, reverse = false }: { items: string[]; reverse?: boo
       {doubled.map((item, i) => (
         <div
           key={`${item}-${i}`}
-          className="bg-white/[0.03] border border-white/[0.06] rounded-xl px-6 py-3 text-gray-400 text-sm font-medium whitespace-nowrap hover:text-white hover:border-white/[0.12] transition-colors duration-300 cursor-default"
+          className="cursor-default whitespace-nowrap rounded-xl border border-white/[0.06] bg-white/[0.03] px-6 py-3 font-medium text-gray-400 text-sm transition-colors duration-300 hover:border-white/[0.12] hover:text-white"
         >
           {item}
         </div>
@@ -35,22 +35,22 @@ function MarqueeRow({ items, reverse = false }: { items: string[]; reverse?: boo
 
 export function IntegrationsSection() {
   return (
-    <section className="max-w-7xl mx-auto px-6 lg:px-8 py-24 md:py-32 overflow-hidden">
+    <section className="mx-auto max-w-7xl overflow-hidden px-6 py-24 md:py-32 lg:px-8">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.6 }}
-        className="text-center mb-12"
+        className="mb-12 text-center"
       >
-        <h2 className="text-3xl md:text-4xl font-bold text-white">Works with your favorite tools</h2>
-        <p className="text-gray-500 text-lg mt-4">Connect Dashdeck with the tools you already use</p>
+        <h2 className="font-bold text-3xl text-white md:text-4xl">Works with your favorite tools</h2>
+        <p className="mt-4 text-gray-500 text-lg">Connect Dashdeck with the tools you already use</p>
       </motion.div>
 
-      <div className="flex flex-col gap-4 overflow-hidden relative">
+      <div className="relative flex flex-col gap-4 overflow-hidden">
         {/* Fade edges */}
-        <div className="absolute left-0 top-0 bottom-0 w-20 bg-gradient-to-r from-[#050505] to-transparent z-10 pointer-events-none" />
-        <div className="absolute right-0 top-0 bottom-0 w-20 bg-gradient-to-l from-[#050505] to-transparent z-10 pointer-events-none" />
+        <div className="pointer-events-none absolute top-0 bottom-0 left-0 z-10 w-20 bg-gradient-to-r from-[#050505] to-transparent" />
+        <div className="pointer-events-none absolute top-0 right-0 bottom-0 z-10 w-20 bg-gradient-to-l from-[#050505] to-transparent" />
 
         <MarqueeRow items={row1} />
         <MarqueeRow items={row2} reverse />

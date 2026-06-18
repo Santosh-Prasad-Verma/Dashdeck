@@ -170,29 +170,17 @@
         {
           "title": "AI Workspace",
           "description": "Smart suggestions, automated workflows, and AI-powered insights that learn from your habits.",
-          "items": [
-            "Intelligent task prioritization",
-            "Auto-categorize expenses",
-            "Smart document search"
-          ]
+          "items": ["Intelligent task prioritization", "Auto-categorize expenses", "Smart document search"]
         },
         {
           "title": "Smart Wallet",
           "description": "Track expenses, manage subscriptions, monitor investments, and never miss a payment.",
-          "items": [
-            "Real-time balance tracking",
-            "Subscription management",
-            "Investment portfolio overview"
-          ]
+          "items": ["Real-time balance tracking", "Subscription management", "Investment portfolio overview"]
         },
         {
           "title": "Secure Vault",
           "description": "Military-grade encryption for passwords, documents, and sensitive data. Zero-knowledge architecture.",
-          "items": [
-            "End-to-end encryption",
-            "Biometric authentication",
-            "Secure document storage"
-          ]
+          "items": ["End-to-end encryption", "Biometric authentication", "Secure document storage"]
         }
       ]
     },

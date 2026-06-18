@@ -72,7 +72,7 @@ export function ReorderTimeline() {
             const stockPercent = Math.min((item.stock / item.reorder) * 100, 100);
             return (
               <div key={item.sku} className="rounded-lg border p-3">
-                <div className="flex items-start justify-between mb-2">
+                <div className="mb-2 flex items-start justify-between">
                   <div>
                     <span className="font-medium text-sm">{item.name}</span>
                     <span className="ml-2 text-muted-foreground text-xs">{item.sku}</span>
@@ -80,24 +80,24 @@ export function ReorderTimeline() {
                   <Badge
                     className={
                       item.orderPlaced.includes("Yes")
-                        ? "bg-emerald-500/10 text-emerald-600 border-0"
-                        : "bg-red-500/10 text-red-600 border-0"
+                        ? "border-0 bg-emerald-500/10 text-emerald-600"
+                        : "border-0 bg-red-500/10 text-red-600"
                     }
                   >
                     {item.orderPlaced.includes("Yes") ? "Ordered" : "Need Order"}
                   </Badge>
                 </div>
-                <div className="flex items-center gap-3 mt-2">
-                  <span className="text-muted-foreground text-xs w-16">Stock</span>
+                <div className="mt-2 flex items-center gap-3">
+                  <span className="w-16 text-muted-foreground text-xs">Stock</span>
                   <div className="flex-1">
                     <Progress value={stockPercent} className="h-2" />
                   </div>
-                  <span className="text-sm font-medium tabular-nums w-24 text-right">
+                  <span className="w-24 text-right font-medium text-sm tabular-nums">
                     <span className="text-red-600">{item.stock}</span>
                     <span className="text-muted-foreground"> / {item.reorder}</span>
                   </span>
                 </div>
-                <div className="flex items-center justify-between mt-2 text-muted-foreground text-xs">
+                <div className="mt-2 flex items-center justify-between text-muted-foreground text-xs">
                   <span>
                     {item.supplier} · Lead: {item.leadTime}
                   </span>

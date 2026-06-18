@@ -78,11 +78,11 @@ const properties = [
 function getTypeBadge(type: string) {
   switch (type) {
     case "Commercial":
-      return <Badge className="bg-blue-500/10 text-blue-600 dark:text-blue-400 border-0">Commercial</Badge>;
+      return <Badge className="border-0 bg-blue-500/10 text-blue-600 dark:text-blue-400">Commercial</Badge>;
     case "Residential":
-      return <Badge className="bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-0">Residential</Badge>;
+      return <Badge className="border-0 bg-emerald-500/10 text-emerald-600 dark:text-emerald-400">Residential</Badge>;
     case "Industrial":
-      return <Badge className="bg-amber-500/10 text-amber-600 dark:text-amber-400 border-0">Industrial</Badge>;
+      return <Badge className="border-0 bg-amber-500/10 text-amber-600 dark:text-amber-400">Industrial</Badge>;
     default:
       return <Badge variant="secondary">{type}</Badge>;
   }
@@ -103,7 +103,7 @@ export function PropertyList() {
                 key={prop.id}
                 className="flex items-center justify-between rounded-lg border p-3 transition-colors hover:bg-muted/50"
               >
-                <div className="flex-1 min-w-0">
+                <div className="min-w-0 flex-1">
                   <div className="flex items-center gap-2">
                     <span className="font-medium text-sm">{prop.name}</span>
                     {getTypeBadge(prop.type)}
@@ -128,8 +128,8 @@ export function PropertyList() {
                   <Badge
                     className={
                       prop.status === "occupied"
-                        ? "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-0"
-                        : "bg-amber-500/10 text-amber-600 dark:text-amber-400 border-0"
+                        ? "border-0 bg-emerald-500/10 text-emerald-600 dark:text-emerald-400"
+                        : "border-0 bg-amber-500/10 text-amber-600 dark:text-amber-400"
                     }
                   >
                     {prop.status}

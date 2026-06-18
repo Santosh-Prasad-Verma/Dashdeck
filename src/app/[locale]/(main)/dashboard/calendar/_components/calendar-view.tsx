@@ -5,7 +5,6 @@ import { useMemo, useState } from "react";
 import {
   addDays,
   addMonths,
-  differenceInDays,
   endOfMonth,
   endOfWeek,
   format,
@@ -65,7 +64,7 @@ export function CalendarView() {
       day = addDays(day, 1);
     }
     return days;
-  }, [currentDate]);
+  }, [calendarStart, calendarEnd]);
 
   const getEventsForDate = (date: Date) => {
     return events.filter((event) => isSameDay(new Date(event.date), date));
@@ -87,7 +86,7 @@ export function CalendarView() {
       {/* Header */}
       <div className="flex flex-col gap-4 lg:flex-row lg:items-start lg:justify-between">
         <div className="space-y-1">
-          <h1 className="text-3xl font-bold tracking-tight">Calendar</h1>
+          <h1 className="font-bold text-3xl tracking-tight">Calendar</h1>
           <p className="text-muted-foreground text-sm">Manage your schedule, meetings, and events.</p>
         </div>
         <AddEventDialog />
@@ -101,11 +100,11 @@ export function CalendarView() {
           { label: "Upcoming", value: upcomingEvents.length, icon: Users },
           { label: "Completed", value: pastEvents.length, icon: Clock },
         ].map((stat, i) => (
-          <Card key={i} className="relative overflow-hidden border-border/40 hover:shadow-md transition-shadow">
+          <Card key={i} className="relative overflow-hidden border-border/40 transition-shadow hover:shadow-md">
             <div className="absolute top-0 right-0 h-16 w-16 bg-gradient-to-bl from-foreground/5 to-transparent" />
             <CardContent className="p-4">
               <div className="flex items-center gap-3">
-                <div className="flex size-10 items-center justify-center rounded-xl bg-muted/60 text-foreground border border-border/40">
+                <div className="flex size-10 items-center justify-center rounded-xl border border-border/40 bg-muted/60 text-foreground">
                   <stat.icon className="size-5" />
                 </div>
                 <div>
@@ -123,10 +122,10 @@ export function CalendarView() {
         {/* Calendar Grid */}
         <div className="xl:col-span-8">
           <Card className="overflow-hidden border-border/40 shadow-sm">
-            <CardHeader className="flex flex-row items-center justify-between border-b border-border/40 bg-muted/30 space-y-0 px-6 py-4">
+            <CardHeader className="flex flex-row items-center justify-between space-y-0 border-border/40 border-b bg-muted/30 px-6 py-4">
               <div className="flex items-center gap-4">
-                <CardTitle className="text-xl font-semibold">{format(currentDate, "MMMM yyyy")}</CardTitle>
-                <Badge variant="secondary" className="text-xs bg-muted border border-border/40">
+                <CardTitle className="font-semibold text-xl">{format(currentDate, "MMMM yyyy")}</CardTitle>
+                <Badge variant="secondary" className="border border-border/40 bg-muted text-xs">
                   {totalEventsThisMonth} events
                 </Badge>
               </div>
@@ -135,7 +134,7 @@ export function CalendarView() {
                   variant="ghost"
                   size="sm"
                   onClick={() => setCurrentDate(new Date())}
-                  className="text-xs border border-border/40 hover:bg-muted"
+                  className="border border-border/40 text-xs hover:bg-muted"
                 >
                   Today
                 </Button>
@@ -165,7 +164,7 @@ export function CalendarView() {
                   <div
                     key={day}
                     className={cn(
-                      "border-b border-border/40 py-3 text-center text-xs font-semibold uppercase tracking-wider",
+                      "border-border/40 border-b py-3 text-center font-semibold text-xs uppercase tracking-wider",
                       i === 0 || i === 6 ? "text-muted-foreground" : "text-foreground",
                     )}
                   >
@@ -184,9 +183,9 @@ export function CalendarView() {
                       key={index}
                       onClick={() => setSelectedDate(day)}
                       className={cn(
-                        "relative flex min-h-[105px] flex-col border-b border-r border-border/30 p-2 text-left transition-all hover:bg-muted/40",
+                        "relative flex min-h-[105px] flex-col border-border/30 border-r border-b p-2 text-left transition-all hover:bg-muted/40",
                         !isCurrentMonth && "bg-muted/5 opacity-30",
-                        isSelected && "bg-primary/5 ring-1 ring-inset ring-primary/30",
+                        isSelected && "bg-primary/5 ring-1 ring-primary/30 ring-inset",
                         index % 7 === 6 && "border-r-0",
                       )}
                     >
@@ -194,8 +193,8 @@ export function CalendarView() {
                         <span
                           className={cn(
                             "flex size-7 items-center justify-center rounded-full text-sm transition-all",
-                            today && "bg-primary font-bold text-primary-foreground shadow-sm shadow-primary/30",
-                            isSelected && !today && "bg-primary/10 font-semibold text-primary border border-primary/20",
+                            today && "bg-primary font-bold text-primary-foreground shadow-primary/30 shadow-sm",
+                            isSelected && !today && "border border-primary/20 bg-primary/10 font-semibold text-primary",
                             !today && !isSelected && "font-medium text-zinc-700 dark:text-zinc-300",
                           )}
                         >
@@ -209,12 +208,12 @@ export function CalendarView() {
                           </div>
                         )}
                       </div>
-                      <div className="mt-1.5 flex flex-col gap-1 w-full">
+                      <div className="mt-1.5 flex w-full flex-col gap-1">
                         {dayEvents.slice(0, 2).map((event) => (
                           <div
                             key={event.id}
                             className={cn(
-                              "flex items-center gap-1 rounded-r-md rounded-l-sm pl-1.5 pr-2 py-0.5 text-[10px] font-medium border-y border-r border-border/10 transition-colors shadow-2xs truncate",
+                              "flex items-center gap-1 truncate rounded-r-md rounded-l-sm border-border/10 border-y border-r py-0.5 pr-2 pl-1.5 font-medium text-[10px] shadow-2xs transition-colors",
                               getEventPillColor(event.color),
                             )}
                           >
@@ -222,7 +221,7 @@ export function CalendarView() {
                           </div>
                         ))}
                         {dayEvents.length > 2 && (
-                          <span className="px-1 text-[9px] font-semibold text-muted-foreground">
+                          <span className="px-1 font-semibold text-[9px] text-muted-foreground">
                             +{dayEvents.length - 2} more
                           </span>
                         )}
@@ -242,7 +241,7 @@ export function CalendarView() {
             <CardHeader className="border-b bg-muted/30">
               <div className="flex items-center justify-between">
                 <div>
-                  <CardTitle className="text-lg font-semibold">
+                  <CardTitle className="font-semibold text-lg">
                     {selectedDate ? format(selectedDate, "EEEE") : "Select a date"}
                   </CardTitle>
                   <CardDescription>
@@ -263,7 +262,7 @@ export function CalendarView() {
           <Card>
             <CardHeader className="border-b bg-muted/30">
               <div className="flex items-center justify-between">
-                <CardTitle className="text-lg font-semibold">Upcoming</CardTitle>
+                <CardTitle className="font-semibold text-lg">Upcoming</CardTitle>
                 <Badge variant="outline" className="text-xs">
                   {upcomingEvents.length} events
                 </Badge>
@@ -282,7 +281,7 @@ export function CalendarView() {
                       className="flex items-start gap-3 rounded-lg border p-3 transition-colors hover:bg-muted/50"
                     >
                       <div className="mt-0.5 size-2 shrink-0 rounded-full bg-foreground/60" />
-                      <div className="flex-1 min-w-0">
+                      <div className="min-w-0 flex-1">
                         <p className="truncate font-medium text-sm">{event.title}</p>
                         <div className="mt-1 flex items-center gap-2 text-muted-foreground text-xs">
                           <Clock className="size-3" />

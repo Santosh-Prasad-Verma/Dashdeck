@@ -40,12 +40,12 @@ export function DataManagement() {
         <CardDescription>{t("description")}</CardDescription>
       </CardHeader>
       <CardContent>
-        <div className="rounded-lg border border-amber-500/30 bg-amber-500/5 p-4 mb-4">
+        <div className="mb-4 rounded-lg border border-amber-500/30 bg-amber-500/5 p-4">
           <div className="flex items-start gap-3">
-            <AlertTriangle className="size-5 text-amber-600 mt-0.5" />
+            <AlertTriangle className="mt-0.5 size-5 text-amber-600" />
             <div>
               <p className="font-medium text-amber-600 dark:text-amber-400">{t("warning")}</p>
-              <p className="text-muted-foreground text-sm mt-0.5">{t("warningBody")}</p>
+              <p className="mt-0.5 text-muted-foreground text-sm">{t("warningBody")}</p>
             </div>
           </div>
         </div>

@@ -38,7 +38,7 @@ export function LanguageSwitcher() {
             className={locale === currentLocale ? "bg-accent/50" : ""}
           >
             {localeNames[locale]}
-            {locale === currentLocale && <span className="ml-auto text-xs text-muted-foreground">✓</span>}
+            {locale === currentLocale && <span className="ml-auto text-muted-foreground text-xs">✓</span>}
           </DropdownMenuItem>
         ))}
       </DropdownMenuContent>

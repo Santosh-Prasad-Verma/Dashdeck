@@ -99,9 +99,9 @@ export function DeploymentHistory() {
                   <div>
                     <div className="flex items-center gap-2">
                       <span className="font-medium text-sm">{dep.id}</span>
-                      <span className="text-xs text-muted-foreground">{dep.version}</span>
+                      <span className="text-muted-foreground text-xs">{dep.version}</span>
                     </div>
-                    <div className="text-muted-foreground text-xs mt-0.5">
+                    <div className="mt-0.5 text-muted-foreground text-xs">
                       {dep.branch} · {dep.author}
                     </div>
                   </div>
@@ -109,7 +109,7 @@ export function DeploymentHistory() {
                 <div className="flex items-center gap-4">
                   <div className="text-right">
                     <div
-                      className={`text-xs font-medium ${dep.status === "success" ? "text-emerald-600" : "text-red-600"}`}
+                      className={`font-medium text-xs ${dep.status === "success" ? "text-emerald-600" : "text-red-600"}`}
                     >
                       {dep.status === "success" ? "✓" : "✗"} {dep.status}
                     </div>

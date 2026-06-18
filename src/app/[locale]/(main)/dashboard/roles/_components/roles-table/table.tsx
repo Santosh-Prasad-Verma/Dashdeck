@@ -5,7 +5,6 @@ import { useMemo } from "react";
 
 import { flexRender, type Table as TableType } from "@tanstack/react-table";
 
-import { Badge } from "@/components/ui/badge";
 import {
   Pagination,
   PaginationContent,
@@ -59,14 +58,14 @@ export function RolesTable({ table }: { table: TableType<Role> }) {
   return (
     <>
       <Table className="w-full table-fixed border-collapse" style={{ minWidth: table.getTotalSize() }}>
-        <TableHeader className="bg-muted/40 border-b border-border/40">
+        <TableHeader className="border-border/40 border-b bg-muted/40">
           {table.getHeaderGroups().map((headerGroup) => (
-            <TableRow key={headerGroup.id} className="hover:bg-transparent border-b-0">
+            <TableRow key={headerGroup.id} className="border-b-0 hover:bg-transparent">
               {headerGroup.headers.map((header) => (
                 <TableHead
                   key={header.id}
                   style={{ width: header.getSize() }}
-                  className="h-10 px-4 text-center font-bold uppercase tracking-wider text-[10px] text-muted-foreground first:text-left"
+                  className="h-10 px-4 text-center font-bold text-[10px] text-muted-foreground uppercase tracking-wider first:text-left"
                 >
                   {header.isPlaceholder ? null : flexRender(header.column.columnDef.header, header.getContext())}
                 </TableHead>
@@ -178,13 +177,13 @@ function TableBodyGroup({
 }) {
   return (
     <>
-      <TableRow className="h-9 bg-muted/40 hover:bg-muted/40 border-y border-border/30">
+      <TableRow className="h-9 border-border/30 border-y bg-muted/40 hover:bg-muted/40">
         <TableCell
-          className="px-4 text-zinc-650 dark:text-zinc-400 font-bold uppercase tracking-wider text-[10px]"
+          className="px-4 font-bold text-[10px] text-zinc-650 uppercase tracking-wider dark:text-zinc-400"
           colSpan={colCount}
         >
           {group.label}{" "}
-          <span className="ml-2 px-1.5 py-0.5 rounded-md bg-zinc-200/50 dark:bg-zinc-800/50 text-zinc-500 dark:text-zinc-400 text-[9px] font-bold">
+          <span className="ml-2 rounded-md bg-zinc-200/50 px-1.5 py-0.5 font-bold text-[9px] text-zinc-500 dark:bg-zinc-800/50 dark:text-zinc-400">
             {group.rows.length} of {totalCount}
           </span>
         </TableCell>
@@ -192,7 +191,7 @@ function TableBodyGroup({
       {group.rows.map((row) => (
         <TableRow
           key={row.id}
-          className="h-12 hover:bg-zinc-50/50 dark:hover:bg-zinc-900/30 transition-colors border-b border-border/30 last:border-b-0"
+          className="h-12 border-border/30 border-b transition-colors last:border-b-0 hover:bg-zinc-50/50 dark:hover:bg-zinc-900/30"
         >
           {row.getVisibleCells().map((cell, index) => (
             <TableCell

@@ -42,7 +42,7 @@ export function HealthScore() {
         <div className="flex flex-col gap-3">
           {accounts.map((account) => (
             <div key={account.name} className="rounded-lg border p-3">
-              <div className="flex items-center justify-between mb-2">
+              <div className="mb-2 flex items-center justify-between">
                 <div>
                   <span className="font-medium text-sm">{account.name}</span>
                   <span className="ml-2 text-muted-foreground text-xs">${account.mrr}/mo</span>
@@ -50,18 +50,18 @@ export function HealthScore() {
                 <Badge
                   className={
                     account.status === "Healthy"
-                      ? "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-0"
+                      ? "border-0 bg-emerald-500/10 text-emerald-600 dark:text-emerald-400"
                       : account.status === "At Risk"
-                        ? "bg-amber-500/10 text-amber-600 dark:text-amber-400 border-0"
-                        : "bg-red-500/10 text-red-600 dark:text-red-400 border-0"
+                        ? "border-0 bg-amber-500/10 text-amber-600 dark:text-amber-400"
+                        : "border-0 bg-red-500/10 text-red-600 dark:text-red-400"
                   }
                 >
                   {account.status}
                 </Badge>
               </div>
               <div className="flex items-center gap-3">
-                <Progress value={account.health} className={`flex-1 h-1.5 [&>div]:${getHealthColor(account.health)}`} />
-                <span className="text-sm font-medium tabular-nums w-10 text-right">{account.health}</span>
+                <Progress value={account.health} className={`h-1.5 flex-1 [&>div]:${getHealthColor(account.health)}`} />
+                <span className="w-10 text-right font-medium text-sm tabular-nums">{account.health}</span>
               </div>
               <div className="mt-2 flex items-center justify-between text-muted-foreground text-xs">
                 <span>{account.contact}</span>

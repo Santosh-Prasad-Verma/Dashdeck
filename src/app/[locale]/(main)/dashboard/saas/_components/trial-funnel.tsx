@@ -1,9 +1,7 @@
 "use client";
 
-import { Bar, BarChart, Cell, XAxis, YAxis } from "recharts";
-
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { type ChartConfig, ChartContainer, ChartTooltip, ChartTooltipContent } from "@/components/ui/chart";
+import type { ChartConfig } from "@/components/ui/chart";
 
 const chartData = [
   { stage: "Visit Site", users: 12400, fill: "var(--chart-1)" },
@@ -13,7 +11,7 @@ const chartData = [
   { stage: "Payment", users: 840, fill: "var(--chart-5)" },
 ];
 
-const chartConfig = {} satisfies ChartConfig;
+const _chartConfig = {} satisfies ChartConfig;
 
 const colors = [
   "hsl(var(--chart-1))",
@@ -38,7 +36,7 @@ export function TrialFunnel() {
               <div className="flex-1">
                 <div className="h-8 overflow-hidden rounded-lg bg-muted/50">
                   <div
-                    className="h-full rounded-lg transition-all flex items-center pl-3 text-white text-xs font-medium"
+                    className="flex h-full items-center rounded-lg pl-3 font-medium text-white text-xs transition-all"
                     style={{
                       width: `${(stage.users / chartData[0].users) * 100}%`,
                       backgroundColor: colors[i],
@@ -49,7 +47,7 @@ export function TrialFunnel() {
                 </div>
               </div>
               <div className="w-20 text-right">
-                <span className="text-sm font-medium tabular-nums">
+                <span className="font-medium text-sm tabular-nums">
                   {((stage.users / chartData[0].users) * 100).toFixed(1)}%
                 </span>
                 {i > 0 && (

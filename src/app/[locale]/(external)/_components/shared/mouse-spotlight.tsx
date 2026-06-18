@@ -15,7 +15,7 @@ export function MouseSpotlight() {
 
   return (
     <div
-      className="fixed pointer-events-none z-[1] hidden md:block"
+      className="pointer-events-none fixed z-[1] hidden md:block"
       style={{
         left: position.x,
         top: position.y,

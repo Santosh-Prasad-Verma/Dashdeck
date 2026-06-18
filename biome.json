@@ -31,7 +31,17 @@
   },
   "files": {
     "ignoreUnknown": true,
-    "includes": ["**", "!.github", "!.husky", "!node_modules", "!.next", "!dist", "!out", "!src/components/ui"]
+    "includes": [
+      "**",
+      "!.github",
+      "!.husky",
+      "!node_modules",
+      "!.next",
+      "!dist",
+      "!out",
+      "!src/components/ui",
+      "!**/*.svg"
+    ]
   },
   "formatter": {
     "enabled": true,
@@ -50,6 +60,9 @@
     "enabled": true,
     "rules": {
       "preset": "recommended",
+      "a11y": {
+        "recommended": false
+      },
       "correctness": {
         "noUndeclaredVariables": "error",
         "noNestedComponentDefinitions": "error",

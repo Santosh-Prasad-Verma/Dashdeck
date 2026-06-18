@@ -1,5 +1,3 @@
-import { cn } from "@/lib/utils";
-
 import { AlertTimeline } from "./_components/alert-timeline";
 import { CostBreakdown } from "./_components/cost-breakdown";
 import { DeploymentHistory } from "./_components/deployment-history";
@@ -31,17 +29,17 @@ export default function Page() {
             }`}
           >
             <div className="flex items-center justify-between">
-              <span className="font-mono text-xs font-semibold">{server.label}</span>
+              <span className="font-mono font-semibold text-xs">{server.label}</span>
               <div
-                className={`size-2 rounded-full animate-pulse ${server.status === "up" ? "bg-emerald-500" : "bg-amber-500"}`}
+                className={`size-2 animate-pulse rounded-full ${server.status === "up" ? "bg-emerald-500" : "bg-amber-500"}`}
               />
             </div>
 
             <div className="mt-3 flex items-center justify-between gap-1">
               {/* CPU Gauge */}
-              <div className="flex flex-col items-center gap-1.5 flex-1">
-                <span className="text-[10px] text-muted-foreground font-medium">CPU</span>
-                <div className="relative size-11 flex items-center justify-center">
+              <div className="flex flex-1 flex-col items-center gap-1.5">
+                <span className="font-medium text-[10px] text-muted-foreground">CPU</span>
+                <div className="relative flex size-11 items-center justify-center">
                   <svg className="absolute inset-0 size-full -rotate-90" viewBox="0 0 36 36">
                     <circle cx="18" cy="18" r="16" fill="none" stroke="var(--border)" strokeWidth="3" />
                     <circle
@@ -58,14 +56,14 @@ export default function Page() {
                       strokeLinecap="round"
                     />
                   </svg>
-                  <span className="font-mono text-[9px] font-semibold tabular-nums">{server.cpu}%</span>
+                  <span className="font-mono font-semibold text-[9px] tabular-nums">{server.cpu}%</span>
                 </div>
               </div>
 
               {/* Memory Gauge */}
-              <div className="flex flex-col items-center gap-1.5 flex-1">
-                <span className="text-[10px] text-muted-foreground font-medium">MEM</span>
-                <div className="relative size-11 flex items-center justify-center">
+              <div className="flex flex-1 flex-col items-center gap-1.5">
+                <span className="font-medium text-[10px] text-muted-foreground">MEM</span>
+                <div className="relative flex size-11 items-center justify-center">
                   <svg className="absolute inset-0 size-full -rotate-90" viewBox="0 0 36 36">
                     <circle cx="18" cy="18" r="16" fill="none" stroke="var(--border)" strokeWidth="3" />
                     <circle
@@ -82,7 +80,7 @@ export default function Page() {
                       strokeLinecap="round"
                     />
                   </svg>
-                  <span className="font-mono text-[9px] font-semibold tabular-nums">{server.mem}%</span>
+                  <span className="font-mono font-semibold text-[9px] tabular-nums">{server.mem}%</span>
                 </div>
               </div>
             </div>
@@ -110,7 +108,7 @@ export default function Page() {
         <div className="xl:col-span-7">
           <LogViewer />
         </div>
-        <div className="xl:col-span-5 flex flex-col gap-6">
+        <div className="flex flex-col gap-6 xl:col-span-5">
           <ResponseTimeDistribution />
           <DeploymentHistory />
         </div>

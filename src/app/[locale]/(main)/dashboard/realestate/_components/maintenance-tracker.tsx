@@ -61,14 +61,14 @@ export function MaintenanceTracker() {
           {tickets.map((ticket) => (
             <div
               key={ticket.id}
-              className="flex items-center justify-between rounded-lg border p-3 hover:bg-muted/50 transition-colors"
+              className="flex items-center justify-between rounded-lg border p-3 transition-colors hover:bg-muted/50"
             >
               <div>
                 <div className="flex items-center gap-2">
-                  <span className="text-xs text-muted-foreground">{ticket.id}</span>
+                  <span className="text-muted-foreground text-xs">{ticket.id}</span>
                   <span className="font-medium text-sm">{ticket.issue}</span>
                 </div>
-                <div className="text-muted-foreground text-xs mt-0.5">
+                <div className="mt-0.5 text-muted-foreground text-xs">
                   {ticket.property} · {ticket.assigned}
                 </div>
               </div>
@@ -76,10 +76,10 @@ export function MaintenanceTracker() {
                 <Badge
                   className={
                     ticket.priority === "urgent"
-                      ? "bg-red-500/10 text-red-600 border-0"
+                      ? "border-0 bg-red-500/10 text-red-600"
                       : ticket.priority === "high"
-                        ? "bg-amber-500/10 text-amber-600 border-0"
-                        : "bg-muted text-muted-foreground border-0"
+                        ? "border-0 bg-amber-500/10 text-amber-600"
+                        : "border-0 bg-muted text-muted-foreground"
                   }
                 >
                   {ticket.priority}

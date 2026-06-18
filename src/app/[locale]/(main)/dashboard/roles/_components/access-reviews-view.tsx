@@ -145,7 +145,7 @@ export function AccessReviewsView() {
     <div className="flex flex-col gap-4">
       <div className="flex items-center justify-between">
         <div>
-          <h3 className="text-lg font-medium">Access Reviews</h3>
+          <h3 className="font-medium text-lg">Access Reviews</h3>
           <p className="text-muted-foreground text-sm">Review and audit user access permissions</p>
         </div>
         <Button>
@@ -199,7 +199,7 @@ export function AccessReviewsView() {
             <CardTitle>User Access Reviews</CardTitle>
             <div className="flex items-center gap-2">
               <div className="relative">
-                <Search className="absolute left-2.5 top-1/2 size-4 -translate-y-1/2 text-muted-foreground" />
+                <Search className="absolute top-1/2 left-2.5 size-4 -translate-y-1/2 text-muted-foreground" />
                 <Input
                   placeholder="Search users..."
                   className="h-8 w-48 pl-8"

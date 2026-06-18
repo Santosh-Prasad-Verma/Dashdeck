@@ -87,7 +87,7 @@ export function RentRoll() {
                   <div className="flex items-center gap-2">
                     <span className="font-medium text-sm">{lease.tenant}</span>
                     <Badge
-                      className={`text-[10px] border-0 ${
+                      className={`border-0 text-[10px] ${
                         lease.status === "expiring"
                           ? "bg-red-500/10 text-red-600 dark:text-red-400"
                           : "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400"
@@ -96,7 +96,7 @@ export function RentRoll() {
                       {lease.status === "expiring" ? "Expiring Soon" : "Active"}
                     </Badge>
                   </div>
-                  <div className="text-muted-foreground text-xs mt-0.5">
+                  <div className="mt-0.5 text-muted-foreground text-xs">
                     {lease.property} — Unit {lease.unit}
                   </div>
                   <div className="text-muted-foreground text-xs">

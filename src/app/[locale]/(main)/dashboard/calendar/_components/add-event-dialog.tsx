@@ -90,7 +90,7 @@ export function AddEventDialog() {
           </DialogHeader>
           <div className="grid gap-5 py-6">
             <div className="grid gap-2">
-              <Label htmlFor="title" className="text-sm font-medium">
+              <Label htmlFor="title" className="font-medium text-sm">
                 Event Title
               </Label>
               <Input
@@ -103,7 +103,7 @@ export function AddEventDialog() {
             </div>
 
             <div className="grid gap-2">
-              <Label htmlFor="description" className="text-sm font-medium">
+              <Label htmlFor="description" className="font-medium text-sm">
                 Description
               </Label>
               <Textarea
@@ -117,14 +117,14 @@ export function AddEventDialog() {
 
             <div className="grid grid-cols-2 gap-4">
               <div className="grid gap-2">
-                <Label htmlFor="date" className="flex items-center gap-1.5 text-sm font-medium">
+                <Label htmlFor="date" className="flex items-center gap-1.5 font-medium text-sm">
                   <Calendar className="size-3.5" />
                   Date
                 </Label>
                 <Input id="date" type="date" value={date} onChange={(e) => setDate(e.target.value)} className="h-10" />
               </div>
               <div className="grid gap-2">
-                <Label htmlFor="time" className="flex items-center gap-1.5 text-sm font-medium">
+                <Label htmlFor="time" className="flex items-center gap-1.5 font-medium text-sm">
                   <Clock className="size-3.5" />
                   Time
                 </Label>
@@ -133,7 +133,7 @@ export function AddEventDialog() {
             </div>
 
             <div className="grid gap-2">
-              <Label htmlFor="location" className="flex items-center gap-1.5 text-sm font-medium">
+              <Label htmlFor="location" className="flex items-center gap-1.5 font-medium text-sm">
                 <MapPin className="size-3.5" />
                 Location
               </Label>
@@ -148,7 +148,7 @@ export function AddEventDialog() {
 
             <div className="grid grid-cols-2 gap-4">
               <div className="grid gap-2">
-                <Label className="flex items-center gap-1.5 text-sm font-medium">
+                <Label className="flex items-center gap-1.5 font-medium text-sm">
                   <Tag className="size-3.5" />
                   Type
                 </Label>
@@ -171,7 +171,7 @@ export function AddEventDialog() {
                 </Select>
               </div>
               <div className="grid gap-2">
-                <Label className="flex items-center gap-1.5 text-sm font-medium">
+                <Label className="flex items-center gap-1.5 font-medium text-sm">
                   <Palette className="size-3.5" />
                   Color
                 </Label>
@@ -182,7 +182,7 @@ export function AddEventDialog() {
                       type="button"
                       onClick={() => setColor(c.value)}
                       className={`size-8 rounded-full ${c.color} transition-transform hover:scale-110 ${
-                        color === c.value ? "ring-2 ring-offset-2 ring-primary" : ""
+                        color === c.value ? "ring-2 ring-primary ring-offset-2" : ""
                       }`}
                       title={c.label}
                     />

@@ -8,7 +8,6 @@ import { AnimatePresence, motion } from "framer-motion";
 import {
   ArrowRight,
   Book,
-  Command,
   ExternalLink,
   FileText,
   HelpCircle,
@@ -16,7 +15,6 @@ import {
   LifeBuoy,
   Palette,
   Search,
-  Sparkles,
   Terminal,
   X,
   Zap,
@@ -204,7 +202,7 @@ const categories = [
 export default function Page() {
   const [searchQuery, setSearchQuery] = useState("");
   const [activeCategory, setActiveCategory] = useState("all");
-  const [selectedGuide, setSelectedGuide] = useState<(typeof guides)[number] | null>(null);
+  const [_selectedGuide, setSelectedGuide] = useState<(typeof guides)[number] | null>(null);
 
   // Filter FAQs based on search and category tabs
   const filteredFaqs = useMemo(() => {
@@ -238,7 +236,7 @@ export default function Page() {
           part.toLowerCase() === query.toLowerCase() ? (
             <mark
               key={i}
-              className="bg-primary/20 text-primary-foreground dark:bg-primary/30 rounded px-0.5 font-medium"
+              className="rounded bg-primary/20 px-0.5 font-medium text-primary-foreground dark:bg-primary/30"
             >
               {part}
             </mark>
@@ -251,27 +249,27 @@ export default function Page() {
   };
 
   return (
-    <div className="flex flex-col gap-6 max-w-7xl">
+    <div className="flex max-w-7xl flex-col gap-6">
       {/* Header */}
       <div>
-        <h1 className="text-3xl font-bold tracking-tight">Help Center</h1>
+        <h1 className="font-bold text-3xl tracking-tight">Help Center</h1>
         <p className="text-muted-foreground text-sm">Find answers, guides, and support resources.</p>
       </div>
 
       {/* Large Glowing Search Bar */}
       <div className="relative max-w-2xl">
-        <Search className="absolute left-4 top-1/2 size-5 -translate-y-1/2 text-muted-foreground/70" />
+        <Search className="absolute top-1/2 left-4 size-5 -translate-y-1/2 text-muted-foreground/70" />
         <Input
           type="text"
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
           placeholder="Search help articles, guides, and FAQs..."
-          className="h-12 pl-12 pr-10 text-sm rounded-xl border border-border/50 bg-card/50 shadow-sm focus-visible:ring-primary/20 focus-visible:border-primary/50 backdrop-blur-md transition-all placeholder:text-muted-foreground/60 dark:bg-zinc-900/50"
+          className="h-12 rounded-xl border border-border/50 bg-card/50 pr-10 pl-12 text-sm shadow-sm backdrop-blur-md transition-all placeholder:text-muted-foreground/60 focus-visible:border-primary/50 focus-visible:ring-primary/20 dark:bg-zinc-900/50"
         />
         {searchQuery && (
           <button
             onClick={() => setSearchQuery("")}
-            className="absolute right-4 top-1/2 -translate-y-1/2 text-muted-foreground/75 hover:text-foreground"
+            className="absolute top-1/2 right-4 -translate-y-1/2 text-muted-foreground/75 hover:text-foreground"
           >
             <X className="size-4" />
           </button>
@@ -280,7 +278,7 @@ export default function Page() {
 
       {/* Grid of Guide Cards */}
       <div className="space-y-3">
-        <h2 className="text-lg font-bold text-zinc-900 dark:text-zinc-50 flex items-center gap-2">
+        <h2 className="flex items-center gap-2 font-bold text-lg text-zinc-900 dark:text-zinc-50">
           <Book className="size-4.5 text-primary" />
           Documentation Guides
         </h2>
@@ -300,14 +298,14 @@ export default function Page() {
                   <DialogTrigger asChild>
                     <Card
                       onClick={() => setSelectedGuide(guide)}
-                      className="group h-full cursor-pointer border border-border/40 bg-card/65 backdrop-blur-md hover:bg-card hover:border-border/80 hover:shadow-md hover:shadow-black/5 dark:hover:shadow-black/20 hover:-translate-y-1 transition-all duration-300 rounded-2xl overflow-hidden flex flex-col justify-between"
+                      className="group flex h-full cursor-pointer flex-col justify-between overflow-hidden rounded-2xl border border-border/40 bg-card/65 backdrop-blur-md transition-all duration-300 hover:-translate-y-1 hover:border-border/80 hover:bg-card hover:shadow-black/5 hover:shadow-md dark:hover:shadow-black/20"
                     >
-                      <CardContent className="flex flex-col items-start gap-4 p-5 flex-1">
-                        <div className="flex size-11 items-center justify-center rounded-xl bg-primary/5 dark:bg-primary/10 text-primary border border-primary/10 group-hover:scale-110 transition-transform duration-300">
+                      <CardContent className="flex flex-1 flex-col items-start gap-4 p-5">
+                        <div className="flex size-11 items-center justify-center rounded-xl border border-primary/10 bg-primary/5 text-primary transition-transform duration-300 group-hover:scale-110 dark:bg-primary/10">
                           <guide.icon className="size-5" />
                         </div>
-                        <div className="space-y-1.5 flex-1">
-                          <h3 className="font-semibold text-sm text-zinc-950 dark:text-zinc-50 group-hover:text-primary transition-colors">
+                        <div className="flex-1 space-y-1.5">
+                          <h3 className="font-semibold text-sm text-zinc-950 transition-colors group-hover:text-primary dark:text-zinc-50">
                             {highlightText(guide.title, searchQuery)}
                           </h3>
                           <p className="text-muted-foreground text-xs leading-relaxed">
@@ -315,7 +313,7 @@ export default function Page() {
                           </p>
                         </div>
                       </CardContent>
-                      <div className="px-5 pb-4 pt-0 text-primary text-xs font-semibold flex items-center gap-1 group-hover:gap-2 transition-all">
+                      <div className="flex items-center gap-1 px-5 pt-0 pb-4 font-semibold text-primary text-xs transition-all group-hover:gap-2">
                         <span>Read guide</span>
                         <ArrowRight className="size-3" />
                       </div>
@@ -323,35 +321,35 @@ export default function Page() {
                   </DialogTrigger>
 
                   {/* Interactive guide modal */}
-                  <DialogContent className="max-w-xl bg-card border border-border/50 backdrop-blur-lg rounded-2xl p-6">
+                  <DialogContent className="max-w-xl rounded-2xl border border-border/50 bg-card p-6 backdrop-blur-lg">
                     <DialogHeader>
-                      <DialogTitle className="text-xl font-bold flex items-center gap-2 text-zinc-900 dark:text-zinc-50">
+                      <DialogTitle className="flex items-center gap-2 font-bold text-xl text-zinc-900 dark:text-zinc-50">
                         <guide.icon className="size-5.5 text-primary" />
                         {guide.title}
                       </DialogTitle>
-                      <DialogDescription className="text-xs text-muted-foreground">{guide.desc}</DialogDescription>
+                      <DialogDescription className="text-muted-foreground text-xs">{guide.desc}</DialogDescription>
                     </DialogHeader>
 
-                    <div className="my-2 space-y-4 text-sm max-h-[60vh] overflow-y-auto pr-2">
+                    <div className="my-2 max-h-[60vh] space-y-4 overflow-y-auto pr-2 text-sm">
                       {guide.id === "getting-started" && guide.content.steps && (
                         <div className="space-y-3">
-                          <p className="text-zinc-650 dark:text-zinc-350 text-xs leading-relaxed">
+                          <p className="text-xs text-zinc-650 leading-relaxed dark:text-zinc-350">
                             {guide.content.intro}
                           </p>
                           <div className="space-y-3">
                             {guide.content.steps.map((step, idx) => (
                               <div
                                 key={idx}
-                                className="flex gap-3 items-start p-3 rounded-xl border border-border/20 bg-muted/20"
+                                className="flex items-start gap-3 rounded-xl border border-border/20 bg-muted/20 p-3"
                               >
-                                <span className="flex size-6 shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary font-bold text-xs">
+                                <span className="flex size-6 shrink-0 items-center justify-center rounded-full bg-primary/10 font-bold text-primary text-xs">
                                   {idx + 1}
                                 </span>
                                 <div>
                                   <h4 className="font-semibold text-xs text-zinc-900 dark:text-zinc-100">
                                     {step.title}
                                   </h4>
-                                  <p className="text-muted-foreground text-[11px] mt-0.5">{step.desc}</p>
+                                  <p className="mt-0.5 text-[11px] text-muted-foreground">{step.desc}</p>
                                 </div>
                               </div>
                             ))}
@@ -361,17 +359,17 @@ export default function Page() {
 
                       {guide.id === "dashboard-reference" && guide.content.details && (
                         <div className="space-y-3">
-                          <p className="text-zinc-650 dark:text-zinc-350 text-xs leading-relaxed">
+                          <p className="text-xs text-zinc-650 leading-relaxed dark:text-zinc-350">
                             {guide.content.intro}
                           </p>
                           <div className="space-y-2.5">
                             {guide.content.details.map((detail, idx) => (
-                              <div key={idx} className="p-3 rounded-xl border border-border/20 bg-muted/25">
-                                <h4 className="font-semibold text-xs text-primary flex items-center gap-1.5">
+                              <div key={idx} className="rounded-xl border border-border/20 bg-muted/25 p-3">
+                                <h4 className="flex items-center gap-1.5 font-semibold text-primary text-xs">
                                   <Layout className="size-3.5" />
                                   {detail.name}
                                 </h4>
-                                <p className="text-muted-foreground text-[11px] mt-1 leading-relaxed">{detail.desc}</p>
+                                <p className="mt-1 text-[11px] text-muted-foreground leading-relaxed">{detail.desc}</p>
                               </div>
                             ))}
                           </div>
@@ -380,24 +378,24 @@ export default function Page() {
 
                       {guide.id === "theme-customization" && guide.content.presets && (
                         <div className="space-y-3">
-                          <p className="text-zinc-650 dark:text-zinc-350 text-xs leading-relaxed">
+                          <p className="text-xs text-zinc-650 leading-relaxed dark:text-zinc-350">
                             {guide.content.intro}
                           </p>
                           <div className="grid grid-cols-2 gap-2">
                             {guide.content.presets.map((preset, idx) => (
                               <div
                                 key={idx}
-                                className="p-2.5 rounded-xl border border-border/20 bg-muted/20 flex flex-col gap-1"
+                                className="flex flex-col gap-1 rounded-xl border border-border/20 bg-muted/20 p-2.5"
                               >
-                                <h4 className="font-bold text-[11px] text-zinc-900 dark:text-zinc-100 flex items-center gap-1">
+                                <h4 className="flex items-center gap-1 font-bold text-[11px] text-zinc-900 dark:text-zinc-100">
                                   <Palette className="size-3 text-primary" />
                                   {preset.name}
                                 </h4>
-                                <p className="text-muted-foreground text-[10px] leading-relaxed">{preset.desc}</p>
+                                <p className="text-[10px] text-muted-foreground leading-relaxed">{preset.desc}</p>
                               </div>
                             ))}
                           </div>
-                          <p className="text-muted-foreground text-[11px] italic bg-primary/5 p-2 rounded-lg border border-primary/10">
+                          <p className="rounded-lg border border-primary/10 bg-primary/5 p-2 text-[11px] text-muted-foreground italic">
                             {guide.content.custom}
                           </p>
                         </div>
@@ -405,20 +403,20 @@ export default function Page() {
 
                       {guide.id === "api-documentation" && guide.content.apis && (
                         <div className="space-y-3">
-                          <p className="text-zinc-650 dark:text-zinc-350 text-xs leading-relaxed">
+                          <p className="text-xs text-zinc-650 leading-relaxed dark:text-zinc-350">
                             {guide.content.intro}
                           </p>
                           <div className="space-y-2">
                             {guide.content.apis.map((api, idx) => (
                               <div
                                 key={idx}
-                                className="p-2.5 rounded-xl border border-border/20 bg-muted/25 flex flex-col gap-1 font-mono"
+                                className="flex flex-col gap-1 rounded-xl border border-border/20 bg-muted/25 p-2.5 font-mono"
                               >
-                                <div className="flex items-center gap-1.5 text-xs text-indigo-500 font-semibold">
+                                <div className="flex items-center gap-1.5 font-semibold text-indigo-500 text-xs">
                                   <Terminal className="size-3.5" />
                                   <span>{api.store}</span>
                                 </div>
-                                <p className="text-muted-foreground text-[10px] font-sans leading-normal">{api.desc}</p>
+                                <p className="font-sans text-[10px] text-muted-foreground leading-normal">{api.desc}</p>
                               </div>
                             ))}
                           </div>
@@ -426,7 +424,7 @@ export default function Page() {
                       )}
                     </div>
 
-                    <DialogFooter className="border-t border-border/20 pt-4">
+                    <DialogFooter className="border-border/20 border-t pt-4">
                       <DialogTrigger asChild>
                         <Button variant="outline" className="h-9 text-xs">
                           Close Guide
@@ -447,10 +445,10 @@ export default function Page() {
       </div>
 
       {/* FAQ Accordion Grid */}
-      <Card className="border-border/40 bg-card/45 backdrop-blur-md rounded-2xl shadow-xs">
-        <CardHeader className="border-b border-border/30 bg-muted/20 px-6 py-4 flex flex-col md:flex-row md:items-center justify-between gap-4">
+      <Card className="rounded-2xl border-border/40 bg-card/45 shadow-xs backdrop-blur-md">
+        <CardHeader className="flex flex-col justify-between gap-4 border-border/30 border-b bg-muted/20 px-6 py-4 md:flex-row md:items-center">
           <div>
-            <CardTitle className="text-lg font-bold text-zinc-900 dark:text-zinc-50 flex items-center gap-2">
+            <CardTitle className="flex items-center gap-2 font-bold text-lg text-zinc-900 dark:text-zinc-50">
               <HelpCircle className="size-5 text-primary" />
               Frequently Asked Questions
             </CardTitle>
@@ -463,10 +461,10 @@ export default function Page() {
               <button
                 key={cat.id}
                 onClick={() => setActiveCategory(cat.id)}
-                className={`px-3 py-1 rounded-lg text-xs font-semibold transition-all border ${
+                className={`rounded-lg border px-3 py-1 font-semibold text-xs transition-all ${
                   activeCategory === cat.id
-                    ? "bg-primary border-primary text-primary-foreground shadow-xs"
-                    : "bg-muted/40 hover:bg-muted/70 text-muted-foreground border-border/20"
+                    ? "border-primary bg-primary text-primary-foreground shadow-xs"
+                    : "border-border/20 bg-muted/40 text-muted-foreground hover:bg-muted/70"
                 }`}
               >
                 {cat.name}
@@ -475,9 +473,9 @@ export default function Page() {
           </div>
         </CardHeader>
         <CardContent className="p-6">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
             <AnimatePresence mode="popLayout">
-              {filteredFaqs.map((faq, i) => (
+              {filteredFaqs.map((faq, _i) => (
                 <motion.div
                   key={faq.q}
                   layout
@@ -485,21 +483,21 @@ export default function Page() {
                   animate={{ opacity: 1, scale: 1 }}
                   exit={{ opacity: 0, scale: 0.95 }}
                   transition={{ duration: 0.15 }}
-                  className="p-4 rounded-xl border border-border/30 bg-zinc-50/50 dark:bg-zinc-900/30 space-y-2 hover:border-border/60 hover:shadow-xs transition-all flex flex-col justify-between"
+                  className="flex flex-col justify-between space-y-2 rounded-xl border border-border/30 bg-zinc-50/50 p-4 transition-all hover:border-border/60 hover:shadow-xs dark:bg-zinc-900/30"
                 >
                   <div className="space-y-1.5">
-                    <h4 className="font-semibold text-xs text-zinc-900 dark:text-zinc-100 flex items-start gap-2">
-                      <span className="text-primary font-bold">Q:</span>
+                    <h4 className="flex items-start gap-2 font-semibold text-xs text-zinc-900 dark:text-zinc-100">
+                      <span className="font-bold text-primary">Q:</span>
                       <span>{highlightText(faq.q, searchQuery)}</span>
                     </h4>
-                    <p className="text-muted-foreground text-[11px] leading-relaxed pl-4.5">
+                    <p className="pl-4.5 text-[11px] text-muted-foreground leading-relaxed">
                       {highlightText(faq.a, searchQuery)}
                     </p>
                   </div>
-                  <div className="pt-2 flex justify-end">
+                  <div className="flex justify-end pt-2">
                     <Badge
                       variant="outline"
-                      className="text-[9px] uppercase tracking-wider px-1.5 py-0 bg-muted/40 border-border/20 text-muted-foreground font-bold font-sans"
+                      className="border-border/20 bg-muted/40 px-1.5 py-0 font-bold font-sans text-[9px] text-muted-foreground uppercase tracking-wider"
                     >
                       {faq.category}
                     </Badge>
@@ -517,21 +515,21 @@ export default function Page() {
       </Card>
 
       {/* Support Banner */}
-      <div className="relative overflow-hidden flex flex-col sm:flex-row items-center justify-between gap-4 rounded-2xl border border-indigo-500/20 bg-indigo-500/5 dark:bg-indigo-500/10 p-6 shadow-sm">
-        <div className="absolute -right-20 -bottom-20 w-60 h-60 bg-indigo-500/10 blur-[80px] rounded-full pointer-events-none" />
-        <div className="flex items-center gap-4 text-center sm:text-left z-10">
-          <div className="flex size-10 items-center justify-center rounded-xl bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 border border-indigo-500/20 shrink-0">
+      <div className="relative flex flex-col items-center justify-between gap-4 overflow-hidden rounded-2xl border border-indigo-500/20 bg-indigo-500/5 p-6 shadow-sm sm:flex-row dark:bg-indigo-500/10">
+        <div className="pointer-events-none absolute -right-20 -bottom-20 h-60 w-60 rounded-full bg-indigo-500/10 blur-[80px]" />
+        <div className="z-10 flex items-center gap-4 text-center sm:text-left">
+          <div className="flex size-10 shrink-0 items-center justify-center rounded-xl border border-indigo-500/20 bg-indigo-500/10 text-indigo-600 dark:text-indigo-400">
             <LifeBuoy className="size-5" />
           </div>
           <div>
-            <h4 className="font-semibold text-zinc-900 dark:text-zinc-100 text-sm">Still need help?</h4>
-            <p className="text-zinc-500 dark:text-zinc-400 text-xs">
+            <h4 className="font-semibold text-sm text-zinc-900 dark:text-zinc-100">Still need help?</h4>
+            <p className="text-xs text-zinc-500 dark:text-zinc-400">
               If you can't find what you're looking for, feel free to open a ticket or search issues.
             </p>
           </div>
         </div>
         <Button
-          className="bg-indigo-600 hover:bg-indigo-500 text-white dark:bg-indigo-500 dark:hover:bg-indigo-400 shrink-0 font-medium z-10"
+          className="z-10 shrink-0 bg-indigo-600 font-medium text-white hover:bg-indigo-500 dark:bg-indigo-500 dark:hover:bg-indigo-400"
           asChild
         >
           <Link

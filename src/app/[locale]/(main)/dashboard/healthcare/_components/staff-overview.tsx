@@ -39,8 +39,8 @@ export function StaffOverview() {
                 <Badge
                   className={
                     member.status === "on-duty"
-                      ? "bg-foreground/10 text-foreground border border-foreground/25"
-                      : "bg-muted text-muted-foreground border-0"
+                      ? "border border-foreground/25 bg-foreground/10 text-foreground"
+                      : "border-0 bg-muted text-muted-foreground"
                   }
                 >
                   {member.status === "on-duty" ? "On Duty" : "Off Duty"}

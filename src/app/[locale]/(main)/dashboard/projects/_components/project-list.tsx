@@ -73,11 +73,11 @@ const projects = [
 function getStatusBadge(status: string) {
   switch (status) {
     case "on-track":
-      return <Badge className="bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-0">On Track</Badge>;
+      return <Badge className="border-0 bg-emerald-500/10 text-emerald-600 dark:text-emerald-400">On Track</Badge>;
     case "at-risk":
-      return <Badge className="bg-amber-500/10 text-amber-600 dark:text-amber-400 border-0">At Risk</Badge>;
+      return <Badge className="border-0 bg-amber-500/10 text-amber-600 dark:text-amber-400">At Risk</Badge>;
     case "blocked":
-      return <Badge className="bg-red-500/10 text-red-600 dark:text-red-400 border-0">Blocked</Badge>;
+      return <Badge className="border-0 bg-red-500/10 text-red-600 dark:text-red-400">Blocked</Badge>;
     default:
       return <Badge variant="secondary">{status}</Badge>;
   }
@@ -95,24 +95,24 @@ export function ProjectList() {
           <div className="flex flex-col gap-3 px-4 pb-4">
             {projects.map((project) => (
               <div key={project.id} className="rounded-lg border p-4 transition-colors hover:bg-muted/50">
-                <div className="flex items-start justify-between mb-2">
+                <div className="mb-2 flex items-start justify-between">
                   <div>
                     <h4 className="font-medium text-sm">{project.name}</h4>
-                    <p className="text-muted-foreground text-xs mt-0.5">
+                    <p className="mt-0.5 text-muted-foreground text-xs">
                       Lead: {project.lead} · Due {project.deadline}
                     </p>
                   </div>
                   {getStatusBadge(project.status)}
                 </div>
-                <div className="flex items-center gap-4 mt-3">
-                  <Progress value={project.progress} className="flex-1 h-2" />
-                  <span className="text-sm font-medium tabular-nums w-10 text-right">{project.progress}%</span>
+                <div className="mt-3 flex items-center gap-4">
+                  <Progress value={project.progress} className="h-2 flex-1" />
+                  <span className="w-10 text-right font-medium text-sm tabular-nums">{project.progress}%</span>
                 </div>
-                <div className="flex items-center justify-between mt-3">
+                <div className="mt-3 flex items-center justify-between">
                   <AvatarGroup>
                     {project.team.map((initials, i) => (
                       <Avatar key={i} className="size-7">
-                        <AvatarFallback className="text-[10px] bg-muted text-muted-foreground">
+                        <AvatarFallback className="bg-muted text-[10px] text-muted-foreground">
                           {initials}
                         </AvatarFallback>
                       </Avatar>

@@ -83,7 +83,7 @@ export function PropertyMap() {
                     {loc.type}
                   </Badge>
                 </div>
-                <div className="flex items-center gap-1 text-muted-foreground text-xs mt-0.5">
+                <div className="mt-0.5 flex items-center gap-1 text-muted-foreground text-xs">
                   <MapPin className="size-3" />
                   {loc.address}
                 </div>

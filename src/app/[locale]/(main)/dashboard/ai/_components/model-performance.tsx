@@ -72,7 +72,7 @@ export function ModelPerformance() {
                 <div className="flex items-center gap-2">
                   <div className={`size-2 rounded-full ${getStatusColor(model.status)}`} />
                   <div>
-                    <div className="text-sm font-medium">{model.name}</div>
+                    <div className="font-medium text-sm">{model.name}</div>
                     <div className="text-muted-foreground text-xs">{model.provider}</div>
                   </div>
                 </div>

@@ -112,18 +112,18 @@ export function RecentConversations() {
                       <ModelIcon className="size-4" />
                     </AvatarFallback>
                   </Avatar>
-                  <div className="flex-1 min-w-0">
-                    <div className="flex items-center gap-2 mb-1">
+                  <div className="min-w-0 flex-1">
+                    <div className="mb-1 flex items-center gap-2">
                       <Badge variant="secondary" className={getModelColor(conv.model)}>
                         {conv.model}
                       </Badge>
-                      <span className="text-muted-foreground text-xs flex items-center gap-1">
+                      <span className="flex items-center gap-1 text-muted-foreground text-xs">
                         <Clock className="size-3" />
                         {conv.time}
                       </span>
                     </div>
-                    <p className="text-sm truncate">{conv.prompt}</p>
-                    <div className="flex items-center gap-3 mt-1 text-xs text-muted-foreground">
+                    <p className="truncate text-sm">{conv.prompt}</p>
+                    <div className="mt-1 flex items-center gap-3 text-muted-foreground text-xs">
                       <span>{conv.tokens.toLocaleString()} tokens</span>
                       <span>{conv.cost}</span>
                     </div>

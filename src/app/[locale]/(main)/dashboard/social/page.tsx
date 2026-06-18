@@ -1,4 +1,4 @@
-import { TrendingUp, Users } from "lucide-react";
+import { TrendingUp } from "lucide-react";
 
 import { AudienceDemographics } from "./_components/audience-demographics";
 import { BestPostingTimes } from "./_components/best-posting-times";
@@ -14,7 +14,7 @@ export default function Page() {
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-3xl font-bold tracking-tight">Social Media Analytics</h1>
+          <h1 className="font-bold text-3xl tracking-tight">Social Media Analytics</h1>
           <p className="text-muted-foreground text-sm">Track post performance, follower growth, and engagement.</p>
         </div>
       </div>
@@ -28,8 +28,8 @@ export default function Page() {
           { label: "LinkedIn", followers: "22.1K", change: "+18.3%", up: true },
         ].map((p) => (
           <div key={p.label} className="rounded-xl border bg-card p-5">
-            <p className="text-sm text-muted-foreground">{p.label}</p>
-            <p className="mt-1 text-3xl font-bold tabular-nums">{p.followers}</p>
+            <p className="text-muted-foreground text-sm">{p.label}</p>
+            <p className="mt-1 font-bold text-3xl tabular-nums">{p.followers}</p>
             <p className="mt-1 flex items-center gap-1 text-emerald-600 text-sm">
               <TrendingUp className="size-3" />
               {p.change}
@@ -47,8 +47,8 @@ export default function Page() {
           { label: "Total Shares", value: "42.3K", sub: "Viral reach" },
         ].map((kpi) => (
           <div key={kpi.label} className="rounded-xl border bg-card p-5">
-            <p className="text-sm text-muted-foreground">{kpi.label}</p>
-            <p className="mt-1 text-2xl font-bold tabular-nums">{kpi.value}</p>
+            <p className="text-muted-foreground text-sm">{kpi.label}</p>
+            <p className="mt-1 font-bold text-2xl tabular-nums">{kpi.value}</p>
             <p className="mt-0.5 text-muted-foreground text-xs">{kpi.sub}</p>
           </div>
         ))}

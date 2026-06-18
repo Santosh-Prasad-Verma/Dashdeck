@@ -33,13 +33,13 @@ export function RiskMatrix() {
                 return (
                   <div
                     key={`${impact}-${probability}`}
-                    className={`flex h-10 items-center justify-center text-[10px] font-medium transition-colors ${
+                    className={`flex h-10 items-center justify-center font-medium text-[10px] transition-colors ${
                       impact * probability > 15
                         ? "bg-red-500/20 text-red-600 dark:text-red-400"
                         : impact * probability > 8
                           ? "bg-amber-500/20 text-amber-600 dark:text-amber-400"
                           : "bg-emerald-500/10 text-muted-foreground"
-                    } ${matchingRisk ? "ring-2 ring-inset ring-primary" : ""}`}
+                    } ${matchingRisk ? "ring-2 ring-primary ring-inset" : ""}`}
                     title={matchingRisk ? `${matchingRisk.risk} (${matchingRisk.project})` : ""}
                   >
                     {matchingRisk ? "⚠" : ""}
@@ -50,7 +50,7 @@ export function RiskMatrix() {
           ))}
 
           {/* Y and X-axis labels */}
-          <div className="col-span-5 flex justify-between border-t px-1 py-1 text-muted-foreground text-[10px]">
+          <div className="col-span-5 flex justify-between border-t px-1 py-1 text-[10px] text-muted-foreground">
             <span>Low Probability</span>
             <span>High Probability →</span>
           </div>
@@ -62,7 +62,7 @@ export function RiskMatrix() {
               <div className="flex items-center gap-3">
                 <div className={`size-2.5 rounded-full ${getRiskColor(risk.impact, risk.probability)}`} />
                 <div>
-                  <span className="text-sm font-medium">{risk.risk}</span>
+                  <span className="font-medium text-sm">{risk.risk}</span>
                   <span className="ml-2 text-muted-foreground text-xs">{risk.project}</span>
                 </div>
               </div>

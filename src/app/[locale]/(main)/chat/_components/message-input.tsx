@@ -27,7 +27,7 @@ export function MessageInput({ conversationId }: { conversationId: number }) {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="flex items-center gap-2 p-4 border-t">
+    <form onSubmit={handleSubmit} className="flex items-center gap-2 border-t p-4">
       <Input
         value={message}
         onChange={(e) => setMessage(e.target.value)}

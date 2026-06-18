@@ -44,23 +44,23 @@ export function IncomeExpenseComparison() {
 
       <CardContent>
         {/* Cash summary */}
-        <div className="grid grid-cols-2 gap-4 mb-6">
-          <div className="flex items-center gap-3 p-3 rounded-xl border bg-muted/10">
+        <div className="mb-6 grid grid-cols-2 gap-4">
+          <div className="flex items-center gap-3 rounded-xl border bg-muted/10 p-3">
             <div className="flex size-9 items-center justify-center rounded-lg bg-emerald-500/10 text-emerald-500">
               <ArrowUpRight className="size-5" />
             </div>
             <div>
-              <span className="text-[10px] text-muted-foreground block font-medium">Avg Income</span>
-              <span className="text-lg font-bold tabular-nums">$6,796</span>
+              <span className="block font-medium text-[10px] text-muted-foreground">Avg Income</span>
+              <span className="font-bold text-lg tabular-nums">$6,796</span>
             </div>
           </div>
-          <div className="flex items-center gap-3 p-3 rounded-xl border bg-muted/10">
+          <div className="flex items-center gap-3 rounded-xl border bg-muted/10 p-3">
             <div className="flex size-9 items-center justify-center rounded-lg bg-red-500/10 text-red-500">
               <ArrowDownRight className="size-5" />
             </div>
             <div>
-              <span className="text-[10px] text-muted-foreground block font-medium">Avg Expense</span>
-              <span className="text-lg font-bold tabular-nums">-$3,738</span>
+              <span className="block font-medium text-[10px] text-muted-foreground">Avg Expense</span>
+              <span className="font-bold text-lg tabular-nums">-$3,738</span>
             </div>
           </div>
         </div>

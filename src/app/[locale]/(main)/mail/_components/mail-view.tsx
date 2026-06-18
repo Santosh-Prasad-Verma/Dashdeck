@@ -34,7 +34,6 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { InputGroup, InputGroupAddon, InputGroupButton, InputGroupInput } from "@/components/ui/input-group";
 import { Separator } from "@/components/ui/separator";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
 import { cn } from "@/lib/utils";
@@ -242,20 +241,20 @@ export function MailView({ mail, onClose }: MailDisplayProps) {
               <EmailBodyRenderer body={mail.body} />
             </div>
 
-            <div className="mt-auto pt-4 border-t border-border/30">
-              <div className="flex gap-2 items-end bg-zinc-50 dark:bg-zinc-900/50 border border-border/40 rounded-2xl p-2.5 focus-within:border-primary/50 focus-within:ring-2 focus-within:ring-primary/10 transition-all">
+            <div className="mt-auto border-border/30 border-t pt-4">
+              <div className="flex items-end gap-2 rounded-2xl border border-border/40 bg-zinc-50 p-2.5 transition-all focus-within:border-primary/50 focus-within:ring-2 focus-within:ring-primary/10 dark:bg-zinc-900/50">
                 <Button
                   variant="ghost"
                   size="icon"
-                  className="size-8 rounded-lg text-muted-foreground hover:text-foreground shrink-0"
+                  className="size-8 shrink-0 rounded-lg text-muted-foreground hover:text-foreground"
                 >
                   <Reply className="size-4" />
                 </Button>
                 <textarea
-                  className="flex-1 bg-transparent border-0 outline-none text-sm placeholder:text-muted-foreground/60 resize-none min-h-[40px] max-h-[160px] py-1 px-1 h-10 align-middle leading-relaxed w-full focus:ring-0"
+                  className="h-10 max-h-[160px] min-h-[40px] w-full flex-1 resize-none border-0 bg-transparent px-1 py-1 align-middle text-sm leading-relaxed outline-none placeholder:text-muted-foreground/60 focus:ring-0"
                   placeholder={`Reply to ${mail.from.name}...`}
                 />
-                <div className="flex items-center gap-1 shrink-0">
+                <div className="flex shrink-0 items-center gap-1">
                   <Button
                     variant="ghost"
                     size="icon"
@@ -272,7 +271,7 @@ export function MailView({ mail, onClose }: MailDisplayProps) {
                   </Button>
                   <Button
                     size="icon"
-                    className="size-8 rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white dark:bg-indigo-500 dark:hover:bg-indigo-400 shadow-sm shrink-0"
+                    className="size-8 shrink-0 rounded-lg bg-indigo-600 text-white shadow-sm hover:bg-indigo-500 dark:bg-indigo-500 dark:hover:bg-indigo-400"
                   >
                     <Send className="size-3.5" />
                   </Button>
@@ -307,7 +306,7 @@ function EmailBodyRenderer({ body }: { body: string }) {
           const title = match ? match[1].trim() : "";
           return (
             <div key={index} className="my-4 flex items-center gap-3">
-              <span className="text-[10px] font-bold tracking-widest text-muted-foreground uppercase whitespace-nowrap">
+              <span className="whitespace-nowrap font-bold text-[10px] text-muted-foreground uppercase tracking-widest">
                 {title}
               </span>
               <div className="h-[1px] flex-1 bg-border/50" />
@@ -319,7 +318,7 @@ function EmailBodyRenderer({ body }: { body: string }) {
         if (trimmed.split("\n").some((line) => /^\[([ xX]?)\]/.test(line.trim()))) {
           const lines = trimmed.split("\n");
           return (
-            <div key={index} className="flex flex-col gap-2 my-2 bg-muted/10 p-3 rounded-lg border border-border/40">
+            <div key={index} className="my-2 flex flex-col gap-2 rounded-lg border border-border/40 bg-muted/10 p-3">
               {lines.map((line, lIdx) => {
                 const match = line.match(/^\[([ xX]?)\]\s*(.+)$/);
                 if (match) {
@@ -335,12 +334,12 @@ function EmailBodyRenderer({ body }: { body: string }) {
                       >
                         {checked && <Check className="size-3 stroke-[3]" />}
                       </div>
-                      <span className="text-sm font-normal text-muted-foreground">{text}</span>
+                      <span className="font-normal text-muted-foreground text-sm">{text}</span>
                     </div>
                   );
                 }
                 return (
-                  <p key={lIdx} className="text-sm text-muted-foreground leading-normal">
+                  <p key={lIdx} className="text-muted-foreground text-sm leading-normal">
                     {line}
                   </p>
                 );
@@ -365,14 +364,14 @@ function EmailBodyRenderer({ body }: { body: string }) {
         ) {
           const lines = trimmed.split("\n");
           return (
-            <div key={index} className="flex flex-col gap-2 my-2 pl-1">
+            <div key={index} className="my-2 flex flex-col gap-2 pl-1">
               {lines.map((line, lIdx) => {
                 const trimmedLine = line.trim();
                 if (trimmedLine.startsWith("•")) {
                   const text = trimmedLine.replace(/^•\s*/, "");
                   return (
-                    <div key={lIdx} className="flex items-start gap-2.5 text-sm text-muted-foreground leading-relaxed">
-                      <div className="size-1.5 rounded-full bg-foreground/60 mt-2 shrink-0" />
+                    <div key={lIdx} className="flex items-start gap-2.5 text-muted-foreground text-sm leading-relaxed">
+                      <div className="mt-2 size-1.5 shrink-0 rounded-full bg-foreground/60" />
                       <span>{text}</span>
                     </div>
                   );
@@ -380,8 +379,8 @@ function EmailBodyRenderer({ body }: { body: string }) {
                 if (trimmedLine.startsWith("✓")) {
                   const text = trimmedLine.replace(/^✓\s*/, "");
                   return (
-                    <div key={lIdx} className="flex items-start gap-2.5 text-sm text-muted-foreground leading-relaxed">
-                      <Check className="size-4 text-foreground/80 shrink-0 mt-0.5" />
+                    <div key={lIdx} className="flex items-start gap-2.5 text-muted-foreground text-sm leading-relaxed">
+                      <Check className="mt-0.5 size-4 shrink-0 text-foreground/80" />
                       <span>{text}</span>
                     </div>
                   );
@@ -391,21 +390,21 @@ function EmailBodyRenderer({ body }: { body: string }) {
                   const num = numMatch[1];
                   const text = numMatch[2];
                   return (
-                    <div key={lIdx} className="flex items-start gap-3 text-sm text-muted-foreground leading-relaxed">
-                      <span className="font-mono font-semibold text-foreground/70 shrink-0">{num}.</span>
+                    <div key={lIdx} className="flex items-start gap-3 text-muted-foreground text-sm leading-relaxed">
+                      <span className="shrink-0 font-mono font-semibold text-foreground/70">{num}.</span>
                       <span>{text}</span>
                     </div>
                   );
                 }
                 if (trimmedLine.startsWith("🥇") || trimmedLine.startsWith("🥈") || trimmedLine.startsWith("🥉")) {
                   return (
-                    <div key={lIdx} className="flex items-center gap-2 text-sm font-medium text-foreground py-0.5">
+                    <div key={lIdx} className="flex items-center gap-2 py-0.5 font-medium text-foreground text-sm">
                       <span>{trimmedLine}</span>
                     </div>
                   );
                 }
                 return (
-                  <p key={lIdx} className="text-sm text-muted-foreground leading-relaxed">
+                  <p key={lIdx} className="text-muted-foreground text-sm leading-relaxed">
                     {line}
                   </p>
                 );
@@ -424,17 +423,17 @@ function EmailBodyRenderer({ body }: { body: string }) {
             return (
               <div
                 key={index}
-                className="flex flex-col gap-3 my-4 p-4 rounded-xl border border-border bg-muted/40 max-w-sm"
+                className="my-4 flex max-w-sm flex-col gap-3 rounded-xl border border-border bg-muted/40 p-4"
               >
                 {lines.map((line, lIdx) => {
                   if (line.includes("[Confirm]")) {
                     const text = line.replace(/—\s*\[Confirm\]/, "").trim();
                     return (
                       <div key={lIdx} className="flex items-center justify-between gap-4">
-                        <span className="text-sm font-medium text-foreground">{text}</span>
+                        <span className="font-medium text-foreground text-sm">{text}</span>
                         <Button
                           size="xs"
-                          className="bg-zinc-950 hover:bg-zinc-900 text-zinc-50 dark:bg-zinc-50 dark:hover:bg-zinc-200 dark:text-zinc-950 font-medium"
+                          className="bg-zinc-950 font-medium text-zinc-50 hover:bg-zinc-900 dark:bg-zinc-50 dark:text-zinc-950 dark:hover:bg-zinc-200"
                         >
                           Confirm
                         </Button>
@@ -445,11 +444,11 @@ function EmailBodyRenderer({ body }: { body: string }) {
                     const text = line.replace(/—\s*\[Lock Account\]/, "").trim();
                     return (
                       <div key={lIdx} className="flex items-center justify-between gap-4">
-                        <span className="text-sm font-medium text-destructive">{text}</span>
+                        <span className="font-medium text-destructive text-sm">{text}</span>
                         <Button
                           size="xs"
                           variant="outline"
-                          className="text-destructive hover:bg-destructive/10 border-destructive/20 hover:text-destructive"
+                          className="border-destructive/20 text-destructive hover:bg-destructive/10 hover:text-destructive"
                         >
                           Lock Account
                         </Button>
@@ -457,7 +456,7 @@ function EmailBodyRenderer({ body }: { body: string }) {
                     );
                   }
                   return (
-                    <p key={lIdx} className="text-sm text-muted-foreground">
+                    <p key={lIdx} className="text-muted-foreground text-sm">
                       {line}
                     </p>
                   );
@@ -469,7 +468,7 @@ function EmailBodyRenderer({ body }: { body: string }) {
           // Check if it's a list of links (e.g. [Upgrade Now] | [Watch Demo] | [Read Docs])
           if (trimmed.includes("|")) {
             return (
-              <div key={index} className="flex flex-wrap items-center gap-3 my-4">
+              <div key={index} className="my-4 flex flex-wrap items-center gap-3">
                 {buttonsMatches.map((btnText, bIdx) => {
                   const isPrimary = bIdx === 0;
                   return (
@@ -478,7 +477,7 @@ function EmailBodyRenderer({ body }: { body: string }) {
                       variant={isPrimary ? "default" : "outline"}
                       className={cn(
                         isPrimary
-                          ? "bg-zinc-950 hover:bg-zinc-900 text-zinc-50 dark:bg-zinc-50 dark:hover:bg-zinc-200 dark:text-zinc-950 font-medium"
+                          ? "bg-zinc-950 font-medium text-zinc-50 hover:bg-zinc-900 dark:bg-zinc-50 dark:text-zinc-950 dark:hover:bg-zinc-200"
                           : "font-medium",
                       )}
                       size="xs"
@@ -497,14 +496,14 @@ function EmailBodyRenderer({ body }: { body: string }) {
             const btnText = singleMatch[1];
             const subtext = singleMatch[2];
             return (
-              <div key={index} className="flex flex-col items-start gap-2 my-4">
+              <div key={index} className="my-4 flex flex-col items-start gap-2">
                 <Button
-                  className="bg-zinc-950 hover:bg-zinc-900 text-zinc-50 dark:bg-zinc-50 dark:hover:bg-zinc-200 dark:text-zinc-950 font-medium"
+                  className="bg-zinc-950 font-medium text-zinc-50 hover:bg-zinc-900 dark:bg-zinc-50 dark:text-zinc-950 dark:hover:bg-zinc-200"
                   size="sm"
                 >
                   {btnText}
                 </Button>
-                {subtext && <span className="text-xs text-muted-foreground">{subtext}</span>}
+                {subtext && <span className="text-muted-foreground text-xs">{subtext}</span>}
               </div>
             );
           }
@@ -531,7 +530,7 @@ function EmailBodyRenderer({ body }: { body: string }) {
                 {parsedRows.map((row, rIdx) => {
                   if (!row) {
                     return (
-                      <div key={rIdx} className="text-sm text-muted-foreground leading-normal">
+                      <div key={rIdx} className="text-muted-foreground text-sm leading-normal">
                         {kvLines[rIdx]}
                       </div>
                     );
@@ -541,13 +540,13 @@ function EmailBodyRenderer({ body }: { body: string }) {
                     <div
                       key={rIdx}
                       className={cn(
-                        "flex justify-between items-center text-sm py-1 border-b border-border/40 last:border-0 last:pb-0 pb-1",
-                        isTotal && "font-semibold text-foreground border-t border-border/80 pt-2 mt-1",
+                        "flex items-center justify-between border-border/40 border-b py-1 pb-1 text-sm last:border-0 last:pb-0",
+                        isTotal && "mt-1 border-border/80 border-t pt-2 font-semibold text-foreground",
                       )}
                     >
                       <span className={cn(isTotal ? "text-foreground" : "text-muted-foreground")}>{row.key}</span>
                       <span
-                        className={cn("font-mono", isTotal ? "text-base text-foreground font-bold" : "text-foreground")}
+                        className={cn("font-mono", isTotal ? "font-bold text-base text-foreground" : "text-foreground")}
                       >
                         {row.value}
                       </span>
@@ -563,7 +562,7 @@ function EmailBodyRenderer({ body }: { body: string }) {
         if (/^[⭐\s]+$/.test(trimmed)) {
           const starCount = (trimmed.match(/⭐/g) || []).length;
           return (
-            <div key={index} className="flex items-center gap-1 my-2">
+            <div key={index} className="my-2 flex items-center gap-1">
               {[...Array(starCount)].map((_, i) => (
                 <StarIcon key={i} className="size-4 fill-foreground text-foreground" />
               ))}
@@ -576,7 +575,7 @@ function EmailBodyRenderer({ body }: { body: string }) {
         return (
           <div key={index} className="my-2 flex flex-col gap-2">
             {pLines.map((line, lIdx) => (
-              <p key={lIdx} className="text-muted-foreground leading-relaxed text-sm font-normal">
+              <p key={lIdx} className="font-normal text-muted-foreground text-sm leading-relaxed">
                 {line}
               </p>
             ))}

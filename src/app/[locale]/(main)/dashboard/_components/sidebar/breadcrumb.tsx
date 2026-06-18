@@ -25,7 +25,7 @@ export function Breadcrumb() {
   };
 
   const pathSegments = pathname.split("/").filter(Boolean);
-  const breadcrumbs = pathSegments.map((segment, index) => {
+  const breadcrumbs = pathSegments.map((_segment, index) => {
     const path = `/${pathSegments.slice(0, index + 1).join("/")}`;
     const title = findPageTitle(path);
     return { path, title: title.charAt(0).toUpperCase() + title.slice(1) };
@@ -34,8 +34,8 @@ export function Breadcrumb() {
   if (breadcrumbs.length <= 1) return null;
 
   return (
-    <nav className="flex items-center gap-1 text-sm text-muted-foreground">
-      <I18nLink href="/dashboard/default" className="flex items-center gap-1 hover:text-foreground transition-colors">
+    <nav className="flex items-center gap-1 text-muted-foreground text-sm">
+      <I18nLink href="/dashboard/default" className="flex items-center gap-1 transition-colors hover:text-foreground">
         <Home className="size-3.5" />
       </I18nLink>
       {breadcrumbs.slice(1).map((breadcrumb, index) => (
@@ -44,7 +44,7 @@ export function Breadcrumb() {
           {index === breadcrumbs.length - 2 ? (
             <span className="font-medium text-foreground">{breadcrumb.title}</span>
           ) : (
-            <I18nLink href={breadcrumb.path} className="hover:text-foreground transition-colors">
+            <I18nLink href={breadcrumb.path} className="transition-colors hover:text-foreground">
               {breadcrumb.title}
             </I18nLink>
           )}

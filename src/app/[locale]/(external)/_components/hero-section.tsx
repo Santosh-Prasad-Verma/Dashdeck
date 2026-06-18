@@ -1,9 +1,8 @@
 "use client";
 
-import { useTranslations } from "next-intl";
-
 import { motion } from "framer-motion";
 import { Activity, BarChart2, HardDrive, Sparkles } from "lucide-react";
+import { useTranslations } from "next-intl";
 
 import { Link } from "@/i18n/navigation";
 
@@ -22,13 +21,13 @@ const fadeUp = {
 export function HeroSection() {
   const t = useTranslations("Landing.hero");
   return (
-    <section className="max-w-7xl mx-auto px-6 lg:px-8 min-h-[calc(100vh-4rem)] pt-28 pb-16 flex items-center">
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center w-full">
+    <section className="mx-auto flex min-h-[calc(100vh-4rem)] max-w-7xl items-center px-6 pt-28 pb-16 lg:px-8">
+      <div className="grid w-full grid-cols-1 items-center gap-16 lg:grid-cols-2">
         {/* Left Column */}
         <motion.div variants={stagger} initial="hidden" animate="show" className="flex flex-col">
           {/* Badge */}
           <motion.div variants={fadeUp}>
-            <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-sm font-medium bg-[#8B5CF6]/10 text-[#8B5CF6] border border-[#8B5CF6]/20">
+            <span className="inline-flex items-center gap-2 rounded-full border border-[#8B5CF6]/20 bg-[#8B5CF6]/10 px-4 py-1.5 font-medium text-[#8B5CF6] text-sm">
               <Sparkles className="size-3.5 animate-pulse" />
               {t("badge")}
             </span>
@@ -37,7 +36,7 @@ export function HeroSection() {
           {/* Headline */}
           <motion.h1
             variants={fadeUp}
-            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.08] text-white mt-8"
+            className="mt-8 font-bold text-4xl text-white leading-[1.08] tracking-tight sm:text-5xl md:text-6xl lg:text-7xl"
           >
             {t("headlineLine1")}
             <br />
@@ -46,15 +45,15 @@ export function HeroSection() {
           </motion.h1>
 
           {/* Subheadline */}
-          <motion.p variants={fadeUp} className="text-lg md:text-xl text-gray-400 leading-relaxed max-w-lg mt-6">
+          <motion.p variants={fadeUp} className="mt-6 max-w-lg text-gray-400 text-lg leading-relaxed md:text-xl">
             {t("description")}
           </motion.p>
 
           {/* CTAs */}
-          <motion.div variants={fadeUp} className="flex flex-wrap gap-4 mt-10">
+          <motion.div variants={fadeUp} className="mt-10 flex flex-wrap gap-4">
             <Link
               href="/dashboard/default"
-              className="bg-[#8B5CF6] hover:bg-[#7C3AED] text-white font-semibold px-8 py-3.5 rounded-xl text-base transition-all duration-300 hover:shadow-xl hover:shadow-[#8B5CF6]/25 hover:scale-[1.02] active:scale-[0.98]"
+              className="rounded-xl bg-[#8B5CF6] px-8 py-3.5 font-semibold text-base text-white transition-all duration-300 hover:scale-[1.02] hover:bg-[#7C3AED] hover:shadow-[#8B5CF6]/25 hover:shadow-xl active:scale-[0.98]"
             >
               {t("cta")}
             </Link>
@@ -69,24 +68,24 @@ export function HeroSection() {
           className="relative hidden lg:block"
         >
           {/* Glow */}
-          <div className="absolute bg-[#8B5CF6]/[0.08] w-[500px] h-[500px] rounded-full blur-[120px] -z-10 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" />
+          <div className="absolute top-1/2 left-1/2 -z-10 h-[500px] w-[500px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#8B5CF6]/[0.08] blur-[120px]" />
 
           {/* Dashboard Container */}
           <motion.div className="relative" style={{ transform: "perspective(1200px) rotateY(-6deg) rotateX(3deg)" }}>
             <div className="flex flex-col gap-4">
               {/* Upgraded Card 1: Traffic Spikes (Area/Line Chart) */}
-              <div className="bg-[#0A0A1A]/80 border border-white/[0.06] rounded-2xl p-5 backdrop-blur-sm">
-                <div className="flex items-center justify-between mb-4">
+              <div className="rounded-2xl border border-white/[0.06] bg-[#0A0A1A]/80 p-5 backdrop-blur-sm">
+                <div className="mb-4 flex items-center justify-between">
                   <div className="flex items-center gap-2">
                     <Activity className="size-4 text-[#8B5CF6]" />
-                    <span className="text-sm font-medium text-gray-300">{t("liveTraffic")}</span>
+                    <span className="font-medium text-gray-300 text-sm">{t("liveTraffic")}</span>
                   </div>
-                  <span className="text-[10px] font-medium text-[#8B5CF6] bg-[#8B5CF6]/10 px-2 py-0.5 rounded-full">
+                  <span className="rounded-full bg-[#8B5CF6]/10 px-2 py-0.5 font-medium text-[#8B5CF6] text-[10px]">
                     {t("live")}
                   </span>
                 </div>
 
-                <svg viewBox="0 0 280 80" className="w-full h-20">
+                <svg viewBox="0 0 280 80" className="h-20 w-full">
                   <defs>
                     <linearGradient id="waveFill1" x1="0" y1="0" x2="0" y2="1">
                       <stop offset="0%" stopColor="#8B5CF6" stopOpacity="0.25" />
@@ -119,22 +118,22 @@ export function HeroSection() {
                   />
                 </svg>
 
-                <div className="flex items-center justify-between mt-3 text-xs text-gray-500">
+                <div className="mt-3 flex items-center justify-between text-gray-500 text-xs">
                   <span>{t("avgSpeed")}</span>
-                  <span className="text-[#8B5CF6] font-medium">+14.2%</span>
+                  <span className="font-medium text-[#8B5CF6]">+14.2%</span>
                 </div>
               </div>
 
               <div className="grid grid-cols-2 gap-4">
                 {/* Upgraded Card 2: Region Load (Donut Ring Chart) */}
-                <div className="bg-[#0A0A1A]/80 border border-white/[0.06] rounded-2xl p-5 backdrop-blur-sm">
-                  <div className="flex items-center gap-1.5 mb-2">
+                <div className="rounded-2xl border border-white/[0.06] bg-[#0A0A1A]/80 p-5 backdrop-blur-sm">
+                  <div className="mb-2 flex items-center gap-1.5">
                     <HardDrive className="size-4 text-[#06B6D4]" />
-                    <span className="text-sm font-medium text-gray-300">{t("regionLoad")}</span>
+                    <span className="font-medium text-gray-300 text-sm">{t("regionLoad")}</span>
                   </div>
 
-                  <div className="flex items-center gap-4 mt-3">
-                    <div className="relative size-14 flex items-center justify-center shrink-0">
+                  <div className="mt-3 flex items-center gap-4">
+                    <div className="relative flex size-14 shrink-0 items-center justify-center">
                       <svg className="absolute inset-0 size-full -rotate-90" viewBox="0 0 36 36">
                         <circle cx="18" cy="18" r="16" fill="none" stroke="rgba(255,255,255,0.06)" strokeWidth="3.5" />
                         <circle
@@ -159,7 +158,7 @@ export function HeroSection() {
                           strokeLinecap="round"
                         />
                       </svg>
-                      <span className="text-[10px] font-bold text-white">85%</span>
+                      <span className="font-bold text-[10px] text-white">85%</span>
                     </div>
 
                     <div className="flex flex-col gap-1 text-[9px] text-gray-400">
@@ -176,13 +175,13 @@ export function HeroSection() {
                 </div>
 
                 {/* Upgraded Card 3: Real-Time Performance Bars (Histogram) */}
-                <div className="bg-[#0A0A1A]/80 border border-white/[0.06] rounded-2xl p-5 backdrop-blur-sm">
-                  <div className="flex items-center gap-1.5 mb-2">
+                <div className="rounded-2xl border border-white/[0.06] bg-[#0A0A1A]/80 p-5 backdrop-blur-sm">
+                  <div className="mb-2 flex items-center gap-1.5">
                     <BarChart2 className="size-4 text-[#8B5CF6]" />
-                    <span className="text-sm font-medium text-gray-300">{t("throughput")}</span>
+                    <span className="font-medium text-gray-300 text-sm">{t("throughput")}</span>
                   </div>
 
-                  <div className="flex items-end justify-between h-14 mt-4 gap-1">
+                  <div className="mt-4 flex h-14 items-end justify-between gap-1">
                     {[30, 45, 25, 60, 75, 40, 50, 85, 65, 45, 30, 55, 70].map((height, i) => (
                       <div
                         key={i}

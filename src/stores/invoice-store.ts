@@ -15,7 +15,7 @@ interface InvoiceState {
 
 export const useInvoiceStore = create<InvoiceState>()(
   persist(
-    (set, get) => ({
+    (set, _get) => ({
       currentInvoice: defaultInvoiceValues,
       savedInvoices: [],
       updateInvoice: (updates) =>

@@ -1,4 +1,4 @@
-import { Calendar, Clock, Flag, Target } from "lucide-react";
+import { Calendar, Target } from "lucide-react";
 
 import { BurndownChart } from "./_components/burndown-chart";
 import { ProjectList } from "./_components/project-list";
@@ -22,7 +22,7 @@ export default function Page() {
         <div className="flex items-center justify-between">
           <div>
             <p className="text-muted-foreground text-sm">Q2 2026 Sprint Cycle</p>
-            <h1 className="text-3xl font-bold tracking-tight">Project Management</h1>
+            <h1 className="font-bold text-3xl tracking-tight">Project Management</h1>
           </div>
           <div className="flex items-center gap-3">
             <Target className="size-5 text-muted-foreground" />
@@ -36,7 +36,7 @@ export default function Page() {
                 <div
                   className={`h-2 rounded-full ${i < 6 ? "bg-emerald-500" : i === 6 ? "bg-amber-500" : "bg-muted"}`}
                 />
-                <span className="text-muted-foreground text-[10px]">{month}</span>
+                <span className="text-[10px] text-muted-foreground">{month}</span>
               </div>
               {i < 7 && <div className={`h-0.5 w-6 ${i < 6 ? "bg-emerald-300" : "bg-muted"}`} />}
             </div>
@@ -53,12 +53,12 @@ export default function Page() {
                 m.status === "done"
                   ? "bg-emerald-500"
                   : m.status === "in-progress"
-                    ? "bg-blue-500 animate-pulse"
+                    ? "animate-pulse bg-blue-500"
                     : "bg-muted-foreground/30"
               }`}
             />
             <div>
-              <p className="text-sm font-medium">{m.title}</p>
+              <p className="font-medium text-sm">{m.title}</p>
               <p className="text-muted-foreground text-xs">{m.project}</p>
               <div className="mt-1 flex items-center gap-1 text-muted-foreground text-xs">
                 <Calendar className="size-3" />

@@ -35,9 +35,9 @@ export function BedHeatmap() {
             <div key={wing.name} className="flex flex-col gap-1.5">
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-2">
-                  <span className="text-sm font-medium">{wing.name}</span>
+                  <span className="font-medium text-sm">{wing.name}</span>
                   {wing.critical > 0 && (
-                    <span className="rounded-full bg-foreground/10 px-2 py-0.5 text-foreground border border-foreground/20 text-[10px] font-medium">
+                    <span className="rounded-full border border-foreground/20 bg-foreground/10 px-2 py-0.5 font-medium text-[10px] text-foreground">
                       {wing.critical} critical
                     </span>
                   )}

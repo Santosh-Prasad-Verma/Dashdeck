@@ -188,11 +188,7 @@
         {
           "title": "Bóveda segura",
           "description": "Cifrado de grado militar para contraseñas, documentos y datos sensibles. Arquitectura de conocimiento cero.",
-          "items": [
-            "Cifrado de extremo a extremo",
-            "Autenticación biométrica",
-            "Almacenamiento seguro de documentos"
-          ]
+          "items": ["Cifrado de extremo a extremo", "Autenticación biométrica", "Almacenamiento seguro de documentos"]
         }
       ]
     },

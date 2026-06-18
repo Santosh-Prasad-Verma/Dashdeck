@@ -1,4 +1,4 @@
-import { Clock, Pill } from "lucide-react";
+import { Pill } from "lucide-react";
 
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -30,7 +30,7 @@ export function MedicationSchedule() {
                 <div
                   className={`relative z-10 mt-1 flex size-10 items-center justify-center rounded-full ${
                     item.status === "administered"
-                      ? "bg-foreground/10 text-foreground border border-foreground/25"
+                      ? "border border-foreground/25 bg-foreground/10 text-foreground"
                       : item.status === "pending"
                         ? "bg-muted-foreground/10 text-muted-foreground"
                         : "bg-muted text-muted-foreground/60"
@@ -38,7 +38,7 @@ export function MedicationSchedule() {
                 >
                   <Pill className="size-5" />
                 </div>
-                <div className="flex-1 min-w-0 rounded-lg border p-3">
+                <div className="min-w-0 flex-1 rounded-lg border p-3">
                   <div className="flex items-start justify-between gap-2">
                     <div>
                       <div className="flex items-center gap-2">
@@ -50,11 +50,11 @@ export function MedicationSchedule() {
                       <p className="mt-0.5 text-muted-foreground text-xs">{item.patient}</p>
                     </div>
                     <div className="shrink-0 text-right">
-                      <div className="text-sm font-medium">{item.time}</div>
+                      <div className="font-medium text-sm">{item.time}</div>
                       <div
                         className={`text-[10px] ${
                           item.status === "administered"
-                            ? "text-foreground font-semibold"
+                            ? "font-semibold text-foreground"
                             : item.status === "pending"
                               ? "text-muted-foreground"
                               : "text-muted-foreground/60"

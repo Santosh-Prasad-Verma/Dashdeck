@@ -34,15 +34,15 @@ const features = [
 
 function FinanceCard() {
   return (
-    <div className="bg-[#0A0A1A]/80 border border-white/[0.06] rounded-2xl p-6 backdrop-blur-sm">
-      <span className="text-sm font-medium text-gray-300">Monthly Overview</span>
-      <div className="flex items-end gap-3 mt-4">
-        <span className="text-3xl font-bold text-white">$8,420</span>
-        <span className="text-xs font-medium text-emerald-400 mb-1">+12.5%</span>
+    <div className="rounded-2xl border border-white/[0.06] bg-[#0A0A1A]/80 p-6 backdrop-blur-sm">
+      <span className="font-medium text-gray-300 text-sm">Monthly Overview</span>
+      <div className="mt-4 flex items-end gap-3">
+        <span className="font-bold text-3xl text-white">$8,420</span>
+        <span className="mb-1 font-medium text-emerald-400 text-xs">+12.5%</span>
       </div>
-      <div className="flex items-end gap-2 mt-6 h-20">
+      <div className="mt-6 flex h-20 items-end gap-2">
         {[45, 62, 38, 75, 55, 80].map((h, i) => (
-          <div key={i} className="flex-1 flex flex-col justify-end">
+          <div key={i} className="flex flex-1 flex-col justify-end">
             <div
               className="w-full rounded-t-md bg-gradient-to-t from-[#8B5CF6] to-[#8B5CF6]/60"
               style={{ height: `${h}%` }}
@@ -50,7 +50,7 @@ function FinanceCard() {
           </div>
         ))}
       </div>
-      <div className="flex justify-between mt-4 text-xs text-gray-500">
+      <div className="mt-4 flex justify-between text-gray-500 text-xs">
         <span>Subscriptions: $342/mo</span>
         <span>Savings: $2,100</span>
       </div>
@@ -66,13 +66,13 @@ function TasksCard() {
     { text: "Deploy staging release", done: false },
   ];
   return (
-    <div className="bg-[#0A0A1A]/80 border border-white/[0.06] rounded-2xl p-6 backdrop-blur-sm">
-      <span className="text-sm font-medium text-gray-300">This Week</span>
+    <div className="rounded-2xl border border-white/[0.06] bg-[#0A0A1A]/80 p-6 backdrop-blur-sm">
+      <span className="font-medium text-gray-300 text-sm">This Week</span>
       <div className="mt-4 flex flex-col gap-3">
         {tasks.map((t) => (
           <div key={t.text} className="flex items-center gap-3 text-sm">
             <div
-              className={`w-4 h-4 rounded border flex items-center justify-center flex-shrink-0 ${t.done ? "bg-[#6366F1] border-[#6366F1]" : "border-white/20"}`}
+              className={`flex h-4 w-4 flex-shrink-0 items-center justify-center rounded border ${t.done ? "border-[#6366F1] bg-[#6366F1]" : "border-white/20"}`}
             >
               {t.done && <Check className="size-2.5 text-white" />}
             </div>
@@ -98,8 +98,8 @@ function TasksCard() {
           />
         </svg>
         <div>
-          <span className="text-white text-sm font-medium">68%</span>
-          <span className="text-gray-500 text-xs block">12 tasks completed</span>
+          <span className="font-medium text-sm text-white">68%</span>
+          <span className="block text-gray-500 text-xs">12 tasks completed</span>
         </div>
       </div>
     </div>
@@ -108,27 +108,27 @@ function TasksCard() {
 
 function SecurityCard() {
   return (
-    <div className="bg-[#0A0A1A]/80 border border-white/[0.06] rounded-2xl p-6 backdrop-blur-sm">
-      <span className="text-sm font-medium text-gray-300">Vault Status</span>
-      <div className="flex items-center gap-3 mt-4">
-        <div className="w-10 h-10 rounded-xl bg-[#06B6D4]/10 flex items-center justify-center">
+    <div className="rounded-2xl border border-white/[0.06] bg-[#0A0A1A]/80 p-6 backdrop-blur-sm">
+      <span className="font-medium text-gray-300 text-sm">Vault Status</span>
+      <div className="mt-4 flex items-center gap-3">
+        <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-[#06B6D4]/10">
           <Shield className="size-5 text-[#06B6D4]" />
         </div>
-        <span className="text-xs font-medium text-emerald-400 bg-emerald-400/10 px-2.5 py-1 rounded-full">
+        <span className="rounded-full bg-emerald-400/10 px-2.5 py-1 font-medium text-emerald-400 text-xs">
           Protected
         </span>
       </div>
       <div className="mt-5 flex flex-col gap-3">
         {["24 passwords stored", "6 secure documents", "2FA enabled on 8 accounts"].map((item) => (
-          <div key={item} className="flex items-center gap-2.5 text-sm text-gray-400">
-            <div className="w-1.5 h-1.5 rounded-full bg-[#06B6D4] flex-shrink-0" />
+          <div key={item} className="flex items-center gap-2.5 text-gray-400 text-sm">
+            <div className="h-1.5 w-1.5 flex-shrink-0 rounded-full bg-[#06B6D4]" />
             {item}
           </div>
         ))}
       </div>
-      <div className="mt-5 pt-4 border-t border-white/[0.04] flex items-center gap-1.5">
+      <div className="mt-5 flex items-center gap-1.5 border-white/[0.04] border-t pt-4">
         <Sparkles className="size-3 text-gray-600" />
-        <span className="text-xs text-gray-600">Last audit: 2 hours ago</span>
+        <span className="text-gray-600 text-xs">Last audit: 2 hours ago</span>
       </div>
     </div>
   );
@@ -156,24 +156,28 @@ export function StickyShowcase() {
       observers.push(observer);
     });
 
-    return () => observers.forEach((o) => o.disconnect());
+    return () => {
+      observers.forEach((o) => {
+        o.disconnect();
+      });
+    };
   }, []);
 
   const ActiveCard = cards[activeIndex];
 
   return (
-    <section ref={sectionRef} className="max-w-7xl mx-auto px-6 lg:px-8 py-24 md:py-32">
+    <section ref={sectionRef} className="mx-auto max-w-7xl px-6 py-24 md:py-32 lg:px-8">
       <motion.h2
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.6 }}
-        className="text-3xl md:text-4xl font-bold text-white text-center mb-20"
+        className="mb-20 text-center font-bold text-3xl text-white md:text-4xl"
       >
         See it in action
       </motion.h2>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
+      <div className="grid grid-cols-1 gap-16 lg:grid-cols-2">
         {/* Left — Feature Descriptions */}
         <div className="flex flex-col">
           {features.map((feature, idx) => (
@@ -182,16 +186,16 @@ export function StickyShowcase() {
               ref={(el) => {
                 featureRefs.current[idx] = el;
               }}
-              className="min-h-[50vh] flex flex-col justify-center py-8"
+              className="flex min-h-[50vh] flex-col justify-center py-8"
             >
               <span
-                className="text-xs font-semibold tracking-widest uppercase"
+                className="font-semibold text-xs uppercase tracking-widest"
                 style={{ color: activeIndex === idx ? feature.labelColor : "rgba(255,255,255,0.2)" }}
               >
                 {feature.label}
               </span>
               <h3
-                className={`text-2xl font-bold mt-2 transition-colors duration-500 ${activeIndex === idx ? "text-white" : "text-gray-700"}`}
+                className={`mt-2 font-bold text-2xl transition-colors duration-500 ${activeIndex === idx ? "text-white" : "text-gray-700"}`}
               >
                 {feature.title}
               </h3>
@@ -222,7 +226,7 @@ export function StickyShowcase() {
         <div className="hidden lg:block">
           <div className="sticky top-32">
             {/* Glow */}
-            <div className="absolute bg-[#8B5CF6]/[0.05] w-[400px] h-[400px] rounded-full blur-[100px] -z-10 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" />
+            <div className="absolute top-1/2 left-1/2 -z-10 h-[400px] w-[400px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#8B5CF6]/[0.05] blur-[100px]" />
 
             <AnimatePresence mode="wait">
               <motion.div

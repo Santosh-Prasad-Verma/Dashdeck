@@ -38,7 +38,7 @@ export function KeyMetrics() {
             <div key={metric.name} className="flex flex-col gap-1.5">
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-2">
-                  <span className="text-sm font-medium">{metric.name}</span>
+                  <span className="font-medium text-sm">{metric.name}</span>
                   <Badge
                     className={cn(
                       "border-0 text-xs",
@@ -50,7 +50,7 @@ export function KeyMetrics() {
                     {metric.status}
                   </Badge>
                 </div>
-                <span className={cn("text-sm font-medium tabular-nums", getMetricColor(metric.status))}>
+                <span className={cn("font-medium text-sm tabular-nums", getMetricColor(metric.status))}>
                   {typeof metric.value === "number" && metric.value > 100
                     ? `$${metric.value.toLocaleString()}`
                     : metric.name.includes("Ratio")

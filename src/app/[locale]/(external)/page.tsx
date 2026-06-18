@@ -6,16 +6,16 @@ import { MouseSpotlight } from "./_components/shared/mouse-spotlight";
 
 export default function Page() {
   return (
-    <div className="relative min-h-screen bg-[#050505] text-white overflow-x-hidden">
+    <div className="relative min-h-screen overflow-x-hidden bg-[#050505] text-white">
       {/* Mouse Spotlight Effect */}
       <MouseSpotlight />
 
       {/* Background Effects */}
-      <div className="fixed inset-0 pointer-events-none z-0">
+      <div className="pointer-events-none fixed inset-0 z-0">
         {/* Aurora Gradient */}
-        <div className="absolute top-0 left-1/4 w-[800px] h-[600px] bg-[#8B5CF6]/[0.04] rounded-full blur-[150px]" />
-        <div className="absolute top-1/3 right-1/4 w-[600px] h-[400px] bg-[#6366F1]/[0.03] rounded-full blur-[120px]" />
-        <div className="absolute bottom-1/4 left-1/3 w-[500px] h-[300px] bg-[#06B6D4]/[0.02] rounded-full blur-[100px]" />
+        <div className="absolute top-0 left-1/4 h-[600px] w-[800px] rounded-full bg-[#8B5CF6]/[0.04] blur-[150px]" />
+        <div className="absolute top-1/3 right-1/4 h-[400px] w-[600px] rounded-full bg-[#6366F1]/[0.03] blur-[120px]" />
+        <div className="absolute bottom-1/4 left-1/3 h-[300px] w-[500px] rounded-full bg-[#06B6D4]/[0.02] blur-[100px]" />
 
         {/* Grid Pattern at 0.03 opacity */}
         <div

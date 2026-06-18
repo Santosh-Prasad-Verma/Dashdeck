@@ -72,15 +72,15 @@ const appointments = [
 function getStatusBadge(status: string) {
   switch (status) {
     case "completed":
-      return <Badge className="bg-foreground/10 text-foreground border border-foreground/25">Completed</Badge>;
+      return <Badge className="border border-foreground/25 bg-foreground/10 text-foreground">Completed</Badge>;
     case "in-progress":
       return (
-        <Badge className="bg-muted-foreground/10 text-muted-foreground border border-muted-foreground/25">
+        <Badge className="border border-muted-foreground/25 bg-muted-foreground/10 text-muted-foreground">
           In Progress
         </Badge>
       );
     case "upcoming":
-      return <Badge className="bg-muted text-muted-foreground/60 border-0">Upcoming</Badge>;
+      return <Badge className="border-0 bg-muted text-muted-foreground/60">Upcoming</Badge>;
     default:
       return <Badge variant="secondary">{status}</Badge>;
   }
@@ -113,7 +113,7 @@ export function AppointmentSchedule() {
                   </div>
                 </div>
                 <div className="flex items-center gap-3">
-                  <span className="text-sm text-muted-foreground">{appt.time}</span>
+                  <span className="text-muted-foreground text-sm">{appt.time}</span>
                   {getStatusBadge(appt.status)}
                 </div>
               </div>

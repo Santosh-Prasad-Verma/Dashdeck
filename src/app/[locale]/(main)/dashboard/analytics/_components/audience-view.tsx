@@ -91,10 +91,10 @@ export function AudienceView() {
             <CardDescription>Users by device type</CardDescription>
           </CardHeader>
           <CardContent className="flex items-center justify-center gap-8">
-            <ChartContainer config={deviceConfig} className="mx-auto aspect-square h-48 w-full max-w-[180px] relative">
-              <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none">
-                <span className="text-2xl font-bold tracking-tight">24.4k</span>
-                <span className="text-[10px] text-muted-foreground uppercase font-semibold">Total</span>
+            <ChartContainer config={deviceConfig} className="relative mx-auto aspect-square h-48 w-full max-w-[180px]">
+              <div className="pointer-events-none absolute inset-0 flex flex-col items-center justify-center">
+                <span className="font-bold text-2xl tracking-tight">24.4k</span>
+                <span className="font-semibold text-[10px] text-muted-foreground uppercase">Total</span>
               </div>
               <RadialBarChart
                 cx="50%"
@@ -138,8 +138,8 @@ export function AudienceView() {
                 <Avatar className="size-8">
                   <AvatarFallback className="text-xs">{location.flag.toUpperCase()}</AvatarFallback>
                 </Avatar>
-                <div className="flex-1 min-w-0">
-                  <div className="text-sm font-medium truncate">{location.country}</div>
+                <div className="min-w-0 flex-1">
+                  <div className="truncate font-medium text-sm">{location.country}</div>
                   <div className="text-muted-foreground text-xs">{location.users.toLocaleString()} users</div>
                 </div>
                 <div className="text-muted-foreground text-xs tabular-nums">

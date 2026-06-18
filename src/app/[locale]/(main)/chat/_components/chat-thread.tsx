@@ -149,7 +149,7 @@ export function ChatThread({
         <div className="flex flex-col gap-6 px-4 py-8">
           <div className="flex items-center gap-2">
             <div className="h-px flex-1 bg-border/40" />
-            <span className="rounded-full bg-muted/60 px-3 py-1 text-muted-foreground text-xs font-semibold uppercase tracking-wider text-[9px]">
+            <span className="rounded-full bg-muted/60 px-3 py-1 font-semibold text-[9px] text-muted-foreground text-xs uppercase tracking-wider">
               May 6, 2026
             </span>
             <div className="h-px flex-1 bg-border/40" />
@@ -164,10 +164,10 @@ export function ChatThread({
                 <Avatar className="size-8 shrink-0">
                   <AvatarFallback
                     className={cn(
-                      "text-[10px] font-semibold",
+                      "font-semibold text-[10px]",
                       isOutbound
-                        ? "bg-indigo-100 text-indigo-700 dark:bg-indigo-500/10 dark:text-indigo-400 border border-indigo-200 dark:border-indigo-500/20"
-                        : "bg-zinc-100 text-zinc-700 dark:bg-zinc-800 dark:text-zinc-300 border border-border/30",
+                        ? "border border-indigo-200 bg-indigo-100 text-indigo-700 dark:border-indigo-500/20 dark:bg-indigo-500/10 dark:text-indigo-400"
+                        : "border border-border/30 bg-zinc-100 text-zinc-700 dark:bg-zinc-800 dark:text-zinc-300",
                     )}
                   >
                     {getInitials(senderName)}
@@ -176,16 +176,16 @@ export function ChatThread({
 
                 <div
                   className={cn(
-                    "flex max-w-md flex-col gap-1 rounded-2xl px-4 py-2.5 text-sm shadow-2xs border transition-all duration-300",
+                    "flex max-w-md flex-col gap-1 rounded-2xl border px-4 py-2.5 text-sm shadow-2xs transition-all duration-300",
                     isOutbound
-                      ? "bg-indigo-600 text-white border-indigo-700 dark:bg-indigo-500 dark:border-indigo-600 rounded-br-sm"
-                      : "bg-zinc-105 bg-zinc-100 dark:bg-zinc-900 text-zinc-800 dark:text-zinc-250 border-zinc-200/50 dark:border-zinc-800/50 rounded-bl-sm",
+                      ? "rounded-br-sm border-indigo-700 bg-indigo-600 text-white dark:border-indigo-600 dark:bg-indigo-500"
+                      : "rounded-bl-sm border-zinc-200/50 bg-zinc-100 bg-zinc-105 text-zinc-800 dark:border-zinc-800/50 dark:bg-zinc-900 dark:text-zinc-250",
                   )}
                 >
-                  <p className="leading-relaxed text-sm">{message.text}</p>
+                  <p className="text-sm leading-relaxed">{message.text}</p>
                   <div
                     className={cn(
-                      "text-[9px] font-semibold tracking-wider uppercase mt-1",
+                      "mt-1 font-semibold text-[9px] uppercase tracking-wider",
                       isOutbound ? "text-right text-indigo-200" : "text-zinc-400 dark:text-zinc-500",
                     )}
                   >
@@ -198,14 +198,14 @@ export function ChatThread({
         </div>
       </ScrollArea>
 
-      <div className="px-4 pb-2 pt-4 border-t border-border/30 bg-background/50 backdrop-blur-md">
+      <div className="border-border/30 border-t bg-background/50 px-4 pt-4 pb-2 backdrop-blur-md">
         <Tabs
           defaultValue="reply"
-          className="rounded-2xl border border-border/40 bg-zinc-50/30 dark:bg-zinc-900/30 overflow-hidden focus-within:border-primary/50 focus-within:ring-2 focus-within:ring-primary/10 transition-all duration-300"
+          className="overflow-hidden rounded-2xl border border-border/40 bg-zinc-50/30 transition-all duration-300 focus-within:border-primary/50 focus-within:ring-2 focus-within:ring-primary/10 dark:bg-zinc-900/30"
         >
           <TabsList
             variant="line"
-            className="w-full justify-start gap-2 border-b border-border/30 px-3 bg-muted/40 *:text-xs *:font-semibold"
+            className="w-full justify-start gap-2 border-border/30 border-b bg-muted/40 px-3 *:font-semibold *:text-xs"
           >
             <TabsTrigger value="reply" className="flex-none px-3 py-2">
               Reply
@@ -252,10 +252,10 @@ function MessageComposer({ placeholder, conversationId }: { placeholder: string;
   };
 
   return (
-    <div className="flex flex-col gap-3 px-4 py-3 bg-transparent">
+    <div className="flex flex-col gap-3 bg-transparent px-4 py-3">
       <Textarea
         placeholder={placeholder}
-        className="border-0 px-0 py-0.5 text-sm shadow-none focus-visible:ring-0 resize-none min-h-[50px] bg-transparent placeholder:text-muted-foreground/50 w-full"
+        className="min-h-[50px] w-full resize-none border-0 bg-transparent px-0 py-0.5 text-sm shadow-none placeholder:text-muted-foreground/50 focus-visible:ring-0"
         value={message}
         onChange={(e) => setMessage(e.target.value)}
         onKeyDown={handleKeyDown}
@@ -278,7 +278,7 @@ function MessageComposer({ placeholder, conversationId }: { placeholder: string;
           <Button
             variant="outline"
             size="icon"
-            className="size-8 rounded-lg border-border/30 text-indigo-600 dark:text-indigo-400 bg-indigo-500/5 hover:bg-indigo-500/10"
+            className="size-8 rounded-lg border-border/30 bg-indigo-500/5 text-indigo-600 hover:bg-indigo-500/10 dark:text-indigo-400"
           >
             <Sparkles className="size-4" />
           </Button>
@@ -288,7 +288,7 @@ function MessageComposer({ placeholder, conversationId }: { placeholder: string;
           size="icon"
           onClick={handleSubmit}
           disabled={!message.trim()}
-          className="size-8 rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white dark:bg-indigo-500 dark:hover:bg-indigo-400 shadow-sm shrink-0"
+          className="size-8 shrink-0 rounded-lg bg-indigo-600 text-white shadow-sm hover:bg-indigo-500 dark:bg-indigo-500 dark:hover:bg-indigo-400"
         >
           <Send className="size-3.5" />
         </Button>

@@ -1,4 +1,4 @@
-import { AlertTriangle, CheckCircle, Clock, TrendingUp, Users } from "lucide-react";
+import { AlertTriangle, CheckCircle, TrendingUp, Users } from "lucide-react";
 
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";

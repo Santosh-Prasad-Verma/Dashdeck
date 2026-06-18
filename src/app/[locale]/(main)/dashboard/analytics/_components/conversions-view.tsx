@@ -147,7 +147,7 @@ export function ConversionsView() {
                     position="right"
                     dataKey="name"
                     fill="currentColor"
-                    className="text-xs font-semibold fill-muted-foreground"
+                    className="fill-muted-foreground font-semibold text-xs"
                   />
                 </Funnel>
               </FunnelChart>

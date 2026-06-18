@@ -34,7 +34,7 @@ export function SentimentGauge() {
             </div>
           ))}
         </div>
-        <div className="mt-4 rounded-lg bg-muted/30 p-3 text-muted-foreground text-xs text-center">
+        <div className="mt-4 rounded-lg bg-muted/30 p-3 text-center text-muted-foreground text-xs">
           Overall sentiment is <span className="font-medium text-emerald-600">positive</span> — up 3.2% from last month
         </div>
       </CardContent>

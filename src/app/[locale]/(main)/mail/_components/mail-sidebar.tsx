@@ -111,10 +111,10 @@ export function MailSidebar() {
 
         <Button
           size={isCollapsed ? "icon-sm" : "sm"}
-          className="group-data-[state=expanded]:w-full bg-zinc-950 text-zinc-50 dark:bg-zinc-50 dark:text-zinc-950 hover:bg-zinc-905 hover:bg-zinc-900 dark:hover:bg-zinc-200 border border-zinc-800 dark:border-zinc-250 shadow-sm transition-all"
+          className="border border-zinc-800 bg-zinc-950 text-zinc-50 shadow-sm transition-all hover:bg-zinc-900 hover:bg-zinc-905 group-data-[state=expanded]:w-full dark:border-zinc-250 dark:bg-zinc-50 dark:text-zinc-950 dark:hover:bg-zinc-200"
         >
           <PenLine className="size-4" data-icon="inline-start" />
-          <span className="group-data-[state=collapsed]:hidden font-semibold text-xs uppercase tracking-wider">
+          <span className="font-semibold text-xs uppercase tracking-wider group-data-[state=collapsed]:hidden">
             New email
           </span>
         </Button>

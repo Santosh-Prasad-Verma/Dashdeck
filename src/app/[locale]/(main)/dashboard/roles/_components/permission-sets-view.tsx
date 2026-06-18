@@ -8,7 +8,6 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
-import { ScrollArea } from "@/components/ui/scroll-area";
 
 interface PermissionSet {
   id: number;
@@ -86,7 +85,7 @@ export function PermissionSetsView() {
     <div className="flex flex-col gap-4">
       <div className="flex items-center justify-between">
         <div>
-          <h3 className="text-lg font-medium">Permission Sets</h3>
+          <h3 className="font-medium text-lg">Permission Sets</h3>
           <p className="text-muted-foreground text-sm">Manage reusable permission collections</p>
         </div>
         <Button>
@@ -96,8 +95,8 @@ export function PermissionSetsView() {
       </div>
 
       <div className="flex items-center gap-2">
-        <div className="relative flex-1 max-w-sm">
-          <Search className="absolute left-2.5 top-1/2 size-4 -translate-y-1/2 text-muted-foreground" />
+        <div className="relative max-w-sm flex-1">
+          <Search className="absolute top-1/2 left-2.5 size-4 -translate-y-1/2 text-muted-foreground" />
           <Input
             placeholder="Search permission sets..."
             className="pl-8"
@@ -136,7 +135,7 @@ export function PermissionSetsView() {
                   <span className="text-muted-foreground">Last updated</span>
                   <span className="text-muted-foreground">{set.lastUpdated}</span>
                 </div>
-                <div className="flex items-center gap-2 pt-2 border-t">
+                <div className="flex items-center gap-2 border-t pt-2">
                   <Button variant="ghost" size="sm" className="h-8">
                     <Edit className="size-3" />
                     Edit

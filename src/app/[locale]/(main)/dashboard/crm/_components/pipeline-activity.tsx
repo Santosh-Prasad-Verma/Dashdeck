@@ -70,7 +70,7 @@ export function PipelineActivity() {
           <div className="grid grid-cols-1 gap-6 lg:grid-cols-12">
             {/* Qualified Lead Flow Bar Chart */}
             <div className="lg:col-span-7">
-              <span className="text-xs font-semibold text-muted-foreground block mb-4 uppercase tracking-wider">
+              <span className="mb-4 block font-semibold text-muted-foreground text-xs uppercase tracking-wider">
                 Qualified Lead Flow (Monthly)
               </span>
               <ChartContainer config={pipelineChartConfig} className="h-72 w-full">
@@ -125,8 +125,8 @@ export function PipelineActivity() {
             </div>
 
             {/* Funnel Chart */}
-            <div className="flex flex-col gap-4 lg:col-span-5 border-l pl-0 lg:pl-6 border-border/40">
-              <span className="text-xs font-semibold text-muted-foreground block uppercase tracking-wider">
+            <div className="flex flex-col gap-4 border-border/40 border-l pl-0 lg:col-span-5 lg:pl-6">
+              <span className="block font-semibold text-muted-foreground text-xs uppercase tracking-wider">
                 Conversion Funnel ({totalQualified} qualified leads)
               </span>
 
@@ -138,13 +138,13 @@ export function PipelineActivity() {
                       position="right"
                       dataKey="name"
                       fill="currentColor"
-                      className="text-[11px] font-semibold fill-muted-foreground"
+                      className="fill-muted-foreground font-semibold text-[11px]"
                     />
                   </Funnel>
                 </FunnelChart>
               </ChartContainer>
 
-              <div className="flex justify-between items-center text-xs text-muted-foreground bg-muted/20 p-2.5 rounded-lg border border-border/40">
+              <div className="flex items-center justify-between rounded-lg border border-border/40 bg-muted/20 p-2.5 text-muted-foreground text-xs">
                 <span>Overall Lead-to-Won:</span>
                 <span className="font-semibold text-foreground">19.0%</span>
               </div>

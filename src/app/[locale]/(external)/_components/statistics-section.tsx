@@ -18,16 +18,16 @@ export function StatisticsSection() {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.3 }}
       transition={{ duration: 0.6 }}
-      className="max-w-5xl mx-auto px-6 lg:px-8 py-24 md:py-32"
+      className="mx-auto max-w-5xl px-6 py-24 md:py-32 lg:px-8"
     >
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+      <div className="grid grid-cols-2 gap-8 md:grid-cols-4">
         {stats.map((stat) => (
           <div key={stat.label} className="text-center">
-            <div className="text-4xl md:text-5xl font-bold text-white">
+            <div className="font-bold text-4xl text-white md:text-5xl">
               <AnimatedCounter value={stat.value} suffix="" decimals={stat.decimals || 0} />
               <span className="text-[#8B5CF6]">{stat.suffix}</span>
             </div>
-            <p className="text-gray-500 text-sm mt-2">{stat.label}</p>
+            <p className="mt-2 text-gray-500 text-sm">{stat.label}</p>
           </div>
         ))}
       </div>

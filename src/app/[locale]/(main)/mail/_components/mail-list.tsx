@@ -29,7 +29,7 @@ export function MailList({ groups, onSelectMail }: MailListProps) {
       <div className="flex flex-col gap-1.5 pt-0">
         {groups.map((group) => (
           <section key={group.id} className="flex flex-col gap-1">
-            <div className="mx-4 my-2 text-zinc-400 dark:text-zinc-500 font-bold uppercase tracking-wider text-[10px]">
+            <div className="mx-4 my-2 font-bold text-[10px] text-zinc-400 uppercase tracking-wider dark:text-zinc-500">
               {group.title} ({group.items.length})
             </div>
 
@@ -39,10 +39,10 @@ export function MailList({ groups, onSelectMail }: MailListProps) {
                   type="button"
                   key={item.id}
                   className={cn(
-                    "group relative w-full border-b border-border/30 px-4 py-3.5 text-left transition-all duration-200",
+                    "group relative w-full border-border/30 border-b px-4 py-3.5 text-left transition-all duration-200",
                     "hover:bg-zinc-50/60 dark:hover:bg-zinc-900/40",
                     mail.selected === item.id
-                      ? "bg-zinc-100/70 dark:bg-zinc-900/80 border-border/80 before:absolute before:inset-y-0 before:left-0 before:w-1 before:bg-indigo-500 shadow-2xs"
+                      ? "border-border/80 bg-zinc-100/70 shadow-2xs before:absolute before:inset-y-0 before:left-0 before:w-1 before:bg-indigo-500 dark:bg-zinc-900/80"
                       : "bg-transparent",
                   )}
                   onClick={(event) => {
@@ -57,12 +57,12 @@ export function MailList({ groups, onSelectMail }: MailListProps) {
                 >
                   <div className="flex items-start gap-3">
                     <Avatar className="size-9 after:rounded-sm">
-                      <AvatarFallback className="rounded-sm bg-zinc-100 dark:bg-zinc-800 text-zinc-650 dark:text-zinc-350 text-xs font-semibold">
+                      <AvatarFallback className="rounded-sm bg-zinc-100 font-semibold text-xs text-zinc-650 dark:bg-zinc-800 dark:text-zinc-350">
                         {item.from.name[0]}
                       </AvatarFallback>
                     </Avatar>
 
-                    <div className="flex-1 min-w-0 space-y-1">
+                    <div className="min-w-0 flex-1 space-y-1">
                       <div className="flex items-start justify-between gap-3">
                         <div className="min-w-0 flex-1">
                           <div
@@ -73,12 +73,12 @@ export function MailList({ groups, onSelectMail }: MailListProps) {
                           >
                             {item.from.name}{" "}
                             {!item.isRead && (
-                              <span className="size-1.5 rounded-full bg-indigo-500 dark:bg-indigo-400 shrink-0" />
+                              <span className="size-1.5 shrink-0 rounded-full bg-indigo-500 dark:bg-indigo-400" />
                             )}
                           </div>
                           <div
                             className={cn(
-                              "truncate font-semibold text-zinc-800 dark:text-zinc-150 text-xs mt-0.5",
+                              "mt-0.5 truncate font-semibold text-xs text-zinc-800 dark:text-zinc-150",
                               item.isRead && "font-medium text-muted-foreground",
                             )}
                           >
@@ -88,7 +88,7 @@ export function MailList({ groups, onSelectMail }: MailListProps) {
 
                         <div
                           className={cn(
-                            "shrink-0 text-muted-foreground text-[10px] font-semibold",
+                            "shrink-0 font-semibold text-[10px] text-muted-foreground",
                             mail.selected === item.id && "text-zinc-900 dark:text-zinc-100",
                           )}
                         >
@@ -96,7 +96,7 @@ export function MailList({ groups, onSelectMail }: MailListProps) {
                         </div>
                       </div>
 
-                      <p className="line-clamp-2 text-muted-foreground text-xs leading-relaxed mt-1.5">{item.body}</p>
+                      <p className="mt-1.5 line-clamp-2 text-muted-foreground text-xs leading-relaxed">{item.body}</p>
 
                       {item.labels?.length ? (
                         <div className="flex flex-wrap gap-1.5 pt-1.5">
@@ -104,7 +104,7 @@ export function MailList({ groups, onSelectMail }: MailListProps) {
                             <Badge
                               key={label}
                               variant="outline"
-                              className="font-bold text-[8px] uppercase tracking-wider px-1.5 py-0 rounded-md bg-zinc-100/50 dark:bg-zinc-800/40 text-muted-foreground border-border/30"
+                              className="rounded-md border-border/30 bg-zinc-100/50 px-1.5 py-0 font-bold text-[8px] text-muted-foreground uppercase tracking-wider dark:bg-zinc-800/40"
                             >
                               {label}
                             </Badge>

@@ -101,7 +101,7 @@ export function LoginForm() {
         />
       </FieldGroup>
       <Button
-        className="w-full bg-zinc-950 hover:bg-zinc-900 text-zinc-50 dark:bg-zinc-50 dark:hover:bg-zinc-200 dark:text-zinc-950 border border-zinc-800 dark:border-zinc-200"
+        className="w-full border border-zinc-800 bg-zinc-950 text-zinc-50 hover:bg-zinc-900 dark:border-zinc-200 dark:bg-zinc-50 dark:text-zinc-950 dark:hover:bg-zinc-200"
         type="submit"
       >
         {t("loginButton")}

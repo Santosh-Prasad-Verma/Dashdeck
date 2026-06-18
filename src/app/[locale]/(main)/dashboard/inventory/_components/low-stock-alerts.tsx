@@ -40,12 +40,12 @@ export function LowStockAlerts() {
                 key={item.id}
                 className="flex items-center justify-between rounded-lg border p-3 transition-colors hover:bg-muted/50"
               >
-                <div className="flex-1 min-w-0">
+                <div className="min-w-0 flex-1">
                   <div className="flex items-center gap-2">
-                    <span className="text-xs text-muted-foreground">{item.id}</span>
+                    <span className="text-muted-foreground text-xs">{item.id}</span>
                     <span className="font-medium text-sm">{item.name}</span>
                   </div>
-                  <div className="flex items-center gap-2 mt-0.5 text-muted-foreground text-xs">
+                  <div className="mt-0.5 flex items-center gap-2 text-muted-foreground text-xs">
                     <span>{item.category}</span>
                     <span>·</span>
                     <span>{item.supplier}</span>
@@ -54,12 +54,12 @@ export function LowStockAlerts() {
                 <div className="flex items-center gap-4">
                   <div className="text-right">
                     <div className="text-sm tabular-nums">
-                      <span className="text-red-600 font-medium">{item.stock}</span>
+                      <span className="font-medium text-red-600">{item.stock}</span>
                       <span className="text-muted-foreground"> / {item.reorder}</span>
                     </div>
                     <div className="text-muted-foreground text-xs">min: {item.reorder}</div>
                   </div>
-                  <Badge className="bg-red-500/10 text-red-600 dark:text-red-400 border-0">Restock</Badge>
+                  <Badge className="border-0 bg-red-500/10 text-red-600 dark:text-red-400">Restock</Badge>
                 </div>
               </div>
             ))}

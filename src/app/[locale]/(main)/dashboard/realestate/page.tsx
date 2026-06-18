@@ -12,7 +12,7 @@ export default function Page() {
   return (
     <div className="flex flex-col gap-6">
       <div>
-        <h1 className="text-3xl font-bold tracking-tight">Real Estate</h1>
+        <h1 className="font-bold text-3xl tracking-tight">Real Estate</h1>
         <p className="text-muted-foreground text-sm">
           Manage properties, track occupancy, and monitor portfolio performance.
         </p>
@@ -55,7 +55,7 @@ export default function Page() {
               <stat.icon className="size-5" />
             </div>
             <p className="text-muted-foreground text-sm">{stat.label}</p>
-            <p className="mt-1 text-3xl font-bold tabular-nums">{stat.value}</p>
+            <p className="mt-1 font-bold text-3xl tabular-nums">{stat.value}</p>
           </div>
         ))}
       </div>

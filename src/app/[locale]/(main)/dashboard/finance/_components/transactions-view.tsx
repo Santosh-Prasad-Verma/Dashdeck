@@ -2,16 +2,7 @@
 
 import { useMemo, useState } from "react";
 
-import {
-  ArrowDownLeft,
-  ArrowUpRight,
-  ChevronDown,
-  ChevronLeft,
-  ChevronRight,
-  MoreHorizontal,
-  Search,
-  SlidersHorizontal,
-} from "lucide-react";
+import { ChevronLeft, ChevronRight, MoreHorizontal, Search } from "lucide-react";
 
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -45,7 +36,7 @@ export function TransactionsView() {
   const [accountFilter, setAccountFilter] = useState("all");
   const [categoryFilter, setCategoryFilter] = useState("all");
   const [typeFilter, setTypeFilter] = useState("all");
-  const [currentPage, setCurrentPage] = useState(1);
+  const [_currentPage, _setCurrentPage] = useState(1);
   const [selectedIds, setSelectedIds] = useState<string[]>([]);
 
   const transactions: Transaction[] = [
@@ -187,7 +178,7 @@ export function TransactionsView() {
 
       return matchesSearch && matchesAccount && matchesCategory && matchesType;
     });
-  }, [searchQuery, accountFilter, categoryFilter, typeFilter]);
+  }, [searchQuery, accountFilter, categoryFilter, typeFilter, transactions.filter]);
 
   // Bulk Selection Logic
   const handleSelectAll = (checked: boolean) => {
@@ -211,46 +202,46 @@ export function TransactionsView() {
       {/* Top Metrics Row */}
       <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
         <Card className="bg-card/50 backdrop-blur-xs">
-          <CardContent className="p-5 flex flex-col gap-1">
-            <p className="text-muted-foreground text-xs font-medium tracking-wide">Inflow this month</p>
-            <p className="text-3xl font-bold tracking-tight text-emerald-500">$8,744</p>
-            <p className="text-muted-foreground text-[11px]">12 credits</p>
+          <CardContent className="flex flex-col gap-1 p-5">
+            <p className="font-medium text-muted-foreground text-xs tracking-wide">Inflow this month</p>
+            <p className="font-bold text-3xl text-emerald-500 tracking-tight">$8,744</p>
+            <p className="text-[11px] text-muted-foreground">12 credits</p>
           </CardContent>
         </Card>
 
         <Card className="bg-card/50 backdrop-blur-xs">
-          <CardContent className="p-5 flex flex-col gap-1">
-            <p className="text-muted-foreground text-xs font-medium tracking-wide">Outflow this month</p>
-            <p className="text-3xl font-bold tracking-tight">-$6,628</p>
-            <p className="text-muted-foreground text-[11px]">38 debits</p>
+          <CardContent className="flex flex-col gap-1 p-5">
+            <p className="font-medium text-muted-foreground text-xs tracking-wide">Outflow this month</p>
+            <p className="font-bold text-3xl tracking-tight">-$6,628</p>
+            <p className="text-[11px] text-muted-foreground">38 debits</p>
           </CardContent>
         </Card>
 
         <Card className="bg-card/50 backdrop-blur-xs">
-          <CardContent className="p-5 flex flex-col gap-1">
-            <p className="text-muted-foreground text-xs font-medium tracking-wide">Net this month</p>
-            <p className="text-3xl font-bold tracking-tight text-emerald-500">+$2,116</p>
-            <p className="text-muted-foreground text-[11px]">50 transactions to date</p>
+          <CardContent className="flex flex-col gap-1 p-5">
+            <p className="font-medium text-muted-foreground text-xs tracking-wide">Net this month</p>
+            <p className="font-bold text-3xl text-emerald-500 tracking-tight">+$2,116</p>
+            <p className="text-[11px] text-muted-foreground">50 transactions to date</p>
           </CardContent>
         </Card>
       </div>
 
       {/* Main Transactions List */}
       <Card className="bg-card/30 backdrop-blur-xs">
-        <CardHeader className="pb-3 border-b">
+        <CardHeader className="border-b pb-3">
           <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
             <div>
-              <CardTitle className="text-lg font-semibold">Transactions</CardTitle>
+              <CardTitle className="font-semibold text-lg">Transactions</CardTitle>
               <CardDescription className="text-xs">Every credit and debit across your linked accounts.</CardDescription>
             </div>
 
             {/* Filter controls */}
             <div className="flex flex-wrap items-center gap-2">
               <div className="relative w-48">
-                <Search className="absolute left-2.5 top-1/2 size-4 -translate-y-1/2 text-muted-foreground" />
+                <Search className="absolute top-1/2 left-2.5 size-4 -translate-y-1/2 text-muted-foreground" />
                 <Input
                   placeholder="Search transactions..."
-                  className="h-9 pl-8 bg-transparent"
+                  className="h-9 bg-transparent pl-8"
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                 />
@@ -258,7 +249,7 @@ export function TransactionsView() {
 
               {/* Account Filter */}
               <Select value={accountFilter} onValueChange={setAccountFilter}>
-                <SelectTrigger className="w-32 h-9 bg-transparent text-xs">
+                <SelectTrigger className="h-9 w-32 bg-transparent text-xs">
                   <SelectValue placeholder="Account" />
                 </SelectTrigger>
                 <SelectContent>
@@ -273,7 +264,7 @@ export function TransactionsView() {
 
               {/* Category Filter */}
               <Select value={categoryFilter} onValueChange={setCategoryFilter}>
-                <SelectTrigger className="w-32 h-9 bg-transparent text-xs">
+                <SelectTrigger className="h-9 w-32 bg-transparent text-xs">
                   <SelectValue placeholder="Category" />
                 </SelectTrigger>
                 <SelectContent>
@@ -290,7 +281,7 @@ export function TransactionsView() {
 
               {/* Type Filter */}
               <Select value={typeFilter} onValueChange={setTypeFilter}>
-                <SelectTrigger className="w-24 h-9 bg-transparent text-xs">
+                <SelectTrigger className="h-9 w-24 bg-transparent text-xs">
                   <SelectValue placeholder="Type" />
                 </SelectTrigger>
                 <SelectContent>
@@ -313,22 +304,22 @@ export function TransactionsView() {
                       onCheckedChange={(checked) => handleSelectAll(!!checked)}
                     />
                   </TableHead>
-                  <TableHead className="text-xs font-semibold tracking-wider text-muted-foreground px-4 py-3">
+                  <TableHead className="px-4 py-3 font-semibold text-muted-foreground text-xs tracking-wider">
                     Date
                   </TableHead>
-                  <TableHead className="text-xs font-semibold tracking-wider text-muted-foreground px-4 py-3">
+                  <TableHead className="px-4 py-3 font-semibold text-muted-foreground text-xs tracking-wider">
                     Description
                   </TableHead>
-                  <TableHead className="text-xs font-semibold tracking-wider text-muted-foreground px-4 py-3">
+                  <TableHead className="px-4 py-3 font-semibold text-muted-foreground text-xs tracking-wider">
                     Account
                   </TableHead>
-                  <TableHead className="text-xs font-semibold tracking-wider text-muted-foreground px-4 py-3">
+                  <TableHead className="px-4 py-3 font-semibold text-muted-foreground text-xs tracking-wider">
                     Category
                   </TableHead>
-                  <TableHead className="text-xs font-semibold tracking-wider text-muted-foreground px-4 py-3 text-right">
+                  <TableHead className="px-4 py-3 text-right font-semibold text-muted-foreground text-xs tracking-wider">
                     Amount
                   </TableHead>
-                  <TableHead className="text-xs font-semibold tracking-wider text-muted-foreground px-4 py-3">
+                  <TableHead className="px-4 py-3 font-semibold text-muted-foreground text-xs tracking-wider">
                     Status
                   </TableHead>
                   <TableHead className="w-10 px-6" />
@@ -337,55 +328,55 @@ export function TransactionsView() {
               <TableBody className="divide-y">
                 {filteredTransactions.length === 0 ? (
                   <TableRow>
-                    <TableCell colSpan={8} className="text-center py-8 text-muted-foreground text-sm">
+                    <TableCell colSpan={8} className="py-8 text-center text-muted-foreground text-sm">
                       No transactions found matching the filters.
                     </TableCell>
                   </TableRow>
                 ) : (
                   filteredTransactions.map((tx) => (
-                    <TableRow key={tx.id} className="hover:bg-muted/10 group">
+                    <TableRow key={tx.id} className="group hover:bg-muted/10">
                       <TableCell className="px-6">
                         <Checkbox
                           checked={selectedIds.includes(tx.id)}
                           onCheckedChange={(checked) => handleSelectRow(tx.id, !!checked)}
                         />
                       </TableCell>
-                      <TableCell className="text-xs text-muted-foreground whitespace-nowrap px-4 py-4">
+                      <TableCell className="whitespace-nowrap px-4 py-4 text-muted-foreground text-xs">
                         {tx.date}
                       </TableCell>
                       <TableCell className="px-4 py-4">
-                        <div className="flex flex-col min-w-0">
-                          <span className="font-semibold text-sm text-foreground">{tx.description}</span>
-                          <span className="text-[10px] text-muted-foreground mt-0.5">{tx.detail}</span>
+                        <div className="flex min-w-0 flex-col">
+                          <span className="font-semibold text-foreground text-sm">{tx.description}</span>
+                          <span className="mt-0.5 text-[10px] text-muted-foreground">{tx.detail}</span>
                         </div>
                       </TableCell>
                       <TableCell className="px-4 py-4">
                         <div className="flex items-center gap-2">
-                          <div className="flex size-6 shrink-0 items-center justify-center rounded bg-neutral-800 text-white font-bold text-[10px]">
+                          <div className="flex size-6 shrink-0 items-center justify-center rounded bg-neutral-800 font-bold text-[10px] text-white">
                             {tx.accountLogo}
                           </div>
                           <div className="flex flex-col">
-                            <span className="font-medium text-xs text-foreground">{tx.account}</span>
-                            <span className="text-[9px] text-muted-foreground mt-0.5">{tx.accountDetail}</span>
+                            <span className="font-medium text-foreground text-xs">{tx.account}</span>
+                            <span className="mt-0.5 text-[9px] text-muted-foreground">{tx.accountDetail}</span>
                           </div>
                         </div>
                       </TableCell>
                       <TableCell className="px-4 py-4">
                         <Badge
                           variant="outline"
-                          className="text-[9px] font-bold py-0.5 px-1.5 border-muted-foreground/25 text-muted-foreground bg-muted/20"
+                          className="border-muted-foreground/25 bg-muted/20 px-1.5 py-0.5 font-bold text-[9px] text-muted-foreground"
                         >
                           {tx.category}
                         </Badge>
                       </TableCell>
                       <TableCell
-                        className={`px-4 py-4 text-right font-bold tabular-nums text-sm ${tx.amount > 0 ? "text-emerald-500" : "text-foreground"}`}
+                        className={`px-4 py-4 text-right font-bold text-sm tabular-nums ${tx.amount > 0 ? "text-emerald-500" : "text-foreground"}`}
                       >
                         {tx.amount > 0 ? "+" : ""}${tx.amount.toLocaleString(undefined, { minimumFractionDigits: 2 })}
                       </TableCell>
                       <TableCell className="px-4 py-4">
                         <Badge
-                          className={`text-[10px] font-bold py-0 px-2 border-0 ${
+                          className={`border-0 px-2 py-0 font-bold text-[10px] ${
                             tx.status === "Posted"
                               ? "bg-emerald-500/10 text-emerald-500 dark:text-emerald-400"
                               : "bg-amber-500/10 text-amber-500 dark:text-amber-400"
@@ -400,7 +391,7 @@ export function TransactionsView() {
                             <Button
                               variant="ghost"
                               size="icon"
-                              className="size-8 opacity-0 group-hover:opacity-100 transition-opacity"
+                              className="size-8 opacity-0 transition-opacity group-hover:opacity-100"
                             >
                               <MoreHorizontal className="size-4" />
                             </Button>
@@ -408,7 +399,7 @@ export function TransactionsView() {
                           <DropdownMenuContent align="end">
                             <DropdownMenuItem className="text-xs">View details</DropdownMenuItem>
                             <DropdownMenuItem className="text-xs">Edit category</DropdownMenuItem>
-                            <DropdownMenuItem className="text-xs text-destructive">Delete</DropdownMenuItem>
+                            <DropdownMenuItem className="text-destructive text-xs">Delete</DropdownMenuItem>
                           </DropdownMenuContent>
                         </DropdownMenu>
                       </TableCell>
@@ -423,26 +414,26 @@ export function TransactionsView() {
 
       {/* Pagination Row */}
       <div className="flex items-center justify-between px-2">
-        <p className="text-xs text-muted-foreground">Showing 10 of 81 transactions</p>
+        <p className="text-muted-foreground text-xs">Showing 10 of 81 transactions</p>
 
         <div className="flex items-center gap-1.5">
-          <Button variant="outline" size="sm" className="h-8 text-xs gap-1 border" disabled>
+          <Button variant="outline" size="sm" className="h-8 gap-1 border text-xs" disabled>
             <ChevronLeft className="size-3.5" />
             Previous
           </Button>
 
-          <Button variant="outline" size="sm" className="h-8 w-8 text-xs p-0 border bg-muted text-foreground font-bold">
+          <Button variant="outline" size="sm" className="h-8 w-8 border bg-muted p-0 font-bold text-foreground text-xs">
             1
           </Button>
-          <Button variant="outline" size="sm" className="h-8 w-8 text-xs p-0 border hover:bg-muted">
+          <Button variant="outline" size="sm" className="h-8 w-8 border p-0 text-xs hover:bg-muted">
             2
           </Button>
-          <Button variant="outline" size="sm" className="h-8 w-8 text-xs p-0 border hover:bg-muted">
+          <Button variant="outline" size="sm" className="h-8 w-8 border p-0 text-xs hover:bg-muted">
             3
           </Button>
-          <span className="text-xs text-muted-foreground px-1">...</span>
+          <span className="px-1 text-muted-foreground text-xs">...</span>
 
-          <Button variant="outline" size="sm" className="h-8 text-xs gap-1 border">
+          <Button variant="outline" size="sm" className="h-8 gap-1 border text-xs">
             Next
             <ChevronRight className="size-3.5" />
           </Button>

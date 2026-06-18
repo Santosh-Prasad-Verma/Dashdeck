@@ -46,7 +46,7 @@ export const rolesColumns: ColumnDef<Role>[] = [
     size: 120,
     cell: ({ row }) => (
       <Badge
-        className="font-bold text-[9px] uppercase tracking-wider px-2 py-0.5 rounded-md bg-zinc-100 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 border border-border/40"
+        className="rounded-md border border-border/40 bg-zinc-100 px-2 py-0.5 font-bold text-[9px] text-zinc-700 uppercase tracking-wider dark:bg-zinc-800 dark:text-zinc-300"
         variant="outline"
       >
         {row.original.accessLevel}
@@ -59,7 +59,7 @@ export const rolesColumns: ColumnDef<Role>[] = [
     header: "Users",
     size: 70,
     cell: ({ row }) => (
-      <span className="text-sm font-medium text-zinc-950 dark:text-zinc-50">{row.original.users}</span>
+      <span className="font-medium text-sm text-zinc-950 dark:text-zinc-50">{row.original.users}</span>
     ),
   },
   {
@@ -71,7 +71,7 @@ export const rolesColumns: ColumnDef<Role>[] = [
       <div className="flex flex-wrap items-center justify-start gap-1.5">
         {row.original.permissionSets.slice(0, 3).map((set) => (
           <Badge
-            className="font-medium text-[10px] px-1.5 py-0.5 rounded-md bg-zinc-50 dark:bg-zinc-800/50 text-zinc-600 dark:text-zinc-400 border border-border/30"
+            className="rounded-md border border-border/30 bg-zinc-50 px-1.5 py-0.5 font-medium text-[10px] text-zinc-600 dark:bg-zinc-800/50 dark:text-zinc-400"
             variant="outline"
             key={set}
           >
@@ -79,7 +79,7 @@ export const rolesColumns: ColumnDef<Role>[] = [
           </Badge>
         ))}
         {row.original.permissionSets.length > 3 ? (
-          <span className="text-[10px] font-bold text-muted-foreground bg-muted border border-border/40 px-1.5 py-0.5 rounded-md">
+          <span className="rounded-md border border-border/40 bg-muted px-1.5 py-0.5 font-bold text-[10px] text-muted-foreground">
             +{row.original.permissionSets.length - 3}
           </span>
         ) : null}
@@ -91,7 +91,7 @@ export const rolesColumns: ColumnDef<Role>[] = [
     accessorKey: "lastReview",
     header: "Last review",
     size: 120,
-    cell: ({ row }) => <span className="text-sm text-muted-foreground">{row.original.lastReview}</span>,
+    cell: ({ row }) => <span className="text-muted-foreground text-sm">{row.original.lastReview}</span>,
   },
   {
     id: "owner",
@@ -100,7 +100,7 @@ export const rolesColumns: ColumnDef<Role>[] = [
     size: 110,
     filterFn: "equalsString",
     cell: ({ row }) => (
-      <span className="text-sm font-medium text-zinc-700 dark:text-zinc-300">{row.original.owner}</span>
+      <span className="font-medium text-sm text-zinc-700 dark:text-zinc-300">{row.original.owner}</span>
     ),
   },
   {
@@ -114,10 +114,10 @@ export const rolesColumns: ColumnDef<Role>[] = [
       return (
         <Badge
           className={cn(
-            "font-bold text-[9px] uppercase tracking-wider px-2 py-0.5 rounded-md gap-1.5",
+            "gap-1.5 rounded-md px-2 py-0.5 font-bold text-[9px] uppercase tracking-wider",
             active
-              ? "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/20"
-              : "bg-amber-500/10 text-amber-600 dark:text-amber-400 border-amber-500/20",
+              ? "border-emerald-500/20 bg-emerald-500/10 text-emerald-600 dark:text-emerald-400"
+              : "border-amber-500/20 bg-amber-500/10 text-amber-600 dark:text-amber-400",
           )}
           variant="outline"
         >

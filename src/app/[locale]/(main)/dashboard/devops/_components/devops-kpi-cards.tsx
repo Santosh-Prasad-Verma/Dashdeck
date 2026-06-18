@@ -1,4 +1,4 @@
-import { Cloud, Cpu, HardDrive, Server, TrendingUp, Wifi } from "lucide-react";
+import { Cpu, HardDrive, Server, TrendingUp, Wifi } from "lucide-react";
 
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";

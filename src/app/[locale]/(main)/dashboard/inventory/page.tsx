@@ -12,7 +12,7 @@ export default function Page() {
   return (
     <div className="flex flex-col gap-6">
       <div>
-        <h1 className="text-3xl font-bold tracking-tight">Inventory Management</h1>
+        <h1 className="font-bold text-3xl tracking-tight">Inventory Management</h1>
         <p className="text-muted-foreground text-sm">Track stock levels, manage warehouses, and monitor suppliers.</p>
       </div>
 
@@ -62,7 +62,7 @@ export default function Page() {
             </div>
             <p className="text-muted-foreground text-sm">{kpi.label}</p>
             <div className="mt-1 flex items-center gap-2">
-              <span className="text-3xl font-bold tabular-nums">{kpi.value}</span>
+              <span className="font-bold text-3xl tabular-nums">{kpi.value}</span>
               <span className={`text-sm ${kpi.up ? "text-emerald-600" : "text-red-600"}`}>
                 {kpi.up ? <ArrowUp className="inline size-3" /> : <ArrowDown className="inline size-3" />}
                 {kpi.change}

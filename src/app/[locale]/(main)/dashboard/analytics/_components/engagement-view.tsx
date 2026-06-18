@@ -1,9 +1,8 @@
 "use client";
 
-import { ArrowUpRight, Clock, Eye, MousePointerClick, Star, Timer } from "lucide-react";
+import { ArrowUpRight, Eye, MousePointerClick, Star, Timer } from "lucide-react";
 import { Area, AreaChart, CartesianGrid, XAxis, YAxis } from "recharts";
 
-import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { type ChartConfig, ChartContainer, ChartTooltip, ChartTooltipContent } from "@/components/ui/chart";
 
@@ -49,13 +48,13 @@ export function EngagementView() {
         <div className="grid grid-cols-2 gap-4 lg:grid-cols-4">
           <Card>
             <CardHeader className="flex flex-row items-center justify-between pb-2">
-              <CardTitle className="text-sm font-medium">Engagement Rate</CardTitle>
+              <CardTitle className="font-medium text-sm">Engagement Rate</CardTitle>
               <MousePointerClick className="size-4 text-muted-foreground" />
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-bold">70.5%</div>
-              <p className="text-xs text-muted-foreground flex items-center gap-1 mt-0.5">
-                <span className="text-foreground flex items-center font-medium">
+              <div className="font-bold text-2xl">70.5%</div>
+              <p className="mt-0.5 flex items-center gap-1 text-muted-foreground text-xs">
+                <span className="flex items-center font-medium text-foreground">
                   <ArrowUpRight className="size-3" /> +2.4%
                 </span>
                 <span>since last week</span>
@@ -65,13 +64,13 @@ export function EngagementView() {
 
           <Card>
             <CardHeader className="flex flex-row items-center justify-between pb-2">
-              <CardTitle className="text-sm font-medium">Avg. Session Duration</CardTitle>
+              <CardTitle className="font-medium text-sm">Avg. Session Duration</CardTitle>
               <Timer className="size-4 text-muted-foreground" />
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-bold">4m 32s</div>
-              <p className="text-xs text-muted-foreground flex items-center gap-1 mt-0.5">
-                <span className="text-foreground flex items-center font-medium">
+              <div className="font-bold text-2xl">4m 32s</div>
+              <p className="mt-0.5 flex items-center gap-1 text-muted-foreground text-xs">
+                <span className="flex items-center font-medium text-foreground">
                   <ArrowUpRight className="size-3" /> +12s
                 </span>
                 <span>since last week</span>
@@ -81,13 +80,13 @@ export function EngagementView() {
 
           <Card>
             <CardHeader className="flex flex-row items-center justify-between pb-2">
-              <CardTitle className="text-sm font-medium">Bounce Rate</CardTitle>
+              <CardTitle className="font-medium text-sm">Bounce Rate</CardTitle>
               <Eye className="size-4 text-muted-foreground" />
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-bold">38.4%</div>
-              <p className="text-xs text-muted-foreground flex items-center gap-1 mt-0.5">
-                <span className="text-foreground flex items-center font-medium">
+              <div className="font-bold text-2xl">38.4%</div>
+              <p className="mt-0.5 flex items-center gap-1 text-muted-foreground text-xs">
+                <span className="flex items-center font-medium text-foreground">
                   <ArrowUpRight className="size-3" /> -1.8%
                 </span>
                 <span>since last week</span>
@@ -97,13 +96,13 @@ export function EngagementView() {
 
           <Card>
             <CardHeader className="flex flex-row items-center justify-between pb-2">
-              <CardTitle className="text-sm font-medium">Pages per Session</CardTitle>
+              <CardTitle className="font-medium text-sm">Pages per Session</CardTitle>
               <Star className="size-4 text-muted-foreground" />
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-bold">4.2</div>
-              <p className="text-xs text-muted-foreground flex items-center gap-1 mt-0.5">
-                <span className="text-foreground flex items-center font-medium">
+              <div className="font-bold text-2xl">4.2</div>
+              <p className="mt-0.5 flex items-center gap-1 text-muted-foreground text-xs">
+                <span className="flex items-center font-medium text-foreground">
                   <ArrowUpRight className="size-3" /> +0.3
                 </span>
                 <span>since last week</span>
@@ -166,17 +165,17 @@ export function EngagementView() {
                 {topPages.map((page) => (
                   <div
                     key={page.path}
-                    className="flex items-center justify-between border-b border-border/40 pb-3 last:border-0 last:pb-0"
+                    className="flex items-center justify-between border-border/40 border-b pb-3 last:border-0 last:pb-0"
                   >
                     <div className="flex flex-col gap-0.5">
-                      <span className="text-sm font-medium font-mono text-foreground truncate max-w-[180px] md:max-w-[240px]">
+                      <span className="max-w-[180px] truncate font-medium font-mono text-foreground text-sm md:max-w-[240px]">
                         {page.path}
                       </span>
-                      <span className="text-xs text-muted-foreground">{page.views} views</span>
+                      <span className="text-muted-foreground text-xs">{page.views} views</span>
                     </div>
                     <div className="text-right">
-                      <div className="text-sm font-semibold">{page.duration}</div>
-                      <div className="text-xs text-muted-foreground">{page.rate} engagement</div>
+                      <div className="font-semibold text-sm">{page.duration}</div>
+                      <div className="text-muted-foreground text-xs">{page.rate} engagement</div>
                     </div>
                   </div>
                 ))}

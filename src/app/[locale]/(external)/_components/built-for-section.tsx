@@ -23,18 +23,18 @@ const cardVariant = {
 
 export function BuiltForSection() {
   return (
-    <section className="max-w-7xl mx-auto px-6 lg:px-8 py-24 md:py-32">
+    <section className="mx-auto max-w-7xl px-6 py-24 md:py-32 lg:px-8">
       <motion.h2
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.6 }}
-        className="text-3xl md:text-4xl font-bold text-white text-center"
+        className="text-center font-bold text-3xl text-white md:text-4xl"
       >
         Built for people who <GradientText>build</GradientText>
       </motion.h2>
 
-      <div className="flex gap-4 mt-16 overflow-x-auto pb-4 md:grid md:grid-cols-5 md:overflow-visible scrollbar-hide">
+      <div className="scrollbar-hide mt-16 flex gap-4 overflow-x-auto pb-4 md:grid md:grid-cols-5 md:overflow-visible">
         {audiences.map((a, i) => (
           <motion.div
             key={a.title}
@@ -43,11 +43,11 @@ export function BuiltForSection() {
             initial="hidden"
             whileInView="show"
             viewport={{ once: true, amount: 0.3 }}
-            className="bg-white/[0.02] border border-white/[0.06] rounded-2xl p-6 text-center min-w-[180px] flex-shrink-0 group hover:bg-white/[0.04] hover:border-[#8B5CF6]/20 transition-all duration-300"
+            className="group min-w-[180px] flex-shrink-0 rounded-2xl border border-white/[0.06] bg-white/[0.02] p-6 text-center transition-all duration-300 hover:border-[#8B5CF6]/20 hover:bg-white/[0.04]"
           >
-            <div className="text-3xl mb-4">{a.emoji}</div>
-            <h3 className="text-white font-medium text-sm">{a.title}</h3>
-            <p className="text-gray-500 text-xs mt-2">{a.description}</p>
+            <div className="mb-4 text-3xl">{a.emoji}</div>
+            <h3 className="font-medium text-sm text-white">{a.title}</h3>
+            <p className="mt-2 text-gray-500 text-xs">{a.description}</p>
           </motion.div>
         ))}
       </div>

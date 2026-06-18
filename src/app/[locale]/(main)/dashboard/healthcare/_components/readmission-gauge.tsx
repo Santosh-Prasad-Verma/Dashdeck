@@ -1,4 +1,4 @@
-import { ArrowDown, ArrowUp } from "lucide-react";
+import { ArrowDown } from "lucide-react";
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 
@@ -40,7 +40,7 @@ export function ReadmissionGauge() {
             />
           </svg>
           <div className="absolute flex flex-col items-center">
-            <span className="text-4xl font-bold text-foreground">3.2%</span>
+            <span className="font-bold text-4xl text-foreground">3.2%</span>
             <span className="text-muted-foreground text-xs">Readmission</span>
           </div>
         </div>

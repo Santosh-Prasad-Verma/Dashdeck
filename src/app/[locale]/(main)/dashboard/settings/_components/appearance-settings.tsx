@@ -57,7 +57,7 @@ export function AppearanceSettings() {
                     <div key={i} className="size-6 rounded-full" style={{ backgroundColor: color }} />
                   ))}
                 </div>
-                <span className="text-sm font-medium">{t(`themeNames.${theme.nameKey}`)}</span>
+                <span className="font-medium text-sm">{t(`themeNames.${theme.nameKey}`)}</span>
                 {selectedTheme === theme.id && <Check className="size-4 text-primary" />}
               </button>
             ))}

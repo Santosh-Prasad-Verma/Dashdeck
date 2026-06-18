@@ -41,7 +41,7 @@ export function CapacityGauge() {
                       strokeLinecap="round"
                     />
                   </svg>
-                  <span className="absolute text-xs font-bold">{pct}%</span>
+                  <span className="absolute font-bold text-xs">{pct}%</span>
                 </div>
                 <div className="flex-1">
                   <div className="font-medium text-sm">{wh.name}</div>

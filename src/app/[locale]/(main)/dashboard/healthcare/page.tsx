@@ -12,7 +12,7 @@ export default function Page() {
   return (
     <div className="flex flex-col gap-6">
       <div>
-        <h1 className="text-3xl font-bold tracking-tight">Healthcare</h1>
+        <h1 className="font-bold text-3xl tracking-tight">Healthcare</h1>
         <p className="text-muted-foreground text-sm">
           Monitor patient statistics, appointments, and staff performance.
         </p>
@@ -28,19 +28,19 @@ export default function Page() {
           { icon: Heart, label: "ICU", value: "12", sub: "3 critical" },
           { icon: Activity, label: "Discharges", value: "18", sub: "today" },
         ].map((stat) => (
-          <div key={stat.label} className="rounded-xl border bg-card p-4 flex flex-col justify-between">
+          <div key={stat.label} className="flex flex-col justify-between rounded-xl border bg-card p-4">
             <div>
               <div className="mb-2 flex size-10 items-center justify-center rounded-lg bg-muted text-foreground">
                 <stat.icon className="size-5" />
               </div>
               <p className="text-muted-foreground text-sm">{stat.label}</p>
-              <p className="text-2xl font-bold">{stat.value}</p>
+              <p className="font-bold text-2xl">{stat.value}</p>
             </div>
             <div className="mt-1">
               <p className="text-muted-foreground text-xs">{stat.sub}</p>
               {stat.showSparkline && (
                 <svg
-                  className="h-6 w-full mt-2 text-muted-foreground/40"
+                  className="mt-2 h-6 w-full text-muted-foreground/40"
                   viewBox="0 0 100 30"
                   preserveAspectRatio="none"
                 >
