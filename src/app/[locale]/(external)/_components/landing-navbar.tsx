@@ -87,14 +87,6 @@ export function LandingNavbar() {
             </a>
           ))}
 
-          <div className="mx-3 h-5 w-px bg-white/[0.08]" />
-
-          <Link
-            href="/auth/v1/login"
-            className="px-3 py-2 font-medium text-gray-400 text-sm transition-colors hover:text-white"
-          >
-            {t("signIn")}
-          </Link>
           <Link
             href="/dashboard/default"
             className="rounded-lg bg-[#8B5CF6] px-4 py-2 font-medium text-sm text-white transition-all duration-300 hover:bg-[#7C3AED] hover:shadow-[#8B5CF6]/20 hover:shadow-lg"
@@ -132,13 +124,6 @@ export function LandingNavbar() {
             ))}
           </div>
           <div className="flex flex-col gap-3">
-            <Link
-              href="/auth/v1/login"
-              className="py-2 font-medium text-gray-400 text-sm hover:text-white"
-              onClick={() => setMobileOpen(false)}
-            >
-              {t("signIn")}
-            </Link>
             <Link
               href="/dashboard/default"
               className="rounded-lg bg-[#8B5CF6] px-4 py-3 text-center font-semibold text-sm text-white transition-all hover:bg-[#7C3AED]"
