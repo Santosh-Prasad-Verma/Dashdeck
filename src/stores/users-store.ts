@@ -1,7 +1,7 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 
-import { users as initialUsers, type UserRow } from "@/app/(main)/dashboard/users/_components/data";
+import { users as initialUsers, type UserRow } from "@/app/[locale]/(main)/dashboard/users/_components/data";
 
 interface UsersState {
   users: UserRow[];
@@ -21,19 +21,16 @@ export const useUsersStore = create<UsersState>()(
         })),
       updateUser: (email, updates) =>
         set((state) => ({
-          users: state.users.map((u) =>
-            u.email === email ? { ...u, ...updates } : u
-          ),
+          users: state.users.map((u) => (u.email === email ? { ...u, ...updates } : u)),
         })),
       deleteUser: (email) =>
         set((state) => ({
           users: state.users.filter((u) => u.email !== email),
         })),
-      resetUsers: () =>
-        set({ users: initialUsers }),
+      resetUsers: () => set({ users: initialUsers }),
     }),
     {
       name: "dashdeck-users-storage",
-    }
-  )
+    },
+  ),
 );

@@ -1,7 +1,11 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 
-import { conversations as initialConversations, type Conversation, type Message } from "@/app/(main)/chat/_components/data";
+import {
+  type Conversation,
+  conversations as initialConversations,
+  type Message,
+} from "@/app/[locale]/(main)/chat/_components/data";
 
 interface ChatState {
   conversations: Conversation[];
@@ -20,15 +24,13 @@ export const useChatStore = create<ChatState>()(
       addMessage: (conversationId, message) =>
         set((state) => ({
           conversations: state.conversations.map((conv) =>
-            conv.id === conversationId
-              ? { ...conv, messages: [...conv.messages, message] }
-              : conv
+            conv.id === conversationId ? { ...conv, messages: [...conv.messages, message] } : conv,
           ),
         })),
       resetConversations: () => set({ conversations: initialConversations }),
     }),
     {
       name: "dashdeck-chat-storage",
-    }
-  )
+    },
+  ),
 );

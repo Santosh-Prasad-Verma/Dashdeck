@@ -1,7 +1,7 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 
-import { defaultInvoiceValues, type InvoiceFormValues } from "@/app/(main)/dashboard/invoice/_components/data";
+import { defaultInvoiceValues, type InvoiceFormValues } from "@/app/[locale]/(main)/dashboard/invoice/_components/data";
 
 interface InvoiceState {
   currentInvoice: InvoiceFormValues;
@@ -34,11 +34,10 @@ export const useInvoiceStore = create<InvoiceState>()(
         set((state) => ({
           savedInvoices: state.savedInvoices.filter((_, i) => i !== index),
         })),
-      resetInvoice: () =>
-        set({ currentInvoice: defaultInvoiceValues }),
+      resetInvoice: () => set({ currentInvoice: defaultInvoiceValues }),
     }),
     {
       name: "dashdeck-invoice-storage",
-    }
-  )
+    },
+  ),
 );

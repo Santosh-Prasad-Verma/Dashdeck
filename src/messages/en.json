@@ -1,0 +1,582 @@
+{
+  "Metadata": {
+    "title": "Dashdeck - Modern Next.js Admin Dashboard",
+    "description": "Dashdeck is a modern, open-source admin dashboard built with Next.js 16, Tailwind CSS v4, and shadcn/ui. Features 15+ interactive dashboards, AI/LLM analytics, and full client-side state management."
+  },
+  "NotFound": {
+    "title": "Page Not Found",
+    "description": "Oops! The page you're looking for doesn't exist or has been moved.",
+    "backToHome": "Back to Home",
+    "goToDashboard": "Go to Dashboard"
+  },
+  "DashboardNotFound": {
+    "title": "Page not found",
+    "description": "This page doesn't exist or hasn't been added yet. Check the sidebar navigation for available pages.",
+    "backToDashboard": "Back to Dashboard"
+  },
+  "Sidebar": {
+    "groups": {
+      "dashboards": "Dashboards",
+      "pages": "Pages",
+      "legacy": "Legacy",
+      "misc": "Misc"
+    },
+    "items": {
+      "default": "Default",
+      "ai": "AI & LLM",
+      "crm": "CRM",
+      "finance": "Finance",
+      "analytics": "Analytics",
+      "productivity": "Productivity",
+      "ecommerce": "E-commerce",
+      "academy": "Academy",
+      "logistics": "Logistics",
+      "devops": "DevOps",
+      "healthcare": "Healthcare",
+      "inventory": "Inventory",
+      "projects": "Projects",
+      "saas": "SaaS Metrics",
+      "realestate": "Real Estate",
+      "social": "Social Media",
+      "email": "Email",
+      "chat": "Chat",
+      "calendar": "Calendar",
+      "kanban": "Kanban",
+      "invoice": "Invoice",
+      "users": "Users",
+      "roles": "Roles",
+      "settings": "Settings",
+      "authentication": "Authentication",
+      "loginV1": "Login v1",
+      "loginV2": "Login v2",
+      "registerV1": "Register v1",
+      "registerV2": "Register v2",
+      "defaultV1": "Default V1",
+      "crmV1": "CRM V1",
+      "financeV1": "Finance V1",
+      "analyticsV1": "Analytics V1",
+      "helpCenter": "Help Center",
+      "changelog": "Changelog",
+      "systemStatus": "System Status",
+      "dashboardsGroup": "Dashboards"
+    },
+    "quickCreate": "Quick Create",
+    "inbox": "Inbox",
+    "soon": "Soon",
+    "search": "Search",
+    "searchPlaceholder": "Search dashboards, users, and more…",
+    "noResults": "No results found.",
+    "other": "Other",
+    "notifications": "Notifications",
+    "markAllAsRead": "Mark all as read",
+    "account": "Account",
+    "billing": "Billing",
+    "logOut": "Log out",
+    "lookingForMore": "Looking for something more?",
+    "openIssueOrReachOut": "Open an issue or do reach out to me on",
+    "settings": "Settings",
+    "getHelp": "Get Help",
+    "dataLibrary": "Data Library",
+    "reports": "Reports",
+    "wordAssistant": "Word Assistant"
+  },
+  "Shortcuts": {
+    "title": "Keyboard Shortcuts",
+    "description": "Navigate faster with these keyboard shortcuts.",
+    "groups": {
+      "navigation": "Navigation",
+      "dashboard": "Dashboard",
+      "kanban": "Kanban",
+      "chat": "Chat",
+      "general": "General"
+    },
+    "shortcuts": {
+      "openSearch": "Open search",
+      "commandPalette": "Command palette",
+      "goToDashboard": "Go to Dashboard",
+      "goToUsers": "Go to Users",
+      "goToSettings": "Go to Settings",
+      "refreshData": "Refresh data",
+      "exportReport": "Export report",
+      "printDashboard": "Print dashboard",
+      "newTask": "New task",
+      "editTask": "Edit selected task",
+      "deleteTask": "Delete selected task",
+      "moveTask": "Move task between columns",
+      "sendMessage": "Send message",
+      "newLine": "New line",
+      "closeConversation": "Close conversation",
+      "showShortcuts": "Show shortcuts",
+      "closeDialog": "Close dialog/modal",
+      "toggleSidebar": "Toggle sidebar",
+      "toggleDarkMode": "Toggle dark mode"
+    }
+  },
+  "LayoutControls": {
+    "preferences": "Preferences",
+    "preferencesDescription": "Customize your dashboard layout preferences.",
+    "themePreset": "Theme Preset",
+    "fonts": "Fonts",
+    "themeMode": "Theme Mode",
+    "pageLayout": "Page Layout",
+    "navbarBehavior": "Navbar Behavior",
+    "sidebarStyle": "Sidebar Style",
+    "sidebarCollapseMode": "Sidebar Collapse Mode",
+    "light": "Light",
+    "dark": "Dark",
+    "system": "System",
+    "centered": "Centered",
+    "fullWidth": "Full Width",
+    "sticky": "Sticky",
+    "scroll": "Scroll",
+    "inset": "Inset",
+    "floating": "Floating",
+    "icon": "Icon",
+    "offCanvas": "OffCanvas",
+    "restoreDefaults": "Restore Defaults"
+  },
+  "ThemeSwitcher": {
+    "ariaLabel": "Current theme: {theme}. Click to cycle themes"
+  },
+  "LanguageSwitcher": {
+    "ariaLabel": "Change language",
+    "label": "Language"
+  },
+  "Landing": {
+    "navbar": {
+      "signIn": "Sign In",
+      "getStarted": "Get Started",
+      "toggleMenu": "Toggle menu"
+    },
+    "hero": {
+      "badge": "Premium Next.js Dashboard Presets",
+      "description": "A professionally designed collection of 15+ interactive dashboards including CRM, DevOps, Finance, Healthcare, Analytics, and Academy. Use them as reference architectures, copy layout presets, or jumpstart your next admin panel.",
+      "cta": "Explore Dashboard Presets",
+      "liveTraffic": "Live Traffic (Ingress vs. Egress)",
+      "live": "Live",
+      "avgSpeed": "Avg: 229.6 Mb/s",
+      "regionLoad": "Region Load",
+      "usEast": "US-EAST (60%)",
+      "euCent": "EU-CENT (25%)",
+      "throughput": "Throughput",
+      "headlineLine1": "High-fidelity dashboard",
+      "headlineLine2Prefix": "presets ",
+      "headlineLine2Highlight": "for React & Next.js"
+    },
+    "features": {
+      "heading": "Everything you need",
+      "subheading": "Powerful features to manage your entire digital life",
+      "featuresList": [
+        {
+          "title": "AI Workspace",
+          "description": "Smart suggestions, automated workflows, and AI-powered insights that learn from your habits.",
+          "items": [
+            "Intelligent task prioritization",
+            "Auto-categorize expenses",
+            "Smart document search"
+          ]
+        },
+        {
+          "title": "Smart Wallet",
+          "description": "Track expenses, manage subscriptions, monitor investments, and never miss a payment.",
+          "items": [
+            "Real-time balance tracking",
+            "Subscription management",
+            "Investment portfolio overview"
+          ]
+        },
+        {
+          "title": "Secure Vault",
+          "description": "Military-grade encryption for passwords, documents, and sensitive data. Zero-knowledge architecture.",
+          "items": [
+            "End-to-end encryption",
+            "Biometric authentication",
+            "Secure document storage"
+          ]
+        }
+      ]
+    },
+    "faq": {
+      "heading": "Frequently asked questions",
+      "subheading": "Everything you need to know about Dashdeck",
+      "items": [
+        {
+          "q": "What is Dashdeck?",
+          "a": "Dashdeck is an all-in-one personal dashboard that helps you manage finances, passwords, documents, tasks, and subscriptions from a single intelligent workspace."
+        },
+        {
+          "q": "Is my data secure?",
+          "a": "Absolutely. We use end-to-end encryption with a zero-knowledge architecture. Your data is encrypted before it leaves your device, and we never have access to your decryption keys."
+        },
+        {
+          "q": "Is Dashdeck free to use?",
+          "a": "Dashdeck offers a generous free tier with core features. Premium plans with advanced AI features, unlimited storage, and priority support are coming soon."
+        },
+        {
+          "q": "What platforms does Dashdeck support?",
+          "a": "Dashdeck works as a web application accessible from any modern browser. Native iOS and Android apps are on our roadmap for 2025."
+        },
+        {
+          "q": "Can I import data from other apps?",
+          "a": "Yes! Dashdeck supports importing from popular tools like Notion, Google Sheets, 1Password, and many more. Our integration library is constantly growing."
+        },
+        {
+          "q": "How is this different from Notion or Linear?",
+          "a": "While Notion focuses on documents and Linear on project management, Dashdeck is specifically designed as a personal command center — combining finances, security, productivity, and AI insights in one unified experience."
+        }
+      ]
+    },
+    "footer": {
+      "tagline": "Your personal command center.",
+      "product": "Product",
+      "resources": "Resources",
+      "company": "Company",
+      "links": {
+        "features": "Features",
+        "dashboard": "Dashboard",
+        "integrations": "Integrations",
+        "changelog": "Changelog",
+        "documentation": "Documentation",
+        "apiReference": "API Reference",
+        "community": "Community",
+        "blog": "Blog",
+        "about": "About",
+        "careers": "Careers",
+        "contact": "Contact",
+        "press": "Press"
+      },
+      "copyright": "© {year} Dashdeck. All rights reserved.",
+      "privacyPolicy": "Privacy Policy",
+      "termsOfService": "Terms of Service",
+      "cookies": "Cookies"
+    }
+  },
+  "Auth": {
+    "login": {
+      "heading": "Login to your account",
+      "subheading": "Please enter your details to login.",
+      "brandTagline": "Design. Build. Launch. Repeat.",
+      "altSubheading": "Enter your email and password to continue.",
+      "email": "Email Address",
+      "password": "Password",
+      "rememberMe": "Remember me for 30 days",
+      "emailPlaceholder": "you@example.com",
+      "passwordPlaceholder": "----",
+      "loginButton": "Login",
+      "continueWithGoogle": "Continue with Google",
+      "orContinueWith": "Or continue with",
+      "noAccount": "Don't have an account?",
+      "registerLink": "Register",
+      "validation": {
+        "invalidEmail": "Please enter a valid email address.",
+        "passwordMinLength": "Password must be at least 6 characters."
+      },
+      "submittedToast": "You submitted the following values"
+    },
+    "register": {
+      "heading": "Create your account",
+      "subheading": "Please enter your details to register.",
+      "email": "Email Address",
+      "password": "Password",
+      "confirmPassword": "Confirm Password",
+      "emailPlaceholder": "you@example.com",
+      "passwordPlaceholder": "----",
+      "registerButton": "Register",
+      "continueWithGoogle": "Continue with Google",
+      "orContinueWith": "Or continue with",
+      "hasAccount": "Already have an account?",
+      "loginLink": "Login",
+      "validation": {
+        "invalidEmail": "Please enter a valid email address.",
+        "passwordMinLength": "Password must be at least 6 characters.",
+        "confirmPasswordMinLength": "Confirm Password must be at least 6 characters.",
+        "passwordsDoNotMatch": "Passwords do not match."
+      },
+      "submittedToast": "You submitted the following values"
+    }
+  },
+  "Settings": {
+    "title": "Settings",
+    "description": "Manage your account settings and preferences.",
+    "tabs": {
+      "account": "Account",
+      "appearance": "Appearance",
+      "notifications": "Notifications",
+      "security": "Security",
+      "data": "Data"
+    },
+    "account": {
+      "profileTitle": "Profile",
+      "profileDescription": "Update your personal information and profile picture.",
+      "fullName": "Full Name",
+      "email": "Email",
+      "company": "Company",
+      "role": "Role",
+      "bio": "Bio",
+      "changePhoto": "Change Photo",
+      "saveChanges": "Save Changes",
+      "photoHint": "JPG, GIF or PNG. Max size 2MB.",
+      "savedToast": "Account settings saved successfully"
+    },
+    "security": {
+      "apiCredentialsTitle": "API Credentials",
+      "changePasswordTitle": "Change Password",
+      "twoFactorTitle": "Two-Factor Authentication",
+      "activeSessionsTitle": "Active Sessions",
+      "currentPassword": "Current Password",
+      "newPassword": "New Password",
+      "confirmNewPassword": "Confirm New Password",
+      "enable2FA": "Enable 2FA",
+      "productionApiKey": "Production API Key",
+      "regenerate": "Regenerate",
+      "updatePassword": "Update Password",
+      "saveSettings": "Save Settings",
+      "currentSession": "Current Session",
+      "active": "Active",
+      "revoke": "Revoke",
+      "toasts": {
+        "passwordsDoNotMatch": "Passwords do not match",
+        "passwordMinLength": "Password must be at least 8 characters",
+        "passwordUpdated": "Password updated successfully",
+        "apiKeyCopied": "API key copied to clipboard",
+        "apiKeyGenerated": "New API key generated",
+        "settingsSaved": "Security settings saved"
+      },
+      "apiCredentialsDescription": "Use this key to authenticate requests to the Dashdeck API. Keep this key secret and secure.",
+      "changePasswordDescription": "Update your password to keep your account secure.",
+      "twoFactorDescription": "Add an extra layer of security to your account.",
+      "twoFactorEnabledDescription": "Require a verification code when signing in",
+      "twoFactorEnabledStatus": "Two-factor authentication is enabled",
+      "activeSessionsDescription": "Manage your active login sessions.",
+      "copied": "Copied!",
+      "currentSessionDetail": "Chrome on Linux · Last active now",
+      "mobileApp": "Mobile App",
+      "mobileSessionDetail": "iPhone · Last active 2 hours ago"
+    },
+    "notifications": {
+      "emailTitle": "Email Notifications",
+      "pushTitle": "Push Notifications",
+      "savePreferences": "Save Preferences",
+      "savedToast": "Notification preferences saved",
+      "emailDescription": "Configure which emails you'd like to receive.",
+      "pushDescription": "Manage your browser push notification preferences.",
+      "items": {
+        "weeklyReport": {
+          "title": "Weekly Report",
+          "description": "Receive a weekly summary of your dashboard activity"
+        },
+        "newTeamMember": {
+          "title": "New Team Member",
+          "description": "Get notified when someone joins your team"
+        },
+        "securityAlerts": {
+          "title": "Security Alerts",
+          "description": "Important security notifications for your account"
+        },
+        "productUpdates": {
+          "title": "Product Updates",
+          "description": "News about new features and improvements"
+        },
+        "realTimeUpdates": {
+          "title": "Real-time Updates",
+          "description": "Get notified about live changes in your dashboards"
+        },
+        "mentions": {
+          "title": "Mentions",
+          "description": "When someone mentions you in comments"
+        },
+        "taskUpdates": {
+          "title": "Task Updates",
+          "description": "Status changes on tasks you're assigned to"
+        },
+        "calendarReminders": {
+          "title": "Calendar Reminders",
+          "description": "Reminders for upcoming events and meetings"
+        }
+      }
+    },
+    "data": {
+      "title": "Data Management",
+      "description": "Reset application data to default values.",
+      "warning": "Warning",
+      "warningText": "This action will reset all application data to its default state. This cannot be undone.",
+      "resetAllData": "Reset All Data",
+      "resetToast": "All data has been reset to defaults",
+      "warningBody": "This will reset all user data, tasks, events, chat messages, and invoices to their default values. This action cannot be undone.",
+      "dataScope": "Users, Kanban tasks, Chat messages, Calendar events, Invoices"
+    },
+    "appearance": {
+      "themeTitle": "Theme",
+      "themeDescription": "Select your preferred color theme for the dashboard.",
+      "fontTitle": "Font",
+      "fontDescription": "Choose your preferred font family.",
+      "sidebarTitle": "Sidebar",
+      "sidebarDescription": "Customize the sidebar appearance.",
+      "compactMode": "Compact Mode",
+      "compactModeDescription": "Show icons only in the sidebar",
+      "fixedSidebar": "Fixed Sidebar",
+      "fixedSidebarDescription": "Keep sidebar visible while scrolling",
+      "configure": "Configure",
+      "savePreferences": "Save Preferences",
+      "savedToast": "Appearance settings saved",
+      "themeNames": {
+        "default": "Default",
+        "tangerine": "Tangerine",
+        "brutalist": "Brutalist",
+        "softPop": "Soft Pop"
+      }
+    }
+  },
+  "Dashboards": {
+    "default": {
+      "totalRevenue": "Total Revenue",
+      "newCustomers": "New Customers",
+      "activeAccounts": "Active Accounts",
+      "growthRate": "Growth Rate",
+      "customerActivity": "Customer Activity",
+      "customerActivityDesc": "Customer activity for the last 3 months",
+      "last3Months": "Last 3 months",
+      "period": "Period",
+      "segments": "Segments",
+      "allSegments": "All segments",
+      "paid": "Paid",
+      "organic": "Organic",
+      "viewReport": "View report",
+      "newCustomersChart": "New Customers",
+      "activeAccountsChart": "Active Accounts",
+      "returningUsers": "Returning Users",
+      "customersCount": "{count} Customers",
+      "customersDesc": "Recent customer records with plan, billing, status, and signup activity.",
+      "export": "Export",
+      "columns": {
+        "customer": "Customer",
+        "status": "Status",
+        "billing": "Billing",
+        "plan": "Plan",
+        "joined": "Joined"
+      },
+      "statuses": {
+        "subscribed": "Subscribed",
+        "inactive": "Inactive",
+        "unsubscribed": "Unsubscribed"
+      },
+      "billingStatuses": {
+        "paid": "Paid",
+        "pending": "Pending",
+        "overdue": "Overdue",
+        "trial": "Trial"
+      }
+    },
+    "analytics": {
+      "greeting": "Hello, {name}",
+      "description": "Monitor traffic, engagement, and conversion performance in one view.",
+      "tabs": {
+        "overview": "Overview",
+        "audience": "Audience",
+        "acquisition": "Acquisition",
+        "engagement": "Engagement",
+        "conversions": "Conversions"
+      },
+      "kpi": {
+        "uniqueVisitors": "Unique Visitors",
+        "sessions": "Sessions",
+        "pageviews": "Pageviews",
+        "engagementRate": "Engagement Rate",
+        "conversionRate": "Conversion Rate"
+      },
+      "from": "from",
+      "last4Weeks": "last 4 weeks",
+      "timeRange": {
+        "last7Days": "Last 7 days",
+        "last4Weeks": "Last 4 weeks",
+        "last3Months": "Last 3 months",
+        "yearToDate": "Year to date"
+      },
+      "analyticsActions": "Analytics actions",
+      "exportReport": "Export report",
+      "importData": "Import data",
+      "shareDashboard": "Share dashboard",
+      "refreshMetrics": "Refresh metrics",
+      "moreActions": "More analytics actions",
+      "pagePerformance": "Page Performance",
+      "views": "Views",
+      "avgTime": "Avg Time",
+      "bounce": "Bounce",
+      "realtimeVisitors": "Realtime Visitors",
+      "perMinute": "per minute",
+      "countries": {
+        "unitedStates": "United States",
+        "unitedKingdom": "United Kingdom",
+        "canada": "Canada",
+        "india": "India"
+      },
+      "selectRange": "Select range"
+    },
+    "crm": {
+      "pipelineOverview": "Pipeline Overview",
+      "pipelineDesc": "Keep tabs on lead quality, open opportunities, and conversion rates across the current sales cycle.",
+      "lastMonth": "last month",
+      "leadPipelineValue": "Lead Pipeline Value",
+      "qualifiedLeadRate": "Qualified Lead Rate",
+      "openOpportunities": "Open Opportunities",
+      "leadToDealRate": "Lead-to-Deal Rate",
+      "leadPipelineAnalysis": "Lead Pipeline Analysis",
+      "selectRange": "Select range",
+      "last30Days": "Last 30 days",
+      "lastQuarter": "Last quarter",
+      "last12Months": "Last 12 months",
+      "qualifiedLeadFlow": "Qualified Lead Flow (Monthly)",
+      "conversionFunnel": "Conversion Funnel",
+      "overallLeadToWon": "Overall Lead-to-Won:",
+      "qualifiedLeads": "Qualified Leads",
+      "leads": "Leads",
+      "funnelStages": {
+        "lead": "Lead",
+        "contacted": "Contacted",
+        "proposal": "Proposal",
+        "negotiation": "Negotiation",
+        "won": "Won"
+      },
+      "upcomingMeetings": "Upcoming Meetings",
+      "monthlyProposalGoal": "Monthly Proposal Goal",
+      "viewCalendar": "View Calendar",
+      "sent": "sent",
+      "target": "target",
+      "ofThisMonthProposalTarget": "% of this month's proposal target reached.",
+      "recentOpportunities": "Recent Opportunities",
+      "recentOpportunitiesDesc": "Track qualified leads moving through discovery, proposal, and closing stages.",
+      "searchDeals": "Search deals...",
+      "stage": "Stage",
+      "health": "Health",
+      "allStages": "All stages",
+      "allHealth": "All health",
+      "noResults": "No results.",
+      "viewingOpportunities": "Viewing {current} out of {total} opportunities",
+      "stages": {
+        "proposalSent": "Proposal Sent",
+        "discovery": "Discovery",
+        "negotiation": "Negotiation",
+        "qualified": "Qualified",
+        "closedWon": "Closed Won"
+      },
+      "healthStatuses": {
+        "onTrack": "On Track",
+        "needsReview": "Needs Review",
+        "atRisk": "At Risk",
+        "onHold": "On Hold"
+      }
+    }
+  },
+  "Common": {
+    "save": "Save",
+    "cancel": "Cancel",
+    "delete": "Delete",
+    "edit": "Edit",
+    "add": "Add",
+    "close": "Close",
+    "loading": "Loading...",
+    "noData": "No data available",
+    "comingSoon": "Coming Soon",
+    "copyright": "© {year}, Dashdeck. Built with Next.js 16."
+  }
+}

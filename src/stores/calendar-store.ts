@@ -116,9 +116,7 @@ export const useCalendarStore = create<CalendarState>()(
         })),
       updateEvent: (id, updates) =>
         set((state) => ({
-          events: state.events.map((e) =>
-            e.id === id ? { ...e, ...updates } : e
-          ),
+          events: state.events.map((e) => (e.id === id ? { ...e, ...updates } : e)),
         })),
       deleteEvent: (id) =>
         set((state) => ({
@@ -128,6 +126,6 @@ export const useCalendarStore = create<CalendarState>()(
     }),
     {
       name: "dashdeck-calendar-storage",
-    }
-  )
+    },
+  ),
 );

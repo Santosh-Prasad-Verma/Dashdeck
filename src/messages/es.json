@@ -1,0 +1,582 @@
+{
+  "Metadata": {
+    "title": "Dashdeck - Panel de Administración Moderno Next.js",
+    "description": "Dashdeck es un panel de administración moderno y de código abierto construido con Next.js 16, Tailwind CSS v4 y shadcn/ui. Con 15+ paneles interactivos, análisis de IA/LLM y gestión de estado completa del lado del cliente."
+  },
+  "NotFound": {
+    "title": "Página no encontrada",
+    "description": "¡Ups! La página que buscas no existe o ha sido movida.",
+    "backToHome": "Volver al inicio",
+    "goToDashboard": "Ir al panel"
+  },
+  "DashboardNotFound": {
+    "title": "Página no encontrada",
+    "description": "Esta página no existe o aún no ha sido añadida. Revisa la navegación de la barra lateral para ver las páginas disponibles.",
+    "backToDashboard": "Volver al panel"
+  },
+  "Sidebar": {
+    "groups": {
+      "dashboards": "Paneles",
+      "pages": "Páginas",
+      "legacy": "Heredado",
+      "misc": "Varios"
+    },
+    "items": {
+      "default": "Predeterminado",
+      "ai": "IA y LLM",
+      "crm": "CRM",
+      "finance": "Finanzas",
+      "analytics": "Analíticas",
+      "productivity": "Productividad",
+      "ecommerce": "Comercio electrónico",
+      "academy": "Academia",
+      "logistics": "Logística",
+      "devops": "DevOps",
+      "healthcare": "Salud",
+      "inventory": "Inventario",
+      "projects": "Proyectos",
+      "saas": "Métricas SaaS",
+      "realestate": "Bienes raíces",
+      "social": "Redes sociales",
+      "email": "Correo",
+      "chat": "Chat",
+      "calendar": "Calendario",
+      "kanban": "Kanban",
+      "invoice": "Factura",
+      "users": "Usuarios",
+      "roles": "Roles",
+      "settings": "Configuración",
+      "authentication": "Autenticación",
+      "loginV1": "Inicio v1",
+      "loginV2": "Inicio v2",
+      "registerV1": "Registro v1",
+      "registerV2": "Registro v2",
+      "defaultV1": "Predeterminado V1",
+      "crmV1": "CRM V1",
+      "financeV1": "Finanzas V1",
+      "analyticsV1": "Analíticas V1",
+      "helpCenter": "Centro de ayuda",
+      "changelog": "Registro de cambios",
+      "systemStatus": "Estado del sistema",
+      "dashboardsGroup": "Paneles"
+    },
+    "quickCreate": "Crear rápido",
+    "inbox": "Bandeja de entrada",
+    "soon": "Pronto",
+    "search": "Buscar",
+    "searchPlaceholder": "Buscar paneles, usuarios y más…",
+    "noResults": "No se encontraron resultados.",
+    "other": "Otro",
+    "notifications": "Notificaciones",
+    "markAllAsRead": "Marcar todo como leído",
+    "account": "Cuenta",
+    "billing": "Facturación",
+    "logOut": "Cerrar sesión",
+    "lookingForMore": "¿Buscas algo más?",
+    "openIssueOrReachOut": "Abre un issue o contáctame en",
+    "settings": "Configuración",
+    "getHelp": "Obtener ayuda",
+    "dataLibrary": "Biblioteca de datos",
+    "reports": "Informes",
+    "wordAssistant": "Asistente de palabras"
+  },
+  "Shortcuts": {
+    "title": "Atajos de teclado",
+    "description": "Navega más rápido con estos atajos de teclado.",
+    "groups": {
+      "navigation": "Navegación",
+      "dashboard": "Panel",
+      "kanban": "Kanban",
+      "chat": "Chat",
+      "general": "General"
+    },
+    "shortcuts": {
+      "openSearch": "Abrir búsqueda",
+      "commandPalette": "Paleta de comandos",
+      "goToDashboard": "Ir al panel",
+      "goToUsers": "Ir a usuarios",
+      "goToSettings": "Ir a configuración",
+      "refreshData": "Actualizar datos",
+      "exportReport": "Exportar informe",
+      "printDashboard": "Imprimir panel",
+      "newTask": "Nueva tarea",
+      "editTask": "Editar tarea seleccionada",
+      "deleteTask": "Eliminar tarea seleccionada",
+      "moveTask": "Mover tarea entre columnas",
+      "sendMessage": "Enviar mensaje",
+      "newLine": "Nueva línea",
+      "closeConversation": "Cerrar conversación",
+      "showShortcuts": "Mostrar atajos",
+      "closeDialog": "Cerrar diálogo/modal",
+      "toggleSidebar": "Alternar barra lateral",
+      "toggleDarkMode": "Alternar modo oscuro"
+    }
+  },
+  "LayoutControls": {
+    "preferences": "Preferencias",
+    "preferencesDescription": "Personaliza las preferencias de diseño de tu panel.",
+    "themePreset": "Tema preestablecido",
+    "fonts": "Fuentes",
+    "themeMode": "Modo de tema",
+    "pageLayout": "Diseño de página",
+    "navbarBehavior": "Comportamiento de barra de navegación",
+    "sidebarStyle": "Estilo de barra lateral",
+    "sidebarCollapseMode": "Modo de colapso de barra lateral",
+    "light": "Claro",
+    "dark": "Oscuro",
+    "system": "Sistema",
+    "centered": "Centrado",
+    "fullWidth": "Ancho completo",
+    "sticky": "Fijo",
+    "scroll": "Desplazamiento",
+    "inset": "Insertado",
+    "floating": "Flotante",
+    "icon": "Icono",
+    "offCanvas": "Fuera de canvas",
+    "restoreDefaults": "Restaurar valores predeterminados"
+  },
+  "ThemeSwitcher": {
+    "ariaLabel": "Tema actual: {theme}. Haz clic para cambiar de tema"
+  },
+  "LanguageSwitcher": {
+    "ariaLabel": "Cambiar idioma",
+    "label": "Idioma"
+  },
+  "Landing": {
+    "navbar": {
+      "signIn": "Iniciar sesión",
+      "getStarted": "Comenzar",
+      "toggleMenu": "Alternar menú"
+    },
+    "hero": {
+      "badge": "Presets Premium de Panel Next.js",
+      "description": "Una colección diseñada profesionalmente de más de 15 paneles interactivos que incluyen CRM, DevOps, Finanzas, Salud, Analíticas y Academia. Úsalos como arquitecturas de referencia, copia diseños preestablecidos o comienza rápidamente tu próximo panel de administración.",
+      "cta": "Explorar Presets del Panel",
+      "liveTraffic": "Tráfico en vivo (Entrada vs Salida)",
+      "live": "En vivo",
+      "avgSpeed": "Prom: 229.6 Mb/s",
+      "regionLoad": "Carga por región",
+      "usEast": "US-EAST (60%)",
+      "euCent": "EU-CENT (25%)",
+      "throughput": "Rendimiento",
+      "headlineLine1": "Presets de panel de alta",
+      "headlineLine2Prefix": "fidelidad para React y Next.js",
+      "headlineLine2Highlight": "para React & Next.js"
+    },
+    "features": {
+      "heading": "Todo lo que necesitas",
+      "subheading": "Funciones poderosas para gestionar toda tu vida digital",
+      "featuresList": [
+        {
+          "title": "Espacio de trabajo IA",
+          "description": "Sugerencias inteligentes, flujos de trabajo automatizados e información impulsada por IA que aprende de tus hábitos.",
+          "items": [
+            "Priorización inteligente de tareas",
+            "Auto-categorización de gastos",
+            "Búsqueda inteligente de documentos"
+          ]
+        },
+        {
+          "title": "Billetera inteligente",
+          "description": "Rastrea gastos, gestiona suscripciones, monitorea inversiones y nunca pierdas un pago.",
+          "items": [
+            "Seguimiento de saldo en tiempo real",
+            "Gestión de suscripciones",
+            "Resumen del portafolio de inversiones"
+          ]
+        },
+        {
+          "title": "Bóveda segura",
+          "description": "Cifrado de grado militar para contraseñas, documentos y datos sensibles. Arquitectura de conocimiento cero.",
+          "items": [
+            "Cifrado de extremo a extremo",
+            "Autenticación biométrica",
+            "Almacenamiento seguro de documentos"
+          ]
+        }
+      ]
+    },
+    "faq": {
+      "heading": "Preguntas frecuentes",
+      "subheading": "Todo lo que necesitas saber sobre Dashdeck",
+      "items": [
+        {
+          "q": "¿Qué es Dashdeck?",
+          "a": "Dashdeck es un panel personal todo en uno que te ayuda a gestionar finanzas, contraseñas, documentos, tareas y suscripciones desde un solo espacio de trabajo inteligente."
+        },
+        {
+          "q": "¿Están seguros mis datos?",
+          "a": "Absolutamente. Usamos cifrado de extremo a extremo con arquitectura de conocimiento cero. Tus datos se cifran antes de salir de tu dispositivo."
+        },
+        {
+          "q": "¿Dashdeck es gratuito?",
+          "a": "Dashdeck ofrece un generoso nivel gratuito con funciones principales. Los planes premium con funciones avanzadas de IA, almacenamiento ilimitado y soporte prioritario llegarán pronto."
+        },
+        {
+          "q": "¿Qué plataformas soporta Dashdeck?",
+          "a": "Dashdeck funciona como una aplicación web accesible desde cualquier navegador moderno. Las aplicaciones nativas de iOS y Android están en nuestra hoja de ruta para 2025."
+        },
+        {
+          "q": "¿Puedo importar datos de otras aplicaciones?",
+          "a": "¡Sí! Dashdeck soporta la importación desde herramientas populares como Notion, Google Sheets, 1Password y muchas más."
+        },
+        {
+          "q": "¿En qué se diferencia de Notion o Linear?",
+          "a": "Mientras Notion se enfoca en documentos y Linear en gestión de proyectos, Dashdeck está diseñado específicamente como un centro de mando personal."
+        }
+      ]
+    },
+    "footer": {
+      "tagline": "Tu centro de mando personal.",
+      "product": "Producto",
+      "resources": "Recursos",
+      "company": "Empresa",
+      "links": {
+        "features": "Funciones",
+        "dashboard": "Panel",
+        "integrations": "Integraciones",
+        "changelog": "Registro de cambios",
+        "documentation": "Documentación",
+        "apiReference": "Referencia de API",
+        "community": "Comunidad",
+        "blog": "Blog",
+        "about": "Acerca de",
+        "careers": "Carreras",
+        "contact": "Contacto",
+        "press": "Prensa"
+      },
+      "copyright": "© {year} Dashdeck. Todos los derechos reservados.",
+      "privacyPolicy": "Política de privacidad",
+      "termsOfService": "Términos de servicio",
+      "cookies": "Cookies"
+    }
+  },
+  "Auth": {
+    "login": {
+      "heading": "Inicia sesión en tu cuenta",
+      "subheading": "Por favor ingresa tus datos para iniciar sesión.",
+      "brandTagline": "Diseña. Construye. Lanza. Repite.",
+      "altSubheading": "Ingresa tu correo y contraseña para continuar.",
+      "email": "Correo electrónico",
+      "password": "Contraseña",
+      "rememberMe": "Recordarme por 30 días",
+      "emailPlaceholder": "tu@ejemplo.com",
+      "passwordPlaceholder": "----",
+      "loginButton": "Iniciar sesión",
+      "continueWithGoogle": "Continuar con Google",
+      "orContinueWith": "O continuar con",
+      "noAccount": "¿No tienes una cuenta?",
+      "registerLink": "Registrarse",
+      "validation": {
+        "invalidEmail": "Por favor ingresa un correo electrónico válido.",
+        "passwordMinLength": "La contraseña debe tener al menos 6 caracteres."
+      },
+      "submittedToast": "Enviaste los siguientes valores"
+    },
+    "register": {
+      "heading": "Crea tu cuenta",
+      "subheading": "Por favor ingresa tus datos para registrarte.",
+      "email": "Correo electrónico",
+      "password": "Contraseña",
+      "confirmPassword": "Confirmar contraseña",
+      "emailPlaceholder": "tu@ejemplo.com",
+      "passwordPlaceholder": "----",
+      "registerButton": "Registrarse",
+      "continueWithGoogle": "Continuar con Google",
+      "orContinueWith": "O continuar con",
+      "hasAccount": "¿Ya tienes una cuenta?",
+      "loginLink": "Iniciar sesión",
+      "validation": {
+        "invalidEmail": "Por favor ingresa un correo electrónico válido.",
+        "passwordMinLength": "La contraseña debe tener al menos 6 caracteres.",
+        "confirmPasswordMinLength": "La contraseña de confirmación debe tener al menos 6 caracteres.",
+        "passwordsDoNotMatch": "Las contraseñas no coinciden."
+      },
+      "submittedToast": "Enviaste los siguientes valores"
+    }
+  },
+  "Settings": {
+    "title": "Configuración",
+    "description": "Gestiona la configuración y preferencias de tu cuenta.",
+    "tabs": {
+      "account": "Cuenta",
+      "appearance": "Apariencia",
+      "notifications": "Notificaciones",
+      "security": "Seguridad",
+      "data": "Datos"
+    },
+    "account": {
+      "profileTitle": "Perfil",
+      "profileDescription": "Actualiza tu información personal y foto de perfil.",
+      "fullName": "Nombre completo",
+      "email": "Correo electrónico",
+      "company": "Empresa",
+      "role": "Rol",
+      "bio": "Biografía",
+      "changePhoto": "Cambiar foto",
+      "saveChanges": "Guardar cambios",
+      "photoHint": "JPG, GIF o PNG. Tamaño máximo 2MB.",
+      "savedToast": "Configuración de cuenta guardada exitosamente"
+    },
+    "security": {
+      "apiCredentialsTitle": "Credenciales API",
+      "changePasswordTitle": "Cambiar contraseña",
+      "twoFactorTitle": "Autenticación de dos factores",
+      "activeSessionsTitle": "Sesiones activas",
+      "currentPassword": "Contraseña actual",
+      "newPassword": "Nueva contraseña",
+      "confirmNewPassword": "Confirmar nueva contraseña",
+      "enable2FA": "Activar 2FA",
+      "productionApiKey": "Clave API de producción",
+      "regenerate": "Regenerar",
+      "updatePassword": "Actualizar contraseña",
+      "saveSettings": "Guardar configuración",
+      "currentSession": "Sesión actual",
+      "active": "Activa",
+      "revoke": "Revocar",
+      "toasts": {
+        "passwordsDoNotMatch": "Las contraseñas no coinciden",
+        "passwordMinLength": "La contraseña debe tener al menos 8 caracteres",
+        "passwordUpdated": "Contraseña actualizada exitosamente",
+        "apiKeyCopied": "Clave API copiada al portapapeles",
+        "apiKeyGenerated": "Nueva clave API generada",
+        "settingsSaved": "Configuración de seguridad guardada"
+      },
+      "apiCredentialsDescription": "Usa esta clave para autenticar solicitudes a la API de Dashdeck. Mantén esta clave secreta y segura.",
+      "changePasswordDescription": "Actualiza tu contraseña para mantener tu cuenta segura.",
+      "twoFactorDescription": "Añade una capa extra de seguridad a tu cuenta.",
+      "twoFactorEnabledDescription": "Requerir un código de verificación al iniciar sesión",
+      "twoFactorEnabledStatus": "La autenticación de dos factores está habilitada",
+      "activeSessionsDescription": "Gestiona tus sesiones de inicio de sesión activas.",
+      "copied": "¡Copiado!",
+      "currentSessionDetail": "Chrome en Linux · Última actividad ahora",
+      "mobileApp": "Aplicación móvil",
+      "mobileSessionDetail": "iPhone · Última actividad hace 2 horas"
+    },
+    "notifications": {
+      "emailTitle": "Notificaciones por correo",
+      "pushTitle": "Notificaciones push",
+      "savePreferences": "Guardar preferencias",
+      "savedToast": "Preferencias de notificaciones guardadas",
+      "emailDescription": "Configura qué correos te gustaría recibir.",
+      "pushDescription": "Gestiona tus preferencias de notificaciones push del navegador.",
+      "items": {
+        "weeklyReport": {
+          "title": "Informe semanal",
+          "description": "Recibe un resumen semanal de la actividad de tu panel"
+        },
+        "newTeamMember": {
+          "title": "Nuevo miembro del equipo",
+          "description": "Recibe notificación cuando alguien se une a tu equipo"
+        },
+        "securityAlerts": {
+          "title": "Alertas de seguridad",
+          "description": "Notificaciones de seguridad importantes para tu cuenta"
+        },
+        "productUpdates": {
+          "title": "Actualizaciones del producto",
+          "description": "Noticias sobre nuevas funciones y mejoras"
+        },
+        "realTimeUpdates": {
+          "title": "Actualizaciones en tiempo real",
+          "description": "Recibe notificaciones de cambios en vivo en tus paneles"
+        },
+        "mentions": {
+          "title": "Menciones",
+          "description": "Cuando alguien te menciona en comentarios"
+        },
+        "taskUpdates": {
+          "title": "Actualizaciones de tareas",
+          "description": "Cambios de estado en las tareas que te asignan"
+        },
+        "calendarReminders": {
+          "title": "Recordatorios del calendario",
+          "description": "Recordatorios para próximos eventos y reuniones"
+        }
+      }
+    },
+    "data": {
+      "title": "Gestión de datos",
+      "description": "Restablecer los datos de la aplicación a los valores predeterminados.",
+      "warning": "Advertencia",
+      "warningText": "Esta acción restablecerá todos los datos de la aplicación a su estado predeterminado. Esta acción no se puede deshacer.",
+      "resetAllData": "Restablecer todos los datos",
+      "resetToast": "Todos los datos se han restablecido a los valores predeterminados",
+      "warningBody": "Esto restablecerá todos los datos de usuarios, tareas, eventos, mensajes de chat y facturas a sus valores predeterminados. Esta acción no se puede deshacer.",
+      "dataScope": "Usuarios, tareas Kanban, mensajes de chat, eventos del calendario, facturas"
+    },
+    "appearance": {
+      "themeTitle": "Tema",
+      "themeDescription": "Selecciona tu tema de color preferido para el panel.",
+      "fontTitle": "Fuente",
+      "fontDescription": "Elige tu familia de fuentes preferida.",
+      "sidebarTitle": "Barra lateral",
+      "sidebarDescription": "Personaliza la apariencia de la barra lateral.",
+      "compactMode": "Modo compacto",
+      "compactModeDescription": "Mostrar solo iconos en la barra lateral",
+      "fixedSidebar": "Barra lateral fija",
+      "fixedSidebarDescription": "Mantener la barra lateral visible al desplazarse",
+      "configure": "Configurar",
+      "savePreferences": "Guardar preferencias",
+      "savedToast": "Configuración de apariencia guardada",
+      "themeNames": {
+        "default": "Predeterminado",
+        "tangerine": "Tangerina",
+        "brutalist": "Brutalista",
+        "softPop": "Soft Pop"
+      }
+    }
+  },
+  "Dashboards": {
+    "default": {
+      "totalRevenue": "Ingresos totales",
+      "newCustomers": "Nuevos clientes",
+      "activeAccounts": "Cuentas activas",
+      "growthRate": "Tasa de crecimiento",
+      "customerActivity": "Actividad del cliente",
+      "customerActivityDesc": "Actividad del cliente en los últimos 3 meses",
+      "last3Months": "Últimos 3 meses",
+      "period": "Período",
+      "segments": "Segmentos",
+      "allSegments": "Todos los segmentos",
+      "paid": "Pagado",
+      "organic": "Orgánico",
+      "viewReport": "Ver informe",
+      "newCustomersChart": "Nuevos clientes",
+      "activeAccountsChart": "Cuentas activas",
+      "returningUsers": "Usuarios recurrentes",
+      "customersCount": "{count} clientes",
+      "customersDesc": "Registros recientes de clientes con plan, facturación, estado y actividad de registro.",
+      "export": "Exportar",
+      "columns": {
+        "customer": "Cliente",
+        "status": "Estado",
+        "billing": "Facturación",
+        "plan": "Plan",
+        "joined": "Se unió"
+      },
+      "statuses": {
+        "subscribed": "Suscrito",
+        "inactive": "Inactivo",
+        "unsubscribed": "Desuscrito"
+      },
+      "billingStatuses": {
+        "paid": "Pagado",
+        "pending": "Pendiente",
+        "overdue": "Vencido",
+        "trial": "Prueba"
+      }
+    },
+    "analytics": {
+      "greeting": "Hola, {name}",
+      "description": "Monitorea el tráfico, la interacción y el rendimiento de conversiones en una sola vista.",
+      "tabs": {
+        "overview": "Resumen",
+        "audience": "Audiencia",
+        "acquisition": "Adquisición",
+        "engagement": "Interacción",
+        "conversions": "Conversiones"
+      },
+      "kpi": {
+        "uniqueVisitors": "Visitantes únicos",
+        "sessions": "Sesiones",
+        "pageviews": "Vistas de página",
+        "engagementRate": "Tasa de interacción",
+        "conversionRate": "Tasa de conversión"
+      },
+      "from": "desde",
+      "last4Weeks": "últimas 4 semanas",
+      "timeRange": {
+        "last7Days": "Últimos 7 días",
+        "last4Weeks": "Últimas 4 semanas",
+        "last3Months": "Últimos 3 meses",
+        "yearToDate": "Año a la fecha"
+      },
+      "analyticsActions": "Acciones de analíticas",
+      "exportReport": "Exportar informe",
+      "importData": "Importar datos",
+      "shareDashboard": "Compartir panel",
+      "refreshMetrics": "Actualizar métricas",
+      "moreActions": "Más acciones de analíticas",
+      "pagePerformance": "Rendimiento de páginas",
+      "views": "Vistas",
+      "avgTime": "Tiempo prom.",
+      "bounce": "Rebote",
+      "realtimeVisitors": "Visitantes en tiempo real",
+      "perMinute": "por minuto",
+      "countries": {
+        "unitedStates": "Estados Unidos",
+        "unitedKingdom": "Reino Unido",
+        "canada": "Canadá",
+        "india": "India"
+      },
+      "selectRange": "Seleccionar rango"
+    },
+    "crm": {
+      "pipelineOverview": "Resumen de pipeline",
+      "pipelineDesc": "Supervisa la calidad de prospectos, oportunidades abiertas y tasas de conversión en el ciclo de ventas actual.",
+      "lastMonth": "el mes pasado",
+      "leadPipelineValue": "Valor del pipeline de prospectos",
+      "qualifiedLeadRate": "Tasa de prospectos calificados",
+      "openOpportunities": "Oportunidades abiertas",
+      "leadToDealRate": "Tasa de prospecto a trato",
+      "leadPipelineAnalysis": "Análisis del pipeline de prospectos",
+      "selectRange": "Seleccionar rango",
+      "last30Days": "Últimos 30 días",
+      "lastQuarter": "Último trimestre",
+      "last12Months": "Últimos 12 meses",
+      "qualifiedLeadFlow": "Flujo de prospectos calificados (Mensual)",
+      "conversionFunnel": "Embudo de conversión",
+      "overallLeadToWon": "Total de prospecto a ganado:",
+      "qualifiedLeads": "Prospectos calificados",
+      "leads": "Prospectos",
+      "funnelStages": {
+        "lead": "Prospecto",
+        "contacted": "Contactado",
+        "proposal": "Propuesta",
+        "negotiation": "Negociación",
+        "won": "Ganado"
+      },
+      "upcomingMeetings": "Próximas reuniones",
+      "monthlyProposalGoal": "Objetivo mensual de propuestas",
+      "viewCalendar": "Ver calendario",
+      "sent": "enviadas",
+      "target": "objetivo",
+      "ofThisMonthProposalTarget": "% del objetivo mensual de propuestas alcanzado.",
+      "recentOpportunities": "Oportunidades recientes",
+      "recentOpportunitiesDesc": "Rastrea prospectos calificados a través de las etapas de descubrimiento, propuesta y cierre.",
+      "searchDeals": "Buscar tratos...",
+      "stage": "Etapa",
+      "health": "Salud",
+      "allStages": "Todas las etapas",
+      "allHealth": "Toda la salud",
+      "noResults": "Sin resultados.",
+      "viewingOpportunities": "Viendo {current} de {total} oportunidades",
+      "stages": {
+        "proposalSent": "Propuesta enviada",
+        "discovery": "Descubrimiento",
+        "negotiation": "Negociación",
+        "qualified": "Calificado",
+        "closedWon": "Ganado"
+      },
+      "healthStatuses": {
+        "onTrack": "En camino",
+        "needsReview": "Necesita revisión",
+        "atRisk": "En riesgo",
+        "onHold": "En espera"
+      }
+    }
+  },
+  "Common": {
+    "save": "Guardar",
+    "cancel": "Cancelar",
+    "delete": "Eliminar",
+    "edit": "Editar",
+    "add": "Agregar",
+    "close": "Cerrar",
+    "loading": "Cargando...",
+    "noData": "No hay datos disponibles",
+    "comingSoon": "Próximamente",
+    "copyright": "© {year}, Dashdeck. Construido con Next.js 16."
+  }
+}

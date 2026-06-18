@@ -1,8 +1,8 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 
-import { initialBoard } from "@/app/(main)/dashboard/kanban/_components/data";
-import type { BoardState, ColumnId, Task } from "@/app/(main)/dashboard/kanban/_components/types";
+import { initialBoard } from "@/app/[locale]/(main)/dashboard/kanban/_components/data";
+import type { BoardState, ColumnId, Task } from "@/app/[locale]/(main)/dashboard/kanban/_components/types";
 
 interface KanbanState {
   board: BoardState;
@@ -28,9 +28,7 @@ export const useKanbanStore = create<KanbanState>()(
         set((state) => ({
           board: {
             ...state.board,
-            [columnId]: state.board[columnId].map((task) =>
-              task.id === taskId ? { ...task, ...updates } : task
-            ),
+            [columnId]: state.board[columnId].map((task) => (task.id === taskId ? { ...task, ...updates } : task)),
           },
         })),
       deleteTask: (columnId, taskId) =>
@@ -57,6 +55,6 @@ export const useKanbanStore = create<KanbanState>()(
     }),
     {
       name: "dashdeck-kanban-storage",
-    }
-  )
+    },
+  ),
 );

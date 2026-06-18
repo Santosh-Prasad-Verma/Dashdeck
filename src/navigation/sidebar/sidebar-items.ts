@@ -1,38 +1,37 @@
 import {
+  Activity,
   Banknote,
   Bot,
+  Building2,
   Calendar,
   ChartBar,
   Fingerprint,
+  FolderKanban,
   Forklift,
   Gauge,
   GraduationCap,
+  HeartPulse,
   Kanban,
   LayoutDashboard,
+  LifeBuoy,
   ListTodo,
   Lock,
   type LucideIcon,
   Mail,
   MessageSquare,
-  ReceiptText,
-  Settings,
-  ShoppingBag,
-  SquareArrowUpRight,
-  Users,
-  Server,
-  TrendingUp,
-  HeartPulse,
-  Building2,
   Package,
-  Share2,
-  FolderKanban,
-  LifeBuoy,
+  ReceiptText,
   ScrollText,
-  Activity,
+  Server,
+  Settings,
+  Share2,
+  ShoppingBag,
+  TrendingUp,
+  Users,
 } from "lucide-react";
 
 export interface NavSubItem {
-  title: string;
+  titleKey: string;
   url: string;
   icon?: LucideIcon;
   comingSoon?: boolean;
@@ -41,7 +40,7 @@ export interface NavSubItem {
 }
 
 export interface NavMainItem {
-  title: string;
+  titleKey: string;
   url: string;
   icon?: LucideIcon;
   subItems?: NavSubItem[];
@@ -52,94 +51,94 @@ export interface NavMainItem {
 
 export interface NavGroup {
   id: number;
-  label?: string;
+  labelKey: string;
   items: NavMainItem[];
 }
 
 export const sidebarItems: NavGroup[] = [
   {
     id: 1,
-    label: "Dashboards",
+    labelKey: "Sidebar.groups.dashboards",
     items: [
       {
-        title: "Default",
+        titleKey: "Sidebar.items.default",
         url: "/dashboard/default",
         icon: LayoutDashboard,
       },
       {
-        title: "AI & LLM",
+        titleKey: "Sidebar.items.ai",
         url: "/dashboard/ai",
         icon: Bot,
         isNew: true,
       },
       {
-        title: "CRM",
+        titleKey: "Sidebar.items.crm",
         url: "/dashboard/crm",
         icon: ChartBar,
       },
       {
-        title: "Finance",
+        titleKey: "Sidebar.items.finance",
         url: "/dashboard/finance",
         icon: Banknote,
       },
       {
-        title: "Analytics",
+        titleKey: "Sidebar.items.analytics",
         url: "/dashboard/analytics",
         icon: Gauge,
       },
       {
-        title: "Productivity",
+        titleKey: "Sidebar.items.productivity",
         url: "/dashboard/productivity",
         icon: ListTodo,
       },
       {
-        title: "E-commerce",
+        titleKey: "Sidebar.items.ecommerce",
         url: "/dashboard/ecommerce",
         icon: ShoppingBag,
       },
       {
-        title: "Academy",
+        titleKey: "Sidebar.items.academy",
         url: "/dashboard/academy",
         icon: GraduationCap,
         isNew: true,
       },
       {
-        title: "Logistics",
+        titleKey: "Sidebar.items.logistics",
         url: "/dashboard/logistics",
         icon: Forklift,
       },
       {
-        title: "DevOps",
+        titleKey: "Sidebar.items.devops",
         url: "/dashboard/devops",
         icon: Server,
       },
       {
-        title: "Healthcare",
+        titleKey: "Sidebar.items.healthcare",
         url: "/dashboard/healthcare",
         icon: HeartPulse,
       },
       {
-        title: "Inventory",
+        titleKey: "Sidebar.items.inventory",
         url: "/dashboard/inventory",
         icon: Package,
       },
       {
-        title: "Projects",
+        titleKey: "Sidebar.items.projects",
         url: "/dashboard/projects",
         icon: FolderKanban,
       },
       {
-        title: "SaaS Metrics",
+        titleKey: "Sidebar.items.saas",
         url: "/dashboard/saas",
         icon: TrendingUp,
       },
       {
-        title: "Real Estate",
+        titleKey: "Sidebar.items.realestate",
         url: "/dashboard/realestate",
         icon: Building2,
       },
       {
-        title: "Social Media",
+        titleKey: "Sidebar.items.social",
         url: "/dashboard/social",
         icon: Share2,
         isNew: true,
@@ -148,93 +147,93 @@ export const sidebarItems: NavGroup[] = [
   },
   {
     id: 2,
-    label: "Pages",
+    labelKey: "Sidebar.groups.pages",
     items: [
       {
-        title: "Email",
+        titleKey: "Sidebar.items.email",
         url: "/dashboard/mail",
         icon: Mail,
       },
       {
-        title: "Chat",
+        titleKey: "Sidebar.items.chat",
         url: "/dashboard/chat",
         icon: MessageSquare,
       },
       {
-        title: "Calendar",
+        titleKey: "Sidebar.items.calendar",
         url: "/dashboard/calendar",
         icon: Calendar,
       },
       {
-        title: "Kanban",
+        titleKey: "Sidebar.items.kanban",
         url: "/dashboard/kanban",
         icon: Kanban,
       },
       {
-        title: "Invoice",
+        titleKey: "Sidebar.items.invoice",
         url: "/dashboard/invoice",
         icon: ReceiptText,
       },
       {
-        title: "Users",
+        titleKey: "Sidebar.items.users",
         url: "/dashboard/users",
         icon: Users,
       },
       {
-        title: "Roles",
+        titleKey: "Sidebar.items.roles",
         url: "/dashboard/roles",
         icon: Lock,
       },
       {
-        title: "Settings",
+        titleKey: "Sidebar.items.settings",
         url: "/dashboard/settings",
         icon: Settings,
       },
       {
-        title: "Authentication",
+        titleKey: "Sidebar.items.authentication",
         url: "/auth",
         icon: Fingerprint,
         subItems: [
-          { title: "Login v1", url: "/auth/v1/login", newTab: true },
-          { title: "Login v2", url: "/auth/v2/login", newTab: true },
-          { title: "Register v1", url: "/auth/v1/register", newTab: true },
-          { title: "Register v2", url: "/auth/v2/register", newTab: true },
+          { titleKey: "Sidebar.items.loginV1", url: "/auth/v1/login", newTab: true },
+          { titleKey: "Sidebar.items.loginV2", url: "/auth/v2/login", newTab: true },
+          { titleKey: "Sidebar.items.registerV1", url: "/auth/v1/register", newTab: true },
+          { titleKey: "Sidebar.items.registerV2", url: "/auth/v2/register", newTab: true },
         ],
       },
     ],
   },
   {
     id: 3,
-    label: "Legacy",
+    labelKey: "Sidebar.groups.legacy",
     items: [
       {
-        title: "Dashboards",
+        titleKey: "Sidebar.items.dashboardsGroup",
         url: "/dashboard/default-v1",
         subItems: [
-          { title: "Default V1", url: "/dashboard/default-v1" },
-          { title: "CRM V1", url: "/dashboard/crm-v1" },
-          { title: "Finance V1", url: "/dashboard/finance-v1" },
-          { title: "Analytics V1", url: "/dashboard/analytics-v1" },
+          { titleKey: "Sidebar.items.defaultV1", url: "/dashboard/default-v1" },
+          { titleKey: "Sidebar.items.crmV1", url: "/dashboard/crm-v1" },
+          { titleKey: "Sidebar.items.financeV1", url: "/dashboard/finance-v1" },
+          { titleKey: "Sidebar.items.analyticsV1", url: "/dashboard/analytics-v1" },
         ],
       },
     ],
   },
   {
     id: 4,
-    label: "Misc",
+    labelKey: "Sidebar.groups.misc",
     items: [
       {
-        title: "Help Center",
+        titleKey: "Sidebar.items.helpCenter",
         url: "/dashboard/help",
         icon: LifeBuoy,
       },
       {
-        title: "Changelog",
+        titleKey: "Sidebar.items.changelog",
         url: "/dashboard/changelog",
         icon: ScrollText,
       },
       {
-        title: "System Status",
+        titleKey: "Sidebar.items.systemStatus",
         url: "/dashboard/status",
         icon: Activity,
         isNew: true,
