@@ -36,7 +36,7 @@ export function HeroSection() {
             href="/dashboard/default"
             className="rounded-full bg-white px-8 py-3.5 font-bold text-black text-sm shadow-lg shadow-white/10 transition-all hover:scale-[1.03] hover:bg-neutral-100"
           >
-            Book a Demo
+            Get Started
           </Link>
         </div>
       </motion.div>

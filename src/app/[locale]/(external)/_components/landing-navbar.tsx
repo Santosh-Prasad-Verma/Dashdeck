@@ -68,7 +68,7 @@ export function LandingNavbar() {
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-6 lg:px-8">
         {/* Logo */}
         <Link href="/" className="flex items-center gap-2.5">
-          <img src="/Dashdeck-logo.svg" alt="Dashdeck" className="h-7 w-7 invert" />
+          <img src="/Dashdeck-logo.svg" alt="Dashdeck" className="h-7 w-7" />
           <span className="font-semibold text-lg text-white tracking-tight">Dashdeck</span>
         </Link>
 
