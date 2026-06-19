@@ -8,8 +8,8 @@ describe("cn (class name merger)", () => {
   });
 
   it("handles conditional classes via clsx syntax", () => {
-    // biome-ignore lint/suspicious/noUnnecessaryConditions: testing clsx conditional behavior
     const isHidden = false;
+    // biome-ignore lint/suspicious/noUnnecessaryConditions: testing clsx conditional behavior
     expect(cn("base", isHidden && "hidden", "visible")).toBe("base visible");
   });
 

@@ -2,13 +2,7 @@
 
 import { useEffect } from "react";
 
-export default function Error({
-  error,
-  reset,
-}: {
-  error: Error & { digest?: string };
-  reset: () => void;
-}) {
+export default function ErrorPage({ error, reset }: { error: Error & { digest?: string }; reset: () => void }) {
   useEffect(() => {
     console.error(error);
   }, [error]);
@@ -22,10 +16,8 @@ export default function Error({
           <line x1="9" y1="9" x2="15" y2="15" />
         </svg>
       </div>
-      <h2 className="mb-2 font-bold text-xl text-white">Something went wrong</h2>
-      <p className="mb-6 max-w-md text-gray-400 text-sm">
-        An unexpected error occurred. Please try again.
-      </p>
+      <h2 className="mb-2 font-bold text-white text-xl">Something went wrong</h2>
+      <p className="mb-6 max-w-md text-gray-400 text-sm">An unexpected error occurred. Please try again.</p>
       <button
         type="button"
         onClick={reset}
