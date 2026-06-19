@@ -60,7 +60,6 @@ export default function Page() {
               <IncomeBreakdown />
               <FinanceNotification />
             </div>
-
           </div>
 
           <div className="grid grid-cols-1 gap-4 @5xl:grid-cols-12">
