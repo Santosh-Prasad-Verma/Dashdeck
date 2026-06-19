@@ -23,7 +23,7 @@ describe("NotFound", () => {
 
 describe("External Error Boundary", () => {
   it("renders error state", async () => {
-    const { default: ErrorPage } = await import("@/app/[locale]/(external)/error.tsx");
+    const { default: ErrorPage } = await import("@/app/[locale]/(external)/error");
     const reset = vi.fn();
     render(<ErrorPage error={new Error("Test error")} reset={reset} />);
     expect(screen.getByText("Something went wrong")).toBeTruthy();
