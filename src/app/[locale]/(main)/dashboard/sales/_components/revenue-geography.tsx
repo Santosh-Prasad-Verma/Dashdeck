@@ -87,7 +87,7 @@ export function RevenueGeography() {
                   cx={dot.x}
                   cy={dot.y}
                   r="3.5"
-                  fill={dot.highlight ? "#ea580c" : "#2d2d2d"}
+                  fill={dot.highlight ? "#8B5CF6" : "#2d2d2d"}
                   className="transition-all duration-300"
                 />
               ))}
@@ -96,7 +96,7 @@ export function RevenueGeography() {
             {/* Map Tooltip on USA */}
             <div className="absolute top-[40%] left-[8%] flex flex-col gap-0.5 rounded-lg border border-white/[0.08] bg-black/95 p-2 font-mono text-[10px] shadow-xl">
               <span className="font-bold text-white">🇺🇸 United States</span>
-              <span className="font-semibold text-orange-500">$482,109</span>
+              <span className="font-semibold text-violet-500">$482,109</span>
               <span className="text-[9px] text-muted-foreground">7,842 orders (37.5% share)</span>
             </div>
           </div>
@@ -122,8 +122,7 @@ export function RevenueGeography() {
                     <span className="font-mono text-[10px] text-muted-foreground">{country.orders}</span>
                   </div>
                 </div>
-                {/* Custom Progress bar styled in matching theme orange */}
-                <Progress value={country.share} className="h-1 bg-white/[0.04] *:bg-orange-500" />
+                <Progress value={country.share} className="h-1 bg-white/[0.04] *:bg-violet-500" />
               </div>
             ))}
           </div>

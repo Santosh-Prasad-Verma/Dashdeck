@@ -6,11 +6,11 @@ import { Cell, Pie, PieChart, ResponsiveContainer, Tooltip } from "recharts";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 
 const categoryData = [
-  { name: "Apparel", value: 38.4, amount: "$493K", fill: "#ea580c" },
-  { name: "Home & Living", value: 24.1, amount: "$309K", fill: "#f97316" },
-  { name: "Footwear", value: 17.6, amount: "$226K", fill: "#fb923c" },
-  { name: "Accessories", value: 12.8, amount: "$164K", fill: "#fdba74" },
-  { name: "Other", value: 7.1, amount: "$91K", fill: "#fed7aa" },
+  { name: "Apparel", value: 38.4, amount: "$493K", fill: "#8B5CF6" },
+  { name: "Home & Living", value: 24.1, amount: "$309K", fill: "#A78BFA" },
+  { name: "Footwear", value: 17.6, amount: "$226K", fill: "#C4B5FD" },
+  { name: "Accessories", value: 12.8, amount: "$164K", fill: "#DDD6FE" },
+  { name: "Other", value: 7.1, amount: "$91K", fill: "#EDE9FE" },
 ];
 
 export function SalesByCategory() {

@@ -15,7 +15,7 @@ export function SalesMetrics() {
         <CardHeader className="pb-2">
           <div className="flex items-center justify-between">
             <CardDescription className="font-medium text-muted-foreground text-xs">{t("revenue")}</CardDescription>
-            <span className="inline-flex items-center gap-0.5 rounded-full border border-emerald-500/20 bg-emerald-500/10 px-2 py-0.5 font-bold text-[10px] text-emerald-500">
+            <span className="inline-flex items-center gap-0.5 rounded-full border border-violet-500/20 bg-violet-500/10 px-2 py-0.5 font-bold text-[10px] text-violet-500">
               <ArrowUpRight className="size-3" />
               +12.5%
             </span>
@@ -32,7 +32,7 @@ export function SalesMetrics() {
         <CardHeader className="pb-2">
           <div className="flex items-center justify-between">
             <CardDescription className="font-medium text-muted-foreground text-xs">{t("customers")}</CardDescription>
-            <span className="inline-flex items-center gap-0.5 rounded-full border border-emerald-500/20 bg-emerald-500/10 px-2 py-0.5 font-bold text-[10px] text-emerald-500">
+            <span className="inline-flex items-center gap-0.5 rounded-full border border-violet-500/20 bg-violet-500/10 px-2 py-0.5 font-bold text-[10px] text-violet-500">
               <ArrowUpRight className="size-3" />
               +11.1%
             </span>
@@ -49,7 +49,7 @@ export function SalesMetrics() {
         <CardHeader className="pb-2">
           <div className="flex items-center justify-between">
             <CardDescription className="font-medium text-muted-foreground text-xs">{t("repeatRate")}</CardDescription>
-            <span className="inline-flex items-center gap-0.5 rounded-full border border-rose-500/20 bg-rose-500/10 px-2 py-0.5 font-bold text-[10px] text-rose-500">
+            <span className="inline-flex items-center gap-0.5 rounded-full border border-violet-500/20 bg-violet-500/10 px-2 py-0.5 font-bold text-[10px] text-violet-500">
               <ArrowDownRight className="size-3" />
               -2.6pp
             </span>
@@ -66,7 +66,7 @@ export function SalesMetrics() {
         <CardHeader className="pb-2">
           <div className="flex items-center justify-between">
             <CardDescription className="font-medium text-muted-foreground text-xs">{t("refundRate")}</CardDescription>
-            <span className="inline-flex items-center gap-0.5 rounded-full border border-emerald-500/20 bg-emerald-500/10 px-2 py-0.5 font-bold text-[10px] text-emerald-500">
+            <span className="inline-flex items-center gap-0.5 rounded-full border border-violet-500/20 bg-violet-500/10 px-2 py-0.5 font-bold text-[10px] text-violet-500">
               <ArrowDownRight className="size-3" />
               -0.6pp
             </span>

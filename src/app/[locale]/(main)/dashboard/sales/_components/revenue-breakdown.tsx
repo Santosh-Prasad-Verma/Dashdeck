@@ -32,7 +32,7 @@ export function RevenueBreakdown() {
         </div>
         <div className="flex items-baseline gap-2">
           <span className="font-bold text-white text-xl">$1,284,584</span>
-          <span className="rounded-full border border-emerald-500/20 bg-emerald-500/10 px-1.5 py-0.5 font-bold text-[10px] text-emerald-500">
+          <span className="rounded-full border border-violet-500/20 bg-violet-500/10 px-1.5 py-0.5 font-bold text-[10px] text-violet-500">
             +12.5%
           </span>
         </div>
@@ -58,9 +58,8 @@ export function RevenueBreakdown() {
                 }}
                 formatter={(value) => `$${Number(value).toLocaleString()}`}
               />
-              {/* Stacked/Double Bar layout in warm orange/amber palettes */}
-              <Bar dataKey="Income" fill="#ea580c" radius={[3, 3, 0, 0]} name="Income" />
-              <Bar dataKey="Refunds" fill="#fcd34d" radius={[3, 3, 0, 0]} name="Refunds" />
+              <Bar dataKey="Income" fill="#8B5CF6" radius={[3, 3, 0, 0]} name="Income" />
+              <Bar dataKey="Refunds" fill="#A78BFA" radius={[3, 3, 0, 0]} name="Refunds" />
             </BarChart>
           </ResponsiveContainer>
         </div>

@@ -24,6 +24,7 @@ export function WaitlistCta() {
           <input
             type="email"
             placeholder="Enter your email"
+            aria-label="Email address"
             className="flex-1 rounded-xl border border-white/[0.1] bg-white/[0.05] px-4 py-3 text-sm text-white placeholder-gray-500 transition-all focus:border-[#8B5CF6]/50 focus:outline-none focus:ring-1 focus:ring-[#8B5CF6]/30"
           />
           <button className="whitespace-nowrap rounded-xl bg-[#8B5CF6] px-6 py-3 font-semibold text-sm text-white transition-all duration-300 hover:bg-[#7C3AED] hover:shadow-[#8B5CF6]/25 hover:shadow-lg active:scale-[0.98]">

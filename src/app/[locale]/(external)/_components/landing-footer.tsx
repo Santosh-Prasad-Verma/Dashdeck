@@ -46,7 +46,11 @@ export function LandingFooter() {
           {/* Brand Column */}
           <div className="col-span-2">
             <Link href="/" className="flex items-center gap-2.5">
-              <img src="/logo-with-text.png" alt="Dashdeck" className="h-8 w-auto select-none object-contain" />
+              <img
+                src="/Dashdeck-logo.svg"
+                alt="Dashdeck"
+                className="h-8 w-auto select-none object-contain opacity-90 brightness-0 invert"
+              />
             </Link>
             <p className="mt-4 max-w-xs text-gray-500 text-sm">Your personal command center.</p>
             <div className="mt-6 flex gap-3.5">

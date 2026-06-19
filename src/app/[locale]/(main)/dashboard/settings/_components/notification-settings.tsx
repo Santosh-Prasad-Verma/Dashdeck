@@ -12,13 +12,6 @@ import { Label } from "@/components/ui/label";
 import { Separator } from "@/components/ui/separator";
 import { Switch } from "@/components/ui/switch";
 
-interface NotificationOption {
-  id: string;
-  titleKey: string;
-  descriptionKey: string;
-  enabled: boolean;
-}
-
 const emailNotificationKeys = [
   { id: "weekly-report", titleKey: "weeklyReport", descriptionKey: "weeklyReport" },
   { id: "new-member", titleKey: "newTeamMember", descriptionKey: "newTeamMember" },

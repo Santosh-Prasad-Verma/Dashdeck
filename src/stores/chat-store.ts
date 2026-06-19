@@ -19,7 +19,7 @@ export const useChatStore = create<ChatState>()(
   persist(
     (set) => ({
       conversations: initialConversations,
-      selectedId: initialConversations[0]?.id ?? null,
+      selectedId: initialConversations[0].id,
       setSelectedId: (id) => set({ selectedId: id }),
       addMessage: (conversationId, message) =>
         set((state) => ({

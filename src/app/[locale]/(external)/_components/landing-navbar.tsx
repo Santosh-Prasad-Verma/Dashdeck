@@ -68,7 +68,11 @@ export function LandingNavbar() {
       <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-6 lg:px-8">
         {/* Logo */}
         <Link href="/" className="flex items-center gap-2.5 transition-transform duration-200 hover:scale-[1.02]">
-          <img src="/logo-with-text.png" alt="Dashdeck" className="h-8 w-auto select-none object-contain md:h-9" />
+          <img
+            src="/Dashdeck-logo.svg"
+            alt="Dashdeck"
+            className="h-8 w-auto select-none object-contain opacity-90 brightness-0 invert md:h-9"
+          />
         </Link>
 
         {/* Desktop Right */}
