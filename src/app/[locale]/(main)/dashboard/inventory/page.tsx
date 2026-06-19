@@ -73,31 +73,31 @@ export default function Page() {
       </div>
 
       {/* Chart Row 1 */}
-      <div className="grid grid-cols-1 gap-6 xl:grid-cols-12">
-        <div className="xl:col-span-8">
+      <div className="grid grid-cols-1 gap-6 @5xl:grid-cols-12">
+        <div className="@5xl:col-span-8 min-w-0">
           <StockByWarehouse />
         </div>
-        <div className="xl:col-span-4">
+        <div className="@5xl:col-span-4 min-w-0">
           <CategoryBreakdown />
         </div>
       </div>
 
       {/* Chart Row 2 */}
-      <div className="grid grid-cols-1 gap-6 xl:grid-cols-12">
-        <div className="xl:col-span-8">
+      <div className="grid grid-cols-1 gap-6 @5xl:grid-cols-12">
+        <div className="@5xl:col-span-8 min-w-0">
           <ABCAnalysis />
         </div>
-        <div className="xl:col-span-4">
+        <div className="@5xl:col-span-4 min-w-0">
           <CapacityGauge />
         </div>
       </div>
 
       {/* Reorder + Supplier */}
-      <div className="grid grid-cols-1 gap-6 xl:grid-cols-12">
-        <div className="xl:col-span-7">
+      <div className="grid grid-cols-1 gap-6 @5xl:grid-cols-12">
+        <div className="@5xl:col-span-7 min-w-0">
           <ReorderTimeline />
         </div>
-        <div className="xl:col-span-5">
+        <div className="@5xl:col-span-5 min-w-0">
           <SupplierPerformance />
         </div>
       </div>

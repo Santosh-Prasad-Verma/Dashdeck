@@ -23,11 +23,11 @@ export default function Page() {
       <SalesMetrics />
 
       {/* Main Breakdown Section */}
-      <div className="grid grid-cols-1 gap-4 xl:grid-cols-12">
-        <div className="xl:col-span-8">
+      <div className="grid grid-cols-1 gap-4 @5xl:grid-cols-12">
+        <div className="@5xl:col-span-8 min-w-0">
           <RevenueBreakdown />
         </div>
-        <div className="xl:col-span-4">
+        <div className="@5xl:col-span-4 min-w-0">
           <SalesByCategory />
         </div>
       </div>

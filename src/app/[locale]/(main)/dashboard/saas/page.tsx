@@ -47,29 +47,29 @@ export default function Page() {
         <UnitEconomics />
       </div>
 
-      <div className="grid grid-cols-1 gap-6 xl:grid-cols-12">
-        <div className="xl:col-span-7">
+      <div className="grid grid-cols-1 gap-6 @5xl:grid-cols-12">
+        <div className="@5xl:col-span-7 min-w-0">
           <MRRTrend />
         </div>
-        <div className="xl:col-span-5">
+        <div className="@5xl:col-span-5 min-w-0">
           <RevenueWaterfall />
         </div>
       </div>
 
-      <div className="grid grid-cols-1 gap-6 xl:grid-cols-12">
-        <div className="xl:col-span-7">
+      <div className="grid grid-cols-1 gap-6 @5xl:grid-cols-12">
+        <div className="@5xl:col-span-7 min-w-0">
           <CohortTable />
         </div>
-        <div className="xl:col-span-5">
+        <div className="@5xl:col-span-5 min-w-0">
           <PlanBreakdown />
         </div>
       </div>
 
-      <div className="grid grid-cols-1 gap-6 xl:grid-cols-12">
-        <div className="xl:col-span-7">
+      <div className="grid grid-cols-1 gap-6 @5xl:grid-cols-12">
+        <div className="@5xl:col-span-7 min-w-0">
           <HealthScore />
         </div>
-        <div className="xl:col-span-5">
+        <div className="@5xl:col-span-5 min-w-0">
           <TrialFunnel />
         </div>
       </div>

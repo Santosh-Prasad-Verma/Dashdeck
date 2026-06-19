@@ -19,7 +19,7 @@ export default function Page() {
       </div>
 
       {/* Top Stats Bar */}
-      <div className="grid grid-cols-2 gap-4 lg:grid-cols-6">
+      <div className="grid grid-cols-2 gap-4 @3xl:grid-cols-6">
         {[
           { icon: Users, label: "Patients Today", value: "142", sub: "32 remaining", showSparkline: true },
           { icon: Bed, label: "Beds Available", value: "58", sub: "of 240 total" },
@@ -59,31 +59,31 @@ export default function Page() {
       </div>
 
       {/* Patient Volume + Department */}
-      <div className="grid grid-cols-1 gap-6 xl:grid-cols-12">
-        <div className="xl:col-span-8">
+      <div className="grid grid-cols-1 gap-6 @5xl:grid-cols-12">
+        <div className="@5xl:col-span-8 min-w-0">
           <PatientVolume />
         </div>
-        <div className="xl:col-span-4">
+        <div className="@5xl:col-span-4 min-w-0">
           <DepartmentBreakdown />
         </div>
       </div>
 
       {/* Bed Heatmap + Readmission */}
-      <div className="grid grid-cols-1 gap-6 xl:grid-cols-12">
-        <div className="xl:col-span-8">
+      <div className="grid grid-cols-1 gap-6 @5xl:grid-cols-12">
+        <div className="@5xl:col-span-8 min-w-0">
           <BedHeatmap />
         </div>
-        <div className="xl:col-span-4">
+        <div className="@5xl:col-span-4 min-w-0">
           <ReadmissionGauge />
         </div>
       </div>
 
       {/* Medication + Appointments */}
-      <div className="grid grid-cols-1 gap-6 xl:grid-cols-12">
-        <div className="xl:col-span-7">
+      <div className="grid grid-cols-1 gap-6 @5xl:grid-cols-12">
+        <div className="@5xl:col-span-7 min-w-0">
           <MedicationSchedule />
         </div>
-        <div className="xl:col-span-5">
+        <div className="@5xl:col-span-5 min-w-0">
           <AppointmentSchedule />
         </div>
       </div>

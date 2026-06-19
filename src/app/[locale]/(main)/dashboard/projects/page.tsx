@@ -45,7 +45,7 @@ export default function Page() {
       </div>
 
       {/* Milestones */}
-      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-5">
+      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 @3xl:grid-cols-5">
         {milestones.map((m, i) => (
           <div key={i} className="flex items-start gap-3 rounded-xl border bg-card p-4">
             <div
@@ -70,21 +70,21 @@ export default function Page() {
       </div>
 
       {/* Burndown + Velocity */}
-      <div className="grid grid-cols-1 gap-6 xl:grid-cols-12">
-        <div className="xl:col-span-7">
+      <div className="grid grid-cols-1 gap-6 @5xl:grid-cols-12">
+        <div className="@5xl:col-span-7 min-w-0">
           <BurndownChart />
         </div>
-        <div className="xl:col-span-5">
+        <div className="@5xl:col-span-5 min-w-0">
           <VelocityTrend />
         </div>
       </div>
 
       {/* Workload + Risk Matrix */}
-      <div className="grid grid-cols-1 gap-6 xl:grid-cols-12">
-        <div className="xl:col-span-7">
+      <div className="grid grid-cols-1 gap-6 @5xl:grid-cols-12">
+        <div className="@5xl:col-span-7 min-w-0">
           <WorkloadHeatmap />
         </div>
-        <div className="xl:col-span-5">
+        <div className="@5xl:col-span-5 min-w-0">
           <RiskMatrix />
         </div>
       </div>

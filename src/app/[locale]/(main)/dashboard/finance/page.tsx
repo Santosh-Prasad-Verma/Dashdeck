@@ -51,22 +51,23 @@ export default function Page() {
         </div>
 
         <TabsContent value="30-days" className="flex flex-col gap-4">
-          <div className="grid grid-cols-1 gap-4 xl:grid-cols-12">
-            <div className="xl:col-span-6">
+          <div className="grid grid-cols-1 gap-4 @5xl:grid-cols-12">
+            <div className="@5xl:col-span-6 min-w-0">
               <OverviewKpis />
             </div>
 
-            <div className="flex flex-col gap-4 xl:col-span-6">
+            <div className="flex flex-col gap-4 @5xl:col-span-6 min-w-0">
               <IncomeBreakdown />
               <FinanceNotification />
             </div>
+
           </div>
 
-          <div className="grid grid-cols-1 gap-4 xl:grid-cols-12">
-            <div className="xl:col-span-8">
+          <div className="grid grid-cols-1 gap-4 @5xl:grid-cols-12">
+            <div className="@5xl:col-span-8 min-w-0">
               <TransactionsOverviewCard />
             </div>
-            <div className="xl:col-span-4">
+            <div className="@5xl:col-span-4 min-w-0">
               <BalanceDistributionCard />
             </div>
           </div>
@@ -75,14 +76,14 @@ export default function Page() {
             <IncomeExpenseComparison />
           </div>
 
-          <div className="grid grid-cols-1 gap-4 xl:grid-cols-12">
-            <div className="xl:col-span-4">
+          <div className="grid grid-cols-1 gap-4 @5xl:grid-cols-12">
+            <div className="@5xl:col-span-4 min-w-0">
               <Wallet />
             </div>
-            <div className="xl:col-span-4">
+            <div className="@5xl:col-span-4 min-w-0">
               <UpcomingTransactions />
             </div>
-            <div className="xl:col-span-4">
+            <div className="@5xl:col-span-4 min-w-0">
               <QuickActions />
             </div>
           </div>
