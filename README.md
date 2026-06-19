@@ -1,6 +1,6 @@
 <p align="center">
   <a href="https://github.com/Santosh-Prasad-Verma/Dashdeck">
-    <img src="media/logo-with-text.png" alt="Dashdeck Logo" width="320" />
+    <img src="media/logo-with-text.png" alt="Dashdeck Logo" width="100%" />
   </a>
 </p>
 
@@ -31,6 +31,20 @@ We redesigned the home landing page to feature a pixel-perfect, premium dark spa
 
 - **Landing Page**: `/`
 - **Default App Entry**: `/dashboard/default`
+
+## 📸 Preview
+
+<p align="center">
+  <img src="public/Preview-img1.png" alt="Dashdeck Preview 1" width="100%" />
+</p>
+
+<p align="center">
+  <img src="public/Preview-img2.png" alt="Dashdeck Preview 2" width="100%" />
+</p>
+
+<p align="center">
+  <img src="public/Preview-img3.png" alt="Dashdeck Preview 3" width="100%" />
+</p>
 
 ## ✨ Core Features
 
