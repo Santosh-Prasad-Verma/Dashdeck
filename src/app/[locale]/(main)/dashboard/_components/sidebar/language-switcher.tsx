@@ -1,7 +1,7 @@
 "use client";
 
 import { Globe } from "lucide-react";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -15,7 +15,7 @@ import { type Locale, localeNames, locales } from "@/i18n/routing";
 
 export function LanguageSwitcher() {
   const t = useTranslations("LanguageSwitcher");
-  const currentLocale = locales.find((l) => document.documentElement.lang === l) ?? "en";
+  const locale = useLocale();
   const router = useRouter();
   const pathname = usePathname();
 
@@ -31,14 +31,14 @@ export function LanguageSwitcher() {
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end" sideOffset={4}>
-        {locales.map((locale) => (
+        {locales.map((l) => (
           <DropdownMenuItem
-            key={locale}
-            onClick={() => handleLocaleChange(locale)}
-            className={locale === currentLocale ? "bg-accent/50" : ""}
+            key={l}
+            onClick={() => handleLocaleChange(l)}
+            className={l === locale ? "bg-accent/50" : ""}
           >
-            {localeNames[locale]}
-            {locale === currentLocale && <span className="ml-auto text-muted-foreground text-xs">✓</span>}
+            {localeNames[l]}
+            {l === locale && <span className="ml-auto text-muted-foreground text-xs">✓</span>}
           </DropdownMenuItem>
         ))}
       </DropdownMenuContent>

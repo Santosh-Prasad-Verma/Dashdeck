@@ -158,7 +158,7 @@ function SummaryRow({ revenueSeries }: { revenueSeries: Array<{ day: string; rev
   const halfRange = Math.max((maxRevenue - minRevenue) * 1.6, 4_500);
 
   return (
-    <div className="grid grid-cols-1 gap-4 @5xl/main:grid-cols-3">
+    <div className="grid @5xl/main:grid-cols-3 grid-cols-1 gap-4">
       <div className="min-w-0 space-y-2">
         <div>
           <div className="font-medium text-muted-foreground text-sm">Revenue</div>
@@ -194,12 +194,12 @@ function SummaryRow({ revenueSeries }: { revenueSeries: Array<{ day: string; rev
         </div>
       </div>
 
-      <Card className="min-w-0 py-4 shadow-xs @5xl/main:col-span-2">
+      <Card className="@5xl/main:col-span-2 min-w-0 py-4 shadow-xs">
         <CardHeader className="px-4">
           <CardTitle>Risk summary</CardTitle>
           <CardDescription>Core risk signals vs previous period</CardDescription>
         </CardHeader>
-        <CardContent className="grid grid-cols-1 gap-4 px-4 @3xl/main:grid-cols-2 @5xl/main:grid-cols-4 @5xl/main:gap-0 @5xl/main:divide-x @5xl/main:[&>div:first-child]:pl-0 @5xl/main:[&>div:last-child]:pr-0 @5xl/main:[&>div]:px-5">
+        <CardContent className="grid @3xl/main:grid-cols-2 @5xl/main:grid-cols-4 grid-cols-1 @5xl/main:gap-0 gap-4 @5xl/main:divide-x px-4 @5xl/main:[&>div:first-child]:pl-0 @5xl/main:[&>div:last-child]:pr-0 @5xl/main:[&>div]:px-5">
           {RISK_SUMMARY_METRICS.map((item) => (
             <div key={item.key} className="min-w-0 space-y-1">
               <div className="text-muted-foreground text-sm">{item.label}</div>

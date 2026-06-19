@@ -11,6 +11,7 @@ const features = [
     description:
       "Explore pixel-perfect dashboard layouts built for CRM, DevOps, Sales, FinOps, Healthcare, SaaS, E-commerce, and more.",
     items: ["High-fidelity charting UI", "Zustand-powered state flow", "Pre-built tables and metrics"],
+    image: "/3d-playful-data-metrics-screen-visualization-dashboard-financial-analytics-display.png",
   },
   {
     icon: Columns3,
@@ -19,6 +20,7 @@ const features = [
     description:
       "Every widget adapts instantly to sidebar toggle state changes using modern CSS container queries instead of window-resize lag.",
     items: ["Fluid column wrapping", "Chart width recalculation", "Jank-free transition animations"],
+    image: "/smart-vr-headset-and-group-of-browser-windows.png",
   },
   {
     icon: Code2,
@@ -27,6 +29,7 @@ const features = [
     description:
       "Pure React and Next.js 16 components styled with Tailwind CSS v4 and shadcn/ui. Copy, paste, and start building immediately.",
     items: ["Clean codebase organization", "Fully type-safe props", "Next-Intl translation system"],
+    image: "/smart-smart-speaker-as-a-voice-assistant.png",
   },
 ];
 
@@ -49,8 +52,8 @@ export function FeaturesSection() {
         transition={{ duration: 0.6 }}
         className="text-center"
       >
-        <h2 className="font-bold text-3xl text-white md:text-4xl">Production-Ready Starter Kit</h2>
-        <p className="mx-auto mt-4 max-w-xl text-gray-500 text-lg">
+        <h2 className="font-extrabold text-3xl text-white tracking-tight md:text-5xl">Production-Ready Starter Kit</h2>
+        <p className="mx-auto mt-4 max-w-xl text-gray-400 text-lg">
           High-performance admin presets built with modern web technologies
         </p>
       </motion.div>
@@ -64,25 +67,54 @@ export function FeaturesSection() {
             initial="hidden"
             whileInView="show"
             viewport={{ once: true, amount: 0.2 }}
-            className="group cursor-default rounded-2xl border border-white/[0.06] bg-white/[0.02] p-8 transition-all duration-500 hover:border-[#8B5CF6]/20 hover:bg-white/[0.04] hover:shadow-[#8B5CF6]/[0.04] hover:shadow-xl"
+            className="group cursor-default rounded-3xl border border-white/[0.06] bg-white/[0.02] p-8 backdrop-blur-md transition-all duration-500 hover:bg-white/[0.04] hover:shadow-2xl"
+            style={
+              {
+                // Custom inline hover border and shadow using custom properties would be neat,
+                // but we can just use class names or simple style bindings for dynamic colors.
+              }
+            }
+            whileHover={{
+              borderColor: `${feature.color}40`,
+              boxShadow: `0 20px 40px -15px ${feature.color}15`,
+              y: -4,
+            }}
           >
             <div
-              className="mb-6 flex h-12 w-12 items-center justify-center rounded-xl transition-transform duration-300 group-hover:scale-110"
-              style={{ backgroundColor: `${feature.color}15` }}
+              className="mb-6 flex h-12 w-12 items-center justify-center rounded-xl border border-white/[0.08] transition-transform duration-300 group-hover:scale-110"
+              style={{
+                backgroundColor: `${feature.color}15`,
+                borderColor: `${feature.color}25`,
+              }}
             >
-              <feature.icon className="size-5" style={{ color: feature.color }} />
+              <feature.icon className="size-5 animate-pulse-subtle" style={{ color: feature.color }} />
             </div>
 
             <h3 className="mb-3 font-semibold text-white text-xl">{feature.title}</h3>
-            <p className="text-gray-500 text-sm leading-relaxed">{feature.description}</p>
+            <p className="min-h-[72px] text-gray-400 text-sm leading-relaxed">{feature.description}</p>
 
-            <div className="mt-5 flex flex-col gap-3">
+            <div className="my-5 h-px bg-white/[0.04]" />
+
+            <div className="flex flex-col gap-3">
               {feature.items.map((item) => (
-                <div key={item} className="flex items-center gap-2.5 text-gray-400 text-sm">
+                <div
+                  key={item}
+                  className="flex items-center gap-2.5 font-mono text-gray-400 text-xs uppercase tracking-wider"
+                >
                   <div className="h-1.5 w-1.5 flex-shrink-0 rounded-full" style={{ backgroundColor: feature.color }} />
                   {item}
                 </div>
               ))}
+            </div>
+
+            {/* 3D Illustration Graphic Illustration */}
+            <div className="relative mt-8 flex h-48 w-full items-center justify-center overflow-hidden rounded-2xl border border-white/[0.06] bg-black/20">
+              {/* biome-ignore lint/performance/noImgElement: custom local 3D rendering images */}
+              <img
+                src={feature.image}
+                alt={feature.title}
+                className="h-full w-full select-none object-cover transition-transform duration-700 group-hover:scale-[1.04]"
+              />
             </div>
           </motion.div>
         ))}

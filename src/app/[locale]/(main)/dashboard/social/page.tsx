@@ -55,7 +55,7 @@ export default function Page() {
       </div>
 
       {/* Heatmap + Sentiment */}
-      <div className="grid grid-cols-1 gap-6 @5xl:grid-cols-12">
+      <div className="grid @5xl:grid-cols-12 grid-cols-1 gap-6">
         <div className="@5xl:col-span-7 min-w-0">
           <PostingHeatmap />
         </div>
@@ -65,7 +65,7 @@ export default function Page() {
       </div>
 
       {/* Charts */}
-      <div className="grid grid-cols-1 gap-6 @5xl:grid-cols-12">
+      <div className="grid @5xl:grid-cols-12 grid-cols-1 gap-6">
         <div className="@5xl:col-span-8 min-w-0">
           <FollowerGrowth />
         </div>
@@ -75,7 +75,7 @@ export default function Page() {
       </div>
 
       {/* Competitor + Demographics */}
-      <div className="grid grid-cols-1 gap-6 @5xl:grid-cols-12">
+      <div className="grid @5xl:grid-cols-12 grid-cols-1 gap-6">
         <div className="@5xl:col-span-7 min-w-0">
           <CompetitorComparison />
         </div>

@@ -11,7 +11,7 @@ export default function Page() {
   return (
     <div className="flex flex-col gap-6">
       {/* Status Bar */}
-      <div className="grid grid-cols-2 gap-4 md:grid-cols-4 @3xl:grid-cols-8">
+      <div className="grid @3xl:grid-cols-8 grid-cols-2 gap-4 md:grid-cols-4">
         {[
           { label: "PROD-US-EAST", status: "up", cpu: 42, mem: 58 },
           { label: "PROD-US-WEST", status: "up", cpu: 38, mem: 52 },
@@ -89,7 +89,7 @@ export default function Page() {
       </div>
 
       {/* Charts Row */}
-      <div className="grid grid-cols-1 gap-6 @5xl:grid-cols-12">
+      <div className="grid @5xl:grid-cols-12 grid-cols-1 gap-6">
         <div className="@5xl:col-span-8 min-w-0">
           <ServerMetrics />
         </div>
@@ -104,18 +104,18 @@ export default function Page() {
       </div>
 
       {/* Logs + Response Time */}
-      <div className="grid grid-cols-1 gap-6 @5xl:grid-cols-12">
+      <div className="grid @5xl:grid-cols-12 grid-cols-1 gap-6">
         <div className="@5xl:col-span-7 min-w-0">
           <LogViewer />
         </div>
-        <div className="flex flex-col gap-6 @5xl:col-span-5 min-w-0">
+        <div className="@5xl:col-span-5 flex min-w-0 flex-col gap-6">
           <ResponseTimeDistribution />
           <DeploymentHistory />
         </div>
       </div>
 
       {/* Timeline + Services */}
-      <div className="grid grid-cols-1 gap-6 @5xl:grid-cols-12">
+      <div className="grid @5xl:grid-cols-12 grid-cols-1 gap-6">
         <div className="@5xl:col-span-7 min-w-0">
           <AlertTimeline />
         </div>

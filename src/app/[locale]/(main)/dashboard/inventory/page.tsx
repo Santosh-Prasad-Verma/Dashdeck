@@ -73,7 +73,7 @@ export default function Page() {
       </div>
 
       {/* Chart Row 1 */}
-      <div className="grid grid-cols-1 gap-6 @5xl:grid-cols-12">
+      <div className="grid @5xl:grid-cols-12 grid-cols-1 gap-6">
         <div className="@5xl:col-span-8 min-w-0">
           <StockByWarehouse />
         </div>
@@ -83,7 +83,7 @@ export default function Page() {
       </div>
 
       {/* Chart Row 2 */}
-      <div className="grid grid-cols-1 gap-6 @5xl:grid-cols-12">
+      <div className="grid @5xl:grid-cols-12 grid-cols-1 gap-6">
         <div className="@5xl:col-span-8 min-w-0">
           <ABCAnalysis />
         </div>
@@ -93,7 +93,7 @@ export default function Page() {
       </div>
 
       {/* Reorder + Supplier */}
-      <div className="grid grid-cols-1 gap-6 @5xl:grid-cols-12">
+      <div className="grid @5xl:grid-cols-12 grid-cols-1 gap-6">
         <div className="@5xl:col-span-7 min-w-0">
           <ReorderTimeline />
         </div>

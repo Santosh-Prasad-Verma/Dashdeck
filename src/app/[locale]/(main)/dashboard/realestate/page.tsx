@@ -61,7 +61,7 @@ export default function Page() {
       </div>
 
       {/* Chart Row 1 */}
-      <div className="grid grid-cols-1 gap-6 @5xl:grid-cols-12">
+      <div className="grid @5xl:grid-cols-12 grid-cols-1 gap-6">
         <div className="@5xl:col-span-8 min-w-0">
           <RevenueTrend />
         </div>
@@ -71,7 +71,7 @@ export default function Page() {
       </div>
 
       {/* Chart Row 2 */}
-      <div className="grid grid-cols-1 gap-6 @5xl:grid-cols-12">
+      <div className="grid @5xl:grid-cols-12 grid-cols-1 gap-6">
         <div className="@5xl:col-span-8 min-w-0">
           <ValuationTrend />
         </div>
@@ -81,7 +81,7 @@ export default function Page() {
       </div>
 
       {/* Map + Rent Roll */}
-      <div className="grid grid-cols-1 gap-6 @5xl:grid-cols-12">
+      <div className="grid @5xl:grid-cols-12 grid-cols-1 gap-6">
         <div className="@5xl:col-span-7 min-w-0">
           <PropertyMap />
         </div>

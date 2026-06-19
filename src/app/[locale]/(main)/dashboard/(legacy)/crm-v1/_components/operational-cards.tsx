@@ -14,7 +14,7 @@ import { actionItems, regionSalesData, salesPipelineChartConfig, salesPipelineCh
 export function OperationalCards() {
   const totalSales = regionSalesData.reduce((sum, region) => sum + region.sales, 0);
   return (
-    <div className="grid grid-cols-1 gap-4 *:data-[slot=card]:shadow-xs sm:grid-cols-2 @5xl/main:grid-cols-3">
+    <div className="grid @5xl/main:grid-cols-3 grid-cols-1 gap-4 *:data-[slot=card]:shadow-xs sm:grid-cols-2">
       <Card className="min-w-0">
         <CardHeader>
           <CardTitle>Sales Pipeline</CardTitle>

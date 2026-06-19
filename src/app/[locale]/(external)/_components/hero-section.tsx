@@ -31,6 +31,26 @@ export function HeroSection() {
       {/* Glow Center Background behind header */}
       <div className="absolute top-[10%] left-1/2 -z-10 h-[300px] w-[500px] -translate-x-1/2 rounded-full bg-[#10b981]/[0.05] blur-[120px]" />
 
+      {/* Floating 3D Pyramid left */}
+      {/* biome-ignore lint/performance/noImgElement: static local 3D assets */}
+      <motion.img
+        src="/chopped-grey-pyramid-with-iridescent-edges-branding-and-logo-design.svg"
+        alt="3D Pyramid"
+        className="pointer-events-none absolute top-[15%] left-[-120px] hidden size-36 select-none opacity-60 xl:block"
+        animate={{ y: [0, -15, 0], rotate: [0, 8, 0] }}
+        transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+      />
+
+      {/* Floating 3D Green Cube right */}
+      {/* biome-ignore lint/performance/noImgElement: static local 3D assets */}
+      <motion.img
+        src="/smart-big-green-cube.png"
+        alt="3D Green Cube"
+        className="pointer-events-none absolute top-[25%] right-[-120px] hidden size-36 select-none opacity-60 xl:block"
+        animate={{ y: [0, 15, 0], rotate: [0, -10, 0] }}
+        transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
+      />
+
       <motion.div
         style={{ y: yText, opacity: opacityText }}
         initial={{ opacity: 0, y: 20 }}
@@ -208,49 +228,95 @@ export function HeroSection() {
               </div>
 
               {/* SVG Double line chart */}
-              <div className="relative mt-2 h-40 w-full">
-                <svg viewBox="0 0 500 150" className="h-full w-full" preserveAspectRatio="none">
-                  {/* Faded background grids */}
-                  <line x1="0" y1="30" x2="500" y2="30" stroke="rgba(255,255,255,0.03)" strokeWidth="1" />
-                  <line x1="0" y1="70" x2="500" y2="70" stroke="rgba(255,255,255,0.03)" strokeWidth="1" />
-                  <line x1="0" y1="110" x2="500" y2="110" stroke="rgba(255,255,255,0.03)" strokeWidth="1" />
+              <div className="relative mt-2 flex h-48 w-full">
+                {/* Y-Axis Labels */}
+                <div className="flex w-8 select-none flex-col justify-between pr-2 pb-6 text-right font-mono text-[8px] text-gray-500">
+                  <span>100M</span>
+                  <span>50M</span>
+                  <span>10M</span>
+                  <span>0</span>
+                </div>
 
-                  {/* Leaked rate (faded gray/white line) */}
-                  <path
-                    d="M 0,110 Q 50,120 100,100 T 200,90 T 300,115 T 400,95 T 500,110"
-                    fill="none"
-                    stroke="rgba(255,255,255,0.3)"
-                    strokeWidth="1.5"
-                    strokeDasharray="4 4"
-                  />
+                {/* Chart container */}
+                <div className="flex flex-1 flex-col justify-between">
+                  <div className="relative h-36 w-full">
+                    <svg viewBox="0 0 500 150" className="h-full w-full" preserveAspectRatio="none">
+                      {/* Faded background grids */}
+                      <line x1="0" y1="0" x2="500" y2="0" stroke="rgba(255,255,255,0.03)" strokeWidth="1" />
+                      <line x1="0" y1="37" x2="500" y2="37" stroke="rgba(255,255,255,0.03)" strokeWidth="1" />
+                      <line x1="0" y1="75" x2="500" y2="75" stroke="rgba(255,255,255,0.03)" strokeWidth="1" />
+                      <line x1="0" y1="112" x2="500" y2="112" stroke="rgba(255,255,255,0.03)" strokeWidth="1" />
+                      <line x1="0" y1="150" x2="500" y2="150" stroke="rgba(255,255,255,0.06)" strokeWidth="1.5" />
 
-                  {/* Detected rate (emerald line) */}
-                  <path
-                    d="M 0,85 Q 50,75 100,85 T 200,45 T 300,55 T 400,75 T 500,60"
-                    fill="none"
-                    stroke="#10b981"
-                    strokeWidth="2.5"
-                    strokeLinecap="round"
-                  />
+                      {/* Vertical Gridlines */}
+                      <line x1="83" y1="0" x2="83" y2="150" stroke="rgba(255,255,255,0.02)" strokeWidth="1" />
+                      <line x1="166" y1="0" x2="166" y2="150" stroke="rgba(255,255,255,0.02)" strokeWidth="1" />
+                      <line x1="250" y1="0" x2="250" y2="150" stroke="rgba(255,255,255,0.02)" strokeWidth="1" />
+                      <line x1="333" y1="0" x2="333" y2="150" stroke="rgba(255,255,255,0.02)" strokeWidth="1" />
+                      <line x1="416" y1="0" x2="416" y2="150" stroke="rgba(255,255,255,0.02)" strokeWidth="1" />
 
-                  {/* Highlight Node */}
-                  <circle cx="250" cy="50" r="4" fill="#10b981" />
-                </svg>
+                      {/* Area Gradient under main curve */}
+                      <path
+                        d="M 0,85 Q 50,75 100,85 T 200,45 T 300,55 T 400,75 T 500,60 L 500,150 L 0,150 Z"
+                        fill="url(#emeraldAreaGlow)"
+                      />
+                      <defs>
+                        <linearGradient id="emeraldAreaGlow" x1="0" y1="0" x2="0" y2="1">
+                          <stop offset="0%" stopColor="#10b981" stopOpacity="0.15" />
+                          <stop offset="100%" stopColor="#10b981" stopOpacity="0.0" />
+                        </linearGradient>
+                      </defs>
 
-                {/* Tooltip Overlay */}
-                <div className="absolute top-[10%] left-[45%] flex flex-col gap-0.5 rounded-lg border border-white/[0.08] bg-black/95 p-2 font-mono text-[10px] shadow-xl">
-                  <span className="font-semibold text-muted-foreground">Live Traffic</span>
-                  <div className="flex items-center gap-1">
-                    <span className="size-1.5 rounded-full bg-[#10b981]" />
-                    <span className="font-medium text-white">
-                      Ingress: <span className="font-bold">412 Mb/s</span>
-                    </span>
+                      {/* Leaked rate (faded gray/white line) */}
+                      <path
+                        d="M 0,110 Q 50,120 100,100 T 200,90 T 300,115 T 400,95 T 500,110"
+                        fill="none"
+                        stroke="rgba(255,255,255,0.25)"
+                        strokeWidth="1.5"
+                        strokeDasharray="4 4"
+                      />
+
+                      {/* Detected rate (emerald line) */}
+                      <path
+                        d="M 0,85 Q 50,75 100,85 T 200,45 T 300,55 T 400,75 T 500,60"
+                        fill="none"
+                        stroke="#10b981"
+                        strokeWidth="2.5"
+                        strokeLinecap="round"
+                      />
+
+                      {/* Highlight Nodes */}
+                      <circle cx="200" cy="45" r="4.5" fill="#10b981" stroke="#0E0E0E" strokeWidth="1.5" />
+                      <circle cx="300" cy="55" r="4.5" fill="#10b981" stroke="#0E0E0E" strokeWidth="1.5" />
+                    </svg>
+
+                    {/* Tooltip Overlay */}
+                    <div className="absolute top-[15%] left-[45%] flex flex-col gap-0.5 rounded-lg border border-white/[0.08] bg-black/95 p-2 font-mono text-[9px] shadow-xl">
+                      <span className="font-semibold text-muted-foreground">Live Traffic</span>
+                      <div className="flex items-center gap-1">
+                        <span className="size-1.5 rounded-full bg-[#10b981]" />
+                        <span className="font-medium text-white">
+                          Ingress: <span className="font-bold">412 Mb/s</span>
+                        </span>
+                      </div>
+                      <div className="flex items-center gap-1">
+                        <span className="size-1.5 rounded-full bg-white/40" />
+                        <span className="text-muted-foreground">
+                          Egress: <span>204 Mb/s</span>
+                        </span>
+                      </div>
+                    </div>
                   </div>
-                  <div className="flex items-center gap-1">
-                    <span className="size-1.5 rounded-full bg-white/40" />
-                    <span className="text-muted-foreground">
-                      Egress: <span>204 Mb/s</span>
-                    </span>
+
+                  {/* X-Axis Labels */}
+                  <div className="flex select-none justify-between px-2 pt-1 font-mono text-[8px] text-gray-500">
+                    <span>MON</span>
+                    <span>TUE</span>
+                    <span>WED</span>
+                    <span>THU</span>
+                    <span>FRI</span>
+                    <span>SAT</span>
+                    <span>SUN</span>
                   </div>
                 </div>
               </div>

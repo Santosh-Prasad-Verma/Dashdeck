@@ -59,28 +59,27 @@ export function LandingNavbar() {
 
   return (
     <nav
-      className={`fixed top-0 right-0 left-0 z-50 transition-all duration-500 ${
+      className={`fixed top-0 right-0 left-0 z-50 transition-all duration-300 ${
         scrolled
-          ? "border-white/[0.06] border-b bg-[#050505]/80 backdrop-blur-xl"
+          ? "border-white/[0.08] border-b bg-[#050505]/70 shadow-black/20 shadow-xl backdrop-blur-md"
           : "border-transparent border-b bg-transparent"
       }`}
     >
-      <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-6 lg:px-8">
+      <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-6 lg:px-8">
         {/* Logo */}
-        <Link href="/" className="flex items-center gap-2.5">
-          <img src="/Dashdeck-logo.svg" alt="Dashdeck" className="h-7 w-7" />
-          <span className="font-semibold text-lg text-white tracking-tight">Dashdeck</span>
+        <Link href="/" className="flex items-center gap-2.5 transition-transform duration-200 hover:scale-[1.02]">
+          <img src="/logo-with-text.png" alt="Dashdeck" className="h-8 w-auto select-none object-contain md:h-9" />
         </Link>
 
         {/* Desktop Right */}
-        <div className="hidden items-center gap-1 md:flex">
+        <div className="hidden items-center gap-2 md:flex">
           {socialLinks.map((link) => (
             <a
               key={link.label}
               href={link.href}
               target="_blank"
               rel="noopener noreferrer"
-              className="rounded-lg p-2 text-gray-500 transition-colors hover:bg-white/[0.04] hover:text-white"
+              className="rounded-xl p-2.5 text-gray-400 transition-all duration-200 hover:bg-white/[0.06] hover:text-white"
               aria-label={link.label}
             >
               <link.icon />
@@ -89,7 +88,7 @@ export function LandingNavbar() {
 
           <Link
             href="/dashboard/default"
-            className="rounded-lg bg-[#8B5CF6] px-4 py-2 font-medium text-sm text-white transition-all duration-300 hover:bg-[#7C3AED] hover:shadow-[#8B5CF6]/20 hover:shadow-lg"
+            className="ml-2 rounded-xl bg-gradient-to-r from-emerald-500 to-green-600 px-5 py-2.5 font-semibold text-black text-xs uppercase tracking-wider transition-all duration-300 hover:scale-[1.02] hover:shadow-emerald-500/20 hover:shadow-lg hover:brightness-110"
           >
             {t("getStarted")}
           </Link>
@@ -98,7 +97,7 @@ export function LandingNavbar() {
         {/* Mobile Toggle */}
         <button
           type="button"
-          className="p-2 text-gray-400 hover:text-white md:hidden"
+          className="rounded-xl p-2.5 text-gray-400 hover:bg-white/[0.04] hover:text-white md:hidden"
           onClick={() => setMobileOpen(!mobileOpen)}
           aria-label={t("toggleMenu")}
         >
@@ -108,7 +107,7 @@ export function LandingNavbar() {
 
       {/* Mobile Menu */}
       {mobileOpen && (
-        <div className="flex flex-col gap-6 border-white/[0.06] border-t bg-[#050505]/95 px-6 py-6 backdrop-blur-xl md:hidden">
+        <div className="flex flex-col gap-6 border-white/[0.08] border-t bg-[#050505]/95 px-6 py-6 shadow-2xl backdrop-blur-xl md:hidden">
           <div className="flex items-center gap-3">
             {socialLinks.map((link) => (
               <a
@@ -116,7 +115,7 @@ export function LandingNavbar() {
                 href={link.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-2 text-gray-500 transition-colors hover:text-white"
+                className="rounded-xl bg-white/[0.03] p-2.5 text-gray-400 transition-all hover:bg-white/[0.06] hover:text-white"
                 aria-label={link.label}
               >
                 <link.icon />
@@ -126,7 +125,7 @@ export function LandingNavbar() {
           <div className="flex flex-col gap-3">
             <Link
               href="/dashboard/default"
-              className="rounded-lg bg-[#8B5CF6] px-4 py-3 text-center font-semibold text-sm text-white transition-all hover:bg-[#7C3AED]"
+              className="rounded-xl bg-gradient-to-r from-emerald-500 to-green-600 px-4 py-3.5 text-center font-bold text-black text-xs uppercase tracking-wider transition-all hover:brightness-110"
               onClick={() => setMobileOpen(false)}
             >
               {t("getStarted")}

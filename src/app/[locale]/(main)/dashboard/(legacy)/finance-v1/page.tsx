@@ -28,18 +28,18 @@ export default function Page() {
 
         <TabsContent value="overview">
           <div className="flex flex-col gap-4 **:data-[slot=card]:shadow-xs">
-            <div className="grid grid-cols-1 gap-4 *:data-[slot=card]:gap-2 *:data-[slot=card]:bg-linear-to-t *:data-[slot=card]:from-primary/5 *:data-[slot=card]:to-card sm:grid-cols-2 @5xl/main:grid-cols-4">
+            <div className="grid @5xl/main:grid-cols-4 grid-cols-1 gap-4 *:data-[slot=card]:gap-2 *:data-[slot=card]:bg-linear-to-t *:data-[slot=card]:from-primary/5 *:data-[slot=card]:to-card sm:grid-cols-2">
               <PrimaryAccount />
               <NetWorth />
               <MonthlyCashFlow />
               <SavingsRate />
             </div>
 
-            <div className="grid grid-cols-1 gap-4 @5xl/main:grid-cols-[minmax(0,2fr)_minmax(320px,1fr)]">
-              <div className="flex flex-col gap-4 min-w-0">
+            <div className="grid @5xl/main:grid-cols-[minmax(0,2fr)_minmax(320px,1fr)] grid-cols-1 gap-4">
+              <div className="flex min-w-0 flex-col gap-4">
                 <CashFlowOverview />
 
-                <div className="grid grid-cols-1 gap-4 @3xl/main:grid-cols-2">
+                <div className="grid @3xl/main:grid-cols-2 grid-cols-1 gap-4">
                   <SpendingBreakdown />
                   <IncomeReliability />
                 </div>

@@ -47,7 +47,7 @@ export default function Page() {
         <UnitEconomics />
       </div>
 
-      <div className="grid grid-cols-1 gap-6 @5xl:grid-cols-12">
+      <div className="grid @5xl:grid-cols-12 grid-cols-1 gap-6">
         <div className="@5xl:col-span-7 min-w-0">
           <MRRTrend />
         </div>
@@ -56,7 +56,7 @@ export default function Page() {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 gap-6 @5xl:grid-cols-12">
+      <div className="grid @5xl:grid-cols-12 grid-cols-1 gap-6">
         <div className="@5xl:col-span-7 min-w-0">
           <CohortTable />
         </div>
@@ -65,7 +65,7 @@ export default function Page() {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 gap-6 @5xl:grid-cols-12">
+      <div className="grid @5xl:grid-cols-12 grid-cols-1 gap-6">
         <div className="@5xl:col-span-7 min-w-0">
           <HealthScore />
         </div>

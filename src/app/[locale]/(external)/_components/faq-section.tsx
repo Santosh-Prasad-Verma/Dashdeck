@@ -53,11 +53,11 @@ export function FaqSection() {
         transition={{ duration: 0.6 }}
         className="text-center"
       >
-        <h2 className="font-bold text-3xl text-white md:text-4xl">Frequently asked questions</h2>
-        <p className="mt-4 text-gray-500 text-lg">Everything you need to know about Dashdeck</p>
+        <h2 className="font-extrabold text-3xl text-white tracking-tight md:text-5xl">Frequently asked questions</h2>
+        <p className="mt-4 text-gray-400 text-lg">Everything you need to know about Dashdeck</p>
       </motion.div>
 
-      <div className="mx-auto mt-16 max-w-2xl">
+      <div className="mx-auto mt-16 max-w-3xl space-y-2">
         {faqs.map((faq, i) => {
           const isOpen = openItems.has(i);
           return (
@@ -67,20 +67,24 @@ export function FaqSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.4, delay: i * 0.05 }}
-              className="border-white/[0.06] border-b"
+              className="rounded-2xl border border-white/[0.04] transition-all duration-300"
+              style={{
+                backgroundColor: isOpen ? "rgba(255, 255, 255, 0.02)" : "rgba(255, 255, 255, 0.005)",
+                borderColor: isOpen ? "rgba(255, 255, 255, 0.08)" : "rgba(255, 255, 255, 0.04)",
+              }}
             >
               <button
                 onClick={() => toggle(i)}
-                className="group flex w-full items-center justify-between py-5 text-left"
+                className="group flex w-full items-center justify-between px-6 py-5 text-left"
               >
-                <span className="pr-4 font-medium text-base text-white transition-colors group-hover:text-gray-200">
+                <span className="pr-4 font-semibold text-base text-white transition-colors group-hover:text-gray-200">
                   {faq.q}
                 </span>
                 <ChevronDown
-                  className={`size-4 flex-shrink-0 text-gray-500 transition-transform duration-300 ${isOpen ? "rotate-180" : ""}`}
+                  className={`size-4 flex-shrink-0 text-gray-400 transition-transform duration-300 ${isOpen ? "rotate-180 text-white" : ""}`}
                 />
               </button>
-              <AnimatePresence>
+              <AnimatePresence initial={false}>
                 {isOpen && (
                   <motion.div
                     initial={{ height: 0, opacity: 0 }}
@@ -89,7 +93,9 @@ export function FaqSection() {
                     transition={{ duration: 0.3, ease: "easeInOut" }}
                     className="overflow-hidden"
                   >
-                    <p className="pt-1 pb-5 text-gray-400 text-sm leading-relaxed">{faq.a}</p>
+                    <p className="border-white/[0.02] border-t px-6 pt-4 pb-5 text-gray-400 text-sm leading-relaxed">
+                      {faq.a}
+                    </p>
                   </motion.div>
                 )}
               </AnimatePresence>

@@ -1,196 +1,262 @@
 "use client";
 
-import * as React from "react";
+import { motion } from "framer-motion";
+import {
+  Layout,
+  Activity,
+  Globe,
+  Database,
+  Server,
+  ShoppingCart,
+  Wallet,
+  Users,
+  BarChart3,
+  Cpu,
+  Zap,
+} from "lucide-react";
 
-import { motion, useScroll, useTransform } from "framer-motion";
-
-import { Link } from "@/i18n/navigation";
-
-// Arrow indicator icon
-function ArrowIndicator({ className }: { className?: string }) {
-  return (
-    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 100 100" width="100%" className={className}>
-      <title>Arrow Down Indicator</title>
-      <path
-        fill="currentColor"
-        d="M69.022 85.363c16.693-13.32 20.658-33.261 20.16-43.736H77.95c0 17.454-11.106 29.106-20.543 35.517-4.676 3.177-10.818 2.998-15.414-.293-17.124-12.264-19.958-27.753-18.988-35.224H10.305c0 20.438 9.697 34.444 20.244 43.16 11.033 9.118 27.285 9.503 38.473.576Z"
-      />
-      <path fill="currentColor" fillRule="evenodd" d="M56.016 5v79.243H43.56V5h12.455Z" clipRule="evenodd" />
-    </svg>
-  );
+interface DashboardPreset {
+  id: string;
+  name: string;
+  description: string;
+  icon: React.ElementType;
+  color: string;
+  metrics: { label: string; value: string; trend?: string }[];
+  chartType: "line" | "bar" | "area";
 }
 
-// Custom Film-Frame clipPath Mask SVG path scaled to 0-1 range
-function ClipPathSvg() {
-  return (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      fill="none"
-      viewBox="0 0 1836 1053"
-      width="0"
-      height="0"
-      className="absolute"
-    >
-      <defs>
-        <clipPath id="siena-clip-path" clipPathUnits="objectBoundingBox">
-          <path
-            fill="currentColor"
-            d="M457.525 1.148c-20.789-3.198-193.979 1.16-283.854 2.496 11.104-.178 1.297-2.868-81.146-2.496-103.5.468-86 102.499-86 109.999s-7 524.5-6.5 547.5 10 59 6.5 99c-2.8 32-1.167 234.667 0 332.003.5 75 62.5 66.5 67 68.5s38.5 0 81.5 0 436 6 526 10.5 438.995-.5 505.495 0 330.01-12.5 417.51-12.5 230.99 2 270.99 0 40.5-16 51-31.5 12.5-61 12.5-105.5c0-44.503 7.01-274.504 7.01-348.004s-3.51-159.998-7.01-230.998 0-256.002 0-318.002 7.01-92.998-22.5-110.999c-18.79-11.471-81.99-9.999-133.49-9.999H853.525c-29 0-370 4-396 0Z"
-            transform="scale(0.0005139987561, 0.0008543065594)"
+const presets: DashboardPreset[] = [
+  {
+    id: "crm",
+    name: "CRM Dashboard",
+    description: "Customer relationship analytics and sales pipeline tracking",
+    icon: Users,
+    color: "#10b981",
+    metrics: [
+      { label: "Active Deals", value: "142", trend: "+12%" },
+      { label: "Pipeline Value", value: "$2.4M", trend: "+8%" },
+      { label: "Win Rate", value: "34%", trend: "+2.1%" },
+    ],
+    chartType: "area",
+  },
+  {
+    id: "devops",
+    name: "DevOps Telemetry",
+    description: "Infrastructure monitoring and deployment metrics",
+    icon: Server,
+    color: "#d4fc34",
+    metrics: [
+      { label: "Deploy Frequency", value: "24/day", trend: "+15%" },
+      { label: "Error Rate", value: "0.02%", trend: "-0.01%" },
+      { label: "Avg Latency", value: "12ms", trend: "-3ms" },
+    ],
+    chartType: "line",
+  },
+  {
+    id: "saas",
+    name: "SaaS Analytics",
+    description: "Subscription metrics and user engagement tracking",
+    icon: BarChart3,
+    color: "#8b5cf6",
+    metrics: [
+      { label: "MRR", value: "$184K", trend: "+12%" },
+      { label: "Churn Rate", value: "2.1%", trend: "-0.3%" },
+      { label: "DAU/MAU", value: "42%", trend: "+5%" },
+    ],
+    chartType: "area",
+  },
+  {
+    id: "ai",
+    name: "AI Agent Hub",
+    description: "Model performance and agent orchestration metrics",
+    icon: Cpu,
+    color: "#06b6d4",
+    metrics: [
+      { label: "Tokens/sec", value: "12.4K", trend: "+22%" },
+      { label: "Accuracy", value: "98.7%", trend: "+0.2%" },
+      { label: "Active Models", value: "8", trend: "+2" },
+    ],
+    chartType: "line",
+  },
+  {
+    id: "ecommerce",
+    name: "E-Commerce",
+    description: "Order tracking and inventory management dashboard",
+    icon: ShoppingCart,
+    color: "#f59e0b",
+    metrics: [
+      { label: "Orders Today", value: "1,842", trend: "+18%" },
+      { label: "Revenue", value: "$67K", trend: "+24%" },
+      { label: "Cart Abandon", value: "28%", trend: "-4%" },
+    ],
+    chartType: "bar",
+  },
+  {
+    id: "finops",
+    name: "FinOps Spend",
+    description: "Cloud cost optimization and budget tracking",
+    icon: Wallet,
+    color: "#ec4899",
+    metrics: [
+      { label: "Monthly Spend", value: "$42K", trend: "-8%" },
+      { label: "Savings", value: "$12K", trend: "+15%" },
+      { label: "Efficiency", value: "94%", trend: "+3%" },
+    ],
+    chartType: "area",
+  },
+];
+
+function MiniChart({ type, color }: { type: "line" | "bar" | "area"; color: string }) {
+  if (type === "bar") {
+    return (
+      <svg className="h-12 w-full" viewBox="0 0 200 40">
+        {[40, 65, 45, 80, 55, 70, 90, 60, 75, 85, 50, 70].map((height, i) => (
+          <rect
+            key={i}
+            x={i * 17}
+            y={40 - height * 0.4}
+            width={12}
+            height={height * 0.4}
+            fill={color}
+            opacity={0.6 + (i % 3) * 0.1}
+            rx={2}
           />
-        </clipPath>
-      </defs>
-    </svg>
-  );
-}
-
-// Watch trailer overlay button
-function TrailerButton() {
-  return (
-    <div className="absolute z-20 flex scale-50 flex-col items-center justify-center gap-3 text-center text-[#d4fc34] lg:scale-100 transition-transform duration-300 hover:scale-110">
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        fill="none"
-        viewBox="0 0 100 100"
-        width="100%"
-        className="size-24 text-[#d4fc34]"
-      >
-        <title>Play Button</title>
-        <path
-          fill="currentColor"
-          d="M80.593 43.765c4.543 3.072 4.543 9.762 0 12.834L28.219 92.021c-5.145 3.48-12.087-.206-12.087-6.417V14.76c0-6.21 6.942-9.897 12.087-6.417l52.374 35.422Z"
-        />
+        ))}
       </svg>
-      <p className="text-xs uppercase tracking-widest font-mono font-bold">Launch System</p>
-      <h1 className="text-2xl uppercase leading-none font-bold">Open Console</h1>
-    </div>
+    );
+  }
+
+  if (type === "line") {
+    return (
+      <svg className="h-12 w-full" viewBox="0 0 200 40">
+        <path
+          d="M 0,30 Q 20,25 40,28 T 80,20 T 120,25 T 160,15 T 200,18"
+          fill="none"
+          stroke={color}
+          strokeWidth="2"
+          strokeLinecap="round"
+        />
+        <circle cx="120" cy="25" r="3" fill={color} />
+      </svg>
+    );
+  }
+
+  return (
+    <svg className="h-12 w-full" viewBox="0 0 200 40">
+      <defs>
+        <linearGradient id={`grad-${color.replace("#", "")}`} x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stopColor={color} stopOpacity="0.3" />
+          <stop offset="100%" stopColor={color} stopOpacity="0" />
+        </linearGradient>
+      </defs>
+      <path
+        d="M 0,35 Q 30,20 60,25 T 120,15 T 180,20 L 200,18 L 200,40 L 0,40 Z"
+        fill={`url(#grad-${color.replace("#", "")})`}
+      />
+      <path
+        d="M 0,35 Q 30,20 60,25 T 120,15 T 180,20 L 200,18"
+        fill="none"
+        stroke={color}
+        strokeWidth="2"
+        strokeLinecap="round"
+      />
+      <circle cx="120" cy="15" r="3" fill={color} />
+    </svg>
   );
 }
 
 export function SienaParallax() {
-  const containerRef = React.useRef<HTMLDivElement>(null);
-  const videoRef = React.useRef<HTMLDivElement>(null);
-
-  // Scroll Progress relative to the outer container (for header image offset)
-  const { scrollYProgress: scrollYContainer } = useScroll({
-    target: containerRef,
-    offset: ["start end", "end start"],
-  });
-
-  // Scroll Progress relative to the mask section (for scale and zoom offsets)
-  const { scrollYProgress: scrollYVideo } = useScroll({
-    target: videoRef,
-    offset: ["start end", "end start"],
-  });
-
-  // Replicate original Siena Parallax animation values
-  const yImage = useTransform(scrollYContainer, [0.6, 1], ["0%", "30%"]);
-  const scaleVideo = useTransform(scrollYVideo, [0, 1], [1, 0.75]);
-  const scaleInnerImage = useTransform(scrollYVideo, [0, 1], [1, 1.25]);
-
   return (
-    <div
-      ref={containerRef}
-      className="flex w-full flex-col items-center overflow-hidden bg-[#050505] text-white py-24 select-none"
-    >
-      <ClipPathSvg />
-
-      {/* Header parallax image layer */}
-      <div className="relative flex h-[70vh] w-full items-end overflow-hidden">
-        {/* Top left category indicator */}
-        <div className="absolute left-6 top-6 lg:left-10 lg:top-10 z-30 flex items-center justify-center gap-3">
-          <div className="flex size-8 items-center justify-center rounded-full bg-white/10 p-2 text-white shadow-sm border border-white/10">
-            <ArrowIndicator className="rotate-90" />
-          </div>
-          <p className="text-xs uppercase tracking-widest text-zinc-400 font-bold font-mono">Visual Builder</p>
+    <div className="relative flex w-full flex-col items-center bg-[#050505] py-20 px-4 text-white lg:px-8">
+      {/* Header Title Section */}
+      <div className="mb-12 flex w-full max-w-7xl flex-col items-center text-center">
+        <div className="inline-flex items-center gap-2 rounded-full border border-[#10b981]/30 bg-[#10b981]/10 px-3.5 py-1 text-xs text-[#10b981]">
+          <Layout className="size-3.5" />
+          Ready-to-Use Templates
         </div>
-
-        {/* Shadow Overlay */}
-        <div className="absolute inset-0 z-10 bg-gradient-to-b from-black/80 via-black/20 to-transparent h-1/2 w-full" />
-
-        {/* Parallax Image */}
-        <motion.img
-          src="/Preview-img1.png"
-          alt="Dashboard UI Layout"
-          className="absolute inset-0 h-[120vh] w-full object-cover"
-          style={{ y: yImage }}
-        />
-      </div>
-
-      {/* Headline Text section */}
-      <div className="flex w-full flex-col items-center justify-center py-20 px-6 text-center">
-        <p className="my-6 text-xs uppercase tracking-widest font-bold text-neutral-500 font-mono">
-          Advanced Workspace
+        <h2 className="mt-4 max-w-4xl font-extrabold text-4xl text-white uppercase tracking-tight sm:text-5xl lg:text-7xl">
+          Dashboard Presets
+        </h2>
+        <p className="mt-4 max-w-2xl text-neutral-400 text-sm sm:text-base">
+          Copy pixel-perfect, fully responsive dashboard templates for any use case. From CRM to DevOps, SaaS to AI — start building in seconds.
         </p>
-        <h1 className="w-full border-b border-t border-white/10 py-6 text-4xl font-extrabold uppercase leading-[0.9] sm:text-6xl lg:text-8xl tracking-tight max-w-6xl text-white">
-          Dashdeck Console
-        </h1>
-        <div className="my-8 flex size-8 items-center justify-center rounded-full bg-white/10 p-2 text-white shadow-md animate-bounce border border-white/10">
-          <ArrowIndicator />
-        </div>
       </div>
 
-      {/* Cinematic Mask Section (ClipPath Scaling Video placeholder) */}
-      <Link href="/dashboard/default" className="relative flex w-full justify-center">
-        <motion.div
-          ref={videoRef}
-          style={{
-            scale: scaleVideo,
-            clipPath: "url(#siena-clip-path)",
-          }}
-          className="relative flex aspect-video w-full cursor-pointer items-center justify-center overflow-hidden shadow-2xl lg:w-[80%]"
-        >
-          {/* Faded overlay */}
-          <div className="absolute inset-0 z-10 bg-black/35 hover:bg-black/20 transition-colors duration-300" />
+      {/* Dashboard Presets Grid */}
+      <div className="grid w-full max-w-7xl grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        {presets.map((preset, idx) => (
+          <motion.div
+            key={preset.id}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 0.5, delay: idx * 0.1 }}
+            className="group relative overflow-hidden rounded-2xl border border-zinc-800/80 bg-[#0B0B0C] p-5 transition-all duration-300 hover:border-zinc-700 hover:bg-[#0E0E10]"
+          >
+            {/* Header */}
+            <div className="mb-4 flex items-center justify-between">
+              <div className="flex items-center gap-3">
+                <div
+                  className="flex size-9 items-center justify-center rounded-lg"
+                  style={{ backgroundColor: `${preset.color}15`, border: `1px solid ${preset.color}30` }}
+                >
+                  <preset.icon className="size-4.5" style={{ color: preset.color }} />
+                </div>
+                <div>
+                  <h3 className="font-bold text-sm text-white">{preset.name}</h3>
+                  <p className="text-[10px] text-neutral-500">{preset.description}</p>
+                </div>
+              </div>
+            </div>
 
-          {/* Hover Trailer Button */}
-          <TrailerButton />
+            {/* Mini Chart */}
+            <div className="mb-4 rounded-lg border border-white/[0.03] bg-white/[0.01] p-3">
+              <MiniChart type={preset.chartType} color={preset.color} />
+            </div>
 
-          {/* Mask Background Image Zoom */}
-          <motion.img
-            src="/dashboard.png"
-            alt="Dashdeck Preview"
-            className="absolute inset-0 h-full w-full object-cover"
-            style={{ scale: scaleInnerImage }}
-          />
-        </motion.div>
-      </Link>
+            {/* Metrics */}
+            <div className="grid grid-cols-3 gap-2">
+              {preset.metrics.map((metric) => (
+                <div key={metric.label} className="text-center">
+                  <span className="block font-mono text-[8px] text-neutral-500 uppercase">{metric.label}</span>
+                  <span className="font-bold text-sm text-white">{metric.value}</span>
+                  {metric.trend && (
+                    <span
+                      className="block font-mono text-[9px]"
+                      style={{ color: metric.trend.startsWith("+") ? preset.color : "#ef4444" }}
+                    >
+                      {metric.trend}
+                    </span>
+                  )}
+                </div>
+              ))}
+            </div>
 
-      {/* Production terms grid/scroller */}
-      <div className="mt-32 flex w-full flex-col items-center justify-center uppercase font-mono">
-        <h2 className="w-full border-t border-white/10 py-5 text-center text-3xl font-extrabold leading-[0.9] sm:text-5xl lg:text-7xl">
-          15+ Dashboards
-        </h2>
-        <h2 className="w-full border-t border-white/10 py-5 text-center text-3xl font-extrabold leading-[0.9] sm:text-5xl lg:text-7xl">
-          Custom Charts
-        </h2>
-        <h2 className="w-full border-b border-t border-white/10 py-5 text-center text-3xl font-extrabold leading-[0.9] sm:text-5xl lg:text-7xl">
-          Fully Interactive
-        </h2>
+            {/* Hover indicator */}
+            <div
+              className="absolute inset-x-0 bottom-0 h-0.5 opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+              style={{ backgroundColor: preset.color }}
+            />
+          </motion.div>
+        ))}
       </div>
 
-      {/* Sitemap / Links Section */}
-      <div className="my-36 flex flex-col items-center justify-center uppercase font-mono gap-6">
-        <p className="my-4 text-xs uppercase tracking-widest text-neutral-500 font-bold">Navigation</p>
-        <Link
+      {/* View All Link */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.5, delay: 0.4 }}
+        className="mt-10"
+      >
+        <a
           href="/dashboard/default"
-          className="text-2xl font-bold opacity-30 transition-all hover:opacity-100 duration-300 hover:scale-105"
+          className="inline-flex items-center gap-2 rounded-full border border-white/[0.1] bg-white/[0.03] px-6 py-2.5 font-medium text-sm text-white transition-all hover:bg-white/[0.06] hover:border-white/[0.15]"
         >
-          Open App
-        </Link>
-        <Link
-          href="/dashboard/projects"
-          className="text-2xl font-bold opacity-30 transition-all hover:opacity-100 duration-300 hover:scale-105"
-        >
-          Predictive Map
-        </Link>
-        <Link
-          href="/dashboard/sales"
-          className="text-2xl font-bold opacity-30 transition-all hover:opacity-100 duration-300 hover:scale-105"
-        >
-          Metrics Dashboard
-        </Link>
-      </div>
+          View All Presets
+          <Zap className="size-4 text-[#d4fc34]" />
+        </a>
+      </motion.div>
     </div>
   );
 }

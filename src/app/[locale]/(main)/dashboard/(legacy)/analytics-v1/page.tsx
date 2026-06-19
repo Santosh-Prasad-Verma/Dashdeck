@@ -9,8 +9,8 @@ export default function Page() {
     <div className="@container/main flex flex-col gap-4 md:gap-6">
       <AnalyticsOverview />
 
-      <div className="grid grid-cols-1 items-stretch gap-4 @5xl/main:grid-cols-3">
-        <div className="flex flex-col gap-4 @5xl/main:col-span-2 min-w-0">
+      <div className="grid @5xl/main:grid-cols-3 grid-cols-1 items-stretch gap-4">
+        <div className="@5xl/main:col-span-2 flex min-w-0 flex-col gap-4">
           <DriversForecastTarget />
           <DriversCoverageTriage />
         </div>

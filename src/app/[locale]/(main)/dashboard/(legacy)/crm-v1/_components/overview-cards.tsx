@@ -20,7 +20,7 @@ const lastMonth = format(subMonths(new Date(), 1), "LLLL");
 
 export function OverviewCards() {
   return (
-    <div className="grid grid-cols-1 gap-4 *:data-[slot=card]:shadow-xs sm:grid-cols-2 @3xl/main:grid-cols-3 @5xl/main:grid-cols-6">
+    <div className="grid @3xl/main:grid-cols-3 @5xl/main:grid-cols-6 grid-cols-1 gap-4 *:data-[slot=card]:shadow-xs sm:grid-cols-2">
       <Card className="min-w-0">
         <CardHeader>
           <CardTitle>New Leads</CardTitle>
@@ -48,7 +48,7 @@ export function OverviewCards() {
         </CardFooter>
       </Card>
 
-      <Card className="overflow-hidden pb-0 min-w-0">
+      <Card className="min-w-0 overflow-hidden pb-0">
         <CardHeader>
           <CardTitle>Proposals Sent</CardTitle>
           <CardDescription>Last Month</CardDescription>
@@ -112,7 +112,7 @@ export function OverviewCards() {
         </CardContent>
       </Card>
 
-      <Card className="col-span-1 @5xl/main:col-span-2 min-w-0">
+      <Card className="@5xl/main:col-span-2 col-span-1 min-w-0">
         <CardHeader>
           <CardTitle>Revenue Growth</CardTitle>
           <CardDescription>Year to Date (YTD)</CardDescription>
