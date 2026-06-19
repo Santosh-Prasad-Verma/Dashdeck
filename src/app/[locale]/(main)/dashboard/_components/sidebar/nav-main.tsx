@@ -137,7 +137,7 @@ const NavItemCollapsed = ({
 };
 
 export function NavMain({ items }: NavMainProps) {
-  const t = useTranslations("Sidebar");
+  const t = useTranslations();
   const path = usePathname();
   const { state, isMobile } = useSidebar();
 
@@ -159,11 +159,11 @@ export function NavMain({ items }: NavMainProps) {
           <SidebarMenu>
             <SidebarMenuItem className="flex items-center gap-2">
               <SidebarMenuButton
-                tooltip={t("quickCreate")}
+                tooltip={t("Sidebar.quickCreate")}
                 className="min-w-8 bg-primary text-primary-foreground duration-200 ease-linear hover:bg-primary/90 hover:text-primary-foreground active:bg-primary/90 active:text-primary-foreground"
               >
                 <PlusCircleIcon />
-                <span>{t("quickCreate")}</span>
+                <span>{t("Sidebar.quickCreate")}</span>
               </SidebarMenuButton>
               <Button
                 size="icon"
@@ -171,7 +171,7 @@ export function NavMain({ items }: NavMainProps) {
                 variant="outline"
               >
                 <MailIcon />
-                <span className="sr-only">{t("inbox")}</span>
+                <span className="sr-only">{t("Sidebar.inbox")}</span>
               </Button>
             </SidebarMenuItem>
           </SidebarMenu>

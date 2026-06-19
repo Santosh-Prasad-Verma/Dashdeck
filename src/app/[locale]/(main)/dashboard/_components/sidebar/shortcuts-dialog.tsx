@@ -76,7 +76,7 @@ const shortcutGroups: ShortcutGroup[] = [
 ];
 
 export function ShortcutsDialog() {
-  const t = useTranslations("Shortcuts");
+  const t = useTranslations();
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
@@ -103,8 +103,8 @@ export function ShortcutsDialog() {
       </DialogTrigger>
       <DialogContent className="max-w-2xl">
         <DialogHeader>
-          <DialogTitle>{t("title")}</DialogTitle>
-          <DialogDescription>{t("description")}</DialogDescription>
+          <DialogTitle>{t("Shortcuts.title")}</DialogTitle>
+          <DialogDescription>{t("Shortcuts.description")}</DialogDescription>
         </DialogHeader>
         <ScrollArea className="h-[400px]">
           <div className="flex flex-col gap-6 pr-4">
