@@ -2,8 +2,17 @@
 
 import { motion } from "framer-motion";
 
-const row1 = ["Google", "Notion", "Slack", "GitHub", "Stripe", "Discord", "Dropbox", "Figma"];
-const row2 = ["Linear", "Vercel", "Raycast", "Supabase", "Prisma", "Tailwind", "VS Code", "Docker"];
+const row1 = [
+  "Next.js 16",
+  "React 19",
+  "Tailwind CSS v4",
+  "shadcn/ui",
+  "Lucide React",
+  "Framer Motion",
+  "TypeScript",
+  "Biome",
+];
+const row2 = ["Recharts", "Next-Intl", "Radix UI", "Zustand", "Clerk Auth", "Vercel", "PNPM", "ESLint"];
 
 function MarqueeRow({ items, reverse = false }: { items: string[]; reverse?: boolean }) {
   const doubled = [...items, ...items];
@@ -43,8 +52,10 @@ export function IntegrationsSection() {
         transition={{ duration: 0.6 }}
         className="mb-12 text-center"
       >
-        <h2 className="font-bold text-3xl text-white md:text-4xl">Works with your favorite tools</h2>
-        <p className="mt-4 text-gray-500 text-lg">Connect Dashdeck with the tools you already use</p>
+        <h2 className="font-bold text-3xl text-white md:text-4xl">Built with modern developer stacks</h2>
+        <p className="mt-4 text-gray-500 text-lg">
+          Dashdeck leverages industry-standard tools and libraries for maximum speed and simplicity
+        </p>
       </motion.div>
 
       <div className="relative flex flex-col gap-4 overflow-hidden">

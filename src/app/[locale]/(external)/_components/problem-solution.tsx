@@ -6,11 +6,11 @@ import { ArrowDown, Check } from "lucide-react";
 import { GradientText } from "./shared/gradient-text";
 
 const scatteredItems = [
-  { emoji: "🔑", label: "Passwords", rotate: "-3deg" },
-  { emoji: "💳", label: "Cards", rotate: "2deg" },
-  { emoji: "🎫", label: "Tickets", rotate: "-2deg" },
-  { emoji: "📄", label: "Documents", rotate: "3deg" },
-  { emoji: "📊", label: "Subscriptions", rotate: "-1deg" },
+  { emoji: "📊", label: "Chart Layouts", rotate: "-3deg" },
+  { emoji: "⚙️", label: "Sidebar Toggles", rotate: "2deg" },
+  { emoji: "📱", label: "Responsive Grids", rotate: "-2deg" },
+  { emoji: "🌐", label: "Translations", rotate: "3deg" },
+  { emoji: "⚡", label: "Zustand State", rotate: "-1deg" },
 ];
 
 const fadeUp = {
@@ -34,14 +34,14 @@ export function ProblemSolution() {
           transition={{ duration: 0.6 }}
           className="font-bold text-3xl text-white md:text-4xl"
         >
-          Your digital life is <span className="text-gray-500">scattered</span>
+          Dashboard development is <span className="text-gray-500">time-consuming</span>
         </motion.h2>
         <motion.p
           variants={fadeUp}
           transition={{ duration: 0.6 }}
           className="mx-auto mt-4 max-w-2xl text-gray-500 text-lg"
         >
-          Passwords in one app. Finances in another. Tasks somewhere else. Documents everywhere.
+          Designing custom charts in one project. Styling grids in another. Fixing responsive bugs everywhere.
         </motion.p>
 
         {/* Scattered Cards */}
@@ -96,7 +96,8 @@ export function ProblemSolution() {
           transition={{ duration: 0.6 }}
           className="mx-auto mt-4 max-w-2xl text-gray-500 text-lg"
         >
-          One beautiful workspace for your entire digital life. Intelligent, secure, and always in sync.
+          A comprehensive preset library. Copy pixel-perfect, fully responsive React & Next.js dashboard templates
+          instantly.
         </motion.p>
 
         {/* Unified Card */}
@@ -119,7 +120,7 @@ export function ProblemSolution() {
             ))}
           </div>
           <div className="my-6 h-px bg-gradient-to-r from-transparent via-white/[0.08] to-transparent" />
-          <p className="text-gray-500 text-sm">All unified in one intelligent workspace</p>
+          <p className="text-gray-500 text-sm">All unified in one developer-first preset library</p>
         </motion.div>
       </motion.div>
     </section>

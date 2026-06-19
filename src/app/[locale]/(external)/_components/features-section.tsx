@@ -1,29 +1,32 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Brain, Shield, Wallet } from "lucide-react";
+import { Code2, Columns3, LayoutDashboard } from "lucide-react";
 
 const features = [
   {
-    icon: Brain,
+    icon: LayoutDashboard,
+    color: "#10B981",
+    title: "15+ Interactive Dashboards",
+    description:
+      "Explore pixel-perfect dashboard layouts built for CRM, DevOps, Sales, FinOps, Healthcare, SaaS, E-commerce, and more.",
+    items: ["High-fidelity charting UI", "Zustand-powered state flow", "Pre-built tables and metrics"],
+  },
+  {
+    icon: Columns3,
+    color: "#3B82F6",
+    title: "Responsive Container Grids",
+    description:
+      "Every widget adapts instantly to sidebar toggle state changes using modern CSS container queries instead of window-resize lag.",
+    items: ["Fluid column wrapping", "Chart width recalculation", "Jank-free transition animations"],
+  },
+  {
+    icon: Code2,
     color: "#8B5CF6",
-    title: "AI Workspace",
-    description: "Smart suggestions, automated workflows, and AI-powered insights that learn from your habits.",
-    items: ["Intelligent task prioritization", "Auto-categorize expenses", "Smart document search"],
-  },
-  {
-    icon: Wallet,
-    color: "#6366F1",
-    title: "Smart Wallet",
-    description: "Track expenses, manage subscriptions, monitor investments, and never miss a payment.",
-    items: ["Real-time balance tracking", "Subscription management", "Investment portfolio overview"],
-  },
-  {
-    icon: Shield,
-    color: "#06B6D4",
-    title: "Secure Vault",
-    description: "Military-grade encryption for passwords, documents, and sensitive data. Zero-knowledge architecture.",
-    items: ["End-to-end encryption", "Biometric authentication", "Secure document storage"],
+    title: "Developer First Stack",
+    description:
+      "Pure React and Next.js 16 components styled with Tailwind CSS v4 and shadcn/ui. Copy, paste, and start building immediately.",
+    items: ["Clean codebase organization", "Fully type-safe props", "Next-Intl translation system"],
   },
 ];
 
@@ -46,9 +49,9 @@ export function FeaturesSection() {
         transition={{ duration: 0.6 }}
         className="text-center"
       >
-        <h2 className="font-bold text-3xl text-white md:text-4xl">Everything you need</h2>
+        <h2 className="font-bold text-3xl text-white md:text-4xl">Production-Ready Starter Kit</h2>
         <p className="mx-auto mt-4 max-w-xl text-gray-500 text-lg">
-          Powerful features to manage your entire digital life
+          High-performance admin presets built with modern web technologies
         </p>
       </motion.div>
 

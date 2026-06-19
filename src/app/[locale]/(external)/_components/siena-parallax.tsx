@@ -91,7 +91,7 @@ export function SienaParallax() {
   return (
     <div
       ref={containerRef}
-      className="flex w-full flex-col items-center overflow-hidden bg-[#F9F7EF] text-black py-24 select-none"
+      className="flex w-full flex-col items-center overflow-hidden bg-[#050505] text-white py-24 select-none"
     >
       <ClipPathSvg />
 
@@ -99,10 +99,10 @@ export function SienaParallax() {
       <div className="relative flex h-[70vh] w-full items-end overflow-hidden">
         {/* Top left category indicator */}
         <div className="absolute left-6 top-6 lg:left-10 lg:top-10 z-30 flex items-center justify-center gap-3">
-          <div className="flex size-8 items-center justify-center rounded-full bg-[#F9F7EF] p-2 text-black shadow-sm">
+          <div className="flex size-8 items-center justify-center rounded-full bg-white/10 p-2 text-white shadow-sm border border-white/10">
             <ArrowIndicator className="rotate-90" />
           </div>
-          <p className="text-xs uppercase tracking-widest text-[#F9F7EF] font-bold font-mono">Visual Builder</p>
+          <p className="text-xs uppercase tracking-widest text-zinc-400 font-bold font-mono">Visual Builder</p>
         </div>
 
         {/* Shadow Overlay */}
@@ -122,10 +122,10 @@ export function SienaParallax() {
         <p className="my-6 text-xs uppercase tracking-widest font-bold text-neutral-500 font-mono">
           Advanced Workspace
         </p>
-        <h1 className="w-full border-b border-t border-black/10 py-6 text-4xl font-extrabold uppercase leading-[0.9] sm:text-6xl lg:text-8xl tracking-tight max-w-6xl">
+        <h1 className="w-full border-b border-t border-white/10 py-6 text-4xl font-extrabold uppercase leading-[0.9] sm:text-6xl lg:text-8xl tracking-tight max-w-6xl text-white">
           Dashdeck Console
         </h1>
-        <div className="my-8 flex size-8 items-center justify-center rounded-full bg-black p-2 text-[#F9F7EF] shadow-md animate-bounce">
+        <div className="my-8 flex size-8 items-center justify-center rounded-full bg-white/10 p-2 text-white shadow-md animate-bounce border border-white/10">
           <ArrowIndicator />
         </div>
       </div>
@@ -138,7 +138,7 @@ export function SienaParallax() {
             scale: scaleVideo,
             clipPath: "url(#siena-clip-path)",
           }}
-          className="relative flex aspect-video w-full items-center justify-center overflow-hidden lg:w-[80%] shadow-2xl cursor-pointer"
+          className="relative flex aspect-video w-full cursor-pointer items-center justify-center overflow-hidden shadow-2xl lg:w-[80%]"
         >
           {/* Faded overlay */}
           <div className="absolute inset-0 z-10 bg-black/35 hover:bg-black/20 transition-colors duration-300" />
@@ -158,13 +158,13 @@ export function SienaParallax() {
 
       {/* Production terms grid/scroller */}
       <div className="mt-32 flex w-full flex-col items-center justify-center uppercase font-mono">
-        <h2 className="w-full border-t border-black/10 py-5 text-center text-3xl font-extrabold leading-[0.9] sm:text-5xl lg:text-7xl">
+        <h2 className="w-full border-t border-white/10 py-5 text-center text-3xl font-extrabold leading-[0.9] sm:text-5xl lg:text-7xl">
           15+ Dashboards
         </h2>
-        <h2 className="w-full border-t border-black/10 py-5 text-center text-3xl font-extrabold leading-[0.9] sm:text-5xl lg:text-7xl">
+        <h2 className="w-full border-t border-white/10 py-5 text-center text-3xl font-extrabold leading-[0.9] sm:text-5xl lg:text-7xl">
           Custom Charts
         </h2>
-        <h2 className="w-full border-b border-t border-black/10 py-5 text-center text-3xl font-extrabold leading-[0.9] sm:text-5xl lg:text-7xl">
+        <h2 className="w-full border-b border-t border-white/10 py-5 text-center text-3xl font-extrabold leading-[0.9] sm:text-5xl lg:text-7xl">
           Fully Interactive
         </h2>
       </div>

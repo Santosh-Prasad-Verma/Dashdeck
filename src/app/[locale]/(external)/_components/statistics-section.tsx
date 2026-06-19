@@ -4,11 +4,18 @@ import { motion } from "framer-motion";
 
 import { AnimatedCounter } from "./shared/animated-counter";
 
-const stats = [
-  { value: 50, suffix: "K+", label: "Active Users" },
-  { value: 99.99, suffix: "%", label: "Uptime", decimals: 2 },
-  { value: 10, suffix: "M+", label: "Transactions Managed" },
-  { value: 150, suffix: "+", label: "Integrations" },
+interface StatItem {
+  value: number;
+  suffix: string;
+  label: string;
+  decimals?: number;
+}
+
+const stats: StatItem[] = [
+  { value: 15, suffix: "+", label: "Dashboard Presets" },
+  { value: 100, suffix: "%", label: "Responsive Container Grids" },
+  { value: 3, suffix: "", label: "Built-in Languages" },
+  { value: 0, suffix: "", label: "Server Setup Required" },
 ];
 
 export function StatisticsSection() {

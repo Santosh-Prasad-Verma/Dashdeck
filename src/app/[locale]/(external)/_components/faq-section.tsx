@@ -8,27 +8,27 @@ import { ChevronDown } from "lucide-react";
 const faqs = [
   {
     q: "What is Dashdeck?",
-    a: "Dashdeck is an all-in-one personal dashboard that helps you manage finances, passwords, documents, tasks, and subscriptions from a single intelligent workspace.",
-  },
-  {
-    q: "Is my data secure?",
-    a: "Absolutely. We use end-to-end encryption with a zero-knowledge architecture. Your data is encrypted before it leaves your device, and we never have access to your decryption keys.",
+    a: "Dashdeck is an open-source admin dashboard preset library featuring 15+ interactive dashboards like CRM, DevOps, Finance, Healthcare, and Academy. It acts as a reference architecture and a UI starter kit for building production-ready dashboards.",
   },
   {
     q: "Is Dashdeck free to use?",
-    a: "Dashdeck offers a generous free tier with core features. Premium plans with advanced AI features, unlimited storage, and priority support are coming soon.",
+    a: "Yes! Dashdeck is 100% free and open-source. There are no registration walls, payment setup, or premium subscriptions. You can access all templates instantly and adapt the code for your own projects.",
   },
   {
-    q: "What platforms does Dashdeck support?",
-    a: "Dashdeck works as a web application accessible from any modern browser. Native iOS and Android apps are on our roadmap for 2025.",
+    q: "What is the tech stack used?",
+    a: "Dashdeck is built using Next.js 16 (App Router), React 19, Tailwind CSS v4, shadcn/ui, Framer Motion for micro-interactions, Recharts for data visualization, and next-intl for localization support (English, Spanish, Hindi).",
   },
   {
-    q: "Can I import data from other apps?",
-    a: "Yes! Dashdeck supports importing from popular tools like Notion, Google Sheets, 1Password, and many more. Our integration library is constantly growing.",
+    q: "How does the sidebar resizing layout work?",
+    a: "Instead of relying on browser window-resize handlers (which cause layout jank when toggling the sidebar), Dashdeck establishes a CSS container query context (@container) on the main workspace. This allows child widgets to respond instantly to the workspace's exact width.",
   },
   {
-    q: "How is this different from Notion or Linear?",
-    a: "While Notion focuses on documents and Linear on project management, Dashdeck is specifically designed as a personal command center — combining finances, security, productivity, and AI insights in one unified experience.",
+    q: "Can I connect this to a database?",
+    a: "Absolutely. While Dashdeck uses structured local mock data and client-side state management (via Zustand) to run out-of-the-box, the components are modular. You can easily plug in any backend API, PostgreSQL, or Supabase service.",
+  },
+  {
+    q: "Are the presets ready for production?",
+    a: "Yes. All presets are optimized for Next.js App Router, run with Turbopack, and are linted using Biome. The components conform to standard accessibility guidelines and follow modern utility styling conventions.",
   },
 ];
 
