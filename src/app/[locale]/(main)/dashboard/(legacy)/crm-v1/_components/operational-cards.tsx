@@ -14,8 +14,8 @@ import { actionItems, regionSalesData, salesPipelineChartConfig, salesPipelineCh
 export function OperationalCards() {
   const totalSales = regionSalesData.reduce((sum, region) => sum + region.sales, 0);
   return (
-    <div className="grid grid-cols-1 gap-4 *:data-[slot=card]:shadow-xs sm:grid-cols-2 xl:grid-cols-3">
-      <Card>
+    <div className="grid grid-cols-1 gap-4 *:data-[slot=card]:shadow-xs sm:grid-cols-2 @5xl/main:grid-cols-3">
+      <Card className="min-w-0">
         <CardHeader>
           <CardTitle>Sales Pipeline</CardTitle>
         </CardHeader>
@@ -34,7 +34,7 @@ export function OperationalCards() {
         </CardFooter>
       </Card>
 
-      <Card>
+      <Card className="min-w-0">
         <CardHeader>
           <CardTitle>Sales by Region</CardTitle>
           <CardDescription className="font-medium tabular-nums">
@@ -78,7 +78,7 @@ export function OperationalCards() {
         </CardFooter>
       </Card>
 
-      <Card>
+      <Card className="min-w-0">
         <CardHeader>
           <CardTitle>Action Items</CardTitle>
         </CardHeader>

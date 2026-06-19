@@ -6,7 +6,7 @@ import { RecentLeadsTable } from "./_components/recent-leads-table/table";
 
 export default function Page() {
   return (
-    <div className="flex flex-col gap-4 md:gap-6">
+    <div className="@container/main flex flex-col gap-4 md:gap-6">
       <OverviewCards />
       <InsightCards />
       <OperationalCards />

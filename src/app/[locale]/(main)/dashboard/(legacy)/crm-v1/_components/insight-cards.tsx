@@ -17,8 +17,8 @@ export function InsightCards() {
   const totalLeads = leadsBySourceChartData.reduce((acc, curr) => acc + curr.leads, 0);
 
   return (
-    <div className="grid grid-cols-1 gap-4 *:data-[slot=card]:shadow-xs sm:grid-cols-2 xl:grid-cols-5">
-      <Card className="col-span-1 xl:col-span-2">
+    <div className="grid grid-cols-1 gap-4 *:data-[slot=card]:shadow-xs sm:grid-cols-2 @5xl/main:grid-cols-5">
+      <Card className="col-span-1 @5xl/main:col-span-2 min-w-0">
         <CardHeader>
           <CardTitle>Leads by Source</CardTitle>
         </CardHeader>
@@ -97,7 +97,7 @@ export function InsightCards() {
         </CardFooter>
       </Card>
 
-      <Card className="col-span-1 xl:col-span-3">
+      <Card className="col-span-1 @5xl/main:col-span-3 min-w-0">
         <CardHeader>
           <CardTitle>Project Revenue vs. Target</CardTitle>
         </CardHeader>

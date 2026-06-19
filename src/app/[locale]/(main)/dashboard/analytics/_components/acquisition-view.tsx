@@ -100,9 +100,9 @@ export function AcquisitionView() {
         </CardHeader>
         <CardContent>
           <div className="flex flex-col gap-2">
-            {utmData.map((utm, index) => (
+            {utmData.map((utm) => (
               <div
-                key={index}
+                key={`${utm.source}-${utm.medium}`}
                 className="flex items-center justify-between rounded-lg border p-3 transition-colors hover:bg-muted/50"
               >
                 <div className="flex items-center gap-4">

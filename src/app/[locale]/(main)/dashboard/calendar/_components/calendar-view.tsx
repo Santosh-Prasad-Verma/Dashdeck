@@ -99,8 +99,11 @@ export function CalendarView() {
           { label: "This Month", value: totalEventsThisMonth, icon: Zap },
           { label: "Upcoming", value: upcomingEvents.length, icon: Users },
           { label: "Completed", value: pastEvents.length, icon: Clock },
-        ].map((stat, i) => (
-          <Card key={i} className="relative overflow-hidden border-border/40 transition-shadow hover:shadow-md">
+        ].map((stat) => (
+          <Card
+            key={stat.label}
+            className="relative overflow-hidden border-border/40 transition-shadow hover:shadow-md"
+          >
             <div className="absolute top-0 right-0 h-16 w-16 bg-gradient-to-bl from-foreground/5 to-transparent" />
             <CardContent className="p-4">
               <div className="flex items-center gap-3">
@@ -180,7 +183,7 @@ export function CalendarView() {
 
                   return (
                     <button
-                      key={index}
+                      key={day.toISOString()}
                       onClick={() => setSelectedDate(day)}
                       className={cn(
                         "relative flex min-h-[105px] flex-col border-border/30 border-r border-b p-2 text-left transition-all hover:bg-muted/40",
