@@ -51,7 +51,7 @@ export function LandingPageClient() {
     <div ref={containerRef} className="relative min-h-screen overflow-x-hidden bg-[#050505] text-white">
       {/* Suppress Framer Motion Performance.measure errors */}
       <SuppressPerformanceErrors />
-      
+
       {/* Mouse Spotlight Effect */}
       <MouseSpotlight />
 

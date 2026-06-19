@@ -3,18 +3,17 @@
 import { motion } from "framer-motion";
 import {
   BookOpen,
-  Rocket,
   Code2,
+  Database,
+  ExternalLink,
+  GitBranch,
+  Globe,
   Layers,
   Palette,
-  Globe,
-  Zap,
-  Database,
-  Settings,
+  Rocket,
   Shield,
-  GitBranch,
-  ExternalLink,
 } from "lucide-react";
+
 import { Link } from "@/i18n/navigation";
 
 const sections = [
@@ -69,12 +68,7 @@ const sections = [
     icon: Globe,
     title: "Internationalization",
     description: "Full i18n support with multiple language options.",
-    items: [
-      "English (default)",
-      "Spanish (Español)",
-      "Hindi (हिन्दी)",
-      "Easy to add new languages",
-    ],
+    items: ["English (default)", "Spanish (Español)", "Hindi (हिन्दी)", "Easy to add new languages"],
   },
   {
     icon: Shield,
@@ -94,7 +88,11 @@ const sections = [
 const quickLinks = [
   { label: "GitHub Repository", href: "https://github.com/Santosh-Prasad-Verma/Dashdeck", icon: GitBranch },
   { label: "View Source Code", href: "https://github.com/Santosh-Prasad-Verma/Dashdeck/tree/main/src", icon: Code2 },
-  { label: "Contributing Guide", href: "https://github.com/Santosh-Prasad-Verma/Dashdeck/blob/main/CONTRIBUTING.md", icon: BookOpen },
+  {
+    label: "Contributing Guide",
+    href: "https://github.com/Santosh-Prasad-Verma/Dashdeck/blob/main/CONTRIBUTING.md",
+    icon: BookOpen,
+  },
   { label: "Report Issues", href: "https://github.com/Santosh-Prasad-Verma/Dashdeck/issues", icon: ExternalLink },
 ];
 
@@ -114,12 +112,8 @@ export default function DocsPage() {
       <section className="relative overflow-hidden px-6 py-20 lg:px-8">
         <div className="absolute inset-0 bg-gradient-to-b from-[#10b981]/[0.05] to-transparent" />
         <div className="relative mx-auto max-w-4xl text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-          >
-            <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-[#10b981]/30 bg-[#10b981]/10 px-4 py-1.5 text-xs text-[#10b981]">
+          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
+            <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-[#10b981]/30 bg-[#10b981]/10 px-4 py-1.5 text-[#10b981] text-xs">
               <BookOpen className="size-3.5" />
               Documentation
             </div>
@@ -144,9 +138,9 @@ export default function DocsPage() {
               <span className="size-2.5 rounded-full bg-green-500/80" />
               <span className="ml-2 font-mono text-[10px] text-muted-foreground">Terminal</span>
             </div>
-            <div className="p-4 font-mono text-[11px] text-left">
-              {commands.slice(0, 4).map((cmd, i) => (
-                <div key={i} className="mb-1">
+            <div className="p-4 text-left font-mono text-[11px]">
+              {commands.slice(0, 4).map((cmd) => (
+                <div key={cmd.command} className="mb-1">
                   <span className="text-[#10b981]">$ </span>
                   <span className="text-white">{cmd.command}</span>
                 </div>
@@ -251,9 +245,7 @@ export default function DocsPage() {
       <section className="border-white/[0.06] border-t px-6 py-16 lg:px-8">
         <div className="mx-auto max-w-2xl text-center">
           <h2 className="mb-4 font-bold text-2xl text-white">Ready to get started?</h2>
-          <p className="mb-8 text-gray-400">
-            Clone the repository and start building your admin dashboard today.
-          </p>
+          <p className="mb-8 text-gray-400">Clone the repository and start building your admin dashboard today.</p>
           <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
             <Link
               href="/dashboard/default"

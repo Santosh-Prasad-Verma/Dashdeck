@@ -1,19 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import {
-  Layout,
-  Activity,
-  Globe,
-  Database,
-  Server,
-  ShoppingCart,
-  Wallet,
-  Users,
-  BarChart3,
-  Cpu,
-  Zap,
-} from "lucide-react";
+import { BarChart3, Cpu, Layout, Server, ShoppingCart, Users, Wallet, Zap } from "lucide-react";
 
 interface DashboardPreset {
   id: string;
@@ -112,7 +100,7 @@ function MiniChart({ type, color }: { type: "line" | "bar" | "area"; color: stri
       <svg className="h-12 w-full" viewBox="0 0 200 40">
         {[40, 65, 45, 80, 55, 70, 90, 60, 75, 85, 50, 70].map((height, i) => (
           <rect
-            key={i}
+            key={`bar-${height}-${i}`}
             x={i * 17}
             y={40 - height * 0.4}
             width={12}
@@ -167,10 +155,10 @@ function MiniChart({ type, color }: { type: "line" | "bar" | "area"; color: stri
 
 export function SienaParallax() {
   return (
-    <div className="relative flex w-full flex-col items-center bg-[#050505] py-20 px-4 text-white lg:px-8">
+    <div className="relative flex w-full flex-col items-center bg-[#050505] px-4 py-20 text-white lg:px-8">
       {/* Header Title Section */}
       <div className="mb-12 flex w-full max-w-7xl flex-col items-center text-center">
-        <div className="inline-flex items-center gap-2 rounded-full border border-[#10b981]/30 bg-[#10b981]/10 px-3.5 py-1 text-xs text-[#10b981]">
+        <div className="inline-flex items-center gap-2 rounded-full border border-[#10b981]/30 bg-[#10b981]/10 px-3.5 py-1 text-[#10b981] text-xs">
           <Layout className="size-3.5" />
           Ready-to-Use Templates
         </div>
@@ -178,7 +166,8 @@ export function SienaParallax() {
           Dashboard Presets
         </h2>
         <p className="mt-4 max-w-2xl text-neutral-400 text-sm sm:text-base">
-          Copy pixel-perfect, fully responsive dashboard templates for any use case. From CRM to DevOps, SaaS to AI — start building in seconds.
+          Copy pixel-perfect, fully responsive dashboard templates for any use case. From CRM to DevOps, SaaS to AI —
+          start building in seconds.
         </p>
       </div>
 
@@ -251,7 +240,7 @@ export function SienaParallax() {
       >
         <a
           href="/dashboard/default"
-          className="inline-flex items-center gap-2 rounded-full border border-white/[0.1] bg-white/[0.03] px-6 py-2.5 font-medium text-sm text-white transition-all hover:bg-white/[0.06] hover:border-white/[0.15]"
+          className="inline-flex items-center gap-2 rounded-full border border-white/[0.1] bg-white/[0.03] px-6 py-2.5 font-medium text-sm text-white transition-all hover:border-white/[0.15] hover:bg-white/[0.06]"
         >
           View All Presets
           <Zap className="size-4 text-[#d4fc34]" />

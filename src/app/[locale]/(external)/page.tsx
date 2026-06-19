@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 
 import dynamic from "next/dynamic";
 
@@ -80,7 +80,8 @@ export default function Page() {
               zIndex: 10000,
               opacity: stairsActive ? 0 : 1,
               transform: stairsActive ? "translateY(-20px)" : "translateY(0)",
-              transition: "opacity 0.4s cubic-bezier(0.76, 0, 0.24, 1) 0.6s, transform 0.4s cubic-bezier(0.76, 0, 0.24, 1) 0.6s",
+              transition:
+                "opacity 0.4s cubic-bezier(0.76, 0, 0.24, 1) 0.6s, transform 0.4s cubic-bezier(0.76, 0, 0.24, 1) 0.6s",
             }}
           >
             LOADING
