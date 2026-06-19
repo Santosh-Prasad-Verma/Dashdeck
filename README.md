@@ -1,6 +1,6 @@
 <p align="center">
   <a href="https://github.com/Santosh-Prasad-Verma/Dashdeck">
-    <img src="media/logo-with-text.png" alt="Dashdeck Logo" width="100%" />
+    <img src="media/logo-with-text.png" alt="Dashdeck Logo" width="80%" />
   </a>
 </p>
 
@@ -20,17 +20,6 @@
 ---
 
 Dashdeck is a high-fidelity admin dashboard template packed with **37+ interactive dashboard pages**, custom theme presets, fully interactive charts, and client-side state management. It runs entirely on the client side with mock data, requiring **zero backend setup** to launch.
-
-## 🚀 Live Preview & Landing Page
-
-We redesigned the home landing page to feature a pixel-perfect, premium dark space theme with custom interactive SVG charts (donut, curved line, and grid area charts) with dynamic tooltips and hover micro-animations.
-
-<p align="center">
-  <img src="media/dashboard.png" alt="Dashdeck Dashboard Preview" width="100%" />
-</p>
-
-- **Landing Page**: `/`
-- **Default App Entry**: `/dashboard/default`
 
 ## 📸 Preview
 
