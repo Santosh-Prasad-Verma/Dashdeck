@@ -1,6 +1,6 @@
 <p align="center">
   <a href="https://github.com/Santosh-Prasad-Verma/Dashdeck">
-    <img src="media/logo-with-text.png" alt="Dashdeck Logo" width="80%" />
+    <img src="media/logo-with-text.png" alt="Dashdeck Logo" width="60%" />
   </a>
 </p>
 
