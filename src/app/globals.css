@@ -292,3 +292,8 @@ html {
     -webkit-print-color-adjust: exact;
   }
 }
+
+@keyframes marquee {
+  0% { transform: translateX(0%); }
+  100% { transform: translateX(-50%); }
+}

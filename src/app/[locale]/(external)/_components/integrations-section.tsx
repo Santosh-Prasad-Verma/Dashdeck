@@ -66,13 +66,6 @@ export function IntegrationsSection() {
         <MarqueeRow items={row1} />
         <MarqueeRow items={row2} reverse />
       </div>
-
-      <style jsx>{`
-        @keyframes marquee {
-          0% { transform: translateX(0%); }
-          100% { transform: translateX(-50%); }
-        }
-      `}</style>
     </section>
   );
 }
